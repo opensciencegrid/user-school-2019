@@ -1,0 +1,28 @@
+site_name: OSG User School 2019
+site_url: https://opensciencegrid.org/user-school-2019/
+repo_name: null
+repo_url: null
+theme:
+  name: windmill
+  custom_dir: theme-customizations
+
+extra:
+  article_nav_top: false
+
+extra_css:
+  - css/extra.css
+  - css/codehilite.css
+
+# Suppress weird JavaScript problems with development server
+extra_javascript: []
+
+pages:
+  - User School 2019:             index.md
+  - Curriculum:
+    - High-level overview:        curriculum/overview.md
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc(permalink=true)
+  - osg_markdown.colors
