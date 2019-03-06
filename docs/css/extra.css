@@ -1,0 +1,4 @@
+/* Add another level of headings to the left navigation */
+
+.wm-toc-lev4 > .wm-toc-text { padding-left: 56px; font-size: 1.3rem; }
+.wm-toc-lev4 + .wm-page-toc { margin-left: 56px; }
