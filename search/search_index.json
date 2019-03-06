@@ -1,0 +1,44 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "(Image copyright Ann Althouse, licensed under Creative Commons, \nhttp://www.flickr.com/photos/althouse/141467660/\n)\n\n\nOSG User School 2019\n\n\nCould you transform your research with vast amounts of computing?\n\n\n\nCome spend a week at the beautiful University of Wisconsin\u2013Madison and learn how.\n\n\nDuring the school, July 15\u201319, you will learn to use high-throughput computing (HTC) systems \u2014 at your own campus or\nusing the national Open Science Grid (OSG) \u2014 to run large-scale computing applications that are at the heart of today\u2019s\ncutting-edge science.  Through lectures, discussions, and \nlots of hands-on activities\n with experienced OSG staff,\nyou will learn how HTC systems work, how to run and manage lots of jobs and huge datasets to implement a scientific\ncomputing workflow, and where to turn for more information and help.  Take a look at \nthe high-level curriculum and\nsyllabus\n for more details.\n\n\nThe school is ideal for graduate students in any science or research domain where large-scale computing is a vital part\nof the research process, plus we will consider applications from advanced undergraduates, post-doctoral students,\nfaculty, and staff.  Students accepted to this program will receive financial support for basic travel and local costs\nassociated with the School.\n\n\nApplications\n\n\nWe plan to start accepting applications in the first part of March, so check back soon for more details.\n\n\nContact Us\n\n\nThe OSG User School is part of the \nOSG Outreach Area\n please visit\nthat site to learn about other OSG Outreach activities.\n\n\nIf you have any questions about the School, the application process, or anything else, feel free to email us:\n\n\n\n\n   \n   OSGUserSchool", 
+            "title": "User School 2019"
+        }, 
+        {
+            "location": "/#osg-user-school-2019", 
+            "text": "Could you transform your research with vast amounts of computing?  Come spend a week at the beautiful University of Wisconsin\u2013Madison and learn how.  During the school, July 15\u201319, you will learn to use high-throughput computing (HTC) systems \u2014 at your own campus or\nusing the national Open Science Grid (OSG) \u2014 to run large-scale computing applications that are at the heart of today\u2019s\ncutting-edge science.  Through lectures, discussions, and  lots of hands-on activities  with experienced OSG staff,\nyou will learn how HTC systems work, how to run and manage lots of jobs and huge datasets to implement a scientific\ncomputing workflow, and where to turn for more information and help.  Take a look at  the high-level curriculum and\nsyllabus  for more details.  The school is ideal for graduate students in any science or research domain where large-scale computing is a vital part\nof the research process, plus we will consider applications from advanced undergraduates, post-doctoral students,\nfaculty, and staff.  Students accepted to this program will receive financial support for basic travel and local costs\nassociated with the School.", 
+            "title": "OSG User School 2019"
+        }, 
+        {
+            "location": "/#applications", 
+            "text": "We plan to start accepting applications in the first part of March, so check back soon for more details.", 
+            "title": "Applications"
+        }, 
+        {
+            "location": "/#contact-us", 
+            "text": "The OSG User School is part of the  OSG Outreach Area  please visit\nthat site to learn about other OSG Outreach activities.  If you have any questions about the School, the application process, or anything else, feel free to email us:          OSGUserSchool", 
+            "title": "Contact Us"
+        }, 
+        {
+            "location": "/curriculum/overview/", 
+            "text": "Curriculum and Syllabus\n\n\nCurriculum Goals\n\n\nAt a high level, the goal of the School is to help students learn to:\n\n\n\n\nDescribe the basic elements and architecture of a distributed computing system\n\n\nUse basic distributed computing tools to run jobs and manage data\n\n\nSelect reasonable tools and methods to solve scientific computing problems using distributed computing\n\n\nOutline the role of distributed computing, its history, current state and issues, and hopes for the future\n\n\nIdentify resources for support, further study, and development opportunities in distributed computing\n\n\n\n\nSyllabus\n\n\nThe high-level syllabus for 2019 is below; a more detailed schedule will be published later as we get closer to the\nschool.\n\n\n\n\n\n\n\n\n\n\nMorning\n\n\nAfternoon\n\n\n\n\n\n\n\n\n\n\nMonday\n\n\nWelcome\nIntroduction to high-throughput computing\nRunning jobs locally with Condor\n\n\nIntroduction to high-throughput workflows\nRunning workflows locally with Condor\n\n\n\n\n\n\nTuesday\n\n\nIntroduction to grid computing and overlays\nBasic troubleshooting\n\n\nIntroduction to OSG\nRunning jobs using OSG glideins\nRunning on real resources\nOSG architecture\n\n\n\n\n\n\nWednesday\n\n\nDealing with real software\n(Especially R and MATLAB, but others as well)\n\n\nFree choice:\n\u2022\u00a0More details about how overlays systems work\n\u2022\u00a0Get one-on-one help with your computing work\n\u2022\u00a0Take a break and visit Madison\n\n\n\n\n\n\nThursday\n\n\nIntroduction to distributed storage\nUsing remote storage systems\n\n\nManaging large, distributed data\nIntroduction to grid security for end users\n\n\n\n\n\n\nFriday\n\n\nTurning scientific computing needs into HTC jobs\nEstimating resource needs, decomposing and running large jobs\nStrategies and technologies for handling large workflows\n\n\nPrinciples of high-throughput computing\nScientific computing showcase\nWhere to go and what to do next \u2014 resources, funding, etc.", 
+            "title": "High-level overview"
+        }, 
+        {
+            "location": "/curriculum/overview/#curriculum-and-syllabus", 
+            "text": "", 
+            "title": "Curriculum and Syllabus"
+        }, 
+        {
+            "location": "/curriculum/overview/#curriculum-goals", 
+            "text": "At a high level, the goal of the School is to help students learn to:   Describe the basic elements and architecture of a distributed computing system  Use basic distributed computing tools to run jobs and manage data  Select reasonable tools and methods to solve scientific computing problems using distributed computing  Outline the role of distributed computing, its history, current state and issues, and hopes for the future  Identify resources for support, further study, and development opportunities in distributed computing", 
+            "title": "Curriculum Goals"
+        }, 
+        {
+            "location": "/curriculum/overview/#syllabus", 
+            "text": "The high-level syllabus for 2019 is below; a more detailed schedule will be published later as we get closer to the\nschool.      Morning  Afternoon      Monday  Welcome Introduction to high-throughput computing Running jobs locally with Condor  Introduction to high-throughput workflows Running workflows locally with Condor    Tuesday  Introduction to grid computing and overlays Basic troubleshooting  Introduction to OSG Running jobs using OSG glideins Running on real resources OSG architecture    Wednesday  Dealing with real software (Especially R and MATLAB, but others as well)  Free choice: \u2022\u00a0More details about how overlays systems work \u2022\u00a0Get one-on-one help with your computing work \u2022\u00a0Take a break and visit Madison    Thursday  Introduction to distributed storage Using remote storage systems  Managing large, distributed data Introduction to grid security for end users    Friday  Turning scientific computing needs into HTC jobs Estimating resource needs, decomposing and running large jobs Strategies and technologies for handling large workflows  Principles of high-throughput computing Scientific computing showcase Where to go and what to do next \u2014 resources, funding, etc.", 
+            "title": "Syllabus"
+        }
+    ]
+}
