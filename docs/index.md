@@ -20,7 +20,41 @@ associated with the School.
 
 ## Applications
 
-We plan to start accepting applications in the first part of March, so check back soon for more details.
+Applications are now open.  **The deadline for applications is Friday, 12 April 2019.**  Submit your application soon to
+ensure consideration!
+
+To apply, complete both of the steps below (in parallel, if you like):
+
+* Complete the [online application form](https://vdt.cs.wisc.edu/osgus-2019/) (link goes to vdt.cs.wisc.edu website,
+  which hosts the application)
+
+* Have someone email a letter of recommendation for you to
+  [user-school@opensciencegrid.org](mailto:user-school@opensciencegrid.org) (any reasonable format is fine; we like PDF
+  or plain text best)
+
+For the letter of recommendation, ask someone who knows you professionally&nbsp;&mdash; ideally a faculty member or
+other supervisor.  They should clearly identify your name and the “OSG User School 2019” in the subject line and letter,
+so that we can associate your application and letter.
+
+Ideal candidates will:
+
+* Be graduate students doing research or support staff helping researchers (but see below)
+* Need large amounts of computing, which could transform research or open new paths to discovery
+* Have basic experience with the Linux command line (or learn beforehand)
+* Be available to travel to Madison for the School dates (foreign students, check your passport and visa now!)
+
+**Not a graduate student or support staff?** We consider applications from advanced undergraduates, especially those who
+are involved in graduate-level research or coursework; make a strong case for yourself!  Also, we consider other groups
+(post-doctoral students, faculty, researchers, other staff, etc.), especially if you convince us that this opportunity
+is likely to have a significant effect on your work or research, or that of others.
+
+## Spread the Word
+
+Please tell people who may be interested in the School about us.  We will announce the School by email a couple of
+times, but you can send anyone to this website at any time!
+
+Another way to help: [Download our flyer](/files/osg-user-school-2019-flyer.pdf), print copies, and post in prominent
+locations where good candidates might see it!
 
 ## Contact Us
 
