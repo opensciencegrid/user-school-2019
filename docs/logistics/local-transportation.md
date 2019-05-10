@@ -9,7 +9,7 @@ coordinate and can reimburse costs between the airport and your hotel.
 
 ## Travel Between the Madison Airport and Your Hotel
 
-The School hotel (Best Western) provide free shuttle service from and back to
+The School hotel (Best Western) provides free shuttle service from and back to
 the Madison airport, when available.  <span class="hi">We will help organize
 groups</span> to take shuttles and taxis, based on arrival and departure times.
 Shuttle/taxi groups will be formed and emailed shortly before the School itself.
