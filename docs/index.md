@@ -11,7 +11,7 @@ own campus or using the national Open Science Grid (OSG)&nbsp;&mdash; to run lar
 at the heart of today&rsquo;s cutting-edge science.  Through lectures, discussions, and **lots of hands-on activities**
 with experienced OSG staff, you will learn how HTC systems work, how to run and manage lots of jobs and huge datasets to
 implement a scientific computing workflow, and where to turn for more information and help.  Take a look at
-[the high-level curriculum and syllabus](curriculum/overview.md) for more details.
+[the high-level curriculum and syllabus](/curriculum/overview) for more details.
 
 The school is ideal for graduate students in any science or research domain where large-scale computing is a vital part
 of the research process, plus we will consider applications from advanced undergraduates, post-doctoral students,
@@ -20,17 +20,20 @@ associated with the School.
 
 ## Applications
 
-Applications are now closed.  We received a large number of applications this year, so thanks to everyone for your
-enthusiastic interest!
+Applications are now closed and all applicants have been notified of their status.  We received a large number of
+applications this year, so thanks to everyone for your enthusiastic interest!
 
-If still needed, have someone email a letter of recommendation for you to
-[user-school@opensciencegrid.org](mailto:user-school@opensciencegrid.org) (any reasonable format is fine; we like PDF or
-plain text best).  Ask someone who knows you professionally&nbsp;&mdash; ideally a faculty member or other supervisor.
-They should clearly identify your name and the &ldquo;OSG User School 2019&rdquo; in the subject line and letter, so
-that we can associate your application and letter.
+## Information for Participants
 
-We plan to review applications by late April and invite students by early May or so.  We will contact all applicants
-once decisions have been made.  Thank you for your patience!
+- Curriculum
+    - [High-level curriculum](/curriculum/overview)
+- Logistics
+    - [General information and travel schedule](/logistics/index)
+    - [Visa requirements for non-resident aliens](/logistics/personal-info)
+    - [Travel planning to and from Madison](/logistics/travel)
+    - [Hotel information](/logistics/hotel)
+    - [Local transportation within Madison](/logistics/local-transportation)
+    - [School location](/logistics/location)
 
 ## Contact Us
 

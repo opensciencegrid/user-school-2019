@@ -20,6 +20,13 @@ pages:
   - User School 2019:             index.md
   - Curriculum:
     - High-level overview:        curriculum/overview.md
+  - Logistics:
+    - General information:        logistics/index.md
+    - Visa requirements:          logistics/personal-info.md
+    - Travel planning:            logistics/travel.md
+    - Hotel information:          logistics/hotel.md
+    - Local transportation:       logistics/local-transportation.md
+    - School location:            logistics/location.md
 
 markdown_extensions:
   - admonition
