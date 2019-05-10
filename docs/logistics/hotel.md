@@ -1,5 +1,5 @@
 <style type="text/css">
-  .hi { font-weight: bold; color: rgb(255, 102, 00); }
+  .hi { font-weight: bold; color: #F60; }
 </style>
 
 # Hotel Information
@@ -8,7 +8,7 @@ We reserved a block of rooms at an area hotel for participants from outside
 Madison.
 
 * [Best Western Premier Park Hotel](https://parkhotelmadison.com/)<br>22 South
-  Carroll Street<br>+1&nbsp;(608)&nbsp;285&#8209;8000
+  Carroll Street, Madison, WI<br>+1&nbsp;(608)&nbsp;285&#8209;8000
 
 <span class="hi">Please note:</span> We will reserve your room for you, so do
 not contact the hotel yourself to reserve a room.  Exceptions to this rule are
