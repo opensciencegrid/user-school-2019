@@ -53,26 +53,3 @@ you'll want organize your submit files, code, and input data separate from your 
 Did your jobs complete successfully with output and error files saved in separate directories?
 If not, can you find any useful information in the job logs or hold messages?
 If you get stuck, review the [slides for submitting many jobs](/materials/day1/files/osgus18-day1-part2-many-HTCondor-jobs.pdf).
-
-Extra Challenge: Running it all as a DAG
-----------------------------------------
-
-Earlier today, you learned about DAGs and you can take advantage of them to avoid collating the output data by hand.
-Try writing a one node dag with a `POST` script that collates the latitude/longitude values from your output files.
-
-If you are not familiar with writing scripts, here are some short instructions for writing a simple `bash` script that
-can be used as a `POST` script:
-
-1.  Write a file with a `.sh` extension
-1.  Add a bash "shebang" line to the top of the script and lines for each shell command that you'd like to run (imagine
-    it as a terminal in file form).
-    For example, the following shell script would create a directory `foo` then list its contents:
-
-        :::bash
-        #!/bin/bash
-        mkdir foo
-        ls foo
-
-1.  Mark the script as executable
-1.  Run it by hand to verify that it works
-
