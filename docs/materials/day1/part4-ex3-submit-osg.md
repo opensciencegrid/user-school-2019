@@ -33,6 +33,11 @@ As before, you will be using <http://www.mapcustomizer.com/> to visualize where 
 Copy and paste the collated results from your job output into the bulk creation text box at the bottom of the screen.
 Where did your jobs end up?
 
+Next exercise
+-------------
+
+Once completed, move onto the next exercise: [Hardware Differences in the OSG](/materials/day2/part4-ex3-submit-osg.md)
+
 Extra Challenge: Cleaning up your submit directory
 --------------------------------------------------
 
