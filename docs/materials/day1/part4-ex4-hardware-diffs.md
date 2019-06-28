@@ -1,5 +1,5 @@
 ---
-status: done
+status: in progress
 ---
 
 Monday Exercise 4.4: Hardware Differences in the OSG
@@ -101,7 +101,7 @@ Part 2: Checking on the availability of memory (remotely)
 ---------------------------------------------------------
 
 For the second part of the exercise, you will just copy over the directory from part 1 on `learn.chtc.wisc.edu` to
-`osg-learn.chtc.wisc.edu` and resubmit your jobs to the OSG.
+`training.osgconnect.net` and resubmit your jobs to the OSG.
 If you get stuck during the copying process, refer to [exercise 4.2](/materials/day1/part4-ex2-login-scp.md).
 
 ### Monitoring the remote jobs

@@ -1,5 +1,5 @@
 ---
-status: done
+status: in progress
 ---
 
 Monday Exercise 4.2: Log in to the OSG Submit Machine
@@ -16,7 +16,7 @@ critical for all remaining exercises.
 Log in to the OSG submit machine
 --------------------------------
 
-For some of the remaining exercises today, you will be using a machine named `osg-learn.chtc.wisc.edu`.
+For some of the remaining exercises today, you will be using a machine named `training.osgconnect.net`.
 The username and password are listed on your 'Accounts' paper that you received yesterday.
 If you no longer have it, please ask the instructors for help.
 
@@ -37,7 +37,7 @@ tarballs) whose usage is as follows:
 -   To **create** a tarball named `<archive filename>` containing `<archive contents>`, use the following command:
 
         :::console
-        user@osg-learn $ tar -czvf <archive filename> <archive contents>
+        user@training $ tar -czvf <archive filename> <archive contents>
 
     Where `<archive filename>` should end in `.tar.gz` and `<archive contents>` can be a list of any number of files
     and/or folders, separated by spaces.
@@ -45,12 +45,12 @@ tarballs) whose usage is as follows:
 -   To **extract** the files from a tarball into the current directory:
 
         :::console
-        user@osg-learn $ tar -xzvf <archive filename>
+        user@training $ tar -xzvf <archive filename>
 
 -   To **list** the files within a tarball:
 
         :::console
-        user@osg-learn $ tar -tzvf <archive filename>
+        user@training $ tar -tzvf <archive filename>
 
 Using the above knowledge, log into `learn.chtc.wisc.edu`, create a tarball that contains Monday's exercise 2.4
 directory, and verify that it contains all the proper files.
@@ -83,29 +83,29 @@ user@learn $ scp <source 1> <source 2>...<source N> <remote host>:<remote path>
 ```
 
 For example, if I were logged in to `learn.chtc.wisc.edu` and wanted to copy the file `foo` from my current directory to
-my home directory on `osg-learn.chtc.wisc.edu`, the command would look like this:
+my home directory on `training.osgconnect.net`, the command would look like this:
 
 ```console
-user@learn $ scp foo osg-learn.chtc.wisc.edu:~
+user@learn $ scp foo training.osgconnect.net:~
 ```
 
-Additionally, I could also pull files from `osg-learn.chtc.wisc.edu` to `learn.chtc.wisc.edu`.
-The following command copies `bar` from my home directory on `osg-learn.chtc.wisc.edu` to my current directory on
+Additionally, I could also pull files from `training.osgconnect.net` to `learn.chtc.wisc.edu`.
+The following command copies `bar` from my home directory on `training.osgconnect.net` to my current directory on
 `learn.chtc.wisc.edu`:
 
 ``` console
-user@learn $ scp osg-learn.chtc.wisc.edu:~/bar .
+user@learn $ scp training.osgconnect.net:~/bar .
 ```
 
 You can also copy folders between hosts using the `-r` option.
 If I kept all my files from Monday's exercise 1.3 in a folder named `monday-1.3` on `learn.chtc.wisc.edu`, I could use
-the following command to copy them to my home directory on `osg-learn.chtc.wisc.edu`:
+the following command to copy them to my home directory on `training.osgconnect.net`:
 
 ``` console
-user@learn $ scp -r monday-1.3 osg-learn.chtc.wisc.edu:~
+user@learn $ scp -r monday-1.3 training.osgconnect.net:~
 ```
 
-Try copying the tarball you created earlier in this exercise on `learn.chtc.wisc.edu` to `osg-learn.chtc.wisc.edu`.
+Try copying the tarball you created earlier in this exercise on `learn.chtc.wisc.edu` to `training.osgconnect.net`.
 
 ### Secure copy from your laptop
 
@@ -117,14 +117,14 @@ machine's operating system:
 
 `scp` should be included by default and available via the terminal on both Mac and Linux operating systems.
 Open a terminal window on your laptop and try copying the tarball containing Monday's 2.4 exercise from
-`osg-learn.chtc.wisc.edu` to your laptop.
+`training.osgconnect.net` to your laptop.
 
 #### Windows users
 
 WinSCP is an `scp` client for Windows operating systems.
 
 1.  Install WinSCP from <https://winscp.net/eng/index.php>
-1.  Start WinSCP and enter your SSH credentials for `osg-learn.chtc.wisc.edu`
+1.  Start WinSCP and enter your SSH credentials for `training.osgconnect.net`
 1.  Copy the tarball containing Monday's 2.4 exercise exercise to your laptop
 
 ### Extra challenge: Using rsync
@@ -145,7 +145,7 @@ create a tarball) and the ability to only transfer files that have changed.
 Both of these feature are helpful when you're having connectivity issues so that you don't have to restart the transfer
 from scratch every time your connection fails.
 
-1.  Use `rsync` to transfer the folder containing today's exercise 1.1 to `osg-learn.chtc.wisc.edu`
+1.  Use `rsync` to transfer the folder containing today's exercise 1.1 to `training.osgconnect.net`
 1.  Create a new file in your exercise 1.1 folder on `learn.chtc.wisc.edu` with the `touch` command:
 
         :::console

@@ -1,5 +1,5 @@
 ---
-status: done
+status: in progress
 ---
 
 Monday Exercise 4.5: Software Differences in the OSG
@@ -18,7 +18,7 @@ major difference: the slots are different!
 You can use the `condor_status` command just as you did yesterday to inspect these differences.
 
 1.  Open two terminal windows side-by-side
-2.  Log in to `learn.chtc.wisc.edu` in one window and `osg-learn.chtc.wisc.edu` in the other
+2.  Log in to `learn.chtc.wisc.edu` in one window and `training.osgconnect.net` in the other
 3.  Run `condor_status` in both windows
 
 Notice any differences?
@@ -106,7 +106,7 @@ get_version 'nslookup'
 
 For this part of the exercise, try creating a submit file without referring to previous exercises!
 
-1.  Log in to `osg-learn.chtc.wisc.edu`
+1.  Log in to `training.osgconnect.net`
 2.  Create and change into a new folder for this exercise, e.g. `monday-4.5`
 3.  Save the above script as a file named `sw_probe.sh`
 4.  As always, make sure that you can run your script from the command line before asking HTCondor to do so
