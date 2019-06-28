@@ -23,8 +23,8 @@ Now, let’s try to remember some basic HTCondor ideas from earlier today:
 1.  Download the geolocation code:
 
         :::console
-        username@learn $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool18/location-wrapper.sh \
-                         http://proxy.chtc.wisc.edu/SQUID/osgschool18/wn-geoip.tar.gz
+        username@learn $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/location-wrapper.sh \
+                         http://proxy.chtc.wisc.edu/SQUID/osgschool19/wn-geoip.tar.gz
 
     You will be using `location-wrapper.sh` as your executable and `wn-geoip.tar.gz` as an input file.
 
