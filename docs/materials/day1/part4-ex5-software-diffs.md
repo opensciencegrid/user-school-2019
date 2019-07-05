@@ -52,6 +52,10 @@ Your command line should look something like this:
 user@learn $ condor_status -autoformat OpSysAndVer | sort | uniq -c
 ```
 
+!!! note
+    For `training.osgconnect.net` you will need to add the flag `-pool flock.opensciencegrid.org` to your `condor_status`
+    command.
+
 Can you spot the differences between the two pools now?
 
 Submitting probe jobs
