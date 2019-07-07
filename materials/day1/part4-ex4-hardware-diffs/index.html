@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day1/part4-ex4-hardware-diffs/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Exercise 4.4 - OSG User School 2019</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <link href="../../../css/extra.css" rel="stylesheet">
+    <link href="../../../css/codehilite.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Monday Exercise 4.4: Hardware Differences in the OSG", url: "#_top", children: [
+              {title: "Part 1: Checking on the availability of memory (locally)", url: "#part-1-checking-on-the-availability-of-memory-locally" },
+              {title: "Part 2: Checking on the availability of memory (remotely)", url: "#part-2-checking-on-the-availability-of-memory-remotely" },
+              {title: "Part 3: Analyzing the results", url: "#part-3-analyzing-the-results" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="monday-exercise-44-hardware-differences-in-the-osg">Monday Exercise 4.4: Hardware Differences in the OSG<a class="headerlink" href="#monday-exercise-44-hardware-differences-in-the-osg" title="Permanent link">&para;</a></h1>
+<p>The goal of this exercise is to compare hardware differences between our local cluster (CHTC here at UW–Madison) and an
+OSG glidein pool.
+Specifically, we will look at how easy it is to get access to resources in terms of the amount of memory that is
+requested.
+This will not be a very careful study, but should give you some idea of one way in which the pools are different.</p>
+<p>In the first two parts of the exercise, you will submit a bunch of jobs that differ only in how much memory each one
+requests;
+we call this a <em>parameter sweep</em>, in that we are testing many possible values of a parameter.
+We will request memory from 1–16 GB, doubling the memory each time.
+One set of jobs will be submitted locally, and the other, identical set of jobs will be submitted to OSG.
+You will check the queue periodically to see how many jobs have completed and how many are still waiting to run.</p>
+<h2 id="part-1-checking-on-the-availability-of-memory-locally">Part 1: Checking on the availability of memory (locally)<a class="headerlink" href="#part-1-checking-on-the-availability-of-memory-locally" title="Permanent link">&para;</a></h2>
+<p>In this first part, you will create the submit file for both the local and OSG jobs, then submit the local set.</p>
+<h3 id="yet-another-queue-syntax">Yet another queue syntax<a class="headerlink" href="#yet-another-queue-syntax" title="Permanent link">&para;</a></h3>
+<p>Earlier today, you learned about the <code>queue</code> statement and some of the different ways it can be invoked to submit
+multiple jobs.
+Similar to the <code>queue from</code> statement to submit jobs based on lines from a specific file, you can use <code>queue in</code> to
+submit jobs based on a list directly from your submit file:</p>
+<div class="codehilite"><pre><span></span><span class="n">queue</span> <span class="o">&lt;#</span> <span class="k">of</span> <span class="n">jobs</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="k">variable</span><span class="o">&gt;</span> <span class="k">in</span> <span class="p">(</span>
+<span class="o">&lt;</span><span class="n">item</span> <span class="mi">1</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">item</span> <span class="mi">2</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">item</span> <span class="mi">3</span><span class="o">&gt;</span>
+<span class="p">...</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>For example, to submit 6 jobs that sleep for <code>5</code>, <code>5</code>, <code>10</code>, <code>10</code>, <code>15</code>, and <code>15</code> seconds, you could write the following
+submit file:</p>
+<div class="codehilite"><pre><span></span><span class="n">executable</span> <span class="o">=</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">sleep</span>
+
+<span class="n">queue</span> <span class="mi">2</span> <span class="n">arguments</span> <span class="k">in</span> <span class="p">(</span>
+<span class="mi">5</span>
+<span class="mi">10</span>
+<span class="mi">15</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Try submitting this yourself and check the jobs that end up in the queue with <code>condor_q -nobatch</code>.</p>
+<h3 id="create-the-submit-files">Create the submit files<a class="headerlink" href="#create-the-submit-files" title="Permanent link">&para;</a></h3>
+<p>To create our parameter sweep, we will create a <strong>new</strong> submit file with multiple queue statements and change the value of our
+parameter (<code>request_memory</code>) for each batch of jobs.</p>
+<ol>
+<li>If not already, log in to <code>learn.chtc.wisc.edu</code></li>
+<li>Create and change into a new subdirectory called <code>monday-4.4</code> – doing things this way will make Part 2 much easier</li>
+<li>
+<p>Create a submit file that is named <code>sleep.sub</code> that executes the command <code>/bin/sleep 300</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you do not remember all of the submit statements to write this file, or just to go faster, find a similar
+submit file from yesterday.
+Copy the file and rename it here, and make sure the argument to <code>sleep</code> is <code>60</code>.</p>
+</div>
+</li>
+<li>
+<p>Use the <code>queue in</code> syntax to submit 10 jobs each for the following memory requests: 4, 8, 16, 32, and 64 GB of memory.
+    You should have 10 jobs requesting 4GB, 10 jobs requesting 8GB, etc.</p>
+</li>
+<li>Save the submit file and exit your editor</li>
+<li>Submit your jobs</li>
+</ol>
+<h3 id="monitoring-the-local-jobs">Monitoring the local jobs<a class="headerlink" href="#monitoring-the-local-jobs" title="Permanent link">&para;</a></h3>
+<p>Every few minutes, run <code>condor_q</code> and see how your sleep jobs are doing.
+To easily see how many jobs of each type you have left, run the following command:</p>
+<div class="codehilite"><pre><span></span><span class="gp">user@learn $</span> condor_q &lt;Cluster ID&gt; -af RequestMemory <span class="p">|</span> sort -n <span class="p">|</span> uniq -c
+</pre></div>
+
+
+<p>The numbers in the left column are the number of jobs left of that type and the number on the right is the amount of
+memory you requested in MB.
+Consider making a little table like the one below to track progress.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Memory</th>
+<th align="left">Remaining #1</th>
+<th align="left">Remaining #2</th>
+<th align="left">Remaining #3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">4 GB</td>
+<td align="left">10</td>
+<td align="left">6</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">8 GB</td>
+<td align="left">10</td>
+<td align="left">7</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">16 GB</td>
+<td align="left">10</td>
+<td align="left">8</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">32 GB</td>
+<td align="left">10</td>
+<td align="left">9</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">64 GB</td>
+<td align="left">10</td>
+<td align="left">10</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>In the meantime, between checking on your local jobs, start Part 2 – taking a break every few minutes to record progress
+on your local jobs.</p>
+<h2 id="part-2-checking-on-the-availability-of-memory-remotely">Part 2: Checking on the availability of memory (remotely)<a class="headerlink" href="#part-2-checking-on-the-availability-of-memory-remotely" title="Permanent link">&para;</a></h2>
+<p>For the second part of the exercise, you will just copy over the directory from part 1 on <code>learn.chtc.wisc.edu</code> to
+<code>training.osgconnect.net</code> and resubmit your jobs to the OSG.
+If you get stuck during the copying process, refer to <a href="../part4-ex2-login-scp/">exercise 4.2</a>.</p>
+<h3 id="monitoring-the-remote-jobs">Monitoring the remote jobs<a class="headerlink" href="#monitoring-the-remote-jobs" title="Permanent link">&para;</a></h3>
+<p>As you did in part 1, use <code>condor_q</code> to track how your sleep jobs are doing.
+You can move onto the next exercise but keep tracking the status of your jobs.
+After you are done with the <a href="/materials/day1/part4-ex2-software-diffs.md">next exercise</a>, come back to this exercise,
+and move onto part 3.</p>
+<h2 id="part-3-analyzing-the-results">Part 3: Analyzing the results<a class="headerlink" href="#part-3-analyzing-the-results" title="Permanent link">&para;</a></h2>
+<p>Now that you've finished the other exercise, how many jobs have completed locally? How many have completed remotely?</p>
+<p>Due to the dynamic nature of the remote pool, the OSG may have noticed the demand for higher memory jobs and leased more
+high memory slots for our pool.
+That being said, 8GB+ slots are a high-demand, low-availability resource in the OSG so it's unlikely that all of your
+8GB+ jobs matched and ran to completion.
+On the other hand, the local cluster has plenty of 8GB+ slots so all your jobs have a high chance of running.</p>
+
+  <br>
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../part4-ex5-software-diffs/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../part4-ex5-software-diffs/" class="btn btn-xs btn-link">
+        Exercise 4.5
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../part4-ex3-submit-osg/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../part4-ex3-submit-osg/" class="btn btn-xs btn-link">
+        Exercise 4.3
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

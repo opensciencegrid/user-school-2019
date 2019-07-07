@@ -2,42 +2,67 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/</loc>
-     <lastmod>2019-05-14</lastmod>
+     <lastmod>2019-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/curriculum/overview/</loc>
-     <lastmod>2019-05-14</lastmod>
+     <lastmod>2019-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/logistics/</loc>
-     <lastmod>2019-05-14</lastmod>
+     <lastmod>2019-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/logistics/personal-info/</loc>
-     <lastmod>2019-05-14</lastmod>
+     <lastmod>2019-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/logistics/travel/</loc>
-     <lastmod>2019-05-14</lastmod>
+     <lastmod>2019-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/logistics/hotel/</loc>
-     <lastmod>2019-05-14</lastmod>
+     <lastmod>2019-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/logistics/local-transportation/</loc>
-     <lastmod>2019-05-14</lastmod>
+     <lastmod>2019-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/logistics/location/</loc>
-     <lastmod>2019-05-14</lastmod>
+     <lastmod>2019-07-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part4-ex1-submit-refresher/</loc>
+     <lastmod>2019-07-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part4-ex2-login-scp/</loc>
+     <lastmod>2019-07-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part4-ex3-submit-osg/</loc>
+     <lastmod>2019-07-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part4-ex4-hardware-diffs/</loc>
+     <lastmod>2019-07-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part4-ex5-software-diffs/</loc>
+     <lastmod>2019-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
