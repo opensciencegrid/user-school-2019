@@ -27,6 +27,13 @@ pages:
     - Hotel information:          logistics/hotel.md
     - Local transportation:       logistics/local-transportation.md
     - School location:            logistics/location.md
+  - Materials:
+    - Monday Exercises:
+      - Exercise 4.1:             materials/day1/part4-ex1-submit-refresher.md
+      - Exercise 4.2:             materials/day1/part4-ex2-login-scp.md
+      - Exercise 4.3:             materials/day1/part4-ex3-submit-osg.md
+      - Exercise 4.4:             materials/day1/part4-ex4-hardware-diffs.md
+      - Exercise 4.5:             materials/day1/part4-ex5-software-diffs.md
 
 markdown_extensions:
   - admonition
