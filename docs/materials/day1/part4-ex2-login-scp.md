@@ -158,5 +158,5 @@ from scratch every time your connection fails.
 Next exercise
 -------------
 
-Once completed, move onto the next exercise: [Running jobs in the OSG](/materials/day2/part4-ex3-submit-osg.md)
+Once completed, move onto the next exercise: [Running jobs in the OSG](/materials/day1/part4-ex3-submit-osg.md)
 
