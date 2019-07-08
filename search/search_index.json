@@ -202,7 +202,7 @@
         },
         {
             "location": "/materials/",
-            "text": "2018 OSG User School Materials\n\u00b6\n\n\nMonday\n\u00b6\n\n\nMonday Morning: Introduction to HTC and HTCondor\n\u00b6\n\n\n\n\nLecture: Introduction to HTC (\nPDF\n;\nPPT\n)\n\n\nExercise 1.1: Log in to the local submit machine and look around\n\n\nExercise 1.2: Experiment with basic HTCondor commands\n\n\nExercise 1.3: Run jobs!\n\n\nExercise 1.4: Read and interpret log files\n\n\nExercise 1.5: Determining Resource Needs\n\n\nExercise 1.6: Remove jobs from the queue\n\n\nBonus Exercise 1.7: Compile and run some C code\n\n\n\n\nMonday Morning: Running Many HTC Jobs\n\u00b6\n\n\n\n\nLecture: More HTCondor (\nPDF\n;\nPPT\n)\n\n\nExercise 2.1: Work with input and output files\n\n\nExercise 2.2: Use \nqueue N\n, \n$(Cluster)\n, and \n$(Process)\n\n\nExercise 2.3: Use \nqueue matching\n with a custom variable\n\n\nExercise 2.4: Use \nqueue from\n with custom variables\n\n\n\n\nMonday Afternoon: Job Attributes and Handling\n\u00b6\n\n\n\n\nLecture: Intermediate HTCondor: Workflows (\nPDF\n;\nPPT\n)\n\n\nExercise 3.1: Explore \ncondor_q\n\n\nExercise 3.2: Explore \ncondor_status\n\n\nExercise 3.3: A job that needs retries",
+            "text": "2018 OSG User School Materials\n\u00b6\n\n\nMonday\n\u00b6\n\n\nMonday Morning: Introduction to HTC and HTCondor\n\u00b6\n\n\n\n\nLecture: Introduction to HTC (\nPDF\n;\nPPT\n)\n\n\nExercise 1.1: Log in to the local submit machine and look around\n\n\nExercise 1.2: Experiment with basic HTCondor commands\n\n\nExercise 1.3: Run jobs!\n\n\nExercise 1.4: Read and interpret log files\n\n\nExercise 1.5: Determining Resource Needs\n\n\nExercise 1.6: Remove jobs from the queue\n\n\nBonus Exercise 1.7: Compile and run some C code\n\n\n\n\nMonday Morning: Running Many HTC Jobs\n\u00b6\n\n\n\n\nLecture: More HTCondor (\nPDF\n;\nPPT\n)\n\n\nExercise 2.1: Work with input and output files\n\n\nExercise 2.2: Use \nqueue N\n, \n$(Cluster)\n, and \n$(Process)\n\n\nExercise 2.3: Use \nqueue matching\n with a custom variable\n\n\nExercise 2.4: Use \nqueue from\n with custom variables\n\n\n\n\nMonday Afternoon: Job Attributes and Handling\n\u00b6\n\n\n\n\nLecture: Intermediate HTCondor: Workflows (\nPDF\n;\nPPT\n)\n\n\nExercise 3.1: Explore \ncondor_q\n\n\nExercise 3.2: Explore \ncondor_status\n\n\nExercise 3.3: A job that needs retries\n\n\n\n\nMonday Afternoon: Introduction to Distributed HTC\n\u00b6\n\n\n\n\nLecture: Introduction to DHTC (\nPDF\n;\n  \nPPT\n)\n\n\nExercise 4.1: Refresher - Submitting multiple jobs\n\n\nExercise 4.2: Log in to the OSG submit machine\n\n\nExercise 4.3: Running jobs in the OSG\n\n\nExercise 4.4: Hardware differences in the OSG\n\n\nExercise 4.5: Software differences in the OSG",
             "title": "Overview"
         },
         {
@@ -229,6 +229,11 @@
             "location": "/materials/#monday-afternoon-job-attributes-and-handling",
             "text": "Lecture: Intermediate HTCondor: Workflows ( PDF ; PPT )  Exercise 3.1: Explore  condor_q  Exercise 3.2: Explore  condor_status  Exercise 3.3: A job that needs retries",
             "title": "Monday Afternoon: Job Attributes and Handling"
+        },
+        {
+            "location": "/materials/#monday-afternoon-introduction-to-distributed-htc",
+            "text": "Lecture: Introduction to DHTC ( PDF ;\n   PPT )  Exercise 4.1: Refresher - Submitting multiple jobs  Exercise 4.2: Log in to the OSG submit machine  Exercise 4.3: Running jobs in the OSG  Exercise 4.4: Hardware differences in the OSG  Exercise 4.5: Software differences in the OSG",
+            "title": "Monday Afternoon: Introduction to Distributed HTC"
         },
         {
             "location": "/materials/day1/part1-ex1-login/",
