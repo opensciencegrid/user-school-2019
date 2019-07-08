@@ -108,7 +108,7 @@ If you get stuck during the copying process, refer to [exercise 4.2](/materials/
 
 As you did in part 1, use `condor_q` to track how your sleep jobs are doing.
 You can move onto the next exercise but keep tracking the status of your jobs.
-After you are done with the [next exercise](/materials/day1/part4-ex2-software-diffs.md), come back to this exercise,
+After you are done with the [next exercise](/materials/day1/part4-ex5-software-diffs.md), come back to this exercise,
 and move onto part 3.
 
 Part 3: Analyzing the results
