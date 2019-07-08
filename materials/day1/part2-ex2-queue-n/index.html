@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day1/part2-ex2-queue-n/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Exercise 2.2 - OSG User School 2019</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <link href="../../../css/extra.css" rel="stylesheet">
+    <link href="../../../css/codehilite.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Monday Exercise 2.2: Use queue N, $(Cluster), and $(Process)", url: "#_top", children: [
+              {title: "Running Many Jobs With One queue Statement", url: "#running-many-jobs-with-one-queue-statement" },
+              {title: "Using queue N With Output", url: "#using-queue-n-with-output" },
+              {title: "Using $(Process) to Distinguish Jobs", url: "#using-process-to-distinguish-jobs" },
+              {title: "Using $(Cluster) to Separate Files Across Runs", url: "#using-cluster-to-separate-files-across-runs" },
+              {title: "Using $(Process) and $(Cluster) in Other Statements", url: "#using-process-and-cluster-in-other-statements" },
+              {title: "(Optional) Defining JobBatchName for Tracking", url: "#optional-defining-jobbatchname-for-tracking" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: \#008; } </style>
+
+<h1 id="monday-exercise-22-use-queue-n-cluster-and-process">Monday Exercise 2.2: Use queue <em>N</em>, $(Cluster), and $(Process)<a class="headerlink" href="#monday-exercise-22-use-queue-n-cluster-and-process" title="Permanent link">&para;</a></h1>
+<p>The goal of the next several exercises is to learn to submit many jobs from a single <code>queue</code> statement, and then to control filenames and arguments per job.</p>
+<p>Suppose you have a program that you want to run many times with different arguments each time. With what you know so far, you have a couple of choices:</p>
+<ul>
+<li>Write one submit file; submit one job, change the argument in the submit file, submit another job, change the submit file, …</li>
+<li>Write many submit files that are nearly identical except for the program argument</li>
+</ul>
+<p>Neither of these options seems very satisfying. Fortunately, we can do better with HTCondor.</p>
+<h2 id="running-many-jobs-with-one-queue-statement">Running Many Jobs With One queue Statement<a class="headerlink" href="#running-many-jobs-with-one-queue-statement" title="Permanent link">&para;</a></h2>
+<p>Here is a C program that uses a simple stochastic (random) method to estimate the value of π — feel free to try to figure out the method from the code, but it is not critical for this exercise. The single argument to the program is the number of samples to take. More samples should result in better estimates!</p>
+<div class="codehilite"><pre><span></span>#<span class="k">include</span> <span class="o">&lt;</span><span class="nv">stdio</span>.<span class="nv">h</span><span class="o">&gt;</span>
+#<span class="k">include</span> <span class="o">&lt;</span><span class="nv">stdlib</span>.<span class="nv">h</span><span class="o">&gt;</span>
+#<span class="k">include</span> <span class="o">&lt;</span><span class="nv">sys</span><span class="o">/</span><span class="nv">time</span>.<span class="nv">h</span><span class="o">&gt;</span>
+
+<span class="nv">int</span> <span class="nv">main</span><span class="ss">(</span><span class="nv">int</span> <span class="nv">argc</span>, <span class="nv">char</span> <span class="o">*</span><span class="nv">argv</span>[]<span class="ss">)</span>
+{
+  <span class="nv">struct</span> <span class="nv">timeval</span> <span class="nv">my_timeval</span><span class="c1">;</span>
+  <span class="nv">int</span> <span class="nv">iterations</span> <span class="o">=</span> <span class="mi">0</span><span class="c1">;</span>
+  <span class="nv">int</span> <span class="nv">inside_circle</span> <span class="o">=</span> <span class="mi">0</span><span class="c1">;</span>
+  <span class="nv">int</span> <span class="nv">i</span><span class="c1">;</span>
+  <span class="nv">double</span> <span class="nv">x</span>, <span class="nv">y</span>, <span class="nv">pi_estimate</span><span class="c1">;</span>
+
+  <span class="nv">gettimeofday</span><span class="ss">(</span><span class="o">&amp;</span><span class="nv">my_timeval</span>, <span class="nv">NULL</span><span class="ss">)</span><span class="c1">;</span>
+  <span class="nv">srand48</span><span class="ss">(</span><span class="nv">my_timeval</span>.<span class="nv">tv_sec</span> <span class="o">^</span> <span class="nv">my_timeval</span>.<span class="nv">tv_usec</span><span class="ss">)</span><span class="c1">;</span>
+
+  <span class="k">if</span> <span class="ss">(</span><span class="nv">argc</span> <span class="o">==</span> <span class="mi">2</span><span class="ss">)</span> {
+    <span class="nv">iterations</span> <span class="o">=</span> <span class="nv">atoi</span><span class="ss">(</span><span class="nv">argv</span>[<span class="mi">1</span>]<span class="ss">)</span><span class="c1">;</span>
+  } <span class="k">else</span> {
+    <span class="nv">printf</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">usage: circlepi ITERATIONS</span><span class="se">\n</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+    <span class="k">exit</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span><span class="c1">;</span>
+  }
+
+  <span class="k">for</span> <span class="ss">(</span><span class="nv">i</span> <span class="o">=</span> <span class="mi">0</span><span class="c1">; i &lt; iterations; i++) {</span>
+    <span class="nv">x</span> <span class="o">=</span> <span class="ss">(</span><span class="nv">drand48</span><span class="ss">()</span> <span class="o">-</span> <span class="mi">0</span>.<span class="mi">5</span><span class="ss">)</span> <span class="o">*</span> <span class="mi">2</span>.<span class="mi">0</span><span class="c1">;</span>
+    <span class="nv">y</span> <span class="o">=</span> <span class="ss">(</span><span class="nv">drand48</span><span class="ss">()</span> <span class="o">-</span> <span class="mi">0</span>.<span class="mi">5</span><span class="ss">)</span> <span class="o">*</span> <span class="mi">2</span>.<span class="mi">0</span><span class="c1">;</span>
+    <span class="k">if</span> <span class="ss">(((</span><span class="nv">x</span> <span class="o">*</span> <span class="nv">x</span><span class="ss">)</span> <span class="o">+</span> <span class="ss">(</span><span class="nv">y</span> <span class="o">*</span> <span class="nv">y</span><span class="ss">))</span> <span class="o">&lt;=</span> <span class="mi">1</span>.<span class="mi">0</span><span class="ss">)</span> {
+      <span class="nv">inside_circle</span><span class="o">++</span><span class="c1">;</span>
+    }
+  }
+  <span class="nv">pi_estimate</span> <span class="o">=</span> <span class="mi">4</span>.<span class="mi">0</span> <span class="o">*</span> <span class="ss">((</span><span class="nv">double</span><span class="ss">)</span> <span class="nv">inside_circle</span> <span class="o">/</span> <span class="ss">(</span><span class="nv">double</span><span class="ss">)</span> <span class="nv">iterations</span><span class="ss">)</span><span class="c1">;</span>
+  <span class="nv">printf</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">%d iterations, %d inside; pi = %f</span><span class="se">\n</span><span class="s2">&quot;</span>, <span class="nv">iterations</span>, <span class="nv">inside_circle</span>, <span class="nv">pi_estimate</span><span class="ss">)</span><span class="c1">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="c1">;</span>
+}
+</pre></div>
+
+
+<ol>
+<li>In a new directory for this exercise, save the code to a file named <code>circlepi.c</code></li>
+<li>
+<p>Compile the code (we will cover this in more detail Wednesday):</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> gcc -static -o circlepi circlepi.c
+</pre></div>
+
+
+</li>
+<li>
+<p>Test the program with just 1000 samples:</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> ./circlepi <span class="m">1000</span>
+</pre></div>
+
+
+</li>
+</ol>
+<p>Now suppose that you want to run the program many times, to produce many estimates. This is exactly what a statement like <code>queue 3</code> is useful for. Let’s see how it works:</p>
+<ol>
+<li>Write a normal submit file for this program<ul>
+<li>Pass 1 million (<code>1000000</code>) as the command line argument to <code>circlepi</code></li>
+<li>Remember to use <code>queue 3</code> instead of just <code>queue</code></li>
+</ul>
+</li>
+<li>
+<p>Submit the file. Note the slightly different message from <code>condor_submit</code>:</p>
+<div class="codehilite"><pre><span></span><span class="go">3 job(s) submitted to cluster *NNNN*.</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Before the jobs execute, look at the job queue to see the multiple jobs</p>
+</li>
+</ol>
+<p>Here is some sample <code>condor_q -nobatch</code> output:</p>
+<div class="codehilite"><pre><span></span><span class="go"> ID       OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD</span>
+<span class="go">10228.0   cat             7/25 11:57   0+00:00:00 I  0    0.7 circlepi 1000000000</span>
+<span class="go">10228.1   cat             7/25 11:57   0+00:00:00 I  0    0.7 circlepi 1000000000</span>
+<span class="go">10228.2   cat             7/25 11:57   0+00:00:00 I  0    0.7 circlepi 1000000000</span>
+</pre></div>
+
+
+<p>In this sample, all three jobs are part of <strong>cluster</strong> <code>10228</code>, but the first job was assigned <strong>process</strong> <code>0</code>, the second job was assigned process <code>1</code>, and the third one was assigned process <code>2</code>. (Historical note: Programmers like to start counting from 0, hence the odd numbering scheme.)</p>
+<p>At this time, it is worth reviewing the definition of a <strong><em>job ID</em></strong>. It is a job’s cluster number, a dot (<code>.</code>), and the job’s process number. So in the example above, the job ID of the second job is <code>10228.1</code>.</p>
+<p><strong>Pop Quiz:</strong> Do you remember how to ask HTCondor to list all of the jobs from one cluster? How about one specific job ID?</p>
+<h2 id="using-queue-n-with-output">Using queue <em>N</em> With Output<a class="headerlink" href="#using-queue-n-with-output" title="Permanent link">&para;</a></h2>
+<p>When all three jobs in your single cluster are finished, examine the resulting files.</p>
+<ul>
+<li>What is in the output file?</li>
+<li>What is in the error file (hopefully nothing)?</li>
+<li>What is in the log file? Look carefully at the job IDs in each event.</li>
+<li>Is this what you expected? Is it what you wanted?</li>
+</ul>
+<h2 id="using-process-to-distinguish-jobs">Using $(Process) to Distinguish Jobs<a class="headerlink" href="#using-process-to-distinguish-jobs" title="Permanent link">&para;</a></h2>
+<p>As you saw with the experiment above, each job ended up overwriting the same output and error filenames in the submission directory.
+After all, we didn't tell it to behave any differently when it ran three jobs.
+We need a way to separate output (and error) files <em>per job that is queued</em>, not just for the whole cluster of jobs. Fortunately, HTCondor has a way to separate the files easily.</p>
+<p>When processing a submit file, HTCondor will replace any instance of <code>$(Process)</code> with the process number of the job, for each job that is queued. 
+For example, you can use the <code>$(Process)</code> variable to define a separate output file name for each job:</p>
+<div class="codehilite"><pre><span></span><span class="k">output</span> <span class="o">=</span> <span class="n">my</span><span class="o">-</span><span class="k">output</span><span class="o">-</span><span class="n">file</span><span class="o">-</span><span class="err">$</span><span class="p">(</span><span class="n">Process</span><span class="p">).</span><span class="k">out</span>
+<span class="n">queue</span> <span class="mi">10</span>
+</pre></div>
+
+
+<p>Even though the <code>output</code> filename is defined only once, HTCondor will create separate output filenames for each job:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First job</td>
+<td><code>my-output-file-0.out</code></td>
+</tr>
+<tr>
+<td>Second job</td>
+<td><code>my-output-file-1.out</code></td>
+</tr>
+<tr>
+<td>Third job</td>
+<td><code>my-output-file-2.out</code></td>
+</tr>
+<tr>
+<td>...</td>
+<td></td>
+</tr>
+<tr>
+<td>Last (tenth) job</td>
+<td><code>my-output-file-9.out</code></td>
+</tr>
+</tbody>
+</table>
+<p>Let’s see how this works for our program that estimates π.</p>
+<ol>
+<li>In your submit file, change the definitions of <code>output</code> and <code>error</code> to use <code>$(Process)</code> in the filename, similar to the example above.</li>
+<li>Delete any output, error, and log files from previous runs.</li>
+<li>Submit the updated file.</li>
+</ol>
+<p>When all three jobs are finished, examine the resulting files again.</p>
+<ul>
+<li>How many files are there of each type? What are their names?</li>
+<li>Is this what you expected? Is it what you wanted from the π estimation process?</li>
+</ul>
+<h2 id="using-cluster-to-separate-files-across-runs">Using $(Cluster) to Separate Files Across Runs<a class="headerlink" href="#using-cluster-to-separate-files-across-runs" title="Permanent link">&para;</a></h2>
+<p>With <code>$(Process)</code>, you can get separate output (and error) filenames for each job within a run. However, the next time you submit the same file, all of the output and error files are overwritten by new ones created by the new jobs. Maybe this is the behavior that you want. But sometimes, you may want to separate files by run, as well.</p>
+<p>In addition to <code>$(Process)</code>, there is also a <code>$(Cluster)</code> variable that you can use in your submit files. It works just like <code>$(Process)</code>, except it is replaced with the cluster number of the entire submission. Because the cluster number is the same for all jobs within a single submission, it does not separate files by job within a submission. But when used <strong>with</strong> <code>$(Process)</code>, it can be used to separate files by run. For example, consider this <code>output</code> statement:</p>
+<div class="codehilite"><pre><span></span><span class="k">output</span> <span class="o">=</span> <span class="n">my</span><span class="o">-</span><span class="k">output</span><span class="o">-</span><span class="n">file</span><span class="o">-</span><span class="err">$</span><span class="p">(</span><span class="k">Cluster</span><span class="p">)</span><span class="o">-</span><span class="err">$</span><span class="p">(</span><span class="n">Process</span><span class="p">).</span><span class="k">out</span>
+</pre></div>
+
+
+<p>For one particular run, it might result in output filenames like <code>my-output-file-2444-0.out</code>, <code>myoutput-file-2444-1.out</code>, <code>myoutput-file-2444-2.out</code>, etc.</p>
+<p>However, the next run would have different filenames, replacing <code>2444</code> with the new Cluster number of that run.</p>
+<h2 id="using-process-and-cluster-in-other-statements">Using $(Process) and $(Cluster) in Other Statements<a class="headerlink" href="#using-process-and-cluster-in-other-statements" title="Permanent link">&para;</a></h2>
+<p>The <code>$(Cluster)</code> and <code>$(Process)</code> variables can be used in any submit file statement, although they are useful in some kinds of submit file statements and not really for others. For example, consider using $(Cluster) or $(Process) in each of the below:</p>
+<ul>
+<li><code>log</code></li>
+<li><code>transfer_input_files</code></li>
+<li><code>transfer_output_files</code></li>
+<li><code>arguments</code></li>
+</ul>
+<p>Unfortunately, HTCondor does not easily let you perform math on the <code>$(Process)</code> number when using it. So, for example, if you use <code>$(Process)</code> as a numeric argument to a command, it will always result in jobs getting the arguments 0, 1, 2, and so on. If you have control over your program and the way in which it uses command-line arguments, then you are fine. Otherwise, you might need a solution like those in the next exercises.</p>
+<h2 id="optional-defining-jobbatchname-for-tracking">(Optional) Defining JobBatchName for Tracking<a class="headerlink" href="#optional-defining-jobbatchname-for-tracking" title="Permanent link">&para;</a></h2>
+<p>During the lecture, it was mentioned that you can define arbitrary attributes in your submit file, and that one purpose of such attributes is to track or report on different jobs separately. In this optional exercise, you will see how this technique can be used.</p>
+<p>Once again, we will use <code>sleep</code> jobs, so that your jobs remain in the queue long enough to experiment on.</p>
+<ol>
+<li>Create a basic submit file that runs <code>sleep 120</code> (or some reasonable duration).</li>
+<li>
+<p>Instead of a single <code>queue</code> statement, write this:</p>
+<div class="codehilite"><pre><span></span><span class="n">jobbatchname</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">queue</span> <span class="mi">5</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Submit the file.</p>
+</li>
+<li>
+<p>Now, quickly edit the submit file to instead say:</p>
+<div class="codehilite"><pre><span></span><span class="n">jobbatchname</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Submit the file again.</p>
+</li>
+</ol>
+<p>Check on the submissions using a normal <code>condor_q</code> and <code>condor_q -nobatch</code>. Of course, your special attribute does not appear in the <code>condor_q -nobatch</code> output, but it is present in the <code>condor_q</code> output and in each job’s ClassAd. You can see the effect of the attribute by limiting your <code>condor_q</code> output to one type of job or another. First, run this command:</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q -constraint <span class="s1">&#39;JobBatchName == &quot;1&quot;&#39;</span>
+</pre></div>
+
+
+<p>Do you get the output that you expected? Using the example command above, how would you list your other five jobs?
+(More on constraints in other exercises later today.)</p>
+
+  <br>
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../part2-ex3-queue-matching/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../part2-ex3-queue-matching/" class="btn btn-xs btn-link">
+        Exercise 2.3
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../part2-ex1-files/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../part2-ex1-files/" class="btn btn-xs btn-link">
+        Exercise 2.1
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Overview - OSG User School 2019</title>
+    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <link href="../css/extra.css" rel="stylesheet">
+    <link href="../css/codehilite.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "2018 OSG User School Materials", url: "#_top", children: [
+              {title: "Monday", url: "#monday" },
+          ]},
+        ];
+
+    </script>
+    <script src="../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="2018-osg-user-school-materials">2018 OSG User School Materials<a class="headerlink" href="#2018-osg-user-school-materials" title="Permanent link">&para;</a></h1>
+<h2 id="monday">Monday<a class="headerlink" href="#monday" title="Permanent link">&para;</a></h2>
+<h3 id="monday-morning-introduction-to-htc-and-htcondor">Monday Morning: Introduction to HTC and HTCondor<a class="headerlink" href="#monday-morning-introduction-to-htc-and-htcondor" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Lecture: Introduction to HTC (<a href="../materials/day1/files/osgus19-day1-part1-intro-to-htc.pdf">PDF</a>;<a href="../materials/day1/files/osgus19-day1-part1-intro-to-htc.pptx">PPT</a>)</li>
+<li><a href="day1/part1-ex1-login/">Exercise 1.1: Log in to the local submit machine and look around</a></li>
+<li><a href="day1/part1-ex2-commands/">Exercise 1.2: Experiment with basic HTCondor commands</a></li>
+<li><a href="day1/part1-ex3-jobs/">Exercise 1.3: Run jobs!</a></li>
+<li><a href="day1/part1-ex4-logs/">Exercise 1.4: Read and interpret log files</a></li>
+<li><a href="day1/part1-ex5-request/">Exercise 1.5: Determining Resource Needs</a></li>
+<li><a href="day1/part1-ex6-remove/">Exercise 1.6: Remove jobs from the queue</a></li>
+<li><a href="day1/part1-ex7-compile/">Bonus Exercise 1.7: Compile and run some C code</a></li>
+</ul>
+<h3 id="monday-morning-running-many-htc-jobs">Monday Morning: Running Many HTC Jobs<a class="headerlink" href="#monday-morning-running-many-htc-jobs" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Lecture: More HTCondor (<a href="../materials/day1/files/osgus19-day1-part2-many-HTCondor-jobs.pdf">PDF</a>;<a href="../materials/day1/files/osgus19-day1-part2-many-HTCondor-jobs.pptx">PPT</a>)</li>
+<li><a href="day1/part2-ex1-files/">Exercise 2.1: Work with input and output files</a></li>
+<li><a href="day1/part2-ex2-queue-n/">Exercise 2.2: Use <code>queue N</code>, <code>$(Cluster)</code>, and <code>$(Process)</code></a></li>
+<li><a href="day1/part2-ex3-queue-matching/">Exercise 2.3: Use <code>queue matching</code> with a custom variable</a></li>
+<li><a href="day1/part2-ex4-queue-from/">Exercise 2.4: Use <code>queue from</code> with custom variables</a></li>
+</ul>
+<h3 id="monday-afternoon-job-attributes-and-handling">Monday Afternoon: Job Attributes and Handling<a class="headerlink" href="#monday-afternoon-job-attributes-and-handling" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Lecture: Intermediate HTCondor: Workflows (<a href="../materials/day1/files/osgus19-day1-part3-matching-handling.pdf">PDF</a>;<a href="../materials/day1/files/osgus19-day1-part3-matching-handling.pptx">PPT</a>)</li>
+<li><a href="day1/part3-ex1-queue/">Exercise 3.1: Explore <code>condor_q</code></a></li>
+<li><a href="day1/part3-ex2-status/">Exercise 3.2: Explore <code>condor_status</code></a></li>
+<li><a href="day1/part3-ex3-job-retry/">Exercise 3.3: A job that needs retries</a></li>
+</ul>
+<!--  All below here needs to be updated!
+
+### Monday Afternoon: Automating Workflows with HTCondor's DAGMan
+
+- Lecture: HTCondor: More on Workflows ([PDF](/materials/day1/files/osgus19-day1-part4-dagman.pdf);[PPT](/materials/day1/files/osgus19-day1-part4-dagman.pptx))
+- [Exercise 4.1: Coordinating set of jobs: A simple DAG](/materials/day1/part4-ex1-simple-dag.md)
+- [Exercise 4.2: A brief detour through the Mandelbrot set](/materials/day1/part4-ex2-mandelbrot.md)
+- [Exercise 4.3: A more complex DAG](/materials/day1/part4-ex3-complex-dag.md)
+- [Exercise 4.4: Handling jobs that fail with DAGMan](/materials/day1/part4-ex4-failed-dag.md)
+- [Bonus Exercise 4.5: HTCondor challenges](/materials/day1/part4-ex5-challenges.md) (If and only if you have time)
+
+## Tuesday
+
+### Tuesday Morning: Introduction to Distributed HTC and Overlay Systems
+
+- Lecture: Introduction to DHTC ([PDF](/materials/day2/files/osgus19-day2-part1-intro-to-dhtc.pdf);
+  [PPT](/materials/day2/files/osgus19-day2-part1-intro-to-dhtc.pptx))
+- [Exercise 1.1: Refresher - Submitting multiple jobs](/materials/day2/part1-ex1-submit-refresher.md)
+- [Exercise 1.2: Log in to the OSG submit machine](/materials/day2/part1-ex2-login-scp.md)
+- [Exercise 1.3: Running jobs in the OSG](/materials/day2/part1-ex3-submit-osg.md)
+
+### Tuesday Morning: Comparing Local and Remote HTC
+
+- Lecture: What is different about overlay systems?
+  ([PDF](/materials/day2/files/osgus19-day2-part2-overlay-differences.pdf);
+  [PPT](/materials/day2/files/osgus19-day2-part2-overlay-differences.pptx))
+- [Exercise 2.1: Hardware differences in the OSG](/materials/day2/part2-ex1-hardware-diffs.md)
+- [Exercise 2.2: Software differences in the OSG](/materials/day2/part2-ex2-software-diffs.md)
+
+### Tuesday Afternoon: Security in OSG
+
+- Lecture: Security in OSG ([PDF](/materials/day2/files/osgus19-day2-part3-security.pdf);
+  [PPT](/materials/day2/files/osgus19-day2-part3-security.pptx))
+
+### Tuesday Afternoon: Troubleshooting jobs
+
+- Lecture: Troubleshooting jobs ([PDF](/materials/day2/files/osgus19-day2-part4-troubleshooting.pdf);
+  [PPT](/materials/day2/files/osgus19-day2-part4-troubleshooting.pptx))
+- [Exercise 3.1: Troubleshooting a DAG](/materials/day2/part3-ex1-troubleshooting.md)
+
+### Tuesday Afternoon: Connecting to OSG
+
+- Lecture: Ways to Connect to OSG ([PDF](/materials/day2/files/osgus19-day2-part5-ways-to-connect.pdf))
+
+## Wednesday
+
+### Wednesday Morning: Software Portability
+
+- Lecture: Software Portability for DHTC ([PDF](/materials/day3/files/osgus19-day3-part1-software-portability.pdf); [PPT](/materials/day3/files/osgus19-day3-part1-software-portability.pptx))
+- [Exercise 1.1: Compiling programs for portability](/materials/day3/part1-ex1-compiling.md)
+- [Exercise 1.2: Using a pre-compiled binary](/materials/day3/part1-ex2-precompiled.md)
+- [Exercise 1.3: Using a wrapper script](/materials/day3/part1-ex3-wrapper.md)
+- [Exercise 1.4: Pre-packaging code](/materials/day3/part1-ex4-prepackaged.md)
+- [Bonus Exercise 1.5: Passing Arguments Through the Wrapper Script](/materials/day3/part1-ex5-arguments.md)
+
+### Wednesday Morning: Software Limitations
+
+- Lecture: Considerations for licensing and programming packages
+  ([PDF](/materials/day3/files/osgus19-day3-part2-software-license-interpret.pdf); [PPT](/materials/day3/files/osgus19-day3-part2-software-license-interpret.pptx))
+- [Exercise 2.1: Compile and run Matlab code](/materials/day3/part2-ex1-matlab.md)
+- [Exercise 2.2: Pre-packaging Python](/materials/day3/part2-ex2-python-built.md)
+- [Exercise 2.3: In-job installation of Python](/materials/day3/part2-ex3-python-install.md)
+- [Bonus Exercise 2.4: Using containers](/materials/day3/part2-ex4-containers.md)
+
+### Wednesday Afternoon: On Your Own
+
+- [Ideas for activities](/logistics/wednesday-activities.md)
+
+## Thursday
+
+### Thursday Morning: Data Handling
+
+- Lecture: Overall data considerations ([PDF](/materials/day4/files/osgus19-day4-part2-overall-data.pdf))
+- [Exercise 2.1: Understanding your data requirements](/materials/day4/part2-ex1-data-needs.md)
+- [Exercise 2.2: HTCondor file transfer and compression](/materials/day4/part2-ex2-file-transfer.md)
+- [Exercise 2.3: Splitting large input data](/materials/day4/part2-ex3-blast-split.md)
+
+### Thursday Morning: Data Handling (continued)
+
+- Lecture: Solutions for large input data ([PDF](/materials/day4/files/osgus19-day4-part3-large-input.pdf))
+- [Exercise 3.1: Using a web proxy for large, shared input](/materials/day4/part3-ex1-blast-proxy.md)
+- [Exercise 3.2: Using StashCache for large, shared input](/materials/day4/part3-ex2-stashcache-shared.md)
+- [Exercise 3.3: Using StashCache for large, unique input](/materials/day4/part3-ex3-stashcache-unique.md)
+
+### Thursday Afternoon: Data Handling (continued)
+
+- Lecture: Large output and shared file systems; Data summary
+  ([PDF](/materials/day4/files/osgus19-day4-part4-output-shared-fs.pdf))
+- [Exercise 4.1: Using a local shared filesystem for large input files](/materials/day4/part4-ex1-input.md)
+- [Exercise 4.2: Using a local shared filesystem for large output files](/materials/day4/part4-ex2-output.md)
+
+### Thursday Afternoon: Automating Workflows with HTCondor's DAGMan
+
+- Lecture: HTCondor: More on Workflows ([PDF](/materials/day4/files/osgus19-day4-part4-dagman.pdf);[PPT](/materials/day4/files/osgus19-day4-part4-dagman.pptx))
+- [Exercise 4.1: Coordinating set of jobs: A simple DAG](/materials/day4/part4-ex1-simple-dag.md)
+- [Exercise 4.2: A brief detour through the Mandelbrot set](/materials/day4/part4-ex2-mandelbrot.md)
+- [Exercise 4.3: A more complex DAG](/materials/day4/part4-ex3-complex-dag.md)
+- [Exercise 4.4: Handling jobs that fail with DAGMan](/materials/day4/part4-ex4-failed-dag.md)
+- [Bonus Exercise 4.5: HTCondor challenges](/materials/day4/part4-ex5-challenges.md) (If and only if you have time)
+
+## Friday
+
+### Friday Morning: From Science to Production Workflows
+
+- Lecture: From Science to Real Workflow ([PDF](/materials/day5/files/osgus19-day5-part1-real-workflows.pdf), [PPT](/materials/day5/files/osgus19-day5-part1-real-workflows.pptx))
+- [Exercise 1.1: Learn about Joe’s Desired Computing Work](/materials/day5/part1-ex1-science-intro.md)
+- [Exercise 1.2: Plan Overall Workflow](/materials/day5/part1-ex2-plan-workflow.md)
+
+### Friday Morning: From Science to Production Workflows
+
+- Lecture: From Workflow to Automated Production
+  ([PDF](/materials/day5/files/osgus19-day5-part2-production-workflows.pdf),[PPT](/materials/day5/files/osgus19-day5-part2-production-workflows.pptx))
+- [Exercise 1.3: Execute Joe’s Workflow](/materials/day5/part2-ex1-execute-workflow.md)
+- [Bonus Exercise 1.4: Further Optimization and Scaling](/materials/day5/part2-ex2-workflow-tuning.md)
+
+### Friday Afternoon: HTC Showcase
+
+- Talk: [Spencer Ericksen](https://cancer.wisc.edu/research/resources/ddc/smsf/), Small Molecule Facility (Carbone Cancer Center):
+  *Exploring Virtual Screening Approaches with HTC* ([PDF](/materials/day5/files/osgus19-day5-part3-showcase1-ericksen.pdf))
+- Talk: [Josh Karpel](https://www.physics.wisc.edu/people/joshkarpel), Physics:
+  *High-Throughput Computing in Atomic Physics* ([PPT](/materials/day5/files/osgus19-day5-part3-showcase2-karpel.pptx))
+- Talk: [Ross Kleiman](https://wid.wisc.edu/people/ross-kleiman/), Computer Sciences:
+  *High-Throughput Machine Learning from Electronic Health Records*
+  ([PPTX](/materials/day5/files/osgus19-day5-part3-showcase2-kleiman.pptx))
+- Talk: [Dave O'Connor](https://www.pathology.wisc.edu/profile/david-oconnor), Pathology:
+  *When Low Throughput Biologists Meet High Throughput Computing*
+
+### Friday Afternoon: Foundations of HTC
+
+- Lecture: The Principles of HTC ([PDF](/materials/day5/files/osgus19-day5-part4-htc-principles.pdf))
+
+### Friday Afternoon: Wrap Up
+
+- Lecture: Where to Go and What to Do Next ([PDF](/materials/day5/files/osgus19-day5-part5-whats-next.pdf))
+
+All above here needs to be updated! -->
+
+  <br>
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="day1/part1-ex1-login/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="day1/part1-ex1-login/" class="btn btn-xs btn-link">
+        Exercise 1.1
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../logistics/location/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../logistics/location/" class="btn btn-xs btn-link">
+        School location
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

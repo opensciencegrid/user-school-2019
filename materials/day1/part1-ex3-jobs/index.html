@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day1/part1-ex3-jobs/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Exercise 1.3 - OSG User School 2019</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <link href="../../../css/extra.css" rel="stylesheet">
+    <link href="../../../css/codehilite.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Monday Exercise 1.3: Run Jobs!", url: "#_top", children: [
+              {title: "Running a Simple Job", url: "#running-a-simple-job" },
+              {title: "Running a Job With Arguments", url: "#running-a-job-with-arguments" },
+              {title: "Running a Script Job From the Submit Directory", url: "#running-a-script-job-from-the-submit-directory" },
+              {title: "Extra Challenge", url: "#extra-challenge" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: \#008; } </style>
+
+<h1 id="monday-exercise-13-run-jobs">Monday Exercise 1.3: Run Jobs!<a class="headerlink" href="#monday-exercise-13-run-jobs" title="Permanent link">&para;</a></h1>
+<p>The goal of this exercise is to submit jobs to HTCondor and have them run on the local pool (CHTC). This is a huge step in learning to use an HTC system!</p>
+<p><strong>This exercise will take longer than the first two, short ones. It is the essential part of this exercise time. If you are having any problems getting the jobs to run, please ask the instructors! It is very important that you know how to run simple jobs.</strong></p>
+<h2 id="running-a-simple-job">Running a Simple Job<a class="headerlink" href="#running-a-simple-job" title="Permanent link">&para;</a></h2>
+<p>Nearly all of the time, when you want to run an HTCondor job, you first write an HTCondor submit file for it. In this section, you will run the same <code>hostname</code> command as in the last exercise, but where this command will run within a job on one of the 'execute' servers in CHTC's local HTCondor pool.</p>
+<p>Here is a simple submit file for the <code>hostname</code> command:</p>
+<div class="codehilite"><pre><span></span><span class="n">executable</span> <span class="o">=</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">hostname</span>
+
+<span class="k">output</span> <span class="o">=</span> <span class="k">simple</span><span class="p">.</span><span class="k">out</span>
+<span class="n">error</span> <span class="o">=</span> <span class="k">simple</span><span class="p">.</span><span class="n">err</span>
+<span class="n">log</span> <span class="o">=</span> <span class="k">simple</span><span class="p">.</span><span class="n">log</span>
+
+<span class="n">request_cpus</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">request_memory</span> <span class="o">=</span> <span class="mi">1</span><span class="n">MB</span>
+<span class="n">request_disk</span> <span class="o">=</span> <span class="mi">1</span><span class="n">MB</span>
+
+<span class="n">queue</span>
+</pre></div>
+
+
+<p>Write those lines of text in a file named <code>simple.sub</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is nothing magic about the name of an HTCondor submit file.
+It can be any filename you want.
+It's a good practice to always include the <code>.sub</code> extension, but it is not required.
+Ultimately, a submit file is a text file</p>
+</div>
+<p>The lines of the submit file have the following meanings:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>executable</code></td>
+<td>The name of the program to run (relative to the directory from which you submit).</td>
+</tr>
+<tr>
+<td><code>output</code></td>
+<td>The filename where HTCondor will write the standard output from your job.</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td>The filename where HTCondor will write the standard error from your job. This particular job is not likely to have any, but it is best to include this line for every job.</td>
+</tr>
+<tr>
+<td><code>log</code></td>
+<td>The filename where HTCondor will write information about your job run. Technically not required, it is a <strong>really</strong> good idea to have a log file for every job.</td>
+</tr>
+<tr>
+<td><code>request_*</code></td>
+<td>Tells HTCondor how many <code>cpus</code> and how much <code>memory</code> and <code>disk</code> we want, which is not much, because the 'hostname' executable is pretty simple</td>
+</tr>
+<tr>
+<td><code>queue</code></td>
+<td>Tells HTCondor to run your job with the settings above.</td>
+</tr>
+</tbody>
+</table>
+<p>Note that we are not using the <code>arguments</code> lines or <code>transfer_input_files</code> because the <code>hostname</code> program is all that needs to be transferred from the submit server, and we want to run it without any additional options.</p>
+<p>Double-check your submit file, so that it matches the text above. Then, tell HTCondor to run your job:</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_submit simple.sub
+<span class="go">Submitting job(s).</span>
+<span class="go">1 job(s) submitted to cluster NNNN.</span>
+</pre></div>
+
+
+<p>The actual cluster number will be shown instead of <code>NNNN</code>. <strong>If, instead of the text above, there are error messages, read them carefully and then try to correct your submit file or ask for help.</strong></p>
+<p>Notice that <code>condor_submit</code> returns back to the shell prompt right away. It does <strong>not</strong> wait for your job to run. Instead, as soon as it has finished submitting your job into the queue, the submit command finishes.</p>
+<h3 id="view-your-job-in-the-queue">View your job in the queue<a class="headerlink" href="#view-your-job-in-the-queue" title="Permanent link">&para;</a></h3>
+<p>Now, use <code>condor_q</code> and <code>condor_q -nobatch</code> to watch for your job in the queue! </p>
+<p>You may not even catch the job in the <code>R</code> running state, because the <code>hostname</code> command runs very quickly. When the job itself is finished, it will 'leave' the queue and no longer be listed in the <code>condor_q</code> output.</p>
+<p>After the job finishes, check for the <code>hostname</code> output in <code>simple.out</code>, which is where job information printed to the terminal screen will be printed for the job.</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> cat simple.out
+<span class="go">e171.chtc.wisc.edu</span>
+</pre></div>
+
+
+<p>The <code>simple.err</code> file should be empty, unless there were issues running the <code>hostname</code> executable after it was transferred to the slot. The <code>simple.log</code> is more complex and will be the focus of a later exercise.</p>
+<h2 id="running-a-job-with-arguments">Running a Job With Arguments<a class="headerlink" href="#running-a-job-with-arguments" title="Permanent link">&para;</a></h2>
+<p>Very often, when you run a command on the command line, it includes arguments (i.e. options) after the program name, as in the below examples:</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> cat simple.out
+<span class="gp">username@learn $</span> sleep <span class="m">60</span>
+<span class="gp">username@learn $</span> dc -e <span class="s1">&#39;6 7 * p&#39;</span>
+</pre></div>
+
+
+<p>In an HTCondor submit file, the program (or 'executable') name goes in the <code>executable</code> statement and <strong>all remaining arguments</strong> go into an <code>arguments</code> statement. For example, if the full command is:</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> sleep <span class="m">60</span>
+</pre></div>
+
+
+<p>Then in the submit file, we would put the location of the "sleep" program (you can find it with <code>which sleep</code>) as the job <code>executable</code>, and <code>60</code> as the job <code>arguments</code>:</p>
+<div class="codehilite"><pre><span></span><span class="n">executable</span> <span class="o">=</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">sleep</span>
+<span class="n">arguments</span> <span class="o">=</span> <span class="mi">60</span>
+</pre></div>
+
+
+<p>For the command-line command:</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> dc -e <span class="s1">&#39;6 7 * p&#39;</span>
+</pre></div>
+
+
+<p>We would put the following into the submit file, putting the <code>arguments</code> statement in quotes, since it contains single quotes:</p>
+<div class="codehilite"><pre><span></span><span class="n">executable</span> <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">dc</span>
+<span class="n">arguments</span> <span class="o">=</span> <span class="ss">&quot;-e &#39;6 7 * p&#39;&quot;</span>
+</pre></div>
+
+
+<p>Let’s try a job submission with arguments. We will use the <code>sleep</code> command shown above, which simply does nothing for the specified number of seconds, then exits normally. It is convenient for simulating a job that takes a while to run.</p>
+<p>Create a new submit file (you name it this time) and save the following text in it.</p>
+<div class="codehilite"><pre><span></span><span class="n">executable</span> <span class="o">=</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">sleep</span>
+<span class="n">arguments</span> <span class="o">=</span> <span class="mi">60</span>
+
+<span class="k">output</span> <span class="o">=</span> <span class="n">sleep</span><span class="p">.</span><span class="k">out</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">sleep</span><span class="p">.</span><span class="n">err</span>
+<span class="n">log</span> <span class="o">=</span> <span class="n">sleep</span><span class="p">.</span><span class="n">log</span>
+
+<span class="n">request_cpus</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">request_memory</span> <span class="o">=</span> <span class="mi">1</span><span class="n">MB</span>
+<span class="n">request_disk</span> <span class="o">=</span> <span class="mi">1</span><span class="n">MB</span>
+
+<span class="n">queue</span>
+</pre></div>
+
+
+<p>Except for changing a few filenames, this submit file is nearly identical to the last one. But, see the extra <code>arguments</code> line?</p>
+<p>Submit this new job. Again, watch for it to run using <code>condor_q</code> and <code>condor_q -nobatch</code>; 
+check once every 15 seconds or so. 
+Once the job starts running, it will take about 1 minute to run (because of the <code>sleep</code> command, right?), 
+so you should be able to see it running for a bit. 
+When the job finishes, it will disappear from the queue, but there will be no output in the output or error files, because <code>sleep</code> does not produce any output.</p>
+<h2 id="running-a-script-job-from-the-submit-directory">Running a Script Job From the Submit Directory<a class="headerlink" href="#running-a-script-job-from-the-submit-directory" title="Permanent link">&para;</a></h2>
+<p>So far, we have been running programs (executables) that come with the standard Linux system. 
+More frequently, you will want to run a program that exists within your directory 
+or perhaps a simple shell script of commands that you'd like to run within a job. In this example, you will write a shell script and a submit file that runs the shell script within a job:</p>
+<ol>
+<li>
+<p>Put the following contents into a file named <code>test-script.sh</code>:</p>
+<div class="codehilite"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="nb">echo</span> <span class="s1">&#39;Date: &#39;</span> <span class="sb">`</span>date<span class="sb">`</span> 
+<span class="nb">echo</span> <span class="s1">&#39;Host: &#39;</span> <span class="sb">`</span>hostname<span class="sb">`</span> 
+<span class="nb">echo</span> <span class="s1">&#39;System: &#39;</span> <span class="sb">`</span>uname -spo<span class="sb">`</span> 
+<span class="nb">echo</span> <span class="s2">&quot;Program: </span><span class="nv">$0</span><span class="s2">&quot;</span> 
+<span class="nb">echo</span> <span class="s2">&quot;Args: </span><span class="nv">$*</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s1">&#39;ls: &#39;</span> <span class="sb">`</span>ls<span class="sb">`</span>
+<span class="c1"># END</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Add executable permissions to the file (so that it can be run as a program):</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> chmod +x test-script.sh
+</pre></div>
+
+
+</li>
+<li>
+<p>Test your script from the command line:</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> ./test-script.sh hello <span class="m">42</span> 
+<span class="go">Date: Mon Jul 17 10:02:20 CDT 2017 </span>
+<span class="go">Host: learn.chtc.wisc.edu </span>
+<span class="go">System: Linux x86_64 GNU/Linux </span>
+<span class="go">Program: ./test-script.sh</span>
+<span class="go">Args: hello 42</span>
+<span class="go">ls: hostname.sub montage simple.err simple.log simple.out test-script.sh</span>
+</pre></div>
+
+
+<p>This step is <strong>really</strong> important! If you cannot run your executable from the command-line, HTCondor probably cannot run it on another machine, either. And debugging simple problems like this one is surprisingly difficult. So, if possible, test your <code>executable</code> and <code>arguments</code> as a command at the command-line first.</p>
+</li>
+<li>
+<p>Write the submit file (this should be getting easier by now):</p>
+<div class="codehilite"><pre><span></span><span class="n">executable</span> <span class="o">=</span> <span class="o">%</span><span class="n">RED</span><span class="o">%</span><span class="n">test</span><span class="o">-</span><span class="n">script</span><span class="p">.</span><span class="n">sh</span><span class="o">%</span><span class="n">ENDCOLOR</span><span class="o">%</span>
+<span class="n">arguments</span> <span class="o">=</span> <span class="n">foo</span> <span class="n">bar</span> <span class="n">baz</span>
+
+<span class="k">output</span> <span class="o">=</span> <span class="n">script</span><span class="p">.</span><span class="k">out</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">script</span><span class="p">.</span><span class="n">err</span>
+<span class="n">log</span> <span class="o">=</span> <span class="n">script</span><span class="p">.</span><span class="n">log</span>
+
+<span class="n">request_cpus</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">request_memory</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">request_disk</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">queue</span>
+</pre></div>
+
+
+<p>In this example, the <code>executable</code> that was named in the submit file did <strong>not</strong> start with a <code>/</code>, 
+    so the location of the file is relative to the submit directory itself. 
+    In other words, in this format the executable must be in the same directory as the submit file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As this example shows, blank lines and spaces around the = sign do not matter to HTCondor.
+Use whitespace to make things clear to <strong>you</strong>. What format do you prefer to read?</p>
+</div>
+</li>
+<li>
+<p>Submit the job, wait for it to finish, and check the output (and error, which should be empty).</p>
+<p>What do you notice about the lines returned for "Program" and "ls"? Remember that only files pertaining
+to <strong>this</strong> job will be in the job working directory on the execute server. You're also seeing the effects
+of HTCondor's need to standardize some filenames when running your job, though they are named as you expect 
+in the submission directory (per the submit file contents).</p>
+</li>
+</ol>
+<h2 id="extra-challenge">Extra Challenge<a class="headerlink" href="#extra-challenge" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are Extra Challenges throughout the school curriculum. You may be better off coming back to these after you've completed all other exercises for your current working session.</p>
+</div>
+<p>Below is a simple Python script that does something similar to the shell script above. Run this Python script using HTCondor.</p>
+<div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="sd">&quot;&quot;&quot;Extra Challenge for OSG User School</span>
+<span class="sd">Written by Tim Cartwright</span>
+<span class="sd">Submitted to CHTC by #YOUR_NAME#</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">platform</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">arguments</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">arguments</span> <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span>
+
+<span class="k">print</span> <span class="o">&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="vm">__doc__</span>
+<span class="k">print</span> <span class="s1">&#39;Time    :&#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> (%a) %H:%M:%S %Z&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;Host    :&#39;</span><span class="p">,</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">(),</span> <span class="s1">&#39;@&#39;</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">gethostname</span><span class="p">()</span>
+<span class="n">uname</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">uname</span><span class="p">()</span>
+<span class="k">print</span> <span class="s2">&quot;System  :&quot;</span><span class="p">,</span> <span class="n">uname</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">uname</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">uname</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="k">print</span> <span class="s2">&quot;Version :&quot;</span><span class="p">,</span> <span class="n">platform</span><span class="o">.</span><span class="n">python_version</span><span class="p">()</span>
+<span class="k">print</span> <span class="s2">&quot;Program :&quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">executable</span>
+<span class="k">print</span> <span class="s1">&#39;Script  :&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;Args    :&#39;</span><span class="p">,</span> <span class="n">arguments</span>
+</pre></div>
+
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For the Python script, above, you'll want to increase the memory request to at least 64MB.
+We will talk about tuning resource requests, later.</p>
+</div>
+
+  <br>
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../part1-ex4-logs/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../part1-ex4-logs/" class="btn btn-xs btn-link">
+        Exercise 1.4
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../part1-ex2-commands/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../part1-ex2-commands/" class="btn btn-xs btn-link">
+        Exercise 1.2
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

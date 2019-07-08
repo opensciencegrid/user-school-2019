@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day4/part4-ex3-complex-dag/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Exercise 4.3 - OSG User School 2019</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <link href="../../../css/extra.css" rel="stylesheet">
+    <link href="../../../css/codehilite.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Monday Exercise 4.3: A More Complex DAG", url: "#_top", children: [
+              {title: "Make Your Job Submission Files", url: "#make-your-job-submission-files" },
+              {title: "Make your DAG", url: "#make-your-dag" },
+              {title: "Running the DAG", url: "#running-the-dag" },
+              {title: "Watch Your DAG", url: "#watch-your-dag" },
+              {title: "Bonus Challenge", url: "#bonus-challenge" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: \#008; } </style>
+
+<h1 id="monday-exercise-43-a-more-complex-dag">Monday Exercise 4.3: A More Complex DAG<a class="headerlink" href="#monday-exercise-43-a-more-complex-dag" title="Permanent link">&para;</a></h1>
+<p>The objective of this exercise is to run a real set of jobs with DAGMan.</p>
+<h2 id="make-your-job-submission-files">Make Your Job Submission Files<a class="headerlink" href="#make-your-job-submission-files" title="Permanent link">&para;</a></h2>
+<p>We'll run our <code>goatbrot</code> example. If you didn't read about it yet, <a href="../part4-ex2-mandelbrot/">please do so now</a>. We are going to make a DAG with four simultaneous jobs (<code>goatbrot</code>) and one final node to stitch them together (<code>montage</code>). This means we have five jobs. We're going to run <code>goatbrot</code> with more iterations (100,000) so each job will take longer to run.</p>
+<p>You can create your five jobs. The goatbrot jobs are very similar to each other, but they have slightly different parameters and output files.</p>
+<h3 id="goatbrot1sub">goatbrot1.sub<a class="headerlink" href="#goatbrot1sub" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="n">executable</span>              <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">goatbrot</span>
+<span class="n">arguments</span>               <span class="o">=</span> <span class="o">-</span><span class="n">i</span> <span class="mi">100000</span> <span class="o">-</span><span class="k">c</span> <span class="o">-</span><span class="mi">0</span><span class="p">.</span><span class="mi">75</span><span class="p">,</span><span class="mi">0</span><span class="p">.</span><span class="mi">75</span> <span class="o">-</span><span class="n">w</span> <span class="mi">1</span><span class="p">.</span><span class="mi">5</span> <span class="o">-</span><span class="n">s</span> <span class="mi">500</span><span class="p">,</span><span class="mi">500</span> <span class="o">-</span><span class="n">o</span> <span class="n">tile_0_0</span><span class="p">.</span><span class="n">ppm</span>
+<span class="n">log</span>                     <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="n">log</span>
+<span class="k">output</span>                  <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="k">out</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span>
+<span class="n">error</span>                   <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="n">err</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span>
+<span class="n">request_memory</span>          <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
+<span class="n">request_disk</span>            <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
+<span class="n">request_cpus</span>            <span class="o">=</span> <span class="mi">1</span>
+<span class="n">queue</span>
+</pre></div>
+
+
+<h3 id="goatbrot2sub">goatbrot2.sub<a class="headerlink" href="#goatbrot2sub" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="n">executable</span>              <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">goatbrot</span>
+<span class="n">arguments</span>               <span class="o">=</span> <span class="o">-</span><span class="n">i</span> <span class="mi">100000</span> <span class="o">-</span><span class="k">c</span> <span class="mi">0</span><span class="p">.</span><span class="mi">75</span><span class="p">,</span><span class="mi">0</span><span class="p">.</span><span class="mi">75</span> <span class="o">-</span><span class="n">w</span> <span class="mi">1</span><span class="p">.</span><span class="mi">5</span> <span class="o">-</span><span class="n">s</span> <span class="mi">500</span><span class="p">,</span><span class="mi">500</span> <span class="o">-</span><span class="n">o</span> <span class="n">tile_0_1</span><span class="p">.</span><span class="n">ppm</span>
+<span class="n">log</span>                     <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="n">log</span>
+<span class="k">output</span>                  <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="k">out</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">1</span>
+<span class="n">error</span>                   <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="n">err</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">1</span>
+<span class="n">request_memory</span>          <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
+<span class="n">request_disk</span>            <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
+<span class="n">request_cpus</span>            <span class="o">=</span> <span class="mi">1</span>
+<span class="n">queue</span>
+</pre></div>
+
+
+<h3 id="goatbrot3sub">goatbrot3.sub<a class="headerlink" href="#goatbrot3sub" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="n">executable</span>              <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">goatbrot</span>
+<span class="n">arguments</span>               <span class="o">=</span> <span class="o">-</span><span class="n">i</span> <span class="mi">100000</span> <span class="o">-</span><span class="k">c</span> <span class="o">-</span><span class="mi">0</span><span class="p">.</span><span class="mi">75</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">.</span><span class="mi">75</span> <span class="o">-</span><span class="n">w</span> <span class="mi">1</span><span class="p">.</span><span class="mi">5</span> <span class="o">-</span><span class="n">s</span> <span class="mi">500</span><span class="p">,</span><span class="mi">500</span> <span class="o">-</span><span class="n">o</span> <span class="n">tile_1_0</span><span class="p">.</span><span class="n">ppm</span>
+<span class="n">log</span>                     <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="n">log</span>
+<span class="k">output</span>                  <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="k">out</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span>
+<span class="n">error</span>                   <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="n">err</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span>
+<span class="n">request_memory</span>          <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
+<span class="n">request_disk</span>            <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
+<span class="n">request_cpus</span>            <span class="o">=</span> <span class="mi">1</span>
+<span class="n">queue</span>
+</pre></div>
+
+
+<h3 id="goatbrot4sub">goatbrot4.sub<a class="headerlink" href="#goatbrot4sub" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="n">executable</span>              <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">goatbrot</span>
+<span class="n">arguments</span>               <span class="o">=</span> <span class="o">-</span><span class="n">i</span> <span class="mi">100000</span> <span class="o">-</span><span class="k">c</span> <span class="mi">0</span><span class="p">.</span><span class="mi">75</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">.</span><span class="mi">75</span> <span class="o">-</span><span class="n">w</span> <span class="mi">1</span><span class="p">.</span><span class="mi">5</span> <span class="o">-</span><span class="n">s</span> <span class="mi">500</span><span class="p">,</span><span class="mi">500</span> <span class="o">-</span><span class="n">o</span> <span class="n">tile_1_1</span><span class="p">.</span><span class="n">ppm</span>
+<span class="n">log</span>                     <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="n">log</span>
+<span class="k">output</span>                  <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="k">out</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">1</span>
+<span class="n">error</span>                   <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="n">err</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">1</span>
+<span class="n">request_memory</span>          <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
+<span class="n">request_disk</span>            <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
+<span class="n">request_cpus</span>            <span class="o">=</span> <span class="mi">1</span>
+<span class="n">queue</span>
+</pre></div>
+
+
+<h3 id="montagesub">montage.sub<a class="headerlink" href="#montagesub" title="Permanent link">&para;</a></h3>
+<p>You should notice that the <code>transfer_input_files</code> statement refers to the files created by the other jobs.</p>
+<div class="codehilite"><pre><span></span><span class="n">executable</span>              <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">montage</span>
+<span class="n">arguments</span>               <span class="o">=</span> <span class="n">tile_0_0</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_0_1</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_1_0</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_1_1</span><span class="p">.</span><span class="n">ppm</span> <span class="o">-</span><span class="k">mode</span> <span class="n">Concatenate</span> <span class="o">-</span><span class="n">tile</span> <span class="mi">2</span><span class="n">x2</span> <span class="n">mandel</span><span class="o">-</span><span class="k">from</span><span class="o">-</span><span class="n">dag</span><span class="p">.</span><span class="n">jpg</span>
+<span class="n">transfer_input_files</span>    <span class="o">=</span> <span class="n">tile_0_0</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_0_1</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_1_0</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_1_1</span><span class="p">.</span><span class="n">ppm</span>
+<span class="k">output</span>                  <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="k">out</span>
+<span class="n">error</span>                   <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="n">err</span>
+<span class="n">log</span>                     <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="n">log</span>
+<span class="n">request_memory</span>          <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
+<span class="n">request_disk</span>            <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
+<span class="n">request_cpus</span>            <span class="o">=</span> <span class="mi">1</span>
+<span class="n">requirements</span>            <span class="o">=</span> <span class="n">OpSysMajorVer</span> <span class="o">=?=</span> <span class="mi">6</span>
+<span class="n">queue</span>
+</pre></div>
+
+
+<h2 id="make-your-dag">Make your DAG<a class="headerlink" href="#make-your-dag" title="Permanent link">&para;</a></h2>
+<p>In a file called <code>goatbrot.dag</code>, you have your DAG specification:</p>
+<div class="codehilite"><pre><span></span><span class="kd">JOB</span><span class="o"> </span><span class="n">g1</span><span class="w"> </span><span class="n">goatbrot1</span><span class="o">.</span><span class="n">sub</span><span class="w"></span>
+<span class="kd">JOB</span><span class="o"> </span><span class="n">g2</span><span class="w"> </span><span class="n">goatbrot2</span><span class="o">.</span><span class="n">sub</span><span class="w"></span>
+<span class="kd">JOB</span><span class="o"> </span><span class="n">g3</span><span class="w"> </span><span class="n">goatbrot3</span><span class="o">.</span><span class="n">sub</span><span class="w"></span>
+<span class="kd">JOB</span><span class="o"> </span><span class="n">g4</span><span class="w"> </span><span class="n">goatbrot4</span><span class="o">.</span><span class="n">sub</span><span class="w"></span>
+<span class="kd">JOB</span><span class="o"> </span><span class="n">montage</span><span class="w"> </span><span class="n">montage</span><span class="o">.</span><span class="n">sub</span><span class="w"></span>
+<span class="n">PARENT</span><span class="w"> </span><span class="n">g1</span><span class="w"> </span><span class="n">g2</span><span class="w"> </span><span class="n">g3</span><span class="w"> </span><span class="n">g4</span><span class="w"> </span><span class="n">CHILD</span><span class="w"> </span><span class="n">montage</span><span class="w"></span>
+</pre></div>
+
+
+<p>Ask yourself: do you know how we ensure that all the <code>goatbrot</code> commands can run simultaneously and all of them will complete before we run the montage job?</p>
+<h2 id="running-the-dag">Running the DAG<a class="headerlink" href="#running-the-dag" title="Permanent link">&para;</a></h2>
+<p>Submit your DAG:</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_submit_dag goatbrot.dag
+<span class="go">-----------------------------------------------------------------------</span>
+<span class="go">File for submitting this DAG to Condor           : goatbrot.dag.condor.sub</span>
+<span class="go">Log of DAGMan debugging messages                 : goatbrot.dag.dagman.out</span>
+<span class="go">Log of Condor library output                     : goatbrot.dag.lib.out</span>
+<span class="go">Log of Condor library error messages             : goatbrot.dag.lib.err</span>
+<span class="go">Log of the life of condor_dagman itself          : goatbrot.dag.dagman.log</span>
+
+<span class="go">Submitting job(s).</span>
+<span class="go">1 job(s) submitted to cluster 71.</span>
+
+<span class="go">-----------------------------------------------------------------------</span>
+</pre></div>
+
+
+<h2 id="watch-your-dag">Watch Your DAG<a class="headerlink" href="#watch-your-dag" title="Permanent link">&para;</a></h2>
+<p>Let’s follow the progress of the whole DAG:</p>
+<ol>
+<li>
+<p>Use the <code>watch</code> command to run <code>condor_q -nobatch</code> every 10 seconds:</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> watch -n <span class="m">10</span> condor_q -nobatch
+</pre></div>
+
+
+<p><span style="color:red"><strong>Here we see DAGMan running:</strong></span> </p>
+<div class="codehilite"><pre><span></span><span class="go"> ID  OWNER  SUBMITTED   RUN_TIME ST PRI SIZE CMD </span>
+<span class="go">71.0 roy   6/22 17:39 0+00:00:03 R  0    0.3 condor_dagman</span>
+</pre></div>
+
+
+<p><span style="color:red"><strong>DAGMan has submitted the goatbrot jobs, but they haven't started running yet</strong></span></p>
+<div class="codehilite"><pre><span></span><span class="go"> ID  OWNER SUBMITTED   RUN_TIME ST PRI SIZE CMD </span>
+<span class="go">71.0 roy  6/22 17:39 0+00:00:17 R  0    0.3 condor_dagman </span>
+<span class="go">72.0 roy  6/22 17:39 0+00:00:00 I  0    0.0 goatbrot -i 100000 </span>
+<span class="go">73.0 roy  6/22 17:39 0+00:00:00 I  0    0.0 goatbrot -i 100000 </span>
+<span class="go">74.0 roy  6/22 17:39 0+00:00:00 I  0    0.0 goatbrot -i 100000 </span>
+<span class="go">75.0 roy  6/22 17:39 0+00:00:00 I  0    0.0 goatbrot -i 100000</span>
+</pre></div>
+
+
+<p><span style="color:red"><strong>They're running</strong></span> </p>
+<div class="codehilite"><pre><span></span><span class="go"> ID  OWNER SUBMITTED   RUN_TIME ST PRI SIZE CMD</span>
+<span class="go">71.0 roy  6/22 17:39 0+00:07:15 R  0    0.3 condor_dagman </span>
+<span class="go">72.0 roy  6/22 17:39 0+00:00:03 R  0    0.0 goatbrot -i 100000 </span>
+<span class="go">73.0 roy  6/22 17:39 0+00:00:03 R  0    0.0 goatbrot -i 100000 </span>
+<span class="go">74.0 roy  6/22 17:39 0+00:00:03 R  0    0.0 goatbrot -i 100000 </span>
+<span class="go">75.0 roy  6/22 17:39 0+00:00:03 R  0    0.0 goatbrot -i 100000</span>
+</pre></div>
+
+
+<p><span style="color:red"><strong>They finished, but DAGMan hasn't noticed yet. It only checks periodically:</strong></span></p>
+<div class="codehilite"><pre><span></span><span class="go"> ID  OWNER SUBMITTED   RUN_TIME ST PRI SIZE CMD </span>
+<span class="go">71.0 roy  6/22 17:39 0+00:08:46 R  0    0.3 condor_dagman</span>
+</pre></div>
+
+
+<p>Eventually, you'll see the montage job submitted, then running, then leave the queue, and then DAGMan will leave the queue.</p>
+</li>
+<li>
+<p>Examine your results. For some reason, goatbrot prints everything to stderr, not stdout.</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> cat goatbrot.err.0.0 
+<span class="go">Complex image: Center: -0.75 + 0.75i Width: 1.5 Height: 1.5 Upper Left: -1.5 + 1.5i Lower Right: 0 + 0i</span>
+
+<span class="go">Output image: Filename: tile_0_0.ppm Width, Height: 500, 500 Theme: beej Antialiased: no</span>
+
+<span class="go">Mandelbrot: Max Iterations: 100000 Continuous: no</span>
+
+<span class="go">Goatbrot: Multithreading: not supported in this build</span>
+
+<span class="go">Completed: 100.0%</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Examine your log files (<code>goatbrot.log</code> and <code>montage.log</code>) and DAGMan output file (<code>goatbrot.dag.dagman.out</code>). Do they look as you expect? Can you see the progress of the DAG in the DAGMan output file?</p>
+</li>
+<li>As you did earlier, copy the resulting <code>mandel-from-dag.jpg</code> to your <code>public_html</code> directory, then access it from your web browser. Does the image look correct?</li>
+<li>Clean up your results by removing all of the <code>goatbrot.dag.*</code> files if you like. Be careful to not delete the <code>goatbrot.dag</code> file.</li>
+</ol>
+<h2 id="bonus-challenge">Bonus Challenge<a class="headerlink" href="#bonus-challenge" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Re-run your DAG. When jobs are running, try <code>condor_q -nobatch -dag</code>. What does it do differently?</li>
+<li>Challenge, if you have time: Make a bigger DAG by making more tiles in the same area.</li>
+</ul>
+
+  <br>
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../part4-ex4-failed-dag/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../part4-ex4-failed-dag/" class="btn btn-xs btn-link">
+        Exercise 4.4
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../part4-ex2-mandelbrot/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../part4-ex2-mandelbrot/" class="btn btn-xs btn-link">
+        Exercise 4.2
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

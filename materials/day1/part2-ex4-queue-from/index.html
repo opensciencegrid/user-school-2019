@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day1/part2-ex4-queue-from/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Exercise 2.4 - OSG User School 2019</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <link href="../../../css/extra.css" rel="stylesheet">
+    <link href="../../../css/codehilite.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Monday Exercise 2.4: Submit with \u201cqueue from\u201d", url: "#_top", children: [
+              {title: "More Job Submission Alternatives", url: "#more-job-submission-alternatives" },
+              {title: "Queue Jobs From a List of Values", url: "#queue-jobs-from-a-list-of-values" },
+              {title: "Extra Challenge 1", url: "#extra-challenge-1" },
+              {title: "Extra Challenge 2", url: "#extra-challenge-2" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: \#008; } </style>
+
+<h1 id="monday-exercise-24-submit-with-queue-from">Monday Exercise 2.4: Submit with “queue from”<a class="headerlink" href="#monday-exercise-24-submit-with-queue-from" title="Permanent link">&para;</a></h1>
+<p>The goal of this exercise is to submit many jobs from a single submit file by using the <code>queue ... from</code> syntax to read variable values from a file.</p>
+<h2 id="more-job-submission-alternatives">More Job Submission Alternatives<a class="headerlink" href="#more-job-submission-alternatives" title="Permanent link">&para;</a></h2>
+<p>In the previous exercise, we used the <code>queue ... matching</code> syntax, which is primarily useful for collections of files with similar names. But that method has its weaknesses, too. 
+It is less useful when the values for different job conditions are <strong>not</strong> filenames, or if you have other filenames with a similar naming pattern that should <em>not</em> be used for jobs.</p>
+<h2 id="queue-jobs-from-a-list-of-values">Queue Jobs From a List of Values<a class="headerlink" href="#queue-jobs-from-a-list-of-values" title="Permanent link">&para;</a></h2>
+<p>Suppose we want to modify our word-frequency analysis a little bit so that it outputs only the most common <em>N</em> words of a document. Further, we want to experiment with different values of <em>N</em>. And finally, even though we downloaded it, we no longer want to analyze the Sherlock Holmes stories in the <code>TAoSH.txt</code> file. Clearly, <code>queue ... matching</code> will not help us in this case.</p>
+<p>First, we need a new version of the word counting program so that it accepts an extra number as a command line argument and outputs only that many of the most common words. Here is the new code (it's still not important that you understand this code):</p>
+<div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">operator</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s1">&#39;Usage: </span><span class="si">%s</span><span class="s1"> DATA NUM_WORDS&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">input_filename</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">num_words</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">words</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">my_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">my_file</span><span class="p">:</span>
+    <span class="n">line_words</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">line_words</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+            <span class="n">words</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">words</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">my_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">sorted_words</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">words</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">sorted_words</span><span class="p">[</span><span class="o">-</span><span class="n">num_words</span><span class="p">:]:</span>
+    <span class="k">print</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%8d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">word</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+
+<p>To submit this program with a collection of two variable values for each run, one for the number of top words and one for the filename:</p>
+<ol>
+<li>In the same directory as the last exercise, save the script as <code>wordcount-top-n.py</code>.</li>
+<li>Copy your submit file from the last exercise to a new name (maybe <code>wordcount-top.sub</code>).</li>
+<li>Update the <code>executable</code> and <code>log</code> statements as appropriate.</li>
+<li>
+<p>Update other statements to work with two variables, <code>book</code> and <code>n</code>:</p>
+<div class="codehilite"><pre><span></span><span class="k">output</span> <span class="o">=</span> <span class="err">$</span><span class="p">(</span><span class="n">book</span><span class="p">)</span><span class="n">_top_$</span><span class="p">(</span><span class="n">n</span><span class="p">).</span><span class="k">out</span> 
+<span class="n">error</span> <span class="o">=</span> <span class="err">$</span><span class="p">(</span><span class="n">book</span><span class="p">)</span><span class="n">_top_$</span><span class="p">(</span><span class="n">n</span><span class="p">).</span><span class="n">err</span> 
+<span class="n">transfer_input_files</span> <span class="o">=</span> <span class="err">$</span><span class="p">(</span><span class="n">book</span><span class="p">)</span> 
+<span class="n">arguments</span> <span class="o">=</span> <span class="ss">&quot;$(book) $(n)&quot;</span> 
+<span class="n">queue</span> <span class="n">book</span><span class="p">,</span><span class="n">n</span> <span class="k">from</span> <span class="n">books_n</span><span class="p">.</span><span class="n">txt</span>
+</pre></div>
+
+
+<p>Note especially the changes to the <code>queue</code> statement; it now tells HTCondor to read a separate text file of <strong><em>pairs</em></strong> of values, which will be assigned to <code>book</code> and <code>n</code> respectively.</p>
+</li>
+<li>
+<p>Create the separate text file of job variable values and save it as <code>books_n.txt</code>:</p>
+<div class="codehilite"><pre><span></span><span class="n">AAiW</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span> <span class="mi">10</span> 
+<span class="n">AAiW</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span> <span class="mi">25</span> 
+<span class="n">AAiW</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span> <span class="mi">50</span> 
+<span class="n">PandP</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span> <span class="mi">10</span> 
+<span class="n">PandP</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span> <span class="mi">25</span> 
+<span class="n">PandP</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span> <span class="mi">50</span>
+</pre></div>
+
+
+<p>Note that we used 3 different values for <em>n</em> for each book, and that we dropped the Sherlock Holmes book, <code>TAoSH.txt</code>.</p>
+</li>
+<li>
+<p>Submit the file</p>
+</li>
+<li>Do a quick sanity check: How many jobs were submitted? How many log, output, and error files were created?</li>
+</ol>
+<h2 id="extra-challenge-1">Extra Challenge 1<a class="headerlink" href="#extra-challenge-1" title="Permanent link">&para;</a></h2>
+<p>Between this exercise and the previous one, you have explored two of the three primary <code>queue</code> statements. How would you use the <code>queue in ... list</code> statement to accomplish the same thing(s) as one or both of the exercises?</p>
+<h2 id="extra-challenge-2">Extra Challenge 2<a class="headerlink" href="#extra-challenge-2" title="Permanent link">&para;</a></h2>
+<p>You may have noticed that the output of these jobs has a messy naming convention. Because our macros resolve to the filenames, including their extension (e.g., <code>AAiW.txt</code>), the output filenames contain with multiple extensions (e.g., <code>AAiW.txt.err</code>). Although the extra extension is acceptable, it makes the filenames harder to read and possibly organize. <em>Change your submit file and variable file for this exercise so that the output filenames do not include the <code>.txt</code> extension.</em></p>
+
+  <br>
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../part3-ex1-queue/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../part3-ex1-queue/" class="btn btn-xs btn-link">
+        Exercise 3.1
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../part2-ex3-queue-matching/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../part2-ex3-queue-matching/" class="btn btn-xs btn-link">
+        Exercise 2.3
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

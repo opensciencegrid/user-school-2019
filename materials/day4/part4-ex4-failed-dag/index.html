@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day4/part4-ex4-failed-dag/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Exercise 4.4 - OSG User School 2019</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <link href="../../../css/extra.css" rel="stylesheet">
+    <link href="../../../css/codehilite.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Monday Exercise 4.4: Handling a DAG That Fails", url: "#_top", children: [
+              {title: "Background", url: "#background" },
+              {title: "Breaking Things", url: "#breaking-things" },
+              {title: "Bonus Challenge", url: "#bonus-challenge" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="monday-exercise-44-handling-a-dag-that-fails">Monday Exercise 4.4: Handling a DAG That Fails<a class="headerlink" href="#monday-exercise-44-handling-a-dag-that-fails" title="Permanent link">&para;</a></h1>
+<p>The objective of this exercise is to help you learn how DAGMan deals with job failures. DAGMan is built to help you recover from such failures.</p>
+<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
+<p>DAGMan can handle a situation where some of the nodes in a DAG fail. DAGMan will run as many nodes as possible, then create a rescue DAG making it easy to continue when the problem is fixed.</p>
+<h2 id="breaking-things">Breaking Things<a class="headerlink" href="#breaking-things" title="Permanent link">&para;</a></h2>
+<p>Recall that DAGMan decides that a jobs fails if its exit code is non-zero. Let's modify our montage job so that it fails. Work in the same directory where you did the last DAG. Edit montage.sub to add a <code>-h</code> to the arguments. It will look like this (the change is highlighted in red):</p>
+<div class="codehilite"><pre><span></span><span class="n">executable</span>              <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">montage</span>
+<span class="n">arguments</span>               <span class="o">=</span> <span class="o">%</span><span class="n">RED</span><span class="o">%-</span><span class="n">h</span><span class="o">%</span><span class="n">ENDCOLOR</span><span class="o">%</span> <span class="n">tile_0_0</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_0_1</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_1_0</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_1_1</span><span class="p">.</span><span class="n">ppm</span> <span class="o">-</span><span class="k">mode</span> <span class="n">Concatenate</span> <span class="o">-</span><span class="n">tile</span> <span class="mi">2</span><span class="n">x2</span> <span class="n">mandle</span><span class="o">-</span><span class="k">from</span><span class="o">-</span><span class="n">dag</span><span class="p">.</span><span class="n">jpg</span>
+<span class="n">transfer_input_files</span>    <span class="o">=</span> <span class="n">tile_0_0</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_0_1</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_1_0</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_1_1</span><span class="p">.</span><span class="n">ppm</span>
+<span class="k">output</span>                  <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="k">out</span>
+<span class="n">error</span>                   <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="n">err</span>
+<span class="n">log</span>                     <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="n">log</span>
+<span class="n">request_memory</span>          <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
+<span class="n">request_disk</span>            <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
+<span class="n">request_cpus</span>            <span class="o">=</span> <span class="mi">1</span>
+<span class="n">requirements</span>            <span class="o">=</span> <span class="n">OpSysMajorVer</span> <span class="o">=?=</span> <span class="mi">6</span>
+<span class="n">queue</span>
+</pre></div>
+
+
+<p>Submit the DAG again:</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_submit_dag goatbrot.dag
+<span class="go">-----------------------------------------------------------------------</span>
+<span class="go">File for submitting this DAG to Condor           : goatbrot.dag.condor.sub</span>
+<span class="go">Log of DAGMan debugging messages                 : goatbrot.dag.dagman.out</span>
+<span class="go">Log of Condor library output                     : goatbrot.dag.lib.out</span>
+<span class="go">Log of Condor library error messages             : goatbrot.dag.lib.err</span>
+<span class="go">Log of the life of condor_dagman itself          : goatbrot.dag.dagman.log</span>
+
+<span class="go">Submitting job(s).</span>
+<span class="go">1 job(s) submitted to cluster 77.</span>
+<span class="go">-----------------------------------------------------------------------</span>
+</pre></div>
+
+
+<p>Use watch to watch the jobs until they finish. In a separate window, use <code>tail --lines=500 -f goatbrot.dag.dagman.out</code> to watch what DAGMan does.</p>
+<div class="codehilite"><pre><span></span><span class="go">06/22/12 17:57:41 Setting maximum accepts per cycle 8.</span>
+<span class="go">06/22/12 17:57:41 ******************************************************</span>
+<span class="go">06/22/12 17:57:41 ** condor_scheduniv_exec.77.0 (CONDOR_DAGMAN) STARTING UP</span>
+<span class="go">06/22/12 17:57:41 ** /usr/bin/condor_dagman</span>
+<span class="go">06/22/12 17:57:41 ** SubsystemInfo: name=DAGMAN type=DAGMAN(10) class=DAEMON(1)</span>
+<span class="go">06/22/12 17:57:41 ** Configuration: subsystem:DAGMAN local:&lt;NONE&gt; class:DAEMON</span>
+<span class="go">06/22/12 17:57:41 ** $CondorVersion: 7.7.6 Apr 16 2012 BuildID: 34175 PRE-RELEASE-UWCS $</span>
+<span class="go">06/22/12 17:57:41 ** $CondorPlatform: x86_64_rhap_5.7 $</span>
+<span class="go">06/22/12 17:57:41 ** PID = 26867</span>
+<span class="go">06/22/12 17:57:41 ** Log last touched time unavailable (No such file or directory)</span>
+<span class="go">06/22/12 17:57:41 ******************************************************</span>
+<span class="go">06/22/12 17:57:41 Using config source: /etc/condor/condor_config</span>
+<span class="go">06/22/12 17:57:41 Using local config sources: </span>
+<span class="go">06/22/12 17:57:41    /etc/condor/config.d/00-chtc-global.conf</span>
+<span class="go">06/22/12 17:57:41    /etc/condor/config.d/01-chtc-submit.conf</span>
+<span class="go">06/22/12 17:57:41    /etc/condor/config.d/02-chtc-flocking.conf</span>
+<span class="go">06/22/12 17:57:41    /etc/condor/config.d/03-chtc-jobrouter.conf</span>
+<span class="go">06/22/12 17:57:41    /etc/condor/config.d/04-chtc-blacklist.conf</span>
+<span class="go">06/22/12 17:57:41    /etc/condor/config.d/99-osg-ss-group.conf</span>
+<span class="go">06/22/12 17:57:41    /etc/condor/config.d/99-roy-extras.conf</span>
+<span class="go">06/22/12 17:57:41    /etc/condor/condor_config.local</span>
+</pre></div>
+
+
+<p>Below is where DAGMan realizes that the montage node failed:</p>
+<div class="codehilite"><pre><span></span><span class="go">06/22/12 18:08:42 Event: ULOG_EXECUTE for Condor Node montage (82.0.0)</span>
+<span class="go">06/22/12 18:08:42 Number of idle job procs: 0</span>
+<span class="go">06/22/12 18:08:42 Event: ULOG_IMAGE_SIZE for Condor Node montage (82.0.0)</span>
+<span class="go">06/22/12 18:08:42 Event: ULOG_JOB_TERMINATED for Condor Node montage (82.0.0)</span>
+<span class="go">06/22/12 18:08:42 Node montage job proc (82.0.0) failed with status 1.</span>
+<span class="go">06/22/12 18:08:42 Number of idle job procs: 0</span>
+<span class="go">06/22/12 18:08:42 Of 5 nodes total:</span>
+<span class="go">06/22/12 18:08:42  Done     Pre   Queued    Post   Ready   Un-Ready   Failed</span>
+<span class="go">06/22/12 18:08:42   ===     ===      ===     ===     ===        ===      ===</span>
+<span class="go">06/22/12 18:08:42     4       0        0       0       0          0        1</span>
+<span class="go">06/22/12 18:08:42 0 job proc(s) currently held</span>
+<span class="go">06/22/12 18:08:42 Aborting DAG...</span>
+<span class="go">06/22/12 18:08:42 Writing Rescue DAG to goatbrot.dag.rescue001...</span>
+<span class="go">06/22/12 18:08:42 Note: 0 total job deferrals because of -MaxJobs limit (0)</span>
+<span class="go">06/22/12 18:08:42 Note: 0 total job deferrals because of -MaxIdle limit (0)</span>
+<span class="go">06/22/12 18:08:42 Note: 0 total job deferrals because of node category throttles</span>
+<span class="go">06/22/12 18:08:42 Note: 0 total PRE script deferrals because of -MaxPre limit (0)</span>
+<span class="go">06/22/12 18:08:42 Note: 0 total POST script deferrals because of -MaxPost limit (0)</span>
+<span class="go">06/22/12 18:08:42 **** condor_scheduniv_exec.77.0 (condor_DAGMAN) pid 26867 EXITING WITH STATUS 1</span>
+</pre></div>
+
+
+<p>DAGMan notices that one of the jobs failed because it's exit code was non-zero. DAGMan ran as much of the DAG as possible and logged enough information to continue the run when the situation is resolved. Do you see the part where it wrote the resuce DAG?</p>
+<p>Look at the rescue DAG file. It's called a partial DAG because it indicates what part of the DAG has already been completed.</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> cat goatbrot.dag.rescue001
+<span class="gp">#</span> Rescue DAG file, created after running
+<span class="gp">#</span>   the goatbrot.dag DAG file
+<span class="gp">#</span> Created <span class="m">6</span>/22/2012 <span class="m">23</span>:08:42 UTC
+<span class="gp">#</span> Rescue DAG version: <span class="m">2</span>.0.1 <span class="o">(</span>partial<span class="o">)</span>
+<span class="gp">#</span>
+<span class="gp">#</span> Total number of Nodes: <span class="m">5</span>
+<span class="gp">#</span> Nodes premarked DONE: <span class="m">4</span>
+<span class="gp">#</span> Nodes that failed: <span class="m">1</span>
+<span class="gp">#</span>   montage,&lt;ENDLIST&gt;
+
+<span class="go">DONE g1</span>
+<span class="go">DONE g2</span>
+<span class="go">DONE g3</span>
+<span class="go">DONE g4</span>
+</pre></div>
+
+
+<p>From the comment near the top, we know that the montage node failed. Let's fix it by getting rid of the offending <code>-h</code> argument. Change montage.sub to look like:</p>
+<div class="codehilite"><pre><span></span><span class="n">executable</span>              <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">montage</span>
+<span class="n">arguments</span>               <span class="o">=</span> <span class="n">tile_0_0</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_0_1</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_1_0</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_1_1</span><span class="p">.</span><span class="n">ppm</span> <span class="o">-</span><span class="k">mode</span> <span class="n">Concatenate</span> <span class="o">-</span><span class="n">tile</span> <span class="mi">2</span><span class="n">x2</span> <span class="n">mandle</span><span class="o">-</span><span class="k">from</span><span class="o">-</span><span class="n">dag</span><span class="p">.</span><span class="n">jpg</span>
+<span class="n">transfer_input_files</span>    <span class="o">=</span> <span class="n">tile_0_0</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_0_1</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_1_0</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_1_1</span><span class="p">.</span><span class="n">ppm</span>
+<span class="k">output</span>                  <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="k">out</span>
+<span class="n">error</span>                   <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="n">err</span>
+<span class="n">log</span>                     <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="n">log</span>
+<span class="n">request_memory</span>          <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
+<span class="n">request_disk</span>            <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
+<span class="n">request_cpus</span>            <span class="o">=</span> <span class="mi">1</span>
+<span class="n">requirements</span>            <span class="o">=</span> <span class="n">OpSysMajorVer</span> <span class="o">=?=</span> <span class="mi">6</span>
+<span class="n">queue</span>
+</pre></div>
+
+
+<p>Now we can re-submit our original DAG and DAGMan will pick up where it left off. It will automatically notice the rescue DAG. If you didn't fix the problem, DAGMan would generate another rescue DAG.</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_submit_dag goatbrot.dag
+<span class="go">Running rescue DAG 1</span>
+<span class="go">-----------------------------------------------------------------------</span>
+<span class="go">File for submitting this DAG to Condor           : goatbrot.dag.condor.sub</span>
+<span class="go">Log of DAGMan debugging messages                 : goatbrot.dag.dagman.out</span>
+<span class="go">Log of Condor library output                     : goatbrot.dag.lib.out</span>
+<span class="go">Log of Condor library error messages             : goatbrot.dag.lib.err</span>
+<span class="go">Log of the life of condor_dagman itself          : goatbrot.dag.dagman.log</span>
+
+<span class="go">Submitting job(s).</span>
+<span class="go">1 job(s) submitted to cluster 83.</span>
+<span class="go">-----------------------------------------------------------------------</span>
+
+<span class="gp">username@learn $</span> tail -f goatbrot.dag.dagman.out
+<span class="go">06/23/12 11:30:53 ******************************************************</span>
+<span class="go">06/23/12 11:30:53 ** condor_scheduniv_exec.83.0 (CONDOR_DAGMAN) STARTING UP</span>
+<span class="go">06/23/12 11:30:53 ** /usr/bin/condor_dagman</span>
+<span class="go">06/23/12 11:30:53 ** SubsystemInfo: name=DAGMAN type=DAGMAN(10) class=DAEMON(1)</span>
+<span class="go">06/23/12 11:30:53 ** Configuration: subsystem:DAGMAN local:&lt;NONE&gt; class:DAEMON</span>
+<span class="go">06/23/12 11:30:53 ** $CondorVersion: 7.7.6 Apr 16 2012 BuildID: 34175 PRE-RELEASE-UWCS $</span>
+<span class="go">06/23/12 11:30:53 ** $CondorPlatform: x86_64_rhap_5.7 $</span>
+<span class="go">06/23/12 11:30:53 ** PID = 28576</span>
+<span class="go">06/23/12 11:30:53 ** Log last touched 6/22 18:08:42</span>
+<span class="go">06/23/12 11:30:53 ******************************************************</span>
+<span class="go">06/23/12 11:30:53 Using config source: /etc/condor/condor_config</span>
+<span class="go">...</span>
+</pre></div>
+
+
+<p><span style="color:red"><strong>Here is where DAGMAN notices that there is a rescue DAG</strong></span></p>
+<div class="codehilite"><pre><span></span><span class="go">06/23/12 11:30:53 Parsing 1 dagfiles</span>
+<span class="go">06/23/12 11:30:53 Parsing goatbrot.dag ...</span>
+<span class="gp">%</span>RED%06/23/12 <span class="m">11</span>:30:53 Found rescue DAG number <span class="m">1</span><span class="p">;</span> running goatbrot.dag.rescue001 in combination with normal DAG file</span>
+<span class="go">06/23/12 11:30:53 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="go">06/23/12 11:30:53 USING RESCUE DAG goatbrot.dag.rescue001</span>
+<span class="go">06/23/12 11:30:53 Dag contains 5 total jobs</span>
+</pre></div>
+
+
+<p><span style="color:red"><strong>Shortly thereafter it sees that four jobs have already finished.</strong></span></p>
+<div class="codehilite"><pre><span></span><span class="go">06/23/12 11:31:05 Bootstrapping...</span>
+<span class="go">06/23/12 11:31:05 Number of pre-completed nodes: 4</span>
+<span class="go">06/23/12 11:31:05 Registering condor_event_timer...</span>
+<span class="go">06/23/12 11:31:06 Sleeping for one second for log file consistency</span>
+<span class="go">06/23/12 11:31:07 MultiLogFiles: truncating log file /home/roy/condor/goatbrot/montage.log</span>
+</pre></div>
+
+
+<p><span style="color:red"><strong>Here is where DAGMan resubmits the montage job and waits for it to complete.</strong></span></p>
+<div class="codehilite"><pre><span></span><span class="go">06/23/12 11:31:07 Submitting Condor Node montage job(s)...</span>
+<span class="go">06/23/12 11:31:07 submitting: condor_submit </span>
+<span class="go">      -a dag_node_name&#39; &#39;=&#39; &#39;montage </span>
+<span class="go">      -a +DAGManJobId&#39; &#39;=&#39; &#39;83 </span>
+<span class="go">      -a DAGManJobId&#39; &#39;=&#39; &#39;83 </span>
+<span class="go">      -a submit_event_notes&#39; &#39;=&#39; &#39;DAG&#39; &#39;Node:&#39; &#39;montage </span>
+<span class="go">      -a DAG_STATUS&#39; &#39;=&#39; &#39;0 </span>
+<span class="go">      -a FAILED_COUNT&#39; &#39;=&#39; &#39;0 </span>
+<span class="go">      -a +DAGParentNodeNames&#39; &#39;=&#39; &#39;&quot;g1,g2,g3,g4&quot; </span>
+<span class="go">      montage.sub</span>
+<span class="go">06/23/12 11:31:07 From submit: Submitting job(s).</span>
+<span class="go">06/23/12 11:31:07 From submit: 1 job(s) submitted to cluster 84.</span>
+<span class="go">06/23/12 11:31:07   assigned Condor ID (84.0.0)</span>
+<span class="go">06/23/12 11:31:07 Just submitted 1 job this cycle...</span>
+<span class="go">06/23/12 11:31:07 Currently monitoring 1 Condor log file(s)</span>
+<span class="go">06/23/12 11:31:07 Event: ULOG_SUBMIT for Condor Node montage (84.0.0)</span>
+<span class="go">06/23/12 11:31:07 Number of idle job procs: 1</span>
+<span class="go">06/23/12 11:31:07 Of 5 nodes total:</span>
+<span class="go">06/23/12 11:31:07  Done     Pre   Queued    Post   Ready   Un-Ready   Failed</span>
+<span class="go">06/23/12 11:31:07   ===     ===      ===     ===     ===        ===      ===</span>
+<span class="go">06/23/12 11:31:07     4       0        1       0       0          0        0</span>
+<span class="go">06/23/12 11:31:07 0 job proc(s) currently held</span>
+<span class="go">06/23/12 11:40:22 Currently monitoring 1 Condor log file(s)</span>
+<span class="go">06/23/12 11:40:22 Event: ULOG_EXECUTE for Condor Node montage (84.0.0)</span>
+<span class="go">06/23/12 11:40:22 Number of idle job procs: 0</span>
+<span class="go">06/23/12 11:40:22 Event: ULOG_IMAGE_SIZE for Condor Node montage (84.0.0)</span>
+<span class="go">06/23/12 11:40:22 Event: ULOG_JOB_TERMINATED for Condor Node montage (84.0.0)</span>
+</pre></div>
+
+
+<p><span style="color:red"><strong>This is where the montage finished.</strong></span></p>
+<div class="codehilite"><pre><span></span><span class="go">06/23/12 11:40:22 Node montage job proc (84.0.0) completed successfully.</span>
+<span class="go">06/23/12 11:40:22 Node montage job completed</span>
+<span class="go">06/23/12 11:40:22 Number of idle job procs: 0</span>
+<span class="go">06/23/12 11:40:22 Of 5 nodes total:</span>
+<span class="go">06/23/12 11:40:22  Done     Pre   Queued    Post   Ready   Un-Ready   Failed</span>
+<span class="go">06/23/12 11:40:22   ===     ===      ===     ===     ===        ===      ===</span>
+<span class="go">06/23/12 11:40:22     5       0        0       0       0          0        0</span>
+<span class="go">06/23/12 11:40:22 0 job proc(s) currently held</span>
+</pre></div>
+
+
+<p><span style="color:red"><strong>And here DAGMan decides that the work is all done.</strong></span></p>
+<div class="codehilite"><pre><span></span><span class="go">06/23/12 11:40:22 All jobs Completed!</span>
+<span class="go">06/23/12 11:40:22 Note: 0 total job deferrals because of -MaxJobs limit (0)</span>
+<span class="go">06/23/12 11:40:22 Note: 0 total job deferrals because of -MaxIdle limit (0)</span>
+<span class="go">06/23/12 11:40:22 Note: 0 total job deferrals because of node category throttles</span>
+<span class="go">06/23/12 11:40:22 Note: 0 total PRE script deferrals because of -MaxPre limit (0)</span>
+<span class="go">06/23/12 11:40:22 Note: 0 total POST script deferrals because of -MaxPost limit (0)</span>
+<span class="go">06/23/12 11:40:22 **** condor_scheduniv_exec.83.0 (condor_DAGMAN) pid 28576 EXITING WITH STATUS 0</span>
+</pre></div>
+
+
+<p>Success! Now go ahead and clean up.</p>
+<h2 id="bonus-challenge">Bonus Challenge<a class="headerlink" href="#bonus-challenge" title="Permanent link">&para;</a></h2>
+<p>If you have time, add an extra node to the DAG. Copy our original "simple" program, but make it exit with a 1 instead of a 0. DAGMan would consider this a failure, but you'll tell DAGMan that it's really a success. This is reasonable--many real world programs use a variety of return codes, and you might need to help DAGMan distinguish success from failure.</p>
+<p>Write a POST script that checks the return value. Check <a href="http://www.cs.wisc.edu/condor/manual/current/2_10DAGMan_Applications.html">the Condor manual</a> to see how to describe your post script.</p>
+
+  <br>
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../part4-ex5-challenges/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../part4-ex5-challenges/" class="btn btn-xs btn-link">
+        Bonus Exercises 4.5
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../part4-ex3-complex-dag/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../part4-ex3-complex-dag/" class="btn btn-xs btn-link">
+        Exercise 4.3
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>
