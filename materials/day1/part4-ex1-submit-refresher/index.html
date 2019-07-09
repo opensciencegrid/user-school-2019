@@ -83,7 +83,7 @@ Geolocation uses a registry to match a computer’s network address to an approx
 <p>Create a submit file that generates <strong>fifty</strong> jobs that run <code>location-wrapper.sh</code>, transfers <code>wn-geoip.tar.gz</code> as an
     input file, and uses the <code>$(Process)</code> macro to write different <code>output</code> and <code>error</code> files.
     Also, add the following requirement to the submit file (it's not important to know what it does):</p>
-<div class="codehilite"><pre><span></span><span class="n">Requirements</span> <span class="o">=</span> <span class="p">(</span><span class="n">HAS_CVMFS_oasis_opensciencegrid_org</span> <span class="o">=?=</span> <span class="k">TRUE</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span>Requirements = (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE)
 </pre></div>
 
 

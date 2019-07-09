@@ -73,15 +73,15 @@ parameters:</p>
 be found at <a href="http://research.cs.wisc.edu/htcondor/manual/v8.7/DAGManApplications.html">in the HTCondor manual</a>.</p>
 <h2 id="submitting-a-simple-dag">Submitting a Simple DAG<a class="headerlink" href="#submitting-a-simple-dag" title="Permanent link">&para;</a></h2>
 <p>For our job, we will return briefly to the <code>sleep</code> program.</p>
-<div class="codehilite"><pre><span></span><span class="n">executable</span>              <span class="o">=</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">sleep</span>
-<span class="n">arguments</span>               <span class="o">=</span> <span class="mi">4</span>
-<span class="n">log</span>                     <span class="o">=</span> <span class="k">simple</span><span class="p">.</span><span class="n">log</span>
-<span class="k">output</span>                  <span class="o">=</span> <span class="k">simple</span><span class="p">.</span><span class="k">out</span>
-<span class="n">error</span>                   <span class="o">=</span> <span class="k">simple</span><span class="p">.</span><span class="n">error</span>
-<span class="n">request_memory</span> <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
-<span class="n">request_disk</span> <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
-<span class="n">request_cpus</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">queue</span>
+<div class="codehilite"><pre><span></span>executable              = /bin/sleep
+arguments               = 4
+log                     = simple.log
+output                  = simple.out
+error                   = simple.error
+request_memory = 1GB
+request_disk = 1GB
+request_cpus = 1
+queue
 </pre></div>
 
 
@@ -89,7 +89,7 @@ be found at <a href="http://research.cs.wisc.edu/htcondor/manual/v8.7/DAGManAppl
 you'll submit the job.  In another you will watch the queue, and in the third you will watch what DAGMan does.</p>
 <p>First we will create the most minimal DAG that can be created: a DAG with just one node.  Put this into a file named
 <code>simple.dag</code>.</p>
-<div class="codehilite"><pre><span></span><span class="n">Job</span> <span class="k">Simple</span> <span class="k">simple</span><span class="p">.</span><span class="n">sub</span>
+<div class="codehilite"><pre><span></span>Job Simple simple.sub
 </pre></div>
 
 
@@ -227,61 +227,61 @@ you'll submit the job.  In another you will watch the queue, and in the third yo
 
 
 <p><span style="color:red"><strong>Here's where the job is submitted</strong></span></p>
-<div class="codehilite"><pre><span></span><span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">51</span>:<span class="mi">29</span> <span class="nv">submitting</span>: <span class="nv">condor_submit</span> 
-                              <span class="o">-</span><span class="nv">a</span> <span class="nv">dag_node_name</span><span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span><span class="o">=</span><span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span><span class="nv">Simple</span> 
-                              <span class="o">-</span><span class="nv">a</span> <span class="o">+</span><span class="nv">DAGManJobId</span><span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span><span class="o">=</span><span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span><span class="mi">61</span> 
-                              <span class="o">-</span><span class="nv">a</span> <span class="nv">DAGManJobId</span><span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span><span class="o">=</span><span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span><span class="mi">61</span> 
-                              <span class="o">-</span><span class="nv">a</span> <span class="nv">submit_event_notes</span><span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span><span class="o">=</span><span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span><span class="nv">DAG</span><span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span><span class="nv">Node</span>:<span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span><span class="nv">Simple</span> 
-                              <span class="o">-</span><span class="nv">a</span> <span class="nv">DAG_STATUS</span><span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span><span class="o">=</span><span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span><span class="mi">0</span> 
-                              <span class="o">-</span><span class="nv">a</span> <span class="nv">FAILED_COUNT</span><span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span><span class="o">=</span><span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span><span class="mi">0</span> 
-                              <span class="o">-</span><span class="nv">a</span> <span class="o">+</span><span class="nv">DAGParentNodeNames</span><span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span><span class="o">=</span><span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span><span class="s2">&quot;&quot;</span> <span class="nv">submit</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">51</span>:<span class="mi">30</span> <span class="nv">From</span> <span class="nv">submit</span>: <span class="nv">Submitting</span> <span class="nv">job</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span>.
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">51</span>:<span class="mi">30</span> <span class="nv">From</span> <span class="nv">submit</span>: <span class="mi">1</span> <span class="nv">job</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span> <span class="nv">submitted</span> <span class="nv">to</span> <span class="nv">cluster</span> <span class="mi">62</span>.
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">51</span>:<span class="mi">30</span>   <span class="nv">assigned</span> <span class="nv">Condor</span> <span class="nv">ID</span> <span class="ss">(</span><span class="mi">62</span>.<span class="mi">0</span>.<span class="mi">0</span><span class="ss">)</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">51</span>:<span class="mi">30</span> <span class="nv">Just</span> <span class="nv">submitted</span> <span class="mi">1</span> <span class="nv">job</span> <span class="nv">this</span> <span class="nv">cycle</span>...
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">51</span>:<span class="mi">30</span> <span class="nv">Currently</span> <span class="nv">monitoring</span> <span class="mi">1</span> <span class="nv">Condor</span> <span class="nv">log</span> <span class="nv">file</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">51</span>:<span class="mi">30</span> <span class="nv">Event</span>: <span class="nv">ULOG_SUBMIT</span> <span class="k">for</span> <span class="nv">Condor</span> <span class="nv">Node</span> <span class="nv">Simple</span> <span class="ss">(</span><span class="mi">62</span>.<span class="mi">0</span>.<span class="mi">0</span><span class="ss">)</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">51</span>:<span class="mi">30</span> <span class="nv">Number</span> <span class="nv">of</span> <span class="nv">idle</span> <span class="nv">job</span> <span class="nv">procs</span>: <span class="mi">1</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">51</span>:<span class="mi">30</span> <span class="nv">Of</span> <span class="mi">1</span> <span class="nv">nodes</span> <span class="nv">total</span>:
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">51</span>:<span class="mi">30</span>  <span class="nv">Done</span>     <span class="nv">Pre</span>   <span class="nv">Queued</span>    <span class="nv">Post</span>   <span class="nv">Ready</span>   <span class="nv">Un</span><span class="o">-</span><span class="nv">Ready</span>   <span class="nv">Failed</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">51</span>:<span class="mi">30</span>   <span class="o">===</span>     <span class="o">===</span>      <span class="o">===</span>     <span class="o">===</span>     <span class="o">===</span>        <span class="o">===</span>      <span class="o">===</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">51</span>:<span class="mi">30</span>     <span class="mi">0</span>       <span class="mi">0</span>        <span class="mi">1</span>       <span class="mi">0</span>       <span class="mi">0</span>          <span class="mi">0</span>        <span class="mi">0</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">51</span>:<span class="mi">30</span> <span class="mi">0</span> <span class="nv">job</span> <span class="nv">proc</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span> <span class="nv">currently</span> <span class="nv">held</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">55</span>:<span class="mi">05</span> <span class="nv">Currently</span> <span class="nv">monitoring</span> <span class="mi">1</span> <span class="nv">Condor</span> <span class="nv">log</span> <span class="nv">file</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span>
+<div class="codehilite"><pre><span></span>06/21/12 22:51:29 submitting: condor_submit 
+                              -a dag_node_name&#39; &#39;=&#39; &#39;Simple 
+                              -a +DAGManJobId&#39; &#39;=&#39; &#39;61 
+                              -a DAGManJobId&#39; &#39;=&#39; &#39;61 
+                              -a submit_event_notes&#39; &#39;=&#39; &#39;DAG&#39; &#39;Node:&#39; &#39;Simple 
+                              -a DAG_STATUS&#39; &#39;=&#39; &#39;0 
+                              -a FAILED_COUNT&#39; &#39;=&#39; &#39;0 
+                              -a +DAGParentNodeNames&#39; &#39;=&#39; &#39;&quot;&quot; submit
+06/21/12 22:51:30 From submit: Submitting job(s).
+06/21/12 22:51:30 From submit: 1 job(s) submitted to cluster 62.
+06/21/12 22:51:30   assigned Condor ID (62.0.0)
+06/21/12 22:51:30 Just submitted 1 job this cycle...
+06/21/12 22:51:30 Currently monitoring 1 Condor log file(s)
+06/21/12 22:51:30 Event: ULOG_SUBMIT for Condor Node Simple (62.0.0)
+06/21/12 22:51:30 Number of idle job procs: 1
+06/21/12 22:51:30 Of 1 nodes total:
+06/21/12 22:51:30  Done     Pre   Queued    Post   Ready   Un-Ready   Failed
+06/21/12 22:51:30   ===     ===      ===     ===     ===        ===      ===
+06/21/12 22:51:30     0       0        1       0       0          0        0
+06/21/12 22:51:30 0 job proc(s) currently held
+06/21/12 22:55:05 Currently monitoring 1 Condor log file(s)
 </pre></div>
 
 
 <p><span style="color:red"><strong>Here's where DAGMan noticed that the job is running</strong></span></p>
-<div class="codehilite"><pre><span></span><span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">55</span>:<span class="mi">05</span> <span class="nv">Event</span>: <span class="nv">ULOG_EXECUTE</span> <span class="k">for</span> <span class="nv">Condor</span> <span class="nv">Node</span> <span class="nv">Simple</span> <span class="ss">(</span><span class="mi">62</span>.<span class="mi">0</span>.<span class="mi">0</span><span class="ss">)</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">55</span>:<span class="mi">05</span> <span class="nv">Number</span> <span class="nv">of</span> <span class="nv">idle</span> <span class="nv">job</span> <span class="nv">procs</span>: <span class="mi">0</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">55</span>:<span class="mi">10</span> <span class="nv">Currently</span> <span class="nv">monitoring</span> <span class="mi">1</span> <span class="nv">Condor</span> <span class="nv">log</span> <span class="nv">file</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">55</span>:<span class="mi">10</span> <span class="nv">Event</span>: <span class="nv">ULOG_IMAGE_SIZE</span> <span class="k">for</span> <span class="nv">Condor</span> <span class="nv">Node</span> <span class="nv">Simple</span> <span class="ss">(</span><span class="mi">62</span>.<span class="mi">0</span>.<span class="mi">0</span><span class="ss">)</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">56</span>:<span class="mi">05</span> <span class="nv">Currently</span> <span class="nv">monitoring</span> <span class="mi">1</span> <span class="nv">Condor</span> <span class="nv">log</span> <span class="nv">file</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">56</span>:<span class="mi">05</span> <span class="nv">Event</span>: <span class="nv">ULOG_IMAGE_SIZE</span> <span class="k">for</span> <span class="nv">Condor</span> <span class="nv">Node</span> <span class="nv">Simple</span> <span class="ss">(</span><span class="mi">62</span>.<span class="mi">0</span>.<span class="mi">0</span><span class="ss">)</span>
+<div class="codehilite"><pre><span></span>06/21/12 22:55:05 Event: ULOG_EXECUTE for Condor Node Simple (62.0.0)
+06/21/12 22:55:05 Number of idle job procs: 0
+06/21/12 22:55:10 Currently monitoring 1 Condor log file(s)
+06/21/12 22:55:10 Event: ULOG_IMAGE_SIZE for Condor Node Simple (62.0.0)
+06/21/12 22:56:05 Currently monitoring 1 Condor log file(s)
+06/21/12 22:56:05 Event: ULOG_IMAGE_SIZE for Condor Node Simple (62.0.0)
 </pre></div>
 
 
 <p><span style="color:red"><strong>Here's where DAGMan noticed that the job finished.</strong></span></p>
-<div class="codehilite"><pre><span></span><span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">56</span>:<span class="mi">05</span> <span class="nv">Event</span>: <span class="nv">ULOG_JOB_TERMINATED</span> <span class="k">for</span> <span class="nv">Condor</span> <span class="nv">Node</span> <span class="nv">Simple</span> <span class="ss">(</span><span class="mi">62</span>.<span class="mi">0</span>.<span class="mi">0</span><span class="ss">)</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">56</span>:<span class="mi">05</span> <span class="nv">Node</span> <span class="nv">Simple</span> <span class="nv">job</span> <span class="nv">proc</span> <span class="ss">(</span><span class="mi">62</span>.<span class="mi">0</span>.<span class="mi">0</span><span class="ss">)</span> <span class="nv">completed</span> <span class="nv">successfully</span>.
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">56</span>:<span class="mi">05</span> <span class="nv">Node</span> <span class="nv">Simple</span> <span class="nv">job</span> <span class="nv">completed</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">56</span>:<span class="mi">05</span> <span class="nv">Number</span> <span class="nv">of</span> <span class="nv">idle</span> <span class="nv">job</span> <span class="nv">procs</span>: <span class="mi">0</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">56</span>:<span class="mi">05</span> <span class="nv">Of</span> <span class="mi">1</span> <span class="nv">nodes</span> <span class="nv">total</span>:
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">56</span>:<span class="mi">05</span>  <span class="nv">Done</span>     <span class="nv">Pre</span>   <span class="nv">Queued</span>    <span class="nv">Post</span>   <span class="nv">Ready</span>   <span class="nv">Un</span><span class="o">-</span><span class="nv">Ready</span>   <span class="nv">Failed</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">56</span>:<span class="mi">05</span>   <span class="o">===</span>     <span class="o">===</span>      <span class="o">===</span>     <span class="o">===</span>     <span class="o">===</span>        <span class="o">===</span>      <span class="o">===</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">56</span>:<span class="mi">05</span>     <span class="mi">1</span>       <span class="mi">0</span>        <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>          <span class="mi">0</span>        <span class="mi">0</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span>:<span class="mi">56</span>:<span class="mi">05</span> <span class="mi">0</span> <span class="nv">job</span> <span class="nv">proc</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span> <span class="nv">currently</span> <span class="nv">held</span>
+<div class="codehilite"><pre><span></span>06/21/12 22:56:05 Event: ULOG_JOB_TERMINATED for Condor Node Simple (62.0.0)
+06/21/12 22:56:05 Node Simple job proc (62.0.0) completed successfully.
+06/21/12 22:56:05 Node Simple job completed
+06/21/12 22:56:05 Number of idle job procs: 0
+06/21/12 22:56:05 Of 1 nodes total:
+06/21/12 22:56:05  Done     Pre   Queued    Post   Ready   Un-Ready   Failed
+06/21/12 22:56:05   ===     ===      ===     ===     ===        ===      ===
+06/21/12 22:56:05     1       0        0       0       0          0        0
+06/21/12 22:56:05 0 job proc(s) currently held
 </pre></div>
 
 
 <p><span style="color:red"><strong>Here's where DAGMan noticed that all the work is done.</strong></span></p>
-<div class="codehilite"><pre><span></span><span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">05</span> <span class="k">All</span> <span class="n">jobs</span> <span class="n">Completed</span><span class="o">!</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">05</span> <span class="n">Note</span><span class="p">:</span> <span class="mi">0</span> <span class="n">total</span> <span class="n">job</span> <span class="n">deferrals</span> <span class="n">because</span> <span class="k">of</span> <span class="o">-</span><span class="n">MaxJobs</span> <span class="k">limit</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">05</span> <span class="n">Note</span><span class="p">:</span> <span class="mi">0</span> <span class="n">total</span> <span class="n">job</span> <span class="n">deferrals</span> <span class="n">because</span> <span class="k">of</span> <span class="o">-</span><span class="n">MaxIdle</span> <span class="k">limit</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">05</span> <span class="n">Note</span><span class="p">:</span> <span class="mi">0</span> <span class="n">total</span> <span class="n">job</span> <span class="n">deferrals</span> <span class="n">because</span> <span class="k">of</span> <span class="n">node</span> <span class="n">category</span> <span class="n">throttles</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">05</span> <span class="n">Note</span><span class="p">:</span> <span class="mi">0</span> <span class="n">total</span> <span class="n">PRE</span> <span class="n">script</span> <span class="n">deferrals</span> <span class="n">because</span> <span class="k">of</span> <span class="o">-</span><span class="n">MaxPre</span> <span class="k">limit</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">05</span> <span class="n">Note</span><span class="p">:</span> <span class="mi">0</span> <span class="n">total</span> <span class="n">POST</span> <span class="n">script</span> <span class="n">deferrals</span> <span class="n">because</span> <span class="k">of</span> <span class="o">-</span><span class="n">MaxPost</span> <span class="k">limit</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="mi">06</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">12</span> <span class="mi">22</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">05</span> <span class="o">****</span> <span class="n">condor_scheduniv_exec</span><span class="p">.</span><span class="mi">61</span><span class="p">.</span><span class="mi">0</span> <span class="p">(</span><span class="n">condor_DAGMAN</span><span class="p">)</span> <span class="n">pid</span> <span class="mi">5812</span> <span class="n">EXITING</span> <span class="k">WITH</span> <span class="n">STATUS</span> <span class="mi">0</span>
+<div class="codehilite"><pre><span></span>06/21/12 22:56:05 All jobs Completed!
+06/21/12 22:56:05 Note: 0 total job deferrals because of -MaxJobs limit (0)
+06/21/12 22:56:05 Note: 0 total job deferrals because of -MaxIdle limit (0)
+06/21/12 22:56:05 Note: 0 total job deferrals because of node category throttles
+06/21/12 22:56:05 Note: 0 total PRE script deferrals because of -MaxPre limit (0)
+06/21/12 22:56:05 Note: 0 total POST script deferrals because of -MaxPost limit (0)
+06/21/12 22:56:05 **** condor_scheduniv_exec.61.0 (condor_DAGMAN) pid 5812 EXITING WITH STATUS 0
 </pre></div>
 
 

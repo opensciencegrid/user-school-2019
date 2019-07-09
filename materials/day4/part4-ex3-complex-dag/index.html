@@ -66,81 +66,81 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>We'll run our <code>goatbrot</code> example. If you didn't read about it yet, <a href="../part4-ex2-mandelbrot/">please do so now</a>. We are going to make a DAG with four simultaneous jobs (<code>goatbrot</code>) and one final node to stitch them together (<code>montage</code>). This means we have five jobs. We're going to run <code>goatbrot</code> with more iterations (100,000) so each job will take longer to run.</p>
 <p>You can create your five jobs. The goatbrot jobs are very similar to each other, but they have slightly different parameters and output files.</p>
 <h3 id="goatbrot1sub">goatbrot1.sub<a class="headerlink" href="#goatbrot1sub" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><span class="n">executable</span>              <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">goatbrot</span>
-<span class="n">arguments</span>               <span class="o">=</span> <span class="o">-</span><span class="n">i</span> <span class="mi">100000</span> <span class="o">-</span><span class="k">c</span> <span class="o">-</span><span class="mi">0</span><span class="p">.</span><span class="mi">75</span><span class="p">,</span><span class="mi">0</span><span class="p">.</span><span class="mi">75</span> <span class="o">-</span><span class="n">w</span> <span class="mi">1</span><span class="p">.</span><span class="mi">5</span> <span class="o">-</span><span class="n">s</span> <span class="mi">500</span><span class="p">,</span><span class="mi">500</span> <span class="o">-</span><span class="n">o</span> <span class="n">tile_0_0</span><span class="p">.</span><span class="n">ppm</span>
-<span class="n">log</span>                     <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="n">log</span>
-<span class="k">output</span>                  <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="k">out</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span>
-<span class="n">error</span>                   <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="n">err</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span>
-<span class="n">request_memory</span>          <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
-<span class="n">request_disk</span>            <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
-<span class="n">request_cpus</span>            <span class="o">=</span> <span class="mi">1</span>
-<span class="n">queue</span>
+<div class="codehilite"><pre><span></span>executable              = /usr/local/bin/goatbrot
+arguments               = -i 100000 -c -0.75,0.75 -w 1.5 -s 500,500 -o tile_0_0.ppm
+log                     = goatbrot.log
+output                  = goatbrot.out.0.0
+error                   = goatbrot.err.0.0
+request_memory          = 1GB
+request_disk            = 1GB
+request_cpus            = 1
+queue
 </pre></div>
 
 
 <h3 id="goatbrot2sub">goatbrot2.sub<a class="headerlink" href="#goatbrot2sub" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><span class="n">executable</span>              <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">goatbrot</span>
-<span class="n">arguments</span>               <span class="o">=</span> <span class="o">-</span><span class="n">i</span> <span class="mi">100000</span> <span class="o">-</span><span class="k">c</span> <span class="mi">0</span><span class="p">.</span><span class="mi">75</span><span class="p">,</span><span class="mi">0</span><span class="p">.</span><span class="mi">75</span> <span class="o">-</span><span class="n">w</span> <span class="mi">1</span><span class="p">.</span><span class="mi">5</span> <span class="o">-</span><span class="n">s</span> <span class="mi">500</span><span class="p">,</span><span class="mi">500</span> <span class="o">-</span><span class="n">o</span> <span class="n">tile_0_1</span><span class="p">.</span><span class="n">ppm</span>
-<span class="n">log</span>                     <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="n">log</span>
-<span class="k">output</span>                  <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="k">out</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">1</span>
-<span class="n">error</span>                   <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="n">err</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">1</span>
-<span class="n">request_memory</span>          <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
-<span class="n">request_disk</span>            <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
-<span class="n">request_cpus</span>            <span class="o">=</span> <span class="mi">1</span>
-<span class="n">queue</span>
+<div class="codehilite"><pre><span></span>executable              = /usr/local/bin/goatbrot
+arguments               = -i 100000 -c 0.75,0.75 -w 1.5 -s 500,500 -o tile_0_1.ppm
+log                     = goatbrot.log
+output                  = goatbrot.out.0.1
+error                   = goatbrot.err.0.1
+request_memory          = 1GB
+request_disk            = 1GB
+request_cpus            = 1
+queue
 </pre></div>
 
 
 <h3 id="goatbrot3sub">goatbrot3.sub<a class="headerlink" href="#goatbrot3sub" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><span class="n">executable</span>              <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">goatbrot</span>
-<span class="n">arguments</span>               <span class="o">=</span> <span class="o">-</span><span class="n">i</span> <span class="mi">100000</span> <span class="o">-</span><span class="k">c</span> <span class="o">-</span><span class="mi">0</span><span class="p">.</span><span class="mi">75</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">.</span><span class="mi">75</span> <span class="o">-</span><span class="n">w</span> <span class="mi">1</span><span class="p">.</span><span class="mi">5</span> <span class="o">-</span><span class="n">s</span> <span class="mi">500</span><span class="p">,</span><span class="mi">500</span> <span class="o">-</span><span class="n">o</span> <span class="n">tile_1_0</span><span class="p">.</span><span class="n">ppm</span>
-<span class="n">log</span>                     <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="n">log</span>
-<span class="k">output</span>                  <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="k">out</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span>
-<span class="n">error</span>                   <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="n">err</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span>
-<span class="n">request_memory</span>          <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
-<span class="n">request_disk</span>            <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
-<span class="n">request_cpus</span>            <span class="o">=</span> <span class="mi">1</span>
-<span class="n">queue</span>
+<div class="codehilite"><pre><span></span>executable              = /usr/local/bin/goatbrot
+arguments               = -i 100000 -c -0.75,-0.75 -w 1.5 -s 500,500 -o tile_1_0.ppm
+log                     = goatbrot.log
+output                  = goatbrot.out.1.0
+error                   = goatbrot.err.1.0
+request_memory          = 1GB
+request_disk            = 1GB
+request_cpus            = 1
+queue
 </pre></div>
 
 
 <h3 id="goatbrot4sub">goatbrot4.sub<a class="headerlink" href="#goatbrot4sub" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><span class="n">executable</span>              <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">goatbrot</span>
-<span class="n">arguments</span>               <span class="o">=</span> <span class="o">-</span><span class="n">i</span> <span class="mi">100000</span> <span class="o">-</span><span class="k">c</span> <span class="mi">0</span><span class="p">.</span><span class="mi">75</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">.</span><span class="mi">75</span> <span class="o">-</span><span class="n">w</span> <span class="mi">1</span><span class="p">.</span><span class="mi">5</span> <span class="o">-</span><span class="n">s</span> <span class="mi">500</span><span class="p">,</span><span class="mi">500</span> <span class="o">-</span><span class="n">o</span> <span class="n">tile_1_1</span><span class="p">.</span><span class="n">ppm</span>
-<span class="n">log</span>                     <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="n">log</span>
-<span class="k">output</span>                  <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="k">out</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">1</span>
-<span class="n">error</span>                   <span class="o">=</span> <span class="n">goatbrot</span><span class="p">.</span><span class="n">err</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">1</span>
-<span class="n">request_memory</span>          <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
-<span class="n">request_disk</span>            <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
-<span class="n">request_cpus</span>            <span class="o">=</span> <span class="mi">1</span>
-<span class="n">queue</span>
+<div class="codehilite"><pre><span></span>executable              = /usr/local/bin/goatbrot
+arguments               = -i 100000 -c 0.75,-0.75 -w 1.5 -s 500,500 -o tile_1_1.ppm
+log                     = goatbrot.log
+output                  = goatbrot.out.1.1
+error                   = goatbrot.err.1.1
+request_memory          = 1GB
+request_disk            = 1GB
+request_cpus            = 1
+queue
 </pre></div>
 
 
 <h3 id="montagesub">montage.sub<a class="headerlink" href="#montagesub" title="Permanent link">&para;</a></h3>
 <p>You should notice that the <code>transfer_input_files</code> statement refers to the files created by the other jobs.</p>
-<div class="codehilite"><pre><span></span><span class="n">executable</span>              <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">montage</span>
-<span class="n">arguments</span>               <span class="o">=</span> <span class="n">tile_0_0</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_0_1</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_1_0</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_1_1</span><span class="p">.</span><span class="n">ppm</span> <span class="o">-</span><span class="k">mode</span> <span class="n">Concatenate</span> <span class="o">-</span><span class="n">tile</span> <span class="mi">2</span><span class="n">x2</span> <span class="n">mandel</span><span class="o">-</span><span class="k">from</span><span class="o">-</span><span class="n">dag</span><span class="p">.</span><span class="n">jpg</span>
-<span class="n">transfer_input_files</span>    <span class="o">=</span> <span class="n">tile_0_0</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_0_1</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_1_0</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_1_1</span><span class="p">.</span><span class="n">ppm</span>
-<span class="k">output</span>                  <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="k">out</span>
-<span class="n">error</span>                   <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="n">err</span>
-<span class="n">log</span>                     <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="n">log</span>
-<span class="n">request_memory</span>          <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
-<span class="n">request_disk</span>            <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
-<span class="n">request_cpus</span>            <span class="o">=</span> <span class="mi">1</span>
-<span class="n">requirements</span>            <span class="o">=</span> <span class="n">OpSysMajorVer</span> <span class="o">=?=</span> <span class="mi">6</span>
-<span class="n">queue</span>
+<div class="codehilite"><pre><span></span>executable              = /usr/bin/montage
+arguments               = tile_0_0.ppm tile_0_1.ppm tile_1_0.ppm tile_1_1.ppm -mode Concatenate -tile 2x2 mandel-from-dag.jpg
+transfer_input_files    = tile_0_0.ppm,tile_0_1.ppm,tile_1_0.ppm,tile_1_1.ppm
+output                  = montage.out
+error                   = montage.err
+log                     = montage.log
+request_memory          = 1GB
+request_disk            = 1GB
+request_cpus            = 1
+requirements            = OpSysMajorVer =?= 6
+queue
 </pre></div>
 
 
 <h2 id="make-your-dag">Make your DAG<a class="headerlink" href="#make-your-dag" title="Permanent link">&para;</a></h2>
 <p>In a file called <code>goatbrot.dag</code>, you have your DAG specification:</p>
-<div class="codehilite"><pre><span></span><span class="kd">JOB</span><span class="o"> </span><span class="n">g1</span><span class="w"> </span><span class="n">goatbrot1</span><span class="o">.</span><span class="n">sub</span><span class="w"></span>
-<span class="kd">JOB</span><span class="o"> </span><span class="n">g2</span><span class="w"> </span><span class="n">goatbrot2</span><span class="o">.</span><span class="n">sub</span><span class="w"></span>
-<span class="kd">JOB</span><span class="o"> </span><span class="n">g3</span><span class="w"> </span><span class="n">goatbrot3</span><span class="o">.</span><span class="n">sub</span><span class="w"></span>
-<span class="kd">JOB</span><span class="o"> </span><span class="n">g4</span><span class="w"> </span><span class="n">goatbrot4</span><span class="o">.</span><span class="n">sub</span><span class="w"></span>
-<span class="kd">JOB</span><span class="o"> </span><span class="n">montage</span><span class="w"> </span><span class="n">montage</span><span class="o">.</span><span class="n">sub</span><span class="w"></span>
-<span class="n">PARENT</span><span class="w"> </span><span class="n">g1</span><span class="w"> </span><span class="n">g2</span><span class="w"> </span><span class="n">g3</span><span class="w"> </span><span class="n">g4</span><span class="w"> </span><span class="n">CHILD</span><span class="w"> </span><span class="n">montage</span><span class="w"></span>
+<div class="codehilite"><pre><span></span>JOB g1 goatbrot1.sub
+JOB g2 goatbrot2.sub
+JOB g3 goatbrot3.sub
+JOB g4 goatbrot4.sub
+JOB montage montage.sub
+PARENT g1 g2 g3 g4 CHILD montage
 </pre></div>
 
 

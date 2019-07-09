@@ -71,38 +71,38 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>Neither of these options seems very satisfying. Fortunately, we can do better with HTCondor.</p>
 <h2 id="running-many-jobs-with-one-queue-statement">Running Many Jobs With One queue Statement<a class="headerlink" href="#running-many-jobs-with-one-queue-statement" title="Permanent link">&para;</a></h2>
 <p>Here is a C program that uses a simple stochastic (random) method to estimate the value of π — feel free to try to figure out the method from the code, but it is not critical for this exercise. The single argument to the program is the number of samples to take. More samples should result in better estimates!</p>
-<div class="codehilite"><pre><span></span>#<span class="k">include</span> <span class="o">&lt;</span><span class="nv">stdio</span>.<span class="nv">h</span><span class="o">&gt;</span>
-#<span class="k">include</span> <span class="o">&lt;</span><span class="nv">stdlib</span>.<span class="nv">h</span><span class="o">&gt;</span>
-#<span class="k">include</span> <span class="o">&lt;</span><span class="nv">sys</span><span class="o">/</span><span class="nv">time</span>.<span class="nv">h</span><span class="o">&gt;</span>
+<div class="codehilite"><pre><span></span>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;sys/time.h&gt;
 
-<span class="nv">int</span> <span class="nv">main</span><span class="ss">(</span><span class="nv">int</span> <span class="nv">argc</span>, <span class="nv">char</span> <span class="o">*</span><span class="nv">argv</span>[]<span class="ss">)</span>
+int main(int argc, char *argv[])
 {
-  <span class="nv">struct</span> <span class="nv">timeval</span> <span class="nv">my_timeval</span><span class="c1">;</span>
-  <span class="nv">int</span> <span class="nv">iterations</span> <span class="o">=</span> <span class="mi">0</span><span class="c1">;</span>
-  <span class="nv">int</span> <span class="nv">inside_circle</span> <span class="o">=</span> <span class="mi">0</span><span class="c1">;</span>
-  <span class="nv">int</span> <span class="nv">i</span><span class="c1">;</span>
-  <span class="nv">double</span> <span class="nv">x</span>, <span class="nv">y</span>, <span class="nv">pi_estimate</span><span class="c1">;</span>
+  struct timeval my_timeval;
+  int iterations = 0;
+  int inside_circle = 0;
+  int i;
+  double x, y, pi_estimate;
 
-  <span class="nv">gettimeofday</span><span class="ss">(</span><span class="o">&amp;</span><span class="nv">my_timeval</span>, <span class="nv">NULL</span><span class="ss">)</span><span class="c1">;</span>
-  <span class="nv">srand48</span><span class="ss">(</span><span class="nv">my_timeval</span>.<span class="nv">tv_sec</span> <span class="o">^</span> <span class="nv">my_timeval</span>.<span class="nv">tv_usec</span><span class="ss">)</span><span class="c1">;</span>
+  gettimeofday(&amp;my_timeval, NULL);
+  srand48(my_timeval.tv_sec ^ my_timeval.tv_usec);
 
-  <span class="k">if</span> <span class="ss">(</span><span class="nv">argc</span> <span class="o">==</span> <span class="mi">2</span><span class="ss">)</span> {
-    <span class="nv">iterations</span> <span class="o">=</span> <span class="nv">atoi</span><span class="ss">(</span><span class="nv">argv</span>[<span class="mi">1</span>]<span class="ss">)</span><span class="c1">;</span>
-  } <span class="k">else</span> {
-    <span class="nv">printf</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">usage: circlepi ITERATIONS</span><span class="se">\n</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
-    <span class="k">exit</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span><span class="c1">;</span>
+  if (argc == 2) {
+    iterations = atoi(argv[1]);
+  } else {
+    printf(&quot;usage: circlepi ITERATIONS\n&quot;);
+    exit(1);
   }
 
-  <span class="k">for</span> <span class="ss">(</span><span class="nv">i</span> <span class="o">=</span> <span class="mi">0</span><span class="c1">; i &lt; iterations; i++) {</span>
-    <span class="nv">x</span> <span class="o">=</span> <span class="ss">(</span><span class="nv">drand48</span><span class="ss">()</span> <span class="o">-</span> <span class="mi">0</span>.<span class="mi">5</span><span class="ss">)</span> <span class="o">*</span> <span class="mi">2</span>.<span class="mi">0</span><span class="c1">;</span>
-    <span class="nv">y</span> <span class="o">=</span> <span class="ss">(</span><span class="nv">drand48</span><span class="ss">()</span> <span class="o">-</span> <span class="mi">0</span>.<span class="mi">5</span><span class="ss">)</span> <span class="o">*</span> <span class="mi">2</span>.<span class="mi">0</span><span class="c1">;</span>
-    <span class="k">if</span> <span class="ss">(((</span><span class="nv">x</span> <span class="o">*</span> <span class="nv">x</span><span class="ss">)</span> <span class="o">+</span> <span class="ss">(</span><span class="nv">y</span> <span class="o">*</span> <span class="nv">y</span><span class="ss">))</span> <span class="o">&lt;=</span> <span class="mi">1</span>.<span class="mi">0</span><span class="ss">)</span> {
-      <span class="nv">inside_circle</span><span class="o">++</span><span class="c1">;</span>
+  for (i = 0; i &lt; iterations; i++) {
+    x = (drand48() - 0.5) * 2.0;
+    y = (drand48() - 0.5) * 2.0;
+    if (((x * x) + (y * y)) &lt;= 1.0) {
+      inside_circle++;
     }
   }
-  <span class="nv">pi_estimate</span> <span class="o">=</span> <span class="mi">4</span>.<span class="mi">0</span> <span class="o">*</span> <span class="ss">((</span><span class="nv">double</span><span class="ss">)</span> <span class="nv">inside_circle</span> <span class="o">/</span> <span class="ss">(</span><span class="nv">double</span><span class="ss">)</span> <span class="nv">iterations</span><span class="ss">)</span><span class="c1">;</span>
-  <span class="nv">printf</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">%d iterations, %d inside; pi = %f</span><span class="se">\n</span><span class="s2">&quot;</span>, <span class="nv">iterations</span>, <span class="nv">inside_circle</span>, <span class="nv">pi_estimate</span><span class="ss">)</span><span class="c1">;</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="c1">;</span>
+  pi_estimate = 4.0 * ((double) inside_circle / (double) iterations);
+  printf(&quot;%d iterations, %d inside; pi = %f\n&quot;, iterations, inside_circle, pi_estimate);
+  return 0;
 }
 </pre></div>
 
@@ -167,8 +167,8 @@ After all, we didn't tell it to behave any differently when it ran three jobs.
 We need a way to separate output (and error) files <em>per job that is queued</em>, not just for the whole cluster of jobs. Fortunately, HTCondor has a way to separate the files easily.</p>
 <p>When processing a submit file, HTCondor will replace any instance of <code>$(Process)</code> with the process number of the job, for each job that is queued. 
 For example, you can use the <code>$(Process)</code> variable to define a separate output file name for each job:</p>
-<div class="codehilite"><pre><span></span><span class="k">output</span> <span class="o">=</span> <span class="n">my</span><span class="o">-</span><span class="k">output</span><span class="o">-</span><span class="n">file</span><span class="o">-</span><span class="err">$</span><span class="p">(</span><span class="n">Process</span><span class="p">).</span><span class="k">out</span>
-<span class="n">queue</span> <span class="mi">10</span>
+<div class="codehilite"><pre><span></span>output = my-output-file-$(Process).out
+queue 10
 </pre></div>
 
 
@@ -217,7 +217,7 @@ For example, you can use the <code>$(Process)</code> variable to define a separa
 <h2 id="using-cluster-to-separate-files-across-runs">Using $(Cluster) to Separate Files Across Runs<a class="headerlink" href="#using-cluster-to-separate-files-across-runs" title="Permanent link">&para;</a></h2>
 <p>With <code>$(Process)</code>, you can get separate output (and error) filenames for each job within a run. However, the next time you submit the same file, all of the output and error files are overwritten by new ones created by the new jobs. Maybe this is the behavior that you want. But sometimes, you may want to separate files by run, as well.</p>
 <p>In addition to <code>$(Process)</code>, there is also a <code>$(Cluster)</code> variable that you can use in your submit files. It works just like <code>$(Process)</code>, except it is replaced with the cluster number of the entire submission. Because the cluster number is the same for all jobs within a single submission, it does not separate files by job within a submission. But when used <strong>with</strong> <code>$(Process)</code>, it can be used to separate files by run. For example, consider this <code>output</code> statement:</p>
-<div class="codehilite"><pre><span></span><span class="k">output</span> <span class="o">=</span> <span class="n">my</span><span class="o">-</span><span class="k">output</span><span class="o">-</span><span class="n">file</span><span class="o">-</span><span class="err">$</span><span class="p">(</span><span class="k">Cluster</span><span class="p">)</span><span class="o">-</span><span class="err">$</span><span class="p">(</span><span class="n">Process</span><span class="p">).</span><span class="k">out</span>
+<div class="codehilite"><pre><span></span>output = my-output-file-$(Cluster)-$(Process).out
 </pre></div>
 
 
@@ -239,8 +239,8 @@ For example, you can use the <code>$(Process)</code> variable to define a separa
 <li>Create a basic submit file that runs <code>sleep 120</code> (or some reasonable duration).</li>
 <li>
 <p>Instead of a single <code>queue</code> statement, write this:</p>
-<div class="codehilite"><pre><span></span><span class="n">jobbatchname</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">queue</span> <span class="mi">5</span>
+<div class="codehilite"><pre><span></span>jobbatchname = 1
+queue 5
 </pre></div>
 
 
@@ -250,7 +250,7 @@ For example, you can use the <code>$(Process)</code> variable to define a separa
 </li>
 <li>
 <p>Now, quickly edit the submit file to instead say:</p>
-<div class="codehilite"><pre><span></span><span class="n">jobbatchname</span> <span class="o">=</span> <span class="mi">2</span>
+<div class="codehilite"><pre><span></span>jobbatchname = 2
 </pre></div>
 
 

@@ -62,17 +62,17 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>DAGMan can handle a situation where some of the nodes in a DAG fail. DAGMan will run as many nodes as possible, then create a rescue DAG making it easy to continue when the problem is fixed.</p>
 <h2 id="breaking-things">Breaking Things<a class="headerlink" href="#breaking-things" title="Permanent link">&para;</a></h2>
 <p>Recall that DAGMan decides that a jobs fails if its exit code is non-zero. Let's modify our montage job so that it fails. Work in the same directory where you did the last DAG. Edit montage.sub to add a <code>-h</code> to the arguments. It will look like this (the change is highlighted in red):</p>
-<div class="codehilite"><pre><span></span><span class="n">executable</span>              <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">montage</span>
-<span class="n">arguments</span>               <span class="o">=</span> <span class="o">%</span><span class="n">RED</span><span class="o">%-</span><span class="n">h</span><span class="o">%</span><span class="n">ENDCOLOR</span><span class="o">%</span> <span class="n">tile_0_0</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_0_1</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_1_0</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_1_1</span><span class="p">.</span><span class="n">ppm</span> <span class="o">-</span><span class="k">mode</span> <span class="n">Concatenate</span> <span class="o">-</span><span class="n">tile</span> <span class="mi">2</span><span class="n">x2</span> <span class="n">mandle</span><span class="o">-</span><span class="k">from</span><span class="o">-</span><span class="n">dag</span><span class="p">.</span><span class="n">jpg</span>
-<span class="n">transfer_input_files</span>    <span class="o">=</span> <span class="n">tile_0_0</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_0_1</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_1_0</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_1_1</span><span class="p">.</span><span class="n">ppm</span>
-<span class="k">output</span>                  <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="k">out</span>
-<span class="n">error</span>                   <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="n">err</span>
-<span class="n">log</span>                     <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="n">log</span>
-<span class="n">request_memory</span>          <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
-<span class="n">request_disk</span>            <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
-<span class="n">request_cpus</span>            <span class="o">=</span> <span class="mi">1</span>
-<span class="n">requirements</span>            <span class="o">=</span> <span class="n">OpSysMajorVer</span> <span class="o">=?=</span> <span class="mi">6</span>
-<span class="n">queue</span>
+<div class="codehilite"><pre><span></span>executable              = /usr/bin/montage
+arguments               = <span style="color:red">-h</span> tile_0_0.ppm tile_0_1.ppm tile_1_0.ppm tile_1_1.ppm -mode Concatenate -tile 2x2 mandle-from-dag.jpg
+transfer_input_files    = tile_0_0.ppm,tile_0_1.ppm,tile_1_0.ppm,tile_1_1.ppm
+output                  = montage.out
+error                   = montage.err
+log                     = montage.log
+request_memory          = 1GB
+request_disk            = 1GB
+request_cpus            = 1
+requirements            = OpSysMajorVer =?= 6
+queue
 </pre></div>
 
 
@@ -160,17 +160,17 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 <p>From the comment near the top, we know that the montage node failed. Let's fix it by getting rid of the offending <code>-h</code> argument. Change montage.sub to look like:</p>
-<div class="codehilite"><pre><span></span><span class="n">executable</span>              <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">montage</span>
-<span class="n">arguments</span>               <span class="o">=</span> <span class="n">tile_0_0</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_0_1</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_1_0</span><span class="p">.</span><span class="n">ppm</span> <span class="n">tile_1_1</span><span class="p">.</span><span class="n">ppm</span> <span class="o">-</span><span class="k">mode</span> <span class="n">Concatenate</span> <span class="o">-</span><span class="n">tile</span> <span class="mi">2</span><span class="n">x2</span> <span class="n">mandle</span><span class="o">-</span><span class="k">from</span><span class="o">-</span><span class="n">dag</span><span class="p">.</span><span class="n">jpg</span>
-<span class="n">transfer_input_files</span>    <span class="o">=</span> <span class="n">tile_0_0</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_0_1</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_1_0</span><span class="p">.</span><span class="n">ppm</span><span class="p">,</span><span class="n">tile_1_1</span><span class="p">.</span><span class="n">ppm</span>
-<span class="k">output</span>                  <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="k">out</span>
-<span class="n">error</span>                   <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="n">err</span>
-<span class="n">log</span>                     <span class="o">=</span> <span class="n">montage</span><span class="p">.</span><span class="n">log</span>
-<span class="n">request_memory</span>          <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
-<span class="n">request_disk</span>            <span class="o">=</span> <span class="mi">1</span><span class="n">GB</span>
-<span class="n">request_cpus</span>            <span class="o">=</span> <span class="mi">1</span>
-<span class="n">requirements</span>            <span class="o">=</span> <span class="n">OpSysMajorVer</span> <span class="o">=?=</span> <span class="mi">6</span>
-<span class="n">queue</span>
+<div class="codehilite"><pre><span></span>executable              = /usr/bin/montage
+arguments               = tile_0_0.ppm tile_0_1.ppm tile_1_0.ppm tile_1_1.ppm -mode Concatenate -tile 2x2 mandle-from-dag.jpg
+transfer_input_files    = tile_0_0.ppm,tile_0_1.ppm,tile_1_0.ppm,tile_1_1.ppm
+output                  = montage.out
+error                   = montage.err
+log                     = montage.log
+request_memory          = 1GB
+request_disk            = 1GB
+request_cpus            = 1
+requirements            = OpSysMajorVer =?= 6
+queue
 </pre></div>
 
 

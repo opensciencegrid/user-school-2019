@@ -127,27 +127,27 @@ However, you may have access to other computers (your laptop, for example, or an
 <h2 id="determining-resource-needs-by-running-test-jobs-best">Determining Resource Needs By Running Test Jobs (BEST)<a class="headerlink" href="#determining-resource-needs-by-running-test-jobs-best" title="Permanent link">&para;</a></h2>
 <p>Despite the techniques mentioned above, by far the easiest approach to measuring your job’s resource needs is to run one or a small number of sample jobs and have HTCondor itself tell you about the resources used during the runs.</p>
 <p>For example, here is a strange Python script that does not do anything useful, but consumes some real resources while running:</p>
-<div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="n">size</span> <span class="o">=</span> <span class="mi">1000000</span>
-<span class="n">numbers</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">size</span><span class="p">):</span> <span class="n">numbers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-<span class="n">tempfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;temp&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
-<span class="n">tempfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">numbers</span><span class="p">))</span>
-<span class="n">tempfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;temp&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span>#!/usr/bin/env python
+import time
+import os
+size = 1000000
+numbers = []
+for i in xrange(size): numbers.append(str(i))
+tempfile = open(&#39;temp&#39;, &#39;w&#39;)
+tempfile.write(&#39; &#39;.join(numbers))
+tempfile.close()
+time.sleep(60)
+os.remove(&#39;temp&#39;)
 </pre></div>
 
 
 <p>Without trying to figure out what this code does or how many resources it uses, create a submit file for it, 
 and run it once with HTCondor, starting with somewhat high memory requests ("1GB" for memory and disk is a good starting point, unless you think the job will use far more).
 When it is done, examine the log file. In particular, we care about these lines:</p>
-<div class="codehilite"><pre><span></span>    <span class="n">Partitionable</span> <span class="n">Resources</span> <span class="p">:</span>    <span class="k">Usage</span>  <span class="n">Request</span> <span class="n">Allocated</span>
-       <span class="n">Cpus</span>                 <span class="p">:</span>                 <span class="mi">1</span>         <span class="mi">1</span>
-       <span class="n">Disk</span> <span class="p">(</span><span class="n">KB</span><span class="p">)</span>            <span class="p">:</span>     <span class="mi">6739</span>  <span class="mi">1048576</span>   <span class="mi">8022934</span>
-       <span class="n">Memory</span> <span class="p">(</span><span class="n">MB</span><span class="p">)</span>          <span class="p">:</span>        <span class="mi">3</span>     <span class="mi">1024</span>      <span class="mi">1024</span>
+<div class="codehilite"><pre><span></span>    Partitionable Resources :    Usage  Request Allocated
+       Cpus                 :                 1         1
+       Disk (KB)            :     6739  1048576   8022934
+       Memory (MB)          :        3     1024      1024
 </pre></div>
 
 
@@ -155,8 +155,8 @@ When it is done, examine the log file. In particular, we care about these lines:
 <p>This is a great technique for determining the real resource needs of your job. If you think resource needs vary from run to run, submit a few sample jobs and look at all the results. And it never hurts to round up your resource requests a little, just in case your job occasionally uses more resources.</p>
 <h2 id="setting-resource-requirements">Setting Resource Requirements<a class="headerlink" href="#setting-resource-requirements" title="Permanent link">&para;</a></h2>
 <p>Once you know your job’s resource requirements, it is easy to declare them in your submit file. For example, taking our results above as an example, we might slightly increase our requests above what was used, just to be safe:</p>
-<div class="codehilite"><pre><span></span><span class="n">request_memory</span> <span class="o">=</span> <span class="mi">4</span><span class="n">MB</span>  <span class="o">%</span><span class="n">BLUE</span><span class="o">%#</span> <span class="n">rounded</span> <span class="n">up</span> <span class="k">from</span> <span class="mi">3</span> <span class="n">MB</span><span class="o">%</span><span class="n">ENDCOLOR</span><span class="o">%</span>
-<span class="n">request_disk</span> <span class="o">=</span> <span class="mi">7</span><span class="n">MB</span>  <span class="o">%</span><span class="n">BLUE</span><span class="o">%#</span> <span class="n">rounded</span> <span class="n">up</span> <span class="k">from</span> <span class="mi">6</span><span class="p">.</span><span class="mi">5</span> <span class="n">MB</span><span class="o">%</span><span class="n">ENDCOLOR</span><span class="o">%</span>
+<div class="codehilite"><pre><span></span>request_memory = 4MB  <span style="color:blue"># rounded up from 3 MB</span>
+request_disk = 7MB  <span style="color:blue"># rounded up from 6.5 MB</span>
 </pre></div>
 
 

@@ -65,26 +65,26 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="bad-job">Bad Job<a class="headerlink" href="#bad-job" title="Permanent link">&para;</a></h2>
 <p>Let’s assume that a colleague has shared with you a program, and it fails once in a while. In the real world, we would probably just fix the program, but what if you cannot change the software? Unfortunately, this situation happens more often than we would like.</p>
 <p>Below is a simple Python script that fails once in a while. We will not fix it, but use it to simulate a program that can fail and that we <strong>cannot</strong> fix.</p>
-<div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<div class="codehilite"><pre><span></span>#!/usr/bin/env python
 
-<span class="c1"># murphy.py simulates a real program with real problems</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">time</span>
+# murphy.py simulates a real program with real problems
+import random
+import sys
+import time
 
-<span class="c1"># Create a random number seeded by system entropy</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">SystemRandom</span><span class="p">()</span>
+# Create a random number seeded by system entropy
+r = random.SystemRandom()
 
-<span class="c1"># One time in three, simulate a runtime error</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
-    <span class="c1"># intentionally print no output</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s2">&quot;All work done correctly&quot;</span>
+# One time in three, simulate a runtime error
+if (r.randint(0,2) == 0):
+    # intentionally print no output
+    sys.exit(15)
+else:
+    time.sleep(3)
+    print &quot;All work done correctly&quot;
 
-<span class="c1"># By convention, zero exit code means success</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+# By convention, zero exit code means success
+sys.exit(0)
 </pre></div>
 
 
@@ -108,27 +108,27 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>After the jobs have finished, examine the log file(s) to see what happened in detail. Did any jobs need to be restarted? Another way to see how many restarts there were is to look at the <code>NumJobStarts</code> attribute of a completed job with the <code>condor_history</code> command, in the same way you looked at the <code>ExitCode</code> attribute earlier. Does the number of retries seem correct? For those jobs which did need to be retried, what is their <code>ExitCode</code>; and what about the <code>ExitCode</code> from earlier execution attempts?</p>
 <h2 id="a-too-long-running-job">A (Too) Long Running Job<a class="headerlink" href="#a-too-long-running-job" title="Permanent link">&para;</a></h2>
 <p>Sometimes, an ill-behaved job will get stuck in a loop and run forever, instead of exiting with a failure code, and it may just need to be re-run (or run on a different execute server) to complete without getting stuck. We can modify our Python program to simulate this kind of bad job with the following file:</p>
-<div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<div class="codehilite"><pre><span></span>#!/usr/bin/env python
 
-<span class="c1"># murphy.py simulate a real program with real problems</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">time</span>
+# murphy.py simulate a real program with real problems
+import random
+import sys
+import time
 
-<span class="c1"># Create a random number seeded by system entropy</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">SystemRandom</span><span class="p">()</span>
+# Create a random number seeded by system entropy
+r = random.SystemRandom()
 
-<span class="c1"># One time in three, simulate an infinite loop</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
-        <span class="c1"># intentionally print no output</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3600</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-        <span class="k">print</span> <span class="s2">&quot;All work done correctly&quot;</span>
+# One time in three, simulate an infinite loop
+if (r.randint(0,2) == 0):
+        # intentionally print no output
+        time.sleep(3600)
+        sys.exit(15)
+else:
+        time.sleep(3)
+        print &quot;All work done correctly&quot;
 
-<span class="c1"># By convention, zero exit code means success</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+# By convention, zero exit code means success
+sys.exit(0)
 </pre></div>
 
 
@@ -139,7 +139,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <li>If you like, submit the new file — but after a while be sure to remove the whole cluster to clear out the “hung” jobs.</li>
 <li>
 <p>Now try to change the submit file to automatically remove any jobs that <strong>run</strong> for more than one minute. You can make this change with just a single line in your submit file</p>
-<div class="codehilite"><pre><span></span><span class="n">periodic_remove</span> <span class="o">=</span> <span class="p">(</span><span class="n">JobStatus</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span> <span class="p">(</span><span class="n">CurrentTime</span> <span class="o">-</span> <span class="n">EnteredCurrentStatus</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">60</span> <span class="p">)</span>
+<div class="codehilite"><pre><span></span>periodic_remove = (JobStatus == 2) &amp;&amp; ( (CurrentTime - EnteredCurrentStatus) &gt; 60 )
 </pre></div>
 
 

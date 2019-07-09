@@ -65,17 +65,17 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="running-a-simple-job">Running a Simple Job<a class="headerlink" href="#running-a-simple-job" title="Permanent link">&para;</a></h2>
 <p>Nearly all of the time, when you want to run an HTCondor job, you first write an HTCondor submit file for it. In this section, you will run the same <code>hostname</code> command as in the last exercise, but where this command will run within a job on one of the 'execute' servers in CHTC's local HTCondor pool.</p>
 <p>Here is a simple submit file for the <code>hostname</code> command:</p>
-<div class="codehilite"><pre><span></span><span class="n">executable</span> <span class="o">=</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">hostname</span>
+<div class="codehilite"><pre><span></span>executable = /bin/hostname
 
-<span class="k">output</span> <span class="o">=</span> <span class="k">simple</span><span class="p">.</span><span class="k">out</span>
-<span class="n">error</span> <span class="o">=</span> <span class="k">simple</span><span class="p">.</span><span class="n">err</span>
-<span class="n">log</span> <span class="o">=</span> <span class="k">simple</span><span class="p">.</span><span class="n">log</span>
+output = simple.out
+error = simple.err
+log = simple.log
 
-<span class="n">request_cpus</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">request_memory</span> <span class="o">=</span> <span class="mi">1</span><span class="n">MB</span>
-<span class="n">request_disk</span> <span class="o">=</span> <span class="mi">1</span><span class="n">MB</span>
+request_cpus = 1
+request_memory = 1MB
+request_disk = 1MB
 
-<span class="n">queue</span>
+queue
 </pre></div>
 
 
@@ -156,8 +156,8 @@ Ultimately, a submit file is a text file</p>
 
 
 <p>Then in the submit file, we would put the location of the "sleep" program (you can find it with <code>which sleep</code>) as the job <code>executable</code>, and <code>60</code> as the job <code>arguments</code>:</p>
-<div class="codehilite"><pre><span></span><span class="n">executable</span> <span class="o">=</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">sleep</span>
-<span class="n">arguments</span> <span class="o">=</span> <span class="mi">60</span>
+<div class="codehilite"><pre><span></span>executable = /bin/sleep
+arguments = 60
 </pre></div>
 
 
@@ -167,25 +167,25 @@ Ultimately, a submit file is a text file</p>
 
 
 <p>We would put the following into the submit file, putting the <code>arguments</code> statement in quotes, since it contains single quotes:</p>
-<div class="codehilite"><pre><span></span><span class="n">executable</span> <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">dc</span>
-<span class="n">arguments</span> <span class="o">=</span> <span class="ss">&quot;-e &#39;6 7 * p&#39;&quot;</span>
+<div class="codehilite"><pre><span></span>executable = /usr/bin/dc
+arguments = &quot;-e &#39;6 7 * p&#39;&quot;
 </pre></div>
 
 
 <p>Let’s try a job submission with arguments. We will use the <code>sleep</code> command shown above, which simply does nothing for the specified number of seconds, then exits normally. It is convenient for simulating a job that takes a while to run.</p>
 <p>Create a new submit file (you name it this time) and save the following text in it.</p>
-<div class="codehilite"><pre><span></span><span class="n">executable</span> <span class="o">=</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">sleep</span>
-<span class="n">arguments</span> <span class="o">=</span> <span class="mi">60</span>
+<div class="codehilite"><pre><span></span>executable = /bin/sleep
+arguments = 60
 
-<span class="k">output</span> <span class="o">=</span> <span class="n">sleep</span><span class="p">.</span><span class="k">out</span>
-<span class="n">error</span> <span class="o">=</span> <span class="n">sleep</span><span class="p">.</span><span class="n">err</span>
-<span class="n">log</span> <span class="o">=</span> <span class="n">sleep</span><span class="p">.</span><span class="n">log</span>
+output = sleep.out
+error = sleep.err
+log = sleep.log
 
-<span class="n">request_cpus</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">request_memory</span> <span class="o">=</span> <span class="mi">1</span><span class="n">MB</span>
-<span class="n">request_disk</span> <span class="o">=</span> <span class="mi">1</span><span class="n">MB</span>
+request_cpus = 1
+request_memory = 1MB
+request_disk = 1MB
 
-<span class="n">queue</span>
+queue
 </pre></div>
 
 
@@ -202,14 +202,14 @@ or perhaps a simple shell script of commands that you'd like to run within a job
 <ol>
 <li>
 <p>Put the following contents into a file named <code>test-script.sh</code>:</p>
-<div class="codehilite"><pre><span></span><span class="ch">#!/bin/sh</span>
-<span class="nb">echo</span> <span class="s1">&#39;Date: &#39;</span> <span class="sb">`</span>date<span class="sb">`</span> 
-<span class="nb">echo</span> <span class="s1">&#39;Host: &#39;</span> <span class="sb">`</span>hostname<span class="sb">`</span> 
-<span class="nb">echo</span> <span class="s1">&#39;System: &#39;</span> <span class="sb">`</span>uname -spo<span class="sb">`</span> 
-<span class="nb">echo</span> <span class="s2">&quot;Program: </span><span class="nv">$0</span><span class="s2">&quot;</span> 
-<span class="nb">echo</span> <span class="s2">&quot;Args: </span><span class="nv">$*</span><span class="s2">&quot;</span>
-<span class="nb">echo</span> <span class="s1">&#39;ls: &#39;</span> <span class="sb">`</span>ls<span class="sb">`</span>
-<span class="c1"># END</span>
+<div class="codehilite"><pre><span></span>#!/bin/sh
+echo &#39;Date: &#39; `date` 
+echo &#39;Host: &#39; `hostname` 
+echo &#39;System: &#39; `uname -spo` 
+echo &quot;Program: $0&quot; 
+echo &quot;Args: $*&quot;
+echo &#39;ls: &#39; `ls`
+# END
 </pre></div>
 
 
@@ -237,18 +237,18 @@ or perhaps a simple shell script of commands that you'd like to run within a job
 </li>
 <li>
 <p>Write the submit file (this should be getting easier by now):</p>
-<div class="codehilite"><pre><span></span><span class="n">executable</span> <span class="o">=</span> <span class="o">%</span><span class="n">RED</span><span class="o">%</span><span class="n">test</span><span class="o">-</span><span class="n">script</span><span class="p">.</span><span class="n">sh</span><span class="o">%</span><span class="n">ENDCOLOR</span><span class="o">%</span>
-<span class="n">arguments</span> <span class="o">=</span> <span class="n">foo</span> <span class="n">bar</span> <span class="n">baz</span>
+<div class="codehilite"><pre><span></span>executable = <span style="color:red">test-script.sh</span>
+arguments = foo bar baz
 
-<span class="k">output</span> <span class="o">=</span> <span class="n">script</span><span class="p">.</span><span class="k">out</span>
-<span class="n">error</span> <span class="o">=</span> <span class="n">script</span><span class="p">.</span><span class="n">err</span>
-<span class="n">log</span> <span class="o">=</span> <span class="n">script</span><span class="p">.</span><span class="n">log</span>
+output = script.out
+error = script.err
+log = script.log
 
-<span class="n">request_cpus</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">request_memory</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">request_disk</span> <span class="o">=</span> <span class="mi">1</span>
+request_cpus = 1
+request_memory = 1
+request_disk = 1
 
-<span class="n">queue</span>
+queue
 </pre></div>
 
 
@@ -275,33 +275,33 @@ in the submission directory (per the submit file contents).</p>
 <p>There are Extra Challenges throughout the school curriculum. You may be better off coming back to these after you've completed all other exercises for your current working session.</p>
 </div>
 <p>Below is a simple Python script that does something similar to the shell script above. Run this Python script using HTCondor.</p>
-<div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<div class="codehilite"><pre><span></span>#!/usr/bin/env python
 
-<span class="sd">&quot;&quot;&quot;Extra Challenge for OSG User School</span>
-<span class="sd">Written by Tim Cartwright</span>
-<span class="sd">Submitted to CHTC by #YOUR_NAME#</span>
-<span class="sd">&quot;&quot;&quot;</span>
+&quot;&quot;&quot;Extra Challenge for OSG User School
+Written by Tim Cartwright
+Submitted to CHTC by #YOUR_NAME#
+&quot;&quot;&quot;
 
-<span class="kn">import</span> <span class="nn">getpass</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">platform</span>
-<span class="kn">import</span> <span class="nn">socket</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">time</span>
+import getpass
+import os
+import platform
+import socket
+import sys
+import time
 
-<span class="n">arguments</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">arguments</span> <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span>
+arguments = None
+if len(sys.argv) &gt; 1:
+    arguments = &#39;&quot;&#39; + &#39; &#39;.join(sys.argv[1:]) + &#39;&quot;&#39;
 
-<span class="k">print</span> <span class="o">&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="vm">__doc__</span>
-<span class="k">print</span> <span class="s1">&#39;Time    :&#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> (%a) %H:%M:%S %Z&#39;</span><span class="p">)</span>
-<span class="k">print</span> <span class="s1">&#39;Host    :&#39;</span><span class="p">,</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">(),</span> <span class="s1">&#39;@&#39;</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">gethostname</span><span class="p">()</span>
-<span class="n">uname</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">uname</span><span class="p">()</span>
-<span class="k">print</span> <span class="s2">&quot;System  :&quot;</span><span class="p">,</span> <span class="n">uname</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">uname</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">uname</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
-<span class="k">print</span> <span class="s2">&quot;Version :&quot;</span><span class="p">,</span> <span class="n">platform</span><span class="o">.</span><span class="n">python_version</span><span class="p">()</span>
-<span class="k">print</span> <span class="s2">&quot;Program :&quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">executable</span>
-<span class="k">print</span> <span class="s1">&#39;Script  :&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
-<span class="k">print</span> <span class="s1">&#39;Args    :&#39;</span><span class="p">,</span> <span class="n">arguments</span>
+print &gt;&gt; sys.stderr, __doc__
+print &#39;Time    :&#39;, time.strftime(&#39;%Y-%m-%d (%a) %H:%M:%S %Z&#39;)
+print &#39;Host    :&#39;, getpass.getuser(), &#39;@&#39;, socket.gethostname()
+uname = platform.uname()
+print &quot;System  :&quot;, uname[0], uname[2], uname[4]
+print &quot;Version :&quot;, platform.python_version()
+print &quot;Program :&quot;, sys.executable
+print &#39;Script  :&#39;, os.path.abspath(__file__)
+print &#39;Args    :&#39;, arguments
 </pre></div>
 
 

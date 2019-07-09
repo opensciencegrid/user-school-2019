@@ -67,11 +67,11 @@ When things go wrong with your job, the log is the best place to look for first 
 <h2 id="reading-a-log-file">Reading a Log File<a class="headerlink" href="#reading-a-log-file" title="Permanent link">&para;</a></h2>
 <p>For this exercise, we can examine a log file for any previous job that you have run. The example output below is based on the <code>sleep 60</code> job.</p>
 <p>A job log file is updated throughout the life of a job, usually at key events. Each event starts with a heading that indicates what happened and when. Here are <strong>all</strong> of the event headings from the <code>sleep</code> job log (detailed output in between headings has been omitted here):</p>
-<div class="codehilite"><pre><span></span><span class="mi">000</span> <span class="p">(</span><span class="mi">5739</span><span class="p">.</span><span class="mi">000</span><span class="p">.</span><span class="mi">000</span><span class="p">)</span> <span class="mi">07</span><span class="o">/</span><span class="mi">25</span> <span class="mi">10</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">20</span> <span class="n">Job</span> <span class="n">submitted</span> <span class="k">from</span> <span class="k">host</span><span class="p">:</span> <span class="o">&lt;</span><span class="mi">128</span><span class="p">.</span><span class="mi">104</span><span class="p">.</span><span class="mi">100</span><span class="p">.</span><span class="mi">43</span><span class="p">:</span><span class="mi">9618</span><span class="o">?</span><span class="n">addrs</span><span class="o">=</span><span class="p">...</span><span class="o">&gt;</span>
-<span class="mi">001</span> <span class="p">(</span><span class="mi">5739</span><span class="p">.</span><span class="mi">000</span><span class="p">.</span><span class="mi">000</span><span class="p">)</span> <span class="mi">07</span><span class="o">/</span><span class="mi">25</span> <span class="mi">10</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">11</span> <span class="n">Job</span> <span class="n">executing</span> <span class="k">on</span> <span class="k">host</span><span class="p">:</span> <span class="o">&lt;</span><span class="mi">128</span><span class="p">.</span><span class="mi">104</span><span class="p">.</span><span class="mi">55</span><span class="p">.</span><span class="mi">42</span><span class="p">:</span><span class="mi">9618</span><span class="o">?</span><span class="n">addrs</span><span class="o">=</span><span class="p">...</span><span class="o">&gt;</span>
-<span class="mi">006</span> <span class="p">(</span><span class="mi">5739</span><span class="p">.</span><span class="mi">000</span><span class="p">.</span><span class="mi">000</span><span class="p">)</span> <span class="mi">07</span><span class="o">/</span><span class="mi">25</span> <span class="mi">10</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">20</span> <span class="n">Image</span> <span class="k">size</span> <span class="k">of</span> <span class="n">job</span> <span class="n">updated</span><span class="p">:</span> <span class="mi">72</span>
-<span class="mi">006</span> <span class="p">(</span><span class="mi">5739</span><span class="p">.</span><span class="mi">000</span><span class="p">.</span><span class="mi">000</span><span class="p">)</span> <span class="mi">07</span><span class="o">/</span><span class="mi">25</span> <span class="mi">10</span><span class="p">:</span><span class="mi">46</span><span class="p">:</span><span class="mi">11</span> <span class="n">Image</span> <span class="k">size</span> <span class="k">of</span> <span class="n">job</span> <span class="n">updated</span><span class="p">:</span> <span class="mi">4072</span>
-<span class="mi">005</span> <span class="p">(</span><span class="mi">5739</span><span class="p">.</span><span class="mi">000</span><span class="p">.</span><span class="mi">000</span><span class="p">)</span> <span class="mi">07</span><span class="o">/</span><span class="mi">25</span> <span class="mi">10</span><span class="p">:</span><span class="mi">46</span><span class="p">:</span><span class="mi">11</span> <span class="n">Job</span> <span class="n">terminated</span><span class="p">.</span>
+<div class="codehilite"><pre><span></span>000 (5739.000.000) 07/25 10:44:20 Job submitted from host: &lt;128.104.100.43:9618?addrs=...&gt;
+001 (5739.000.000) 07/25 10:45:11 Job executing on host: &lt;128.104.55.42:9618?addrs=...&gt;
+006 (5739.000.000) 07/25 10:45:20 Image size of job updated: 72
+006 (5739.000.000) 07/25 10:46:11 Image size of job updated: 4072
+005 (5739.000.000) 07/25 10:46:11 Job terminated.
 </pre></div>
 
 
@@ -82,14 +82,14 @@ When things go wrong with your job, the log is the best place to look for first 
 <li>A brief description of the event: submission, execution, some information updates, and termination</li>
 </ul>
 <p>Some events provide no information in addition to the heading. For example:</p>
-<div class="codehilite"><pre><span></span><span class="mi">000</span> <span class="p">(</span><span class="mi">5739</span><span class="p">.</span><span class="mi">000</span><span class="p">.</span><span class="mi">000</span><span class="p">)</span> <span class="mi">07</span><span class="o">/</span><span class="mi">25</span> <span class="mi">10</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">20</span> <span class="n">Job</span> <span class="n">submitted</span> <span class="k">from</span> <span class="k">host</span><span class="p">:</span> <span class="o">&lt;</span><span class="mi">128</span><span class="p">.</span><span class="mi">104</span><span class="p">.</span><span class="mi">100</span><span class="p">.</span><span class="mi">43</span><span class="p">:</span><span class="mi">9618</span><span class="o">?</span><span class="n">addrs</span><span class="o">=</span><span class="p">...</span><span class="o">&gt;</span>
-<span class="p">...</span>
+<div class="codehilite"><pre><span></span>000 (5739.000.000) 07/25 10:44:20 Job submitted from host: &lt;128.104.100.43:9618?addrs=...&gt;
+...
 </pre></div>
 
 
 <p>and</p>
-<div class="codehilite"><pre><span></span><span class="mi">001</span> <span class="p">(</span><span class="mi">5739</span><span class="p">.</span><span class="mi">000</span><span class="p">.</span><span class="mi">000</span><span class="p">)</span> <span class="mi">07</span><span class="o">/</span><span class="mi">25</span> <span class="mi">10</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">11</span> <span class="n">Job</span> <span class="n">executing</span> <span class="k">on</span> <span class="k">host</span><span class="p">:</span> <span class="o">&lt;</span><span class="mi">128</span><span class="p">.</span><span class="mi">104</span><span class="p">.</span><span class="mi">55</span><span class="p">.</span><span class="mi">42</span><span class="p">:</span><span class="mi">9618</span><span class="o">?</span><span class="n">addrs</span><span class="o">=</span><span class="p">...</span><span class="o">&gt;</span>
-<span class="p">...</span>
+<div class="codehilite"><pre><span></span>001 (5739.000.000) 07/25 10:45:11 Job executing on host: &lt;128.104.55.42:9618?addrs=...&gt;
+...
 </pre></div>
 
 
@@ -98,29 +98,29 @@ When things go wrong with your job, the log is the best place to look for first 
 <p>Each event ends with a line that contains only 3 dots: <code>...</code></p>
 </div>
 <p>But the periodic information update event contains some additional information:</p>
-<div class="codehilite"><pre><span></span><span class="mi">006</span> <span class="p">(</span><span class="mi">5739</span><span class="p">.</span><span class="mi">000</span><span class="p">.</span><span class="mi">000</span><span class="p">)</span> <span class="mi">07</span><span class="o">/</span><span class="mi">25</span> <span class="mi">10</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">20</span> <span class="n">Image</span> <span class="k">size</span> <span class="k">of</span> <span class="n">job</span> <span class="n">updated</span><span class="p">:</span> <span class="mi">72</span>
-    <span class="mi">1</span>  <span class="o">-</span>  <span class="n">MemoryUsage</span> <span class="k">of</span> <span class="n">job</span> <span class="p">(</span><span class="n">MB</span><span class="p">)</span>
-    <span class="mi">72</span>  <span class="o">-</span>  <span class="n">ResidentSetSize</span> <span class="k">of</span> <span class="n">job</span> <span class="p">(</span><span class="n">KB</span><span class="p">)</span>
-<span class="p">...</span>
+<div class="codehilite"><pre><span></span>006 (5739.000.000) 07/25 10:45:20 Image size of job updated: 72
+    1  -  MemoryUsage of job (MB)
+    72  -  ResidentSetSize of job (KB)
+...
 </pre></div>
 
 
 <p>These updates record the amount of memory that the job is using on the execute machine. This can be helpful information, so that in future runs of the job, you can tell HTCondor how much memory you will need.</p>
 <p>The job termination event includes a great deal of additional information:</p>
-<div class="codehilite"><pre><span></span><span class="mi">005</span> <span class="ss">(</span><span class="mi">5739</span>.<span class="mi">000</span>.<span class="mi">000</span><span class="ss">)</span> <span class="mi">07</span><span class="o">/</span><span class="mi">25</span> <span class="mi">10</span>:<span class="mi">46</span>:<span class="mi">11</span> <span class="nv">Job</span> <span class="nv">terminated</span>.
-    <span class="ss">(</span><span class="mi">1</span><span class="ss">)</span> <span class="nv">Normal</span> <span class="nv">termination</span> <span class="ss">(</span><span class="k">return</span> <span class="nv">value</span> <span class="mi">0</span><span class="ss">)</span>
-        <span class="nv">Usr</span> <span class="mi">0</span> <span class="mi">00</span>:<span class="mi">00</span>:<span class="mi">00</span>, <span class="nv">Sys</span> <span class="mi">0</span> <span class="mi">00</span>:<span class="mi">00</span>:<span class="mi">00</span>  <span class="o">-</span>  <span class="nv">Run</span> <span class="nv">Remote</span> <span class="nv">Usage</span>
-        <span class="nv">Usr</span> <span class="mi">0</span> <span class="mi">00</span>:<span class="mi">00</span>:<span class="mi">00</span>, <span class="nv">Sys</span> <span class="mi">0</span> <span class="mi">00</span>:<span class="mi">00</span>:<span class="mi">00</span>  <span class="o">-</span>  <span class="nv">Run</span> <span class="nv">Local</span> <span class="nv">Usage</span>
-        <span class="nv">Usr</span> <span class="mi">0</span> <span class="mi">00</span>:<span class="mi">00</span>:<span class="mi">00</span>, <span class="nv">Sys</span> <span class="mi">0</span> <span class="mi">00</span>:<span class="mi">00</span>:<span class="mi">00</span>  <span class="o">-</span>  <span class="nv">Total</span> <span class="nv">Remote</span> <span class="nv">Usage</span>
-        <span class="nv">Usr</span> <span class="mi">0</span> <span class="mi">00</span>:<span class="mi">00</span>:<span class="mi">00</span>, <span class="nv">Sys</span> <span class="mi">0</span> <span class="mi">00</span>:<span class="mi">00</span>:<span class="mi">00</span>  <span class="o">-</span>  <span class="nv">Total</span> <span class="nv">Local</span> <span class="nv">Usage</span>
-    <span class="mi">0</span>  <span class="o">-</span>  <span class="nv">Run</span> <span class="nv">Bytes</span> <span class="nv">Sent</span> <span class="nv">By</span> <span class="nv">Job</span>
-    <span class="mi">27848</span>  <span class="o">-</span>  <span class="nv">Run</span> <span class="nv">Bytes</span> <span class="nv">Received</span> <span class="nv">By</span> <span class="nv">Job</span>
-    <span class="mi">0</span>  <span class="o">-</span>  <span class="nv">Total</span> <span class="nv">Bytes</span> <span class="nv">Sent</span> <span class="nv">By</span> <span class="nv">Job</span>
-    <span class="mi">27848</span>  <span class="o">-</span>  <span class="nv">Total</span> <span class="nv">Bytes</span> <span class="nv">Received</span> <span class="nv">By</span> <span class="nv">Job</span>
-    <span class="nv">Partitionable</span> <span class="nv">Resources</span> :    <span class="nv">Usage</span>  <span class="nv">Request</span> <span class="nv">Allocated</span>
-       <span class="nv">Cpus</span>                 :                 <span class="mi">1</span>         <span class="mi">1</span>
-       <span class="nv">Disk</span> <span class="ss">(</span><span class="nv">KB</span><span class="ss">)</span>            :       <span class="mi">40</span>       <span class="mi">30</span>   <span class="mi">4203309</span>
-       <span class="nv">Memory</span> <span class="ss">(</span><span class="nv">MB</span><span class="ss">)</span>          :        <span class="mi">1</span>        <span class="mi">1</span>         <span class="mi">1</span>
+<div class="codehilite"><pre><span></span>005 (5739.000.000) 07/25 10:46:11 Job terminated.
+    (1) Normal termination (return value 0)
+        Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+        Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+        Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+        Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+    0  -  Run Bytes Sent By Job
+    27848  -  Run Bytes Received By Job
+    0  -  Total Bytes Sent By Job
+    27848  -  Total Bytes Received By Job
+    Partitionable Resources :    Usage  Request Allocated
+       Cpus                 :                 1         1
+       Disk (KB)            :       40       30   4203309
+       Memory (MB)          :        1        1         1
 ...
 </pre></div>
 

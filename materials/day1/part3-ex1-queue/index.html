@@ -124,23 +124,23 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 <p>The output from this command is long and complex. Most of the attributes that HTCondor adds to a job are arcane and uninteresting for us now. But here are some examples of common, interesting attributes taken directly from <code>condor_q</code> output (except with some line breaks added to the <code>Requirements</code> attribute):</p>
-<div class="codehilite"><pre><span></span><span class="n">MyType</span> <span class="o">=</span> <span class="ss">&quot;Job&quot;</span>
-<span class="n">Err</span> <span class="o">=</span> <span class="ss">&quot;sleep.err&quot;</span>
-<span class="n">UserLog</span> <span class="o">=</span> <span class="ss">&quot;/home/cat/1-monday-2.1-queue/sleep.log&quot;</span>
-<span class="n">JobUniverse</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">Requirements</span> <span class="o">=</span> <span class="p">(</span> <span class="n">IsOSGSchoolSlot</span> <span class="o">=?=</span> <span class="k">true</span> <span class="p">)</span> <span class="o">&amp;&amp;</span>
-        <span class="p">(</span> <span class="n">TARGET</span><span class="p">.</span><span class="n">Arch</span> <span class="o">==</span> <span class="ss">&quot;X86_64&quot;</span> <span class="p">)</span> <span class="o">&amp;&amp;</span>
-        <span class="p">(</span> <span class="n">TARGET</span><span class="p">.</span><span class="n">OpSys</span> <span class="o">==</span> <span class="ss">&quot;LINUX&quot;</span> <span class="p">)</span> <span class="o">&amp;&amp;</span>
-        <span class="p">(</span> <span class="n">TARGET</span><span class="p">.</span><span class="n">Disk</span> <span class="o">&gt;=</span> <span class="n">RequestDisk</span> <span class="p">)</span> <span class="o">&amp;&amp;</span>
-        <span class="p">(</span> <span class="n">TARGET</span><span class="p">.</span><span class="n">Memory</span> <span class="o">&gt;=</span> <span class="n">RequestMemory</span> <span class="p">)</span> <span class="o">&amp;&amp;</span>
-        <span class="p">(</span> <span class="n">TARGET</span><span class="p">.</span><span class="n">HasFileTransfer</span> <span class="p">)</span>
-<span class="n">ClusterId</span> <span class="o">=</span> <span class="mi">2420</span>
-<span class="n">WhenToTransferOutput</span> <span class="o">=</span> <span class="ss">&quot;ON_EXIT&quot;</span>
-<span class="k">Owner</span> <span class="o">=</span> <span class="ss">&quot;cat&quot;</span>
-<span class="n">CondorVersion</span> <span class="o">=</span> <span class="ss">&quot;$CondorVersion: 8.5.5 May 03 2016 BuildID: 366162 $&quot;</span>
-<span class="k">Out</span> <span class="o">=</span> <span class="ss">&quot;sleep.out&quot;</span>
-<span class="n">Cmd</span> <span class="o">=</span> <span class="ss">&quot;/bin/sleep&quot;</span>
-<span class="n">Arguments</span> <span class="o">=</span> <span class="ss">&quot;120&quot;</span>
+<div class="codehilite"><pre><span></span>MyType = &quot;Job&quot;
+Err = &quot;sleep.err&quot;
+UserLog = &quot;/home/cat/1-monday-2.1-queue/sleep.log&quot;
+JobUniverse = 5
+Requirements = ( IsOSGSchoolSlot =?= true ) &amp;&amp;
+        ( TARGET.Arch == &quot;X86_64&quot; ) &amp;&amp;
+        ( TARGET.OpSys == &quot;LINUX&quot; ) &amp;&amp;
+        ( TARGET.Disk &gt;= RequestDisk ) &amp;&amp;
+        ( TARGET.Memory &gt;= RequestMemory ) &amp;&amp;
+        ( TARGET.HasFileTransfer )
+ClusterId = 2420
+WhenToTransferOutput = &quot;ON_EXIT&quot;
+Owner = &quot;cat&quot;
+CondorVersion = &quot;$CondorVersion: 8.5.5 May 03 2016 BuildID: 366162 $&quot;
+Out = &quot;sleep.out&quot;
+Cmd = &quot;/bin/sleep&quot;
+Arguments = &quot;120&quot;
 </pre></div>
 
 
@@ -188,14 +188,14 @@ Do not assume anything about the order of attributes in <code>condor_q</code> ou
 
 <p>Of course, replace the job ID with your own.</p>
 <p>Let’s submit a job that will never run and see what happens. Here is the submit file to use:</p>
-<div class="codehilite"><pre><span></span><span class="n">executable</span> <span class="o">=</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">hostname</span>
-<span class="k">output</span> <span class="o">=</span> <span class="n">norun</span><span class="p">.</span><span class="k">out</span>
-<span class="n">error</span> <span class="o">=</span> <span class="n">norun</span><span class="p">.</span><span class="n">err</span>
-<span class="n">log</span> <span class="o">=</span> <span class="n">norun</span><span class="p">.</span><span class="n">log</span>
-<span class="n">should_transfer_files</span> <span class="o">=</span> <span class="n">YES</span>
-<span class="n">when_to_transfer_output</span> <span class="o">=</span> <span class="n">ON_EXIT</span>
-<span class="n">request_memory</span> <span class="o">=</span> <span class="mi">8</span><span class="n">TB</span>
-<span class="n">queue</span>
+<div class="codehilite"><pre><span></span>executable = /bin/hostname
+output = norun.out
+error = norun.err
+log = norun.log
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+request_memory = 8TB
+queue
 </pre></div>
 
 
@@ -205,29 +205,29 @@ Do not assume anything about the order of attributes in <code>condor_q</code> ou
 <li>Run <code>condor_q -analyze</code> on the job ID.</li>
 </ol>
 <p>There is a lot of output, but a few items are worth highlighting. Here is a sample from my own job (with many lines left out):</p>
-<div class="codehilite"><pre><span></span><span class="o">--</span> <span class="nv">Submitter</span>: <span class="nv">learn</span>.<span class="nv">chtc</span>.<span class="nv">wisc</span>.<span class="nv">edu</span> : ....
+<div class="codehilite"><pre><span></span>-- Submitter: learn.chtc.wisc.edu : ....
 ...
-<span class="o">---</span>
-<span class="mi">2423</span>.<span class="mi">000</span>:  <span class="nv">Run</span> <span class="nv">analysis</span> <span class="nv">summary</span>.  <span class="nv">Of</span> <span class="mi">12388</span> <span class="nv">machines</span>,
-   <span class="mi">12388</span> <span class="nv">are</span> <span class="nv">rejected</span> <span class="nv">by</span> <span class="nv">your</span> <span class="nv">job</span><span class="s1">&#39;</span><span class="s">s requirements </span>
+---
+2423.000:  Run analysis summary.  Of 12388 machines,
+   12388 are rejected by your job&#39;s requirements 
 ...
-<span class="nv">WARNING</span>:  <span class="nv">Be</span> <span class="nv">advised</span>:
-   <span class="nv">No</span> <span class="nv">resources</span> <span class="nv">matched</span> <span class="nv">request</span><span class="s1">&#39;</span><span class="s">s constraints</span>
+WARNING:  Be advised:
+   No resources matched request&#39;s constraints
 
-<span class="nv">The</span> <span class="nv">Requirements</span> <span class="nv">expression</span> <span class="k">for</span> <span class="nv">your</span> <span class="nv">job</span> <span class="nv">is</span>:
+The Requirements expression for your job is:
 ...
 
-<span class="nv">Suggestions</span>:
+Suggestions:
 
-    <span class="nv">Condition</span>                         <span class="nv">Machines</span> <span class="nv">Matched</span>    <span class="nv">Suggestion</span>
-    <span class="o">---------</span>                         <span class="o">----------------</span>    <span class="o">----------</span>
-<span class="mi">1</span>   <span class="ss">(</span> <span class="nv">TARGET</span>.<span class="nv">Memory</span> <span class="o">&gt;=</span> <span class="mi">8388608</span> <span class="ss">)</span>      <span class="mi">0</span>                   <span class="nv">MODIFY</span> <span class="nv">TO</span> <span class="mi">1000064</span>
-<span class="mi">2</span>   <span class="ss">(</span> ... <span class="ss">)</span>
-                                      <span class="mi">12145</span>                
-<span class="mi">3</span>   <span class="ss">(</span> <span class="nv">TARGET</span>.<span class="nv">Arch</span> <span class="o">==</span> <span class="s2">&quot;</span><span class="s">X86_64</span><span class="s2">&quot;</span> <span class="ss">)</span>       <span class="mi">12388</span>                
-<span class="mi">4</span>   <span class="ss">(</span> <span class="nv">TARGET</span>.<span class="nv">OpSys</span> <span class="o">==</span> <span class="s2">&quot;</span><span class="s">LINUX</span><span class="s2">&quot;</span> <span class="ss">)</span>       <span class="mi">12386</span>                
-<span class="mi">5</span>   <span class="ss">(</span> <span class="nv">TARGET</span>.<span class="nv">Disk</span> <span class="o">&gt;=</span> <span class="mi">20</span> <span class="ss">)</span>             <span class="mi">12387</span>                
-<span class="mi">6</span>   <span class="ss">(</span> <span class="nv">TARGET</span>.<span class="nv">HasFileTransfer</span> <span class="ss">)</span>        <span class="mi">12388</span>                
+    Condition                         Machines Matched    Suggestion
+    ---------                         ----------------    ----------
+1   ( TARGET.Memory &gt;= 8388608 )      0                   MODIFY TO 1000064
+2   ( ... )
+                                      12145                
+3   ( TARGET.Arch == &quot;X86_64&quot; )       12388                
+4   ( TARGET.OpSys == &quot;LINUX&quot; )       12386                
+5   ( TARGET.Disk &gt;= 20 )             12387                
+6   ( TARGET.HasFileTransfer )        12388                
 </pre></div>
 
 

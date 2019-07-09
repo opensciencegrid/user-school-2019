@@ -75,24 +75,24 @@ You will check the queue periodically to see how many jobs have completed and ho
 multiple jobs.
 Similar to the <code>queue from</code> statement to submit jobs based on lines from a specific file, you can use <code>queue in</code> to
 submit jobs based on a list directly from your submit file:</p>
-<div class="codehilite"><pre><span></span><span class="n">queue</span> <span class="o">&lt;#</span> <span class="k">of</span> <span class="n">jobs</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="k">variable</span><span class="o">&gt;</span> <span class="k">in</span> <span class="p">(</span>
-<span class="o">&lt;</span><span class="n">item</span> <span class="mi">1</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">item</span> <span class="mi">2</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">item</span> <span class="mi">3</span><span class="o">&gt;</span>
-<span class="p">...</span>
-<span class="p">)</span>
+<div class="codehilite"><pre><span></span>queue &lt;# of jobs&gt; &lt;variable&gt; in (
+&lt;item 1&gt;
+&lt;item 2&gt;
+&lt;item 3&gt;
+...
+)
 </pre></div>
 
 
 <p>For example, to submit 6 jobs that sleep for <code>5</code>, <code>5</code>, <code>10</code>, <code>10</code>, <code>15</code>, and <code>15</code> seconds, you could write the following
 submit file:</p>
-<div class="codehilite"><pre><span></span><span class="n">executable</span> <span class="o">=</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">sleep</span>
+<div class="codehilite"><pre><span></span>executable = /bin/sleep
 
-<span class="n">queue</span> <span class="mi">2</span> <span class="n">arguments</span> <span class="k">in</span> <span class="p">(</span>
-<span class="mi">5</span>
-<span class="mi">10</span>
-<span class="mi">15</span>
-<span class="p">)</span>
+queue 2 arguments in (
+5
+10
+15
+)
 </pre></div>
 
 

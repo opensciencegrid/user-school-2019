@@ -62,27 +62,27 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="preparing-a-c-executable">Preparing a C Executable<a class="headerlink" href="#preparing-a-c-executable" title="Permanent link">&para;</a></h2>
 <p>When preparing a C program for HTCondor, it is best to compile and link the executable statically, so that it does not depend on external libraries and their particular versions. Why is this important? When your compiled C program is sent to another machine for execution, that machine may not have the same libraries that you have on your submit machine (or wherever you compile the program). If the libraries are not available or are the wrong versions, your program may fail or, perhaps worse, silently produce the wrong results.</p>
 <p>Here is a simple C program to try using (thanks, Alain Roy):</p>
-<div class="codehilite"><pre><span></span>#<span class="k">include</span> <span class="o">&lt;</span><span class="nv">stdio</span>.<span class="nv">h</span><span class="o">&gt;</span>
+<div class="codehilite"><pre><span></span>#include &lt;stdio.h&gt;
 
-<span class="nv">int</span> <span class="nv">main</span><span class="ss">(</span><span class="nv">int</span> <span class="nv">argc</span>, <span class="nv">char</span> <span class="o">**</span><span class="nv">argv</span><span class="ss">)</span>
+int main(int argc, char **argv)
 {
-    <span class="nv">int</span> <span class="nv">sleep_time</span><span class="c1">;</span>
-    <span class="nv">int</span> <span class="nv">input</span><span class="c1">;</span>
-    <span class="nv">int</span> <span class="nv">failure</span><span class="c1">;</span>
+    int sleep_time;
+    int input;
+    int failure;
 
-    <span class="k">if</span> <span class="ss">(</span><span class="nv">argc</span> <span class="o">!=</span> <span class="mi">3</span><span class="ss">)</span> {
-        <span class="nv">printf</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">Usage: simple &lt;sleep-time&gt; &lt;integer&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
-        <span class="nv">failure</span> <span class="o">=</span> <span class="mi">1</span><span class="c1">;</span>
-    } <span class="k">else</span> {
-        <span class="nv">sleep_time</span> <span class="o">=</span> <span class="nv">atoi</span><span class="ss">(</span><span class="nv">argv</span>[<span class="mi">1</span>]<span class="ss">)</span><span class="c1">;</span>
-        <span class="nv">input</span>      <span class="o">=</span> <span class="nv">atoi</span><span class="ss">(</span><span class="nv">argv</span>[<span class="mi">2</span>]<span class="ss">)</span><span class="c1">;</span>
+    if (argc != 3) {
+        printf(&quot;Usage: simple &lt;sleep-time&gt; &lt;integer&gt;\n&quot;);
+        failure = 1;
+    } else {
+        sleep_time = atoi(argv[1]);
+        input      = atoi(argv[2]);
 
-        <span class="nv">printf</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">Thinking really hard for %d seconds...</span><span class="se">\n</span><span class="s2">&quot;</span>, <span class="nv">sleep_time</span><span class="ss">)</span><span class="c1">;</span>
-        <span class="nv">sleep</span><span class="ss">(</span><span class="nv">sleep_time</span><span class="ss">)</span><span class="c1">;</span>
-        <span class="nv">printf</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">We calculated: %d</span><span class="se">\n</span><span class="s2">&quot;</span>, <span class="nv">input</span> <span class="o">*</span> <span class="mi">2</span><span class="ss">)</span><span class="c1">;</span>
-        <span class="nv">failure</span> <span class="o">=</span> <span class="mi">0</span><span class="c1">;</span>
+        printf(&quot;Thinking really hard for %d seconds...\n&quot;, sleep_time);
+        sleep(sleep_time);
+        printf(&quot;We calculated: %d\n&quot;, input * 2);
+        failure = 0;
     }
-    <span class="k">return</span> <span class="nv">failure</span><span class="c1">;</span>
+    return failure;
 }
 </pre></div>
 
@@ -105,17 +105,17 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 <h2 id="running-a-compiled-c-program">Running a Compiled C Program<a class="headerlink" href="#running-a-compiled-c-program" title="Permanent link">&para;</a></h2>
 <p>The rest is simple. In fact, it is no different than running any other program. Here is a basic submit file for the C program (call it simple.sub):</p>
-<div class="codehilite"><pre><span></span><span class="n">executable</span> <span class="o">=</span> <span class="k">simple</span>
-<span class="n">arguments</span> <span class="o">=</span> <span class="ss">&quot;60 64&quot;</span>
+<div class="codehilite"><pre><span></span>executable = simple
+arguments = &quot;60 64&quot;
 
-<span class="k">output</span> <span class="o">=</span> <span class="k">c</span><span class="o">-</span><span class="n">program</span><span class="p">.</span><span class="k">out</span>
-<span class="n">error</span> <span class="o">=</span> <span class="k">c</span><span class="o">-</span><span class="n">program</span><span class="p">.</span><span class="n">err</span>
-<span class="n">log</span> <span class="o">=</span> <span class="k">c</span><span class="o">-</span><span class="n">program</span><span class="p">.</span><span class="n">log</span>
+output = c-program.out
+error = c-program.err
+log = c-program.log
 
-<span class="n">should_transfer_files</span> <span class="o">=</span> <span class="n">YES</span>
-<span class="n">when_to_transfer_output</span> <span class="o">=</span> <span class="n">ON_EXIT</span>
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
 
-<span class="n">queue</span>
+queue
 </pre></div>
 
 
