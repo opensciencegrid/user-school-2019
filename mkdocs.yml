@@ -58,6 +58,6 @@ pages:
 
 markdown_extensions:
   - admonition
-  - codehilite
+  - codehilite(guess_lang=false)
   - toc(permalink=true)
   - osg_markdown.colors
