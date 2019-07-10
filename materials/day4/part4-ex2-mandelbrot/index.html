@@ -67,7 +67,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ol>
 <li>
 <p>Generate a PPM image of the Mandelbrot set:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> /usr/local/bin/goatbrot -i <span class="m">1000</span> -o tile_000000_000000.ppm -c <span class="m">0</span>,0 -w <span class="m">3</span> -s <span class="m">1000</span>,1000
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> goatbrot -i <span class="m">1000</span> -o tile_000000_000000.ppm -c <span class="m">0</span>,0 -w <span class="m">3</span> -s <span class="m">1000</span>,1000
 </pre></div>
 
 
@@ -89,14 +89,14 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </li>
 </ol>
 <h2 id="dividing-the-work-into-smaller-pieces">Dividing the Work into Smaller Pieces<a class="headerlink" href="#dividing-the-work-into-smaller-pieces" title="Permanent link">&para;</a></h2>
-<p>The Mandelbrot set can take a while to create, particularly if you make the iterations large or the image size large. What if we broke the creation of the image into multiple invocations (an HTC approach!) then stitched them together? Once we do that, we can run the each goatbroat in parallel in our cluster. Here's an example you can run by hand.</p>
+<p>The Mandelbrot set can take a while to create, particularly if you make the iterations large or the image size large. What if we broke the creation of the image into multiple invocations (an HTC approach!) then stitched them together? Once we do that, we can run each <code>goatbroat</code> in parallel in our cluster. Here's an example you can run by hand.</p>
 <ol>
 <li>
 <p>Run goatbroat 4 times:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> /usr/local/bin/goatbrot -i <span class="m">1000</span> -o tile_000000_000000.ppm -c -0.75,0.75 -w <span class="m">1</span>.5 -s <span class="m">500</span>,500
-<span class="gp">username@learn $</span> /usr/local/bin/goatbrot -i <span class="m">1000</span> -o tile_000000_000001.ppm -c <span class="m">0</span>.75,0.75 -w <span class="m">1</span>.5 -s <span class="m">500</span>,500 
-<span class="gp">username@learn $</span> /usr/local/bin/goatbrot -i <span class="m">1000</span> -o tile_000001_000000.ppm -c -0.75,-0.75 -w <span class="m">1</span>.5 -s <span class="m">500</span>,500 
-<span class="gp">username@learn $</span> /usr/local/bin/goatbrot -i <span class="m">1000</span> -o tile_000001_000001.ppm -c <span class="m">0</span>.75,-0.75 -w <span class="m">1</span>.5 -s <span class="m">500</span>,500
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> goatbrot -i <span class="m">1000</span> -o tile_000000_000000.ppm -c -0.75,0.75 -w <span class="m">1</span>.5 -s <span class="m">500</span>,500
+<span class="gp">username@learn $</span> goatbrot -i <span class="m">1000</span> -o tile_000000_000001.ppm -c <span class="m">0</span>.75,0.75 -w <span class="m">1</span>.5 -s <span class="m">500</span>,500 
+<span class="gp">username@learn $</span> goatbrot -i <span class="m">1000</span> -o tile_000001_000000.ppm -c -0.75,-0.75 -w <span class="m">1</span>.5 -s <span class="m">500</span>,500 
+<span class="gp">username@learn $</span> goatbrot -i <span class="m">1000</span> -o tile_000001_000001.ppm -c <span class="m">0</span>.75,-0.75 -w <span class="m">1</span>.5 -s <span class="m">500</span>,500
 </pre></div>
 
 
