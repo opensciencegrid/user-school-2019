@@ -49,6 +49,21 @@ pages:
       - Exercise 4.3:             materials/day1/part4-ex3-submit-osg.md
       - Exercise 4.4:             materials/day1/part4-ex4-hardware-diffs.md
       - Exercise 4.5:             materials/day1/part4-ex5-software-diffs.md
+    - Tuesday Exercises:
+      - Exercise 3.1:             materials/day2/part3-ex1-compiling.md
+      - Exercise 3.2:             materials/day2/part3-ex2-precompiled.md
+      - Exercise 3.3:             materials/day2/part3-ex3-wrapper.md
+      - Exercise 3.4:             materials/day2/part3-ex4-prepackaged.md  
+      - Exercise 3.5:             materials/day2/part3-ex5-arguments.md
+      - Exercise 4.1:             materials/day2/part4-ex1-python-built.md
+      - Exercise 4.2:             materials/day2/part4-ex2-python-install.md
+      - Exercise 4.3:             materials/day2/part4-ex3-python-extras.md
+    - Wednesday Exercises: 
+      - Exercise 1.1:             materials/day3/part1-ex1-connect-start.md
+      - Exercise 1.2:             materials/day3/part1-ex2-matlab.md
+      - Exercise 2.1:             materials/day3/part2-ex1-singularity.md
+      - Exercise 2.2:             materials/day3/part2-ex2-tensorflow-singularity.md
+      - Exercise 2.3:             materials/day3/part2-ex3-docker.md
     - Thursday Exercises:
       - Exercise 4.1:             materials/day4/part4-ex1-simple-dag.md
       - Exercise 4.2:             materials/day4/part4-ex2-mandelbrot.md
