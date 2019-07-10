@@ -39,7 +39,7 @@ You can generate the Mandelbrot set as a quick test with two simple commands.
 Dividing the Work into Smaller Pieces
 -------------------------------------
 
-The Mandelbrot set can take a while to create, particularly if you make the iterations large or the image size large. What if we broke the creation of the image into multiple invocations (an HTC approach!) then stitched them together? Once we do that, we can run the each goatbroat in parallel in our cluster. Here's an example you can run by hand.
+The Mandelbrot set can take a while to create, particularly if you make the iterations large or the image size large. What if we broke the creation of the image into multiple invocations (an HTC approach!) then stitched them together? Once we do that, we can run each `goatbroat` in parallel in our cluster. Here's an example you can run by hand.
 
 1.  Run goatbroat 4 times:
 
