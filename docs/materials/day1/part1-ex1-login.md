@@ -79,17 +79,17 @@ HTCondor is installed on this server. But what version? You can ask HTCondor its
 
 ``` console
 username@learn $ condor_version
-$CondorVersion: 8.7.2 Jun 02 2017 BuildID: 407060 $
-$CondorPlatform: x86_64_RedHat6 $
+$CondorVersion: 8.9.2 May 13 2019 BuildID: 469000 PackageID: 8.9.2-0.469000 $
+$CondorPlatform: x86_64_RedHat7 $
 ```
 
-As you can see from the output, we are using HTCondor 8.7.2.
+As you can see from the output, we are using HTCondor 8.9.2.
 
 ### Background information about HTCondor version numbers
 
-HTCondor always has two types of releases at one time: stable and development. HTCondor 8.4.x and 8.6.x are considered stable releases, indicated by even-numbered second digits (e.g., 4 or 6 in these cases). Within one stable series, all versions have the same features (for example 8.4.0 and 8.4.8 have the same set of features) and differ only in bug and security fixes.
+HTCondor always has two types of releases at one time: stable and development. HTCondor 8.6.x and 8.8.x are considered stable releases, indicated by even-numbered second digits (e.g., 6 or 8 in these cases). Within one stable series, all versions have the same features (for example 8.6.0 and 8.6.8 have the same set of features) and differ only in bug and security fixes.
 
-HTCondor 8.7.2 is an older development release series of HTCondor; the newest development release is 8.7.9. You know that these are a development release because the second digit (i.e., 7) is an odd number. 
+HTCondor 8.9.2 is the latest development release series of HTCondor. You know that these are a development release because the second digit (i.e., 9) is an odd number.
 
 Reference Materials
 -------------------
