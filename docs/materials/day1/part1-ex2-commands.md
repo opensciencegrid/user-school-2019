@@ -93,9 +93,9 @@ username@learn $ condor_q
 The main part of the output (which will be empty, because you haven't submitted jobs yet) shows one set ("batch") of submitted jobs per line. If you had a single job in the queue, it would look something like the below:
 
 ``` console
--- Schedd: learn.chtc.wisc.edu : <128.104.100.43:9618?... @ 07/16/17 09:02:31
+-- Schedd: learn.chtc.wisc.edu : <128.104.100.43:9618?... @ 07/12/19 09:59:31
 OWNER  BATCH_NAME            SUBMITTED   DONE   RUN    IDLE  TOTAL JOB_IDS
-aapohl CMD: run_ffmpeg.sh   7/17 09:58      _      _      1      1 18801.0               
+aapohl CMD: run_ffmpeg.sh   7/12 09:58      _      _      1      1 18801.0               
 ```
 
 This output consists of 8 (or 9) columns:
@@ -104,7 +104,7 @@ This output consists of 8 (or 9) columns:
 |:------------|:----------------|:-------------------------------------------------------------------------------------------------------------------------------|
 | OWNER       | `aapohl`        | The user ID of the user who submitted the job                                                                                  |
 | BATCH\_NAME | `run_ffmpeg.sh` | The executable or "jobbatchname" specified within the submit file(s)                                                           |
-| SUBMITTED   | `7/17 09:58`    | The date and time when the job was submitted                                                                                   |
+| SUBMITTED   | `7/12 09:58`    | The date and time when the job was submitted                                                                                   |
 | DONE        | `_`             | Number of jobs in this batch that have completed                                                                               |
 | RUN         | `_`             | Number of jobs in this batch that are currently running                                                                        |
 | IDLE        | `1`             | Number of jobs in this batch that are idle, waiting for a match                                                                |
@@ -147,13 +147,13 @@ username@learn $ condor_q -all -nobatch
 **How has the column information changed?** (Below is an example of the top of the output.)
 
 ``` console
--- Schedd: learn.chtc.wisc.edu : <128.104.100.43:9618?... @ 07/17/17 09:58:44
+-- Schedd: learn.chtc.wisc.edu : <128.104.100.43:9618?... @ 07/12/19 11:58:44
  ID       OWNER            SUBMITTED     RUN_TIME ST PRI SIZE   CMD
-18203.0   s16_alirezakho  7/27 09:51   0+00:00:00 I  0      0.7 pascal
-18204.0   s16_alirezakho  7/27 09:51   0+00:00:00 I  0      0.7 pascal
-18801.0   aapohl          7/28 16:58   0+00:00:00 I  0      0.0 run_ffmpeg.sh
-18997.0   s16_martincum   7/29 10:59   0+00:00:32 I  0    733.0 runR.pl 1_0 run_perm.R 1 0 10
-19027.5   s16_martincum   7/29 11:06   0+00:09:20 I  0   2198.0 runR.pl 1_5 run_perm.R 1 5 1000
+18203.0   s16_alirezakho  7/11 09:51   0+00:00:00 I  0      0.7 pascal
+18204.0   s16_alirezakho  7/11 09:51   0+00:00:00 I  0      0.7 pascal
+18801.0   aapohl          7/12 09:58   0+00:00:00 I  0      0.0 run_ffmpeg.sh
+18997.0   s16_martincum   7/12 10:59   0+00:00:32 I  0    733.0 runR.pl 1_0 run_perm.R 1 0 10
+19027.5   s16_martincum   7/12 11:06   0+00:09:20 I  0   2198.0 runR.pl 1_5 run_perm.R 1 5 1000
 ```
 
 The `-nobatch` output shows a line for every job and consists of 8 columns:
@@ -162,7 +162,7 @@ The `-nobatch` output shows a line for every job and consists of 8 columns:
 |:----------|:----------------|:-------------------------------------------------------------------------------|
 | ID        | `18801.0`       | Job ID, which is the `cluster`, a dot character (`.`), and the `process`       |
 | OWNER     | `aapohl`        | The user ID of the user who submitted the job                                  |
-| SUBMITTED | `7/17 09:58`    | The date and time when the job was submitted                                   |
+| SUBMITTED | `7/12 09:58`    | The date and time when the job was submitted                                   |
 | RUN\_TIME | `0+00:00:00`    | Total time spent running so far (days + hours:minutes:seconds)                 |
 | ST        | `I`             | Status of job: `I` is Idle (waiting to run), `R` is Running, `H` is Held, etc. |
 | PRI       | `0`             | Job priority (see next lecture)                                                |
@@ -178,6 +178,6 @@ Both `condor_status` and `condor_q` have many command-line options, some of whic
 
 -   Use the (brief) built-in help for the commands, e.g.: `condor_q -h`
 -   Read the installed man(ual) pages for the commands, e.g.: `man condor_q`
--   Find the command in [the online manual](http://research.cs.wisc.edu/htcondor/manual/); **note:** the text online is the same as the `man` text, only formatted for the web
+-   Find the command in [the online manual](https://htcondor.readthedocs.io/en/v8_9_2/); **note:** the text online is the same as the `man` text, only formatted for the web
 
 
