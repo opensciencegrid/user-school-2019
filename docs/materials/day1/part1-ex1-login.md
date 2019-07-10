@@ -97,5 +97,5 @@ Reference Materials
 Here are a few links to reference materials that might be interesting after the school (or perhaps during).
 
 -   [HTCondor home page](http://research.cs.wisc.edu/htcondor/)
--   [HTCondor manuals](http://research.cs.wisc.edu/htcondor/manual/); it is probably best to read the manual corresponding to the version of HTCondor that you use (8.7.2 for today)
+-   [HTCondor manuals](https://htcondor.readthedocs.io/en/v8_9_2/); it is probably best to read the manual corresponding to the version of HTCondor that you use (8.9.2 for today)
 -   [Center for High Throughput Computing](http://chtc.cs.wisc.edu/), our campus research computing center, and home to HTCondor and other development of distributed computing tools
