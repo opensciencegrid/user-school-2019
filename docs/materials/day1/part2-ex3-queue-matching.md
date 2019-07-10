@@ -80,7 +80,7 @@ To use the script:
 1.  Download and unpack some books from Project Gutenberg:
 
         :::console
-        username@learn $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool18/books.zip
+        username@learn $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/books.zip
         username@learn $ unzip books.zip
 
 1.  Verify the script by running it on one book manually.
