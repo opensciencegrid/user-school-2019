@@ -21,7 +21,7 @@ You can generate the Mandelbrot set as a quick test with two simple commands.
 1.  Generate a PPM image of the Mandelbrot set:
 
         :::console
-        username@learn $ /usr/local/bin/goatbrot -i 1000 -o tile_000000_000000.ppm -c 0,0 -w 3 -s 1000,1000
+        username@learn $ goatbrot -i 1000 -o tile_000000_000000.ppm -c 0,0 -w 3 -s 1000,1000
 
     The `goatbroat` program takes several parameters. Let's break them down:
 
@@ -44,10 +44,10 @@ The Mandelbrot set can take a while to create, particularly if you make the iter
 1.  Run goatbroat 4 times:
 
         :::console
-        username@learn $ /usr/local/bin/goatbrot -i 1000 -o tile_000000_000000.ppm -c -0.75,0.75 -w 1.5 -s 500,500
-        username@learn $ /usr/local/bin/goatbrot -i 1000 -o tile_000000_000001.ppm -c 0.75,0.75 -w 1.5 -s 500,500 
-        username@learn $ /usr/local/bin/goatbrot -i 1000 -o tile_000001_000000.ppm -c -0.75,-0.75 -w 1.5 -s 500,500 
-        username@learn $ /usr/local/bin/goatbrot -i 1000 -o tile_000001_000001.ppm -c 0.75,-0.75 -w 1.5 -s 500,500
+        username@learn $ goatbrot -i 1000 -o tile_000000_000000.ppm -c -0.75,0.75 -w 1.5 -s 500,500
+        username@learn $ goatbrot -i 1000 -o tile_000000_000001.ppm -c 0.75,0.75 -w 1.5 -s 500,500 
+        username@learn $ goatbrot -i 1000 -o tile_000001_000000.ppm -c -0.75,-0.75 -w 1.5 -s 500,500 
+        username@learn $ goatbrot -i 1000 -o tile_000001_000001.ppm -c 0.75,-0.75 -w 1.5 -s 500,500
 
 1.  Stitch the small images together into the complete image (in JPEG format):
 
