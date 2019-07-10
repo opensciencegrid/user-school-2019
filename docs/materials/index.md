@@ -2,7 +2,7 @@
 status: in progress
 ---
 
-# 2018 OSG User School Materials
+# OSG User School 2019 Materials
 
 ## Monday
 
@@ -32,6 +32,16 @@ status: in progress
 - [Exercise 3.2: Explore `condor_status`](/materials/day1/part3-ex2-status.md)
 - [Exercise 3.3: A job that needs retries](/materials/day1/part3-ex3-job-retry.md)
 
+### Monday Afternoon: Introduction to Distributed HTC
+
+- Lecture: Introduction to DHTC ([PDF](/materials/day1/files/osgus19-day1-part4-intro-to-dhtc.pdf);
+  [PPT](/materials/day1/files/osgus19-day1-part4-intro-to-dhtc.pptx))
+- [Exercise 4.1: Refresher - Submitting multiple jobs](/materials/day1/part4-ex1-submit-refresher.md)
+- [Exercise 4.2: Log in to the OSG submit machine](/materials/day1/part4-ex2-login-scp.md)
+- [Exercise 4.3: Running jobs in the OSG](/materials/day1/part4-ex3-submit-osg.md)
+- [Exercise 4.4: Hardware differences in the OSG](/materials/day1/part4-ex4-hardware-diffs.md)
+- [Exercise 4.5: Software differences in the OSG](/materials/day1/part4-ex5-software-diffs.md)
+
 <!--  All below here needs to be updated!
 
 ### Monday Afternoon: Automating Workflows with HTCondor's DAGMan
@@ -44,22 +54,6 @@ status: in progress
 - [Bonus Exercise 4.5: HTCondor challenges](/materials/day1/part4-ex5-challenges.md) (If and only if you have time)
 
 ## Tuesday
-
-### Tuesday Morning: Introduction to Distributed HTC and Overlay Systems
-
-- Lecture: Introduction to DHTC ([PDF](/materials/day2/files/osgus19-day2-part1-intro-to-dhtc.pdf);
-  [PPT](/materials/day2/files/osgus19-day2-part1-intro-to-dhtc.pptx))
-- [Exercise 1.1: Refresher - Submitting multiple jobs](/materials/day2/part1-ex1-submit-refresher.md)
-- [Exercise 1.2: Log in to the OSG submit machine](/materials/day2/part1-ex2-login-scp.md)
-- [Exercise 1.3: Running jobs in the OSG](/materials/day2/part1-ex3-submit-osg.md)
-
-### Tuesday Morning: Comparing Local and Remote HTC
-
-- Lecture: What is different about overlay systems?
-  ([PDF](/materials/day2/files/osgus19-day2-part2-overlay-differences.pdf);
-  [PPT](/materials/day2/files/osgus19-day2-part2-overlay-differences.pptx))
-- [Exercise 2.1: Hardware differences in the OSG](/materials/day2/part2-ex1-hardware-diffs.md)
-- [Exercise 2.2: Software differences in the OSG](/materials/day2/part2-ex2-software-diffs.md)
 
 ### Tuesday Afternoon: Security in OSG
 
