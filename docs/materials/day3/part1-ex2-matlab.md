@@ -121,7 +121,7 @@ Fortunately, the Matlab compiler has pre-written most of this wrapper script for
 Submitting the Job
 ------------------
 
-1.  Copy an existing submit file into your current directory. The submit file we used for the [Open Bugs](part3-ex4-prepackaged.md) example would be a good candidate, as that example also used a wrapper script. 
+1.  Copy an existing submit file into your current directory. The submit file we used for the [Open Bugs](/materials/day2/part3-ex4-prepackaged.md) example would be a good candidate, as that example also used a wrapper script. 
 
 2. Modify your submit file for this job. 
 
