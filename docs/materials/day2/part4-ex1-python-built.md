@@ -16,7 +16,7 @@ We chose Python as the language for this example because: a) it is a common lang
 
 Running any Python script requires an installation of the Python interpreter. The Python interpreter is what we're using when we type `python` at the command line. In order to run Python jobs on a distributed system, you will need to install the Python interpreter (what we often refer to as just "installing Python"), within the job, then run your Python script.
 
-There are two installation approaches. The approach we will cover in this exercise is that of "pre-building" the installation (much like we did with OpenBugs [this morning](/materials/day3/part1-ex4-prepackaged)). We will install Python to a specific directory, and then create a tarball of that installation directory. We can then use our tarball within jobs to run Python scripts.
+There are two installation approaches. The approach we will cover in this exercise is that of "pre-building" the installation (much like we did with OpenBugs [this morning](/materials/day2/part3-ex4-prepackaged)). We will install Python to a specific directory, and then create a tarball of that installation directory. We can then use our tarball within jobs to run Python scripts.
 
 Interactive Job for Pre-Building
 --------------------------------
@@ -33,7 +33,7 @@ The first step in our job process is building a Python installation that we can 
 
 1.  Due to the number of people on our submit server, we shouldn't use the submit server. Your own computer probably doesn't have the right operating system. The best place to install will be an interactive job. For this job, we can use the same interactive submit file as Exercise 1.4, with one change. What is it?
 
-1.  Make a copy of the interactive submit file from [Exercise 1.4](/materials/day3/part1-ex4-prepackaged) and change the `transfer_input_files` line to the Python tarball you just downloaded. Then submit it using the `-i` flag. 
+1.  Make a copy of the interactive submit file from [Exercise 3.4](/materials/day2/part3-ex4-prepackaged) and change the `transfer_input_files` line to the Python tarball you just downloaded. Then submit it using the `-i` flag. 
 
 		:::console
 		username@learn $ condor_submit -i build.submit

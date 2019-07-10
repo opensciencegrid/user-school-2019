@@ -57,7 +57,7 @@ Our wrapper script will need to install Python from the source code and then run
 Submit file
 -----------
 
-The submit file for this exercise can be very similar to the [last one from Exercise 1.7](/materials/day2/part4-ex2-python-built.md).
+The submit file for this exercise can be very similar to the [last one from Exercise 4.1](/materials/day2/part4-ex1-python-built.md).
 
 1.  Make a copy of the submit file from the last exercise. What lines need to change? Make changes as appropriate.
 1.  You need to change the transferred tarball (the Python source, instead of our `prebuilt_python.tar.gz`) and the job's executable. Once you've made these changes, submit the job using `condor_submit`.

@@ -12,7 +12,7 @@ In this exercise, we will submit a similar job to yesterday, but use OSG Connect
 Setup
 -----
 
-Make sure you are logged into `training.osgconnect.net` (the OSG Connect submit server for this workshop). Create a scratch directory using your username in the `/local-scratch` folder if one doesn't already exist, and then `cd` to that folder. Copy the `fib.py` script from [yesterday](/materials/day2/part4-ex2-python-built) into this folder. 
+Make sure you are logged into `training.osgconnect.net` (the OSG Connect submit server for this workshop). Create a scratch directory using your username in the `/local-scratch` folder if one doesn't already exist, and then `cd` to that folder. Copy the `fib.py` script from [yesterday](/materials/day2/part4-ex1-python-built) into this folder. 
 
 Modules on OSG Connect
 ----------------------
