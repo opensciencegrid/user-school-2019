@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day2/part4-ex2-python-install/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Exercise 4.2 - OSG User School 2019</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <link href="../../../css/extra.css" rel="stylesheet">
+    <link href="../../../css/codehilite.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Wednesday Exercise 4.2: Python Installation", url: "#_top", children: [
+              {title: "Background", url: "#background" },
+              {title: "Wrapper script", url: "#wrapper-script" },
+              {title: "Submit file", url: "#submit-file" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: #008; } </style>
+
+<h1 id="wednesday-exercise-42-python-installation">Wednesday Exercise 4.2: Python Installation<a class="headerlink" href="#wednesday-exercise-42-python-installation" title="Permanent link">&para;</a></h1>
+<p>In this exercise, you will write a wrapper script that installs Python and then use it to run jobs. This exercise should take about 10 minutes.</p>
+<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
+<p>In the previous exercise, we used a method that pre-built Python and then used that pre-built package to run Python scripts. In this exercise, we will use an alternative method for running Python jobs, by writing a wrapper script that installs Python with every job. This exercise should be done in the same directory as the previous exercise - you will need the same Python source code and <code>fib.py</code> script.</p>
+<h2 id="wrapper-script">Wrapper script<a class="headerlink" href="#wrapper-script" title="Permanent link">&para;</a></h2>
+<p>Our wrapper script will need to install Python from the source code and then run our <code>fib.py</code> script.</p>
+<ol>
+<li>
+<p>Based on the previous exercise, what are the steps we need to install Python? What file can we use for reference?</p>
+</li>
+<li>
+<p>We put our installation steps from the previous exercise into a file called <code>python_install.txt</code>. Based on this, put the installation steps into a script called <code>run_py.sh</code> </p>
+</li>
+<li>
+<p>Check your script against the file below </p>
+<div class="codehilite"><pre><span></span>#!/bin/bash
+
+export PATH
+
+mkdir python
+tar xzf Python-3.7.0.tgz
+cd Python-3.7.0
+./configure --prefix=$(pwd)/../python
+make
+make install
+cd ..
+</pre></div>
+
+
+</li>
+<li>
+<p>We also need to run our <code>fib.py</code> script. We can do so by adding our installation location to the <code>PATH</code>, or by referencing the installation directly: </p>
+<div class="codehilite"><pre><span></span><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/python/bin:<span class="nv">$PATH</span>
+
+python3 fib.py <span class="m">90</span>
+</pre></div>
+
+
+<p>or</p>
+<div class="codehilite"><pre><span></span>python/bin/python3 fib.py <span class="m">90</span>
+</pre></div>
+
+
+<p>Choose whichever method you prefer, and add it to your <code>run_py.sh</code> script.</p>
+</li>
+<li>
+<p>Make your <code>run_py.sh</code> script executable.</p>
+</li>
+</ol>
+<h2 id="submit-file">Submit file<a class="headerlink" href="#submit-file" title="Permanent link">&para;</a></h2>
+<p>The submit file for this exercise can be very similar to the <a href="../part4-ex1-python-built/">last one from Exercise 4.1</a>.</p>
+<ol>
+<li>Make a copy of the submit file from the last exercise. What lines need to change? Make changes as appropriate.</li>
+<li>You need to change the transferred tarball (the Python source, instead of our <code>prebuilt_python.tar.gz</code>) and the job's executable. Once you've made these changes, submit the job using <code>condor_submit</code>.</li>
+<li>Check for the results in the <code>.out</code> file.</li>
+</ol>
+
+  <br>
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../part4-ex3-python-extras/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../part4-ex3-python-extras/" class="btn btn-xs btn-link">
+        Exercise 4.3
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../part4-ex1-python-built/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../part4-ex1-python-built/" class="btn btn-xs btn-link">
+        Exercise 4.1
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

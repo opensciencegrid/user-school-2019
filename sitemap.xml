@@ -141,6 +141,71 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day2/part3-ex1-compiling/</loc>
+     <lastmod>2019-07-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day2/part3-ex2-precompiled/</loc>
+     <lastmod>2019-07-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day2/part3-ex3-wrapper/</loc>
+     <lastmod>2019-07-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day2/part3-ex4-prepackaged/</loc>
+     <lastmod>2019-07-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day2/part3-ex5-arguments/</loc>
+     <lastmod>2019-07-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day2/part4-ex1-python-built/</loc>
+     <lastmod>2019-07-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day2/part4-ex2-python-install/</loc>
+     <lastmod>2019-07-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day2/part4-ex3-python-extras/</loc>
+     <lastmod>2019-07-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day3/part1-ex1-connect-start/</loc>
+     <lastmod>2019-07-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day3/part1-ex2-matlab/</loc>
+     <lastmod>2019-07-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day3/part2-ex1-singularity/</loc>
+     <lastmod>2019-07-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day3/part2-ex2-tensorflow-singularity/</loc>
+     <lastmod>2019-07-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://opensciencegrid.org/user-school-2019/materials/day3/part2-ex3-docker/</loc>
+     <lastmod>2019-07-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day4/part4-ex1-simple-dag/</loc>
      <lastmod>2019-07-10</lastmod>
      <changefreq>daily</changefreq>
