@@ -164,9 +164,9 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 <p>The main part of the output (which will be empty, because you haven't submitted jobs yet) shows one set ("batch") of submitted jobs per line. If you had a single job in the queue, it would look something like the below:</p>
-<div class="codehilite"><pre><span></span><span class="go">-- Schedd: learn.chtc.wisc.edu : &lt;128.104.100.43:9618?... @ 07/16/17 09:02:31</span>
+<div class="codehilite"><pre><span></span><span class="go">-- Schedd: learn.chtc.wisc.edu : &lt;128.104.100.43:9618?... @ 07/12/19 09:59:31</span>
 <span class="go">OWNER  BATCH_NAME            SUBMITTED   DONE   RUN    IDLE  TOTAL JOB_IDS</span>
-<span class="go">aapohl CMD: run_ffmpeg.sh   7/17 09:58      _      _      1      1 18801.0               </span>
+<span class="go">aapohl CMD: run_ffmpeg.sh   7/12 09:58      _      _      1      1 18801.0               </span>
 </pre></div>
 
 
@@ -192,7 +192,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </tr>
 <tr>
 <td align="left">SUBMITTED</td>
-<td align="left"><code>7/17 09:58</code></td>
+<td align="left"><code>7/12 09:58</code></td>
 <td align="left">The date and time when the job was submitted</td>
 </tr>
 <tr>
@@ -255,13 +255,13 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 <p><strong>How has the column information changed?</strong> (Below is an example of the top of the output.)</p>
-<div class="codehilite"><pre><span></span><span class="go">-- Schedd: learn.chtc.wisc.edu : &lt;128.104.100.43:9618?... @ 07/17/17 09:58:44</span>
+<div class="codehilite"><pre><span></span><span class="go">-- Schedd: learn.chtc.wisc.edu : &lt;128.104.100.43:9618?... @ 07/12/19 11:58:44</span>
 <span class="go"> ID       OWNER            SUBMITTED     RUN_TIME ST PRI SIZE   CMD</span>
-<span class="go">18203.0   s16_alirezakho  7/27 09:51   0+00:00:00 I  0      0.7 pascal</span>
-<span class="go">18204.0   s16_alirezakho  7/27 09:51   0+00:00:00 I  0      0.7 pascal</span>
-<span class="go">18801.0   aapohl          7/28 16:58   0+00:00:00 I  0      0.0 run_ffmpeg.sh</span>
-<span class="go">18997.0   s16_martincum   7/29 10:59   0+00:00:32 I  0    733.0 runR.pl 1_0 run_perm.R 1 0 10</span>
-<span class="go">19027.5   s16_martincum   7/29 11:06   0+00:09:20 I  0   2198.0 runR.pl 1_5 run_perm.R 1 5 1000</span>
+<span class="go">18203.0   s16_alirezakho  7/11 09:51   0+00:00:00 I  0      0.7 pascal</span>
+<span class="go">18204.0   s16_alirezakho  7/11 09:51   0+00:00:00 I  0      0.7 pascal</span>
+<span class="go">18801.0   aapohl          7/12 09:58   0+00:00:00 I  0      0.0 run_ffmpeg.sh</span>
+<span class="go">18997.0   s16_martincum   7/12 10:59   0+00:00:32 I  0    733.0 runR.pl 1_0 run_perm.R 1 0 10</span>
+<span class="go">19027.5   s16_martincum   7/12 11:06   0+00:09:20 I  0   2198.0 runR.pl 1_5 run_perm.R 1 5 1000</span>
 </pre></div>
 
 
@@ -287,7 +287,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </tr>
 <tr>
 <td align="left">SUBMITTED</td>
-<td align="left"><code>7/17 09:58</code></td>
+<td align="left"><code>7/12 09:58</code></td>
 <td align="left">The date and time when the job was submitted</td>
 </tr>
 <tr>
@@ -323,7 +323,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ul>
 <li>Use the (brief) built-in help for the commands, e.g.: <code>condor_q -h</code></li>
 <li>Read the installed man(ual) pages for the commands, e.g.: <code>man condor_q</code></li>
-<li>Find the command in <a href="http://research.cs.wisc.edu/htcondor/manual/">the online manual</a>; <strong>note:</strong> the text online is the same as the <code>man</code> text, only formatted for the web</li>
+<li>Find the command in <a href="https://htcondor.readthedocs.io/en/v8_9_2/">the online manual</a>; <strong>note:</strong> the text online is the same as the <code>man</code> text, only formatted for the web</li>
 </ul>
 
   <br>

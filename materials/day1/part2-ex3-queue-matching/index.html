@@ -65,7 +65,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <li>What makes each job unique? In other words, there is one job per _____?</li>
 <li>So, how should you tell HTCondor to distinguish each job?</li>
 </ul>
-<p>For <code>queue *N*</code>, jobs are distinguished simply by the built-in "process" varialbe. But with the remaining <code>queue</code> forms, you help HTCondor distinguish jobs by other, more meaningful <em>custom</em> variables.</p>
+<p>For <code>queue *N*</code>, jobs are distinguished simply by the built-in "process" variable. But with the remaining <code>queue</code> forms, you help HTCondor distinguish jobs by other, more meaningful <em>custom</em> variables.</p>
 <h2 id="counting-words-in-files">Counting Words in Files<a class="headerlink" href="#counting-words-in-files" title="Permanent link">&para;</a></h2>
 <p>Suppose you have a collection of books, and you want to analyze how words vary from book to book or author to author. As mentioned in the lecture, HTCondor provides many ways to do this task. You could create a separate submit file for each book, and submit all of the files manually, but you'd have a lot of file lines to modify each time (in particular, all five of the last lines before <code>queue</code> below):</p>
 <div class="codehilite"><pre><span></span>executable              = freq.py
@@ -121,7 +121,7 @@ for word in sorted_words:
 <li>Save it as <code>wordcount.py</code>.</li>
 <li>
 <p>Download and unpack some books from Project Gutenberg:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> wget http://proxy.chtc.wisc.edu/SQUID/osgschool18/books.zip
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/books.zip
 <span class="gp">username@learn $</span> unzip books.zip
 </pre></div>
 

@@ -158,7 +158,7 @@ for word in sorted(words.keys()):
 <li>Save the Python script in a file named <code>freq.py</code>.</li>
 <li>
 <p>Download the input file for the script (263K lines, ~1.4 MB) and save it in your submit directory:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> wget http://proxy.chtc.wisc.edu/SQUID/osgschool18/mon-2.1-words.txt
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/mon-2.1-words.txt
 </pre></div>
 
 
@@ -192,7 +192,7 @@ For example, if there are three input files:</p>
 </div>
 <h2 id="transferring-output-files">Transferring Output Files<a class="headerlink" href="#transferring-output-files" title="Permanent link">&para;</a></h2>
 <p>So far, we have relied on programs that send their output to the standard output and error streams, which HTCondor captures, saves, and returns back to the submit directory. But what if your program writes one or more files for its output? How do you tell HTCondor to bring them back?</p>
-<p>Let’s start by exploring what happens to files that a jobs creates in the sandbox. We will use a very simple method for creating a new file: We will copy an input file to another name.</p>
+<p>Let’s start by exploring what happens to files that a job creates in the sandbox. We will use a very simple method for creating a new file: We will copy an input file to another name.</p>
 <ol>
 <li>Find or create a small input file (it is fine to use any small file from a previous exercise).</li>
 <li>Create a submit file that transfers the input file and copies it to another name (as if doing <code>/bin/cp input.txt output.txt</code> on the command line)<ul>
@@ -247,7 +247,7 @@ If you want HTCondor to transfer back an entire directory, leave off the trailin
 <p>At this point, you can do just about everything that you need in order to run jobs on a local HTC pool. You can identify the executable, arguments, and input files, and you can get output back from the job. This is a big achievement!</p>
 <p>In some ways, everything after this exercise shows you how to submit multiple jobd at once and makes it easier to run certain kinds of jobs and deal with certain kinds of situations.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
-<p>There are many more details about HTCondor’s file transfer mechanism not covered here. For more information, read section 2.5.9 of the HTCondor Manual.</p>
+<p>There are many more details about HTCondor’s file transfer mechanism not covered here. For more information, read the <a href="https://htcondor.readthedocs.io/en/v8_9_2/users-manual/submitting-a-job.html#submitting-jobs-without-a-shared-file-system-htcondor-s-file-transfer-mechanism">"Submitting Jobs Without a Shared Filesystem"</a> of the HTCondor Manual.</p>
 
   <br>
     
