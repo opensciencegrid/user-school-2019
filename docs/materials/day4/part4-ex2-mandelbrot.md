@@ -11,7 +11,7 @@ Before we explore using DAGs to implement workflows, let’s get a more interest
 
 We have a small program that draws pictures of the Mandelbrot set. You can [read about the Mandelbrot set on Wikipedia](https://en.wikipedia.org/wiki/Mandelbrot_set), or you can simply appreciate the pretty pictures. It’s a fractal.
 
-We have a simple program that can draw the Mandelbrot set. It's called `goatbrot`, and you can find it on most Linux servers in `/usr/local/bin/goatbrot`.
+We have a simple program that can draw the Mandelbrot set. It's called `goatbrot`.
 
 Running goatbrot From the Command Line
 --------------------------------------
@@ -54,14 +54,14 @@ The Mandelbrot set can take a while to create, particularly if you make the iter
         :::console
         username@learn $ montage tile_000000_000000.ppm tile_000000_000001.ppm tile_000001_000000.ppm tile_000001_000001.ppm -mode Concatenate -tile 2x2 mandel.jpg
 
-This will produce the same image as above. We divided the image space into a 2×2 grid and ran `goatbrot` on each section of the grid. The built-in `montage` program simply stitches the files together and writes out the final image in JPEG format.
+This will produce the same image as above. We divided the image space into a 2×2 grid and ran `goatbrot` on each section of the grid. The built-in `montage` program stitches the files together and writes out the final image in JPEG format.
 
 View the Image!
 ---------------
 
-Run the commands above, make sure you can create the Mandelbrot image. 
+Run the commands above so that you have the Mandelbrot image. 
 When you create the image, you might wonder how you can view it. 
-If you're comfortable with `scp` or another method, you can copy it back to your laptop to view it. Otherwise you can view it in your web browser in three easy steps:
+If you're comfortable with `scp` or another method, you can copy it back to your computer to view it. Otherwise you can view it in your web browser in three easy steps:
 
 1.  Make your web directory (you only need to do this once):
 
@@ -76,6 +76,6 @@ If you're comfortable with `scp` or another method, you can copy it back to your
         :::console
         username@learn $ cp mandel.jpg ~/public_html/
 
-1.  Access `http://learn.chtc.wisc.edu/~%RED%<USERNAME>%ENDCOLOR%/mandel.jpg` in your web browser (change %RED%<USERNAME>%ENDCOLOR% to your username on the submit machine).
+1.  Access `http://learn.chtc.wisc.edu/~%RED%<USERNAME>%ENDCOLOR%/mandel.jpg` in your web browser (change %RED%<USERNAME>%ENDCOLOR% to your username on `learn.chtc.wisc.edu`).
 
 
