@@ -51,5 +51,5 @@ If you have any questions or problems, please feel free to contact the Pegasus t
 Note: Be Nice
 -------------
 
-Please be polite. Computers in our Condor pool will run multiple jobs at a time, and these computers are shared with your fellow students. If you have jobs that will use significant computational power or memory, limit your jobs to be kind to your neighbors, unless you run your jobs during off-hours.
+Please be polite. Computers in our HTCondor pool will run multiple jobs at a time, and these computers are shared with your fellow students. If you have jobs that will use significant computational power or memory, limit your jobs to be kind to your neighbors, unless you run your jobs during off-hours.
 

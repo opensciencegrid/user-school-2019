@@ -250,5 +250,5 @@ Bonus Challenge
 
 If you have time, add an extra node to the DAG. Copy our original "simple" program, but make it exit with a 1 instead of a 0. DAGMan would consider this a failure, but you'll tell DAGMan that it's really a success. This is reasonable--many real world programs use a variety of return codes, and you might need to help DAGMan distinguish success from failure.
 
-Write a POST script that checks the return value. Check [the Condor manual](http://www.cs.wisc.edu/condor/manual/current/2_10DAGMan_Applications.html) to see how to describe your post script.
+Write a POST script that checks the return value. Check [the HTCondor manual](https://htcondor.readthedocs.io/en/v8_9_2/users-manual/dagman-applications.html#script) to see how to describe your post script.
 

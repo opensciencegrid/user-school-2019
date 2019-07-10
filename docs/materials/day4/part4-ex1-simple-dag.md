@@ -282,7 +282,7 @@ username@learn $ cat simple.log
 ...
 ```
 
-Looking at DAGMan's various files, we see that DAGMan itself ran as a Condor job (specifically, a "scheduler universe" job).
+Looking at DAGMan's various files, we see that DAGMan itself ran as a job (specifically, a "scheduler universe" job).
 
 ``` console
 username@learn $ ls simple.dag.*
