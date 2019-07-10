@@ -82,7 +82,7 @@ for word in sorted(words.keys()):
 1.  Download the input file for the script (263K lines, ~1.4 MB) and save it in your submit directory:
 
         :::console
-        username@learn $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool18/mon-2.1-words.txt
+        username@learn $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/mon-2.1-words.txt
 
 1.  Create a basic submit file for the `freq.py` executable.
 1.  Add a line to tell HTCondor to transfer the input file:
@@ -110,7 +110,7 @@ Transferring Output Files
 
 So far, we have relied on programs that send their output to the standard output and error streams, which HTCondor captures, saves, and returns back to the submit directory. But what if your program writes one or more files for its output? How do you tell HTCondor to bring them back?
 
-Let’s start by exploring what happens to files that a jobs creates in the sandbox. We will use a very simple method for creating a new file: We will copy an input file to another name.
+Let’s start by exploring what happens to files that a job creates in the sandbox. We will use a very simple method for creating a new file: We will copy an input file to another name.
 
 1.  Find or create a small input file (it is fine to use any small file from a previous exercise).
 1.  Create a submit file that transfers the input file and copies it to another name (as if doing `/bin/cp input.txt output.txt` on the command line)
@@ -175,5 +175,5 @@ In some ways, everything after this exercise shows you how to submit multiple jo
 References
 ----------
 
-There are many more details about HTCondor’s file transfer mechanism not covered here. For more information, read section 2.5.9 of the HTCondor Manual.
+There are many more details about HTCondor’s file transfer mechanism not covered here. For more information, read the ["Submitting Jobs Without a Shared Filesystem"](https://htcondor.readthedocs.io/en/v8_9_2/users-manual/submitting-a-job.html#submitting-jobs-without-a-shared-file-system-htcondor-s-file-transfer-mechanism) of the HTCondor Manual.
 
