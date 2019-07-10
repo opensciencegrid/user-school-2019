@@ -61,7 +61,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h1 id="monday-exercise-42-a-brief-detour-through-the-mandelbrot-set">Monday Exercise 4.2: A Brief Detour Through the Mandelbrot Set<a class="headerlink" href="#monday-exercise-42-a-brief-detour-through-the-mandelbrot-set" title="Permanent link">&para;</a></h1>
 <p>Before we explore using DAGs to implement workflows, let’s get a more interesting job. Let’s make pretty pictures!</p>
 <p>We have a small program that draws pictures of the Mandelbrot set. You can <a href="https://en.wikipedia.org/wiki/Mandelbrot_set">read about the Mandelbrot set on Wikipedia</a>, or you can simply appreciate the pretty pictures. It’s a fractal.</p>
-<p>We have a simple program that can draw the Mandelbrot set. It's called <code>goatbrot</code>, and you can find it on most Linux servers in <code>/usr/local/bin/goatbrot</code>.</p>
+<p>We have a simple program that can draw the Mandelbrot set. It's called <code>goatbrot</code>.</p>
 <h2 id="running-goatbrot-from-the-command-line">Running goatbrot From the Command Line<a class="headerlink" href="#running-goatbrot-from-the-command-line" title="Permanent link">&para;</a></h2>
 <p>You can generate the Mandelbrot set as a quick test with two simple commands.</p>
 <ol>
@@ -109,11 +109,11 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 </li>
 </ol>
-<p>This will produce the same image as above. We divided the image space into a 2×2 grid and ran <code>goatbrot</code> on each section of the grid. The built-in <code>montage</code> program simply stitches the files together and writes out the final image in JPEG format.</p>
+<p>This will produce the same image as above. We divided the image space into a 2×2 grid and ran <code>goatbrot</code> on each section of the grid. The built-in <code>montage</code> program stitches the files together and writes out the final image in JPEG format.</p>
 <h2 id="view-the-image">View the Image!<a class="headerlink" href="#view-the-image" title="Permanent link">&para;</a></h2>
-<p>Run the commands above, make sure you can create the Mandelbrot image. 
+<p>Run the commands above so that you have the Mandelbrot image. 
 When you create the image, you might wonder how you can view it. 
-If you're comfortable with <code>scp</code> or another method, you can copy it back to your laptop to view it. Otherwise you can view it in your web browser in three easy steps:</p>
+If you're comfortable with <code>scp</code> or another method, you can copy it back to your computer to view it. Otherwise you can view it in your web browser in three easy steps:</p>
 <ol>
 <li>
 <p>Make your web directory (you only need to do this once):</p>
@@ -133,7 +133,7 @@ If you're comfortable with <code>scp</code> or another method, you can copy it b
 
 </li>
 <li>
-<p>Access <code>http://learn.chtc.wisc.edu/~<span style="color:red">&lt;USERNAME&gt;</span>/mandel.jpg</code> in your web browser (change <span style="color:red"><USERNAME></span> to your username on the submit machine).</p>
+<p>Access <code>http://learn.chtc.wisc.edu/~<span style="color:red">&lt;USERNAME&gt;</span>/mandel.jpg</code> in your web browser (change <span style="color:red"><USERNAME></span> to your username on <code>learn.chtc.wisc.edu</code>).</p>
 </li>
 </ol>
 

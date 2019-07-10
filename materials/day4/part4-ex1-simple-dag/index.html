@@ -108,8 +108,8 @@ you'll submit the job.  In another you will watch the queue, and in the third yo
 </pre></div>
 
 
-<p>In the second window, watch the queue:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> watch -n <span class="m">10</span> condor_q -nobatch
+<p>In the second window, watch the queue (what you see may be slightly different):</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> watch -n <span class="m">10</span> condor_q -nobatch -wide:80
 
 <span class="go">-- Submitter: learn.chtc.wisc.edu : &lt;128.104.100.55:9618?sock=28867_10e4_2&gt; : learn.chtc.wisc.edu</span>
 <span class="go"> ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD               </span>
@@ -139,7 +139,7 @@ you'll submit the job.  In another you will watch the queue, and in the third yo
 </pre></div>
 
 
-<p>In the third window, watch what DAGMan does:</p>
+<p>In the third window, watch what DAGMan does (what you see may be slightly different):</p>
 <div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> tail -f --lines<span class="o">=</span><span class="m">500</span> simple.dag.dagman.out
 <span class="go">6/21/12 22:51:13 Setting maximum accepts per cycle 8.</span>
 <span class="go">06/21/12 22:51:13 ******************************************************</span>
@@ -318,7 +318,7 @@ you'll submit the job.  In another you will watch the queue, and in the third yo
 </pre></div>
 
 
-<p>Looking at DAGMan's various files, we see that DAGMan itself ran as a Condor job (specifically, a scheduler universe job).</p>
+<p>Looking at DAGMan's various files, we see that DAGMan itself ran as a job (specifically, a "scheduler universe" job).</p>
 <div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> ls simple.dag.*
 <span class="go">simple.dag.condor.sub  simple.dag.dagman.log  simple.dag.dagman.out  simple.dag.lib.err  simple.dag.lib.out </span>
 
@@ -347,7 +347,7 @@ you'll submit the job.  In another you will watch the queue, and in the third yo
 </pre></div>
 
 
-<p>IF you want to clean up some of these files (you may not want to, at least not yet):</p>
+<p>If you want to clean up some of these files (you may not want to, at least not yet), run:</p>
 <div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> rm simple.dag.*
 </pre></div>
 
