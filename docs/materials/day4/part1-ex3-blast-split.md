@@ -67,7 +67,11 @@ First, you'll create a new submit file that passes the input filename as an argu
 
         arguments = $(inputfile)
 
-4. Update the memory and disk requests, since the new input file is larger and will also produce larger output. It may be best to overestimate to something like 1 GB for each. (After completing this test, you'll be able to update them to a more accurate value.)
+4. Add the `$(inputfile)` to the tranfer_input_files line
+
+        transfer_finput_files = ... , $(inputfile)
+
+5. Update the memory and disk requests, since the new input file is larger and will also produce larger output. It may be best to overestimate to something like 1 GB for each. (After completing this test, you'll be able to update them to a more accurate value.)
 
 ### Modify the wrapper file
 
@@ -94,6 +98,6 @@ This job will take a bit longer than the job in the last exercise, since the inp
 Update the resource requests
 ----------------------------
 
-After the job finishes successfully, examine the `log` file for memory and disk usage, and update the requests in the submit file. In [Exercise 3.1](/materials/day4/part3-ex1-blast-proxy) (after the next lecture) you'll submit many jobs at once *and* use a different method for handling the `pdbaa_files.tar.gz` file, which is a bit too large to use regular file transfer when submitting many jobs.
+After the job finishes successfully, examine the `log` file for memory and disk usage, and update the requests in the submit file. In [Exercise 2.1](/materials/day4/part2-ex1-blast-proxy) (after the next lecture) you'll submit many jobs at once *and* use a different method for handling the `pdbaa_files.tar.gz` file, which is a bit too large to use regular file transfer when submitting many jobs.
 
 
