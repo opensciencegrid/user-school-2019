@@ -70,16 +70,20 @@ You can use the <code>condor_status</code> command just as you did yesterday to 
 <li>Log in to <code>learn.chtc.wisc.edu</code> in one window and <code>training.osgconnect.net</code> in the other</li>
 <li>Run <code>condor_status</code> in both windows</li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For <code>training.osgconnect.net</code> you will need to add <code>-pool flock.opensciencegrid.org</code> to your <code>condor_status</code> command.</p>
+</div>
 <p>Notice any differences?</p>
 <h2 id="comparing-operating-systems">Comparing operating systems<a class="headerlink" href="#comparing-operating-systems" title="Permanent link">&para;</a></h2>
 <p>To really see differences between slots in the local cluster vs the OSG, you will want to compare the slot ClassAds
 between the two pools.
 Rather than inspecting the very long ClassAd for each slot, you will look at a specific attribute called <code>OpSysAndVer</code>,
 which tells us the operating system version of the machine where a slot resides.
-An easy way to show this attribute for all slots is by using <code>condor_status</code> in conjunction with the <code>-autoformat</code>
-option.
-<code>-autoformat</code> like the <code>-format</code> option you learned about yesterday will print out the attributes you're interested in
-for each slot but as you probably guessed, it does some automatic formatting for you.
+An easy way to show this attribute for all slots is by using <code>condor_status</code> in conjunction with the <code>-autoformat</code> (or
+<code>-af</code> for short) option.
+<code>-autoformat</code> like the <code>-format</code> option you learned about earlier today will print out the attributes you're interested
+in for each slot but as you probably guessed, it does some automatic formatting for you.
 So to show the operating system and version of each slot, run the following command in both of your terminal windows:</p>
 <div class="codehilite"><pre><span></span><span class="gp">user@submit-host $</span> condor_status -autoformat OpSysAndVer
 </pre></div>
@@ -96,11 +100,6 @@ Your command line should look something like this:</p>
 </pre></div>
 
 
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For <code>training.osgconnect.net</code> you will need to add the flag <code>-pool flock.opensciencegrid.org</code> to your <code>condor_status</code>
-command.</p>
-</div>
 <p>Can you spot the differences between the two pools now?</p>
 <h2 id="submitting-probe-jobs">Submitting probe jobs<a class="headerlink" href="#submitting-probe-jobs" title="Permanent link">&para;</a></h2>
 <p>Knowing the type and version of the operating systems is a step in the right direction to knowing what kind of software
@@ -150,7 +149,6 @@ of the script:</p>
 <li>Log in to <code>training.osgconnect.net</code></li>
 <li>Create and change into a new folder for this exercise, e.g. <code>monday-4.5</code></li>
 <li>Save the above script as a file named <code>sw_probe.sh</code></li>
-<li>As always, make sure that you can run your script from the command line before asking HTCondor to do so</li>
 <li>Create a submit file that runs <code>sw_probe.sh</code> 100 times and uses macros to write different <code>output</code>, <code>error</code>, and
     <code>log</code> files</li>
 <li>Submit your job and wait for the results</li>
