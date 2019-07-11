@@ -1,0 +1,9 @@
+executable = max_square.py
+
+request_memory = 50MB
+
+output = squares/square.out
+error = squares/square.err
+log = squares/square.log
+
+queue from find-anagrams.out arguments

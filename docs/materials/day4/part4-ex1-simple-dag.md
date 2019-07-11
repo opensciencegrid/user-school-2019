@@ -65,10 +65,10 @@ Submitting job(s).
 -----------------------------------------------------------------------
 ```
 
-In the second window, watch the queue:
+In the second window, watch the queue (what you see may be slightly different):
 
 ``` console
-username@learn $ watch -n 10 condor_q -nobatch
+username@learn $ watch -n 10 condor_q -nobatch -wide:80
 
 -- Submitter: learn.chtc.wisc.edu : <128.104.100.55:9618?sock=28867_10e4_2> : learn.chtc.wisc.edu
  ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD               
@@ -97,7 +97,7 @@ username@learn $ watch -n 10 condor_q -nobatch
 #%RED%<Ctrl-C>%ENDCOLOR%
 ```
 
-In the third window, watch what DAGMan does:
+In the third window, watch what DAGMan does (what you see may be slightly different):
 
 ``` console
 username@learn $ tail -f --lines=500 simple.dag.dagman.out
@@ -282,7 +282,7 @@ username@learn $ cat simple.log
 ...
 ```
 
-Looking at DAGMan's various files, we see that DAGMan itself ran as a Condor job (specifically, a scheduler universe job).
+Looking at DAGMan's various files, we see that DAGMan itself ran as a job (specifically, a "scheduler" universe job).
 
 ``` console
 username@learn $ ls simple.dag.*
@@ -312,7 +312,7 @@ environment = _CONDOR_DAGMAN_LOG=simple.dag.dagman.out;_CONDOR_MAX_DAGMAN_LOG=0
 queue
 ```
 
-IF you want to clean up some of these files (you may not want to, at least not yet):
+If you want to clean up some of these files (you may not want to, at least not yet), run:
 
 ``` console
 username@learn $ rm simple.dag.*

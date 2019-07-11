@@ -86,7 +86,7 @@ log                     = montage.log
 request_memory          = 1GB
 request_disk            = 1GB
 request_cpus            = 1
-requirements            = OpSysMajorVer =?= 6
+requirements            = OpSysMajorVer =?= 7
 queue
 ```
 
@@ -131,10 +131,10 @@ Watch Your DAG
 
 Let’s follow the progress of the whole DAG:
 
-1.  Use the `watch` command to run `condor_q -nobatch` every 10 seconds:
+1.  Use the `watch` command to run `condor_q -nobatch -wide:80` every 10 seconds:
 
         :::console
-        username@learn $ watch -n 10 condor_q -nobatch
+        username@learn $ watch -n 10 condor_q -nobatch -wide:80
 
     %RED%**Here we see DAGMan running:**%ENDCOLOR% 
 

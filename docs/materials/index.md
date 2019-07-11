@@ -42,6 +42,14 @@ status: in progress
 - [Exercise 4.4: Hardware differences in the OSG](/materials/day1/part4-ex4-hardware-diffs.md)
 - [Exercise 4.5: Software differences in the OSG](/materials/day1/part4-ex5-software-diffs.md)
 
+## Tuesday
+
+### Tuesday Morning: Troubleshooting jobs
+
+- Lecture: Troubleshooting jobs ([PDF](/materials/day2/files/osgus19-day2-part1-troubleshooting.pdf);
+  [PPT](/materials/day2/files/osgus19-day2-part1-troubleshooting.pptx))
+- [Exercise 1.1: Troubleshooting a DAG](/materials/day2/part1-ex1-troubleshooting.md)
+
 <!--  All below here needs to be updated!
 
 ### Monday Afternoon: Automating Workflows with HTCondor's DAGMan
@@ -55,40 +63,37 @@ status: in progress
 
 ## Tuesday
 
-### Tuesday Afternoon: Security in OSG
+### Tuesday Morning: Security in OSG
 
 - Lecture: Security in OSG ([PDF](/materials/day2/files/osgus19-day2-part3-security.pdf);
   [PPT](/materials/day2/files/osgus19-day2-part3-security.pptx))
 
-### Tuesday Afternoon: Troubleshooting jobs
+### Tuesday Afternoon: Software Portability
 
-- Lecture: Troubleshooting jobs ([PDF](/materials/day2/files/osgus19-day2-part4-troubleshooting.pdf);
-  [PPT](/materials/day2/files/osgus19-day2-part4-troubleshooting.pptx))
-- [Exercise 3.1: Troubleshooting a DAG](/materials/day2/part3-ex1-troubleshooting.md)
-
-### Tuesday Afternoon: Connecting to OSG
-
-- Lecture: Ways to Connect to OSG ([PDF](/materials/day2/files/osgus19-day2-part5-ways-to-connect.pdf))
+- Lecture: Software Portability for DHTC ([PDF](/materials/day2/files/osgus19-day2-part3-software-portability.pdf); [PPT](/materials/day3/files/osgus19-day2-part3-software-portability.pptx))
+- [Exercise 3.1: Compiling programs for portability](/materials/day2/part3-ex1-compiling.md)
+- [Exercise 3.2: Using a pre-compiled binary](/materials/day2/part3-ex2-precompiled.md)
+- [Exercise 3.3: Using a wrapper script](/materials/day2/part3-ex3-wrapper.md)
+- [Exercise 3.4: Pre-packaging code](/materials/day2/part3-ex4-prepackaged.md)
+- [Bonus Exercise 3.5: Passing Arguments Through the Wrapper Script](/materials/day2/part3-ex5-arguments.md)
+- Lecture: Interpreted Languages for DHTC
+- [Exercise 2.1: Pre-packaging Python](/materials/day2/part4-ex1-python-built.md)
+- [Exercise 2.2: In-job installation of Python](/materials/day2/part4-ex2-python-install.md)
 
 ## Wednesday
 
-### Wednesday Morning: Software Portability
-
-- Lecture: Software Portability for DHTC ([PDF](/materials/day3/files/osgus19-day3-part1-software-portability.pdf); [PPT](/materials/day3/files/osgus19-day3-part1-software-portability.pptx))
-- [Exercise 1.1: Compiling programs for portability](/materials/day3/part1-ex1-compiling.md)
-- [Exercise 1.2: Using a pre-compiled binary](/materials/day3/part1-ex2-precompiled.md)
-- [Exercise 1.3: Using a wrapper script](/materials/day3/part1-ex3-wrapper.md)
-- [Exercise 1.4: Pre-packaging code](/materials/day3/part1-ex4-prepackaged.md)
-- [Bonus Exercise 1.5: Passing Arguments Through the Wrapper Script](/materials/day3/part1-ex5-arguments.md)
-
-### Wednesday Morning: Software Limitations
+### Wednesday Morning: Software Modules, Licensing
 
 - Lecture: Considerations for licensing and programming packages
   ([PDF](/materials/day3/files/osgus19-day3-part2-software-license-interpret.pdf); [PPT](/materials/day3/files/osgus19-day3-part2-software-license-interpret.pptx))
-- [Exercise 2.1: Compile and run Matlab code](/materials/day3/part2-ex1-matlab.md)
-- [Exercise 2.2: Pre-packaging Python](/materials/day3/part2-ex2-python-built.md)
-- [Exercise 2.3: In-job installation of Python](/materials/day3/part2-ex3-python-install.md)
-- [Bonus Exercise 2.4: Using containers](/materials/day3/part2-ex4-containers.md)
+- [Exercise 1.1: Try an OSG Connect software module](/materials/day3/part1-ex1-connect-start.md)
+- [Exercise 1.2: Compile and run Matlab code](/materials/day3/part1-ex2-matlab.md)
+
+### Wednesday Morning: Containers
+
+- [Exercise 2.1: Use Singularity from OSG Connect](/materials/day3/part2-ex1-singularity.md)
+- [Exercise 2.2: Use Singularity to Run Tensorflow (Optional)](/materials/day3/part2-ex2-tensorflow-singularity.md)
+- [Exercise 2.3: Using Docker](/materials/day3/part2-ex3-docker.md)
 
 ### Wednesday Afternoon: On Your Own
 
