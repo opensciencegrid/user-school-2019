@@ -75,9 +75,10 @@ Once you have satisfactory output, move onto the next section.
 
 The next step of the workflow uses the `max_square.py` script to find the largest square number, if any, for a given
 anagram word pair.
-Let's submit some jobs that runs `max_square.py` for all of the anagrams that you found in the previous section:
+Let's submit jobs that runs `max_square.py` for all of the anagram word pairs (i.e. one job per word pair) that you
+found in the previous section:
 
-1. Submit the accompanying `squares.sub` file from the tarball.
+1. Submit the accompanying `squares.sub` file from the tarball
 1. Resolve any issues that you encounter until you receive output for each job.
    Note that some jobs may have empty output since not all anagram word pairs are *square* anagram word pairs.
 

@@ -42,6 +42,14 @@ status: in progress
 - [Exercise 4.4: Hardware differences in the OSG](/materials/day1/part4-ex4-hardware-diffs.md)
 - [Exercise 4.5: Software differences in the OSG](/materials/day1/part4-ex5-software-diffs.md)
 
+## Tuesday
+
+### Tuesday Morning: Troubleshooting jobs
+
+- Lecture: Troubleshooting jobs ([PDF](/materials/day2/files/osgus19-day2-part1-troubleshooting.pdf);
+  [PPT](/materials/day2/files/osgus19-day2-part1-troubleshooting.pptx))
+- [Exercise 1.1: Troubleshooting a DAG](/materials/day2/part1-ex1-troubleshooting.md)
+
 <!--  All below here needs to be updated!
 
 ### Monday Afternoon: Automating Workflows with HTCondor's DAGMan
@@ -59,12 +67,6 @@ status: in progress
 
 - Lecture: Security in OSG ([PDF](/materials/day2/files/osgus19-day2-part3-security.pdf);
   [PPT](/materials/day2/files/osgus19-day2-part3-security.pptx))
-
-### Tuesday Morning: Troubleshooting jobs
-
-- Lecture: Troubleshooting jobs ([PDF](/materials/day2/files/osgus19-day2-part4-troubleshooting.pdf);
-  [PPT](/materials/day2/files/osgus19-day2-part4-troubleshooting.pptx))
-- [Exercise 3.1: Troubleshooting a DAG](/materials/day2/part3-ex1-troubleshooting.md)
 
 ### Tuesday Afternoon: Software Portability
 
