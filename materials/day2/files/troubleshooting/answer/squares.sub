@@ -1,0 +1,61 @@
+executable = max_square.py
+
+# SOLUTION
+# ========
+# Problem:
+#    Some jobs are held
+#
+# Where to find more info:
+#     `condor_q -held` and squares/square-*.log files
+#
+# Solution:
+#    max_square.py consumes variable amounts of memory.
+#    There are two ways to solve this problem:
+#
+#    1. Use `condor_qedit <job ID> RequestMemory <# of MBs>` followed by
+#       `condor_release <job ID> for each job ID.
+#    2. `condor_rm` your jobs, add a 'request_memory' line to the submit
+#       file, and resubmit the job
+
+request_memory = 150MB
+
+# SOLUTION
+# ========
+# Problem:
+#     Job is held due to a missing 'squares' directory
+#
+# Where to find more info:
+#    condor_q -held -> hold reason
+#
+# Solution:
+#     Create the directory with `mkdir squares`
+
+# SOLUTION
+# ========
+# Problem:
+#    Jobs only result in single output, error, and log files
+#
+# Where to find more info:
+#    squares/square.log -> multiple jobs writing to the same files
+#
+# Solution:
+#    Use $(Process) to create separate output, error, and log files
+
+output = squares/square-$(Process).out
+error = squares/square-$(Process).err
+log = squares/square-$(Process).log
+
+# SOLUTION
+# ========
+# Problem:
+#    Job fails to submit
+#
+# Where to find more info:
+#    In the condor_submit failure message, "can't open file"
+#
+# Solution:
+#    Fix the 'queue from' syntax so that each line of the
+#    find-anagrams.sub output is used as 'arguments' for each job.
+#    https://htcondor.readthedocs.io/en/v8_9_2/users-manual/submitting-a-job.html#using-the-power-and-flexibility-of-the-queue-command
+
+queue arguments from find-anagrams.out
