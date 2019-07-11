@@ -21,6 +21,7 @@ pages:
   - Curriculum:
     - High-level overview:        curriculum/overview.md
     - Detailed schedule:          curriculum/detailed-schedule.md
+    - Final assignment:           curriculum/assignment.md
   - Materials:
     - Overview:                   materials/index.md
     - Monday Exercises:
