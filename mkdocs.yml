@@ -76,6 +76,7 @@ pages:
     - Meals at the School:        logistics/meals.md
     - Fun in Madison:             logistics/fun.md
     - Wednesday activities:       logistics/wednesday-activities.md
+    - Reimbursements:             logistics/reimbursements.md
 
 markdown_extensions:
   - admonition
