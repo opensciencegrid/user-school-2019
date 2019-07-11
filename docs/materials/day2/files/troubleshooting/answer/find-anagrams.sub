@@ -1,0 +1,75 @@
+# SOLUTION
+# ========
+# Problem:
+#    Job fails to submit
+#
+# Where to find more info:
+#    In the condor_submit failure message, "Executable file
+#    find_anagrams.py is a script with CRLF (DOS/Win) line endings"
+#
+# Solution:
+#    Convert the file using `dos2unix find_anagrams.py`
+
+executable = find_anagrams.py
+arguments = p098_words.txt
+
+# SOLUTION
+# ========
+# Problem:
+#    Jobs complete successfully without output
+#
+# Where to find more info:
+#    condor_q will show that your job has completed but 'ls' will show
+#    no new files in the directory
+#
+# Solution:
+#    Specify 'output'. It's always a good idea to also specify 'error'
+#    and 'log'!
+
+output = find-anagrams.out
+error = find-anagrams.err
+log = find-anagrams.log
+
+# SOLUTION
+# ========
+# Problem:
+#    Job remains idle indefinitely
+#
+# Where to find more info:
+#    condor_q -better <job ID> -> requested too much memory
+#
+# Solution:
+#    1. `condor_rm` the job and remove the 'request_memory' line.
+#    2. `condor_submit` find-anagrams.sub
+#    3. Set 'request_memory' and resubmit the job
+#       (100MB is a safe default starting point.)
+#
+#    Alternatively, use `condor_qedit <JOB ID> RequestMemory 100`
+
+request_memory = 100MB
+
+# SOLUTION
+# ========
+# Problem:
+#    Job is held due to a typo in transfer_input_files
+#
+# Where to find more info:
+#    condor_q -held -> hold reason
+#
+# Solution:
+#   Refer to the correct input filename in transfer_input_files
+
+transfer_input_files = p098_words.txt
+
+# SOLUTION
+# ========
+# Problem:
+#    Job fails to submit
+#
+# Where to find more info:
+#    In the condor_submit failure message, "no queue statement"
+#
+# Solution:
+#    Add a 'queue' statement!
+
+queue
