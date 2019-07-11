@@ -139,7 +139,7 @@ lobby by ~5:40&nbsp;p.m. and will leave for Union South at around 6:00 p.m.
 |  1:20    |  1:40    | High Throughput Computing in Your Backyard: Urban Hydrology Applications | Carolyn Voter    |
 |  1:45    |  2:05    | Using HTC to Understand and Communicate Appropriate Uses of Cross-Validation in Psychological Science | Sarah Sant&rsquo;Ana |
 |  2:10    |  2:30    | A Self-Stabilizing Metasurface Laser Sail to Explore the Stars | Joel Siegel |
-|  2:35    |  2:55    | Title TBD                                               | Edgar Spalding |
+|  2:35    |  2:55    | Measuring Plant Phenotypes with High Throughput Computing | Edgar Spalding |
 |  2:55    |  3:25    | Break and Q&A                                           |                  |
 |  3:25    |  4:40    | Principles for High Throughput Computing (lecture)      | Tim Cartwright   |
 |  4:40    |  4:45    | Short break                                             |                  |
