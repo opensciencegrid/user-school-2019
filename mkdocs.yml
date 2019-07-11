@@ -50,6 +50,7 @@ pages:
       - Exercise 4.4:             materials/day1/part4-ex4-hardware-diffs.md
       - Exercise 4.5:             materials/day1/part4-ex5-software-diffs.md
     - Tuesday Exercises:
+      - Exercise 1.1:             materials/day2/part1-ex1-troubleshooting.md
       - Exercise 3.1:             materials/day2/part3-ex1-compiling.md
       - Exercise 3.2:             materials/day2/part3-ex2-precompiled.md
       - Exercise 3.3:             materials/day2/part3-ex3-wrapper.md
