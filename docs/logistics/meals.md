@@ -43,15 +43,15 @@ in person.
 ### Sunday
 
 Dinner:
-- Dinner rolls
-- Cold beverages
-- Mixed greens with balsamic and ranch dressings
-- Wisconsin cheese board with crackers (including some GF ones)
-- Curried stew (vegan)
-- Blackened salmon with grapefruit slaw
-- Roasted BBQ chicken (bone in)
-- Seasonal vegetable
-- Sour cream hash brown potatoes
-- Basmati rice
+-   Dinner rolls (vegetarian)
+-   Cold beverages
+-   Mixed greens with balsamic and ranch dressings (vegetarian)
+-   Wisconsin cheese board with crackers (vegetarian, including some GF ones)
+-   Curried stew (vegan)
+-   Blackened salmon with grapefruit slaw
+-   Roasted BBQ chicken (bone in)
+-   Seasonal vegetable (vegetarian)
+-   Sour cream hash brown potatoes (vegetarian)
+-   Basmati rice (vegetarian)
 
 All items will be labeled for dietary concerns.
