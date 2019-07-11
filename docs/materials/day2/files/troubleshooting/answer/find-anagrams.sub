@@ -39,14 +39,12 @@ log = find-anagrams.log
 #    condor_q -better <job ID> -> requested too much memory
 #
 # Solution:
-#    1. `condor_rm` the job and remove the 'request_memory' line.
-#    2. `condor_submit` find-anagrams.sub
-#    3. Set 'request_memory' and resubmit the job
-#       (100MB is a safe default starting point.)
-#
-#    Alternatively, use `condor_qedit <JOB ID> RequestMemory 100`
+#    1. `condor_rm` the job
+#    2. Set a new 'request_memory' value in the submit file (remember
+#       1GB is a good starting point!)
+#    3. Resubmit the job: `condor_submit` find-anagrams.sub
 
-request_memory = 100MB
+request_memory = 1GB
 
 # SOLUTION
 # ========
