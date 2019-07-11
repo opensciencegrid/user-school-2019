@@ -62,9 +62,9 @@ You can adjust the level of compression of `tar` by prepending your command with
 compression is between `best` and `fast`).
 
 1.  Use `wget` to download the following files from our web server:
-    1.  Text file: <http://proxy.chtc.wisc.edu/SQUID/osgschool18/random_text>
-    1.  Archive: <http://proxy.chtc.wisc.edu/SQUID/osgschool18/pdbaa.tar.gz>
-    1.  Image: <http://proxy.chtc.wisc.edu/SQUID/osgschool18/obligatory_cat.jpg>
+    1.  Text file: <http://proxy.chtc.wisc.edu/SQUID/osgschool19/random_text>
+    1.  Archive: <http://proxy.chtc.wisc.edu/SQUID/osgschool19/pdbaa.tar.gz>
+    1.  Image: <http://proxy.chtc.wisc.edu/SQUID/osgschool19/obligatory_cat.jpg>
 1.  Use `tar` on each file and compare the sizes of the original file and the compressed version.
 
 Which files were compressed the least? Why?
