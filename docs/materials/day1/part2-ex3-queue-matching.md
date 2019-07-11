@@ -14,7 +14,7 @@ In all cases of submitting many jobs from a single submit file, the key question
 -   What makes each job unique? In other words, there is one job per \_\_\_\_\_?
 -   So, how should you tell HTCondor to distinguish each job?
 
-For `queue *N*`, jobs are distinguished simply by the built-in "process" varialbe. But with the remaining `queue` forms, you help HTCondor distinguish jobs by other, more meaningful *custom* variables.
+For `queue *N*`, jobs are distinguished simply by the built-in "process" variable. But with the remaining `queue` forms, you help HTCondor distinguish jobs by other, more meaningful *custom* variables.
 
 Counting Words in Files
 -----------------------
@@ -80,7 +80,7 @@ To use the script:
 1.  Download and unpack some books from Project Gutenberg:
 
         :::console
-        username@learn $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool18/books.zip
+        username@learn $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/books.zip
         username@learn $ unzip books.zip
 
 1.  Verify the script by running it on one book manually.
