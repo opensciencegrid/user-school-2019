@@ -18,8 +18,11 @@ major difference: the slots are different!
 You can use the `condor_status` command just as you did yesterday to inspect these differences.
 
 1.  Open two terminal windows side-by-side
-2.  Log in to `learn.chtc.wisc.edu` in one window and `training.osgconnect.net` in the other
-3.  Run `condor_status` in both windows
+1.  Log in to `learn.chtc.wisc.edu` in one window and `training.osgconnect.net` in the other
+1.  Run `condor_status` in both windows
+
+!!! note
+    For `training.osgconnect.net` you will need to add `-pool flock.opensciencegrid.org` to your `condor_status` command.
 
 Notice any differences?
 
@@ -30,10 +33,10 @@ To really see differences between slots in the local cluster vs the OSG, you wil
 between the two pools.
 Rather than inspecting the very long ClassAd for each slot, you will look at a specific attribute called `OpSysAndVer`,
 which tells us the operating system version of the machine where a slot resides.
-An easy way to show this attribute for all slots is by using `condor_status` in conjunction with the `-autoformat`
-option.
-`-autoformat` like the `-format` option you learned about yesterday will print out the attributes you're interested in
-for each slot but as you probably guessed, it does some automatic formatting for you.
+An easy way to show this attribute for all slots is by using `condor_status` in conjunction with the `-autoformat` (or
+`-af` for short) option.
+`-autoformat` like the `-format` option you learned about earlier today will print out the attributes you're interested
+in for each slot but as you probably guessed, it does some automatic formatting for you.
 So to show the operating system and version of each slot, run the following command in both of your terminal windows:
 
 ``` console
@@ -51,10 +54,6 @@ Your command line should look something like this:
 ``` console
 user@learn $ condor_status -autoformat OpSysAndVer | sort | uniq -c
 ```
-
-!!! note
-    For `training.osgconnect.net` you will need to add the flag `-pool flock.opensciencegrid.org` to your `condor_status`
-    command.
 
 Can you spot the differences between the two pools now?
 
@@ -111,12 +110,11 @@ get_version 'nslookup'
 For this part of the exercise, try creating a submit file without referring to previous exercises!
 
 1.  Log in to `training.osgconnect.net`
-2.  Create and change into a new folder for this exercise, e.g. `monday-4.5`
-3.  Save the above script as a file named `sw_probe.sh`
-4.  As always, make sure that you can run your script from the command line before asking HTCondor to do so
-5.  Create a submit file that runs `sw_probe.sh` 100 times and uses macros to write different `output`, `error`, and
+1.  Create and change into a new folder for this exercise, e.g. `monday-4.5`
+1.  Save the above script as a file named `sw_probe.sh`
+1.  Create a submit file that runs `sw_probe.sh` 100 times and uses macros to write different `output`, `error`, and
     `log` files
-6.  Submit your job and wait for the results
+1.  Submit your job and wait for the results
 
 Will you be able to do your research on the OSG with what's available?
 Don't fret if it doesn't look like you can: over the next few days, you'll learn how to make your jobs portable enough
