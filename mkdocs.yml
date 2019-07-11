@@ -21,13 +21,6 @@ pages:
   - Curriculum:
     - High-level overview:        curriculum/overview.md
     - Detailed schedule:          curriculum/detailed-schedule.md
-  - Logistics:
-    - General information:        logistics/index.md
-    - Visa requirements:          logistics/personal-info.md
-    - Travel planning:            logistics/travel.md
-    - Hotel information:          logistics/hotel.md
-    - Local transportation:       logistics/local-transportation.md
-    - School location:            logistics/location.md
   - Materials:
     - Overview:                   materials/index.md
     - Monday Exercises:
@@ -71,6 +64,13 @@ pages:
       - Exercise 4.3:             materials/day4/part4-ex3-complex-dag.md
       - Exercise 4.4:             materials/day4/part4-ex4-failed-dag.md
       - Bonus Exercises 4.5:      materials/day4/part4-ex5-challenges.md
+  - Logistics:
+    - General information:        logistics/index.md
+    - Visa requirements:          logistics/personal-info.md
+    - Travel planning:            logistics/travel.md
+    - Hotel information:          logistics/hotel.md
+    - Local transportation:       logistics/local-transportation.md
+    - School location:            logistics/location.md
 
 markdown_extensions:
   - admonition
