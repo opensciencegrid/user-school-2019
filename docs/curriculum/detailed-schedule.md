@@ -136,8 +136,8 @@ lobby by ~5:40&nbsp;p.m. and will leave for Union South at around 6:00 p.m.
 | 12:40    |  1:05    | Group photo; Tour of Wisconsin Institutes for Discovery | Lauren/Christina |
 |  1:05    |  1:15    | Walk back to Comp Sci                                   |                  |
 | **1:15** | **2:55** | **High-throughput computing showcase**                  |                  |
-|  1:20    |  1:40    | Title TBD                                               | Carolyn Voter    |
-|  1:45    |  2:05    | Title TBD                                               | Sarah Sant&rsquo;Ana |
+|  1:20    |  1:40    | High Throughput Computing in Your Backyard: Urban Hydrology Applications | Carolyn Voter    |
+|  1:45    |  2:05    | Using HTC to Understand and Communicate Appropriate Uses of Cross-Validation in Psychological Science | Sarah Sant&rsquo;Ana |
 |  2:10    |  2:30    | A Self-Stabilizing Metasurface Laser Sail to Explore the Stars | Joel Siegel |
 |  2:35    |  2:55    | Title TBD                                               | Edgar Spalding |
 |  2:55    |  3:25    | Break and Q&A                                           |                  |
