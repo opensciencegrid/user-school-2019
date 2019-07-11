@@ -14,12 +14,12 @@ This will not be a very careful study, but should give you some idea of one way 
 In the first two parts of the exercise, you will submit a bunch of jobs that differ only in how much memory each one
 requests;
 we call this a *parameter sweep*, in that we are testing many possible values of a parameter.
-We will request memory from 1–16 GB, doubling the memory each time.
+We will request memory from 8–128 GB, doubling the memory each time.
 One set of jobs will be submitted locally, and the other, identical set of jobs will be submitted to OSG.
 You will check the queue periodically to see how many jobs have completed and how many are still waiting to run.
 
-Part 1: Checking on the availability of memory (locally)
---------------------------------------------------------
+Checking CHTC memory availability
+---------------------------------
 
 In this first part, you will create the submit file for both the local and OSG jobs, then submit the local set.
 
@@ -39,8 +39,8 @@ queue <# of jobs> <variable> in (
 )
 ```
 
-For example, to submit 6 jobs that sleep for `5`, `5`, `10`, `10`, `15`, and `15` seconds, you could write the following
-submit file:
+For example, to submit 6 total jobs that sleep for `5`, `5`, `10`, `10`, `15`, and `15` seconds, you could write the
+following submit file:
 
 ```
 executable = /bin/sleep
@@ -56,19 +56,19 @@ Try submitting this yourself and check the jobs that end up in the queue with `c
 
 ### Create the submit files
 
-To create our parameter sweep, we will create a **new** submit file with multiple queue statements and change the value of our
-parameter (`request_memory`) for each batch of jobs.
+To create our parameter sweep, we will create a **new** submit file with multiple queue statements and change the value
+of our parameter (`request_memory`) for each batch of jobs.
 
 1.  If not already, log in to `learn.chtc.wisc.edu`
-1.  Create and change into a new subdirectory called `monday-4.4` – doing things this way will make Part 2 much easier
+1.  Create and change into a new subdirectory called `monday-4.4`
 1.  Create a submit file that is named `sleep.sub` that executes the command `/bin/sleep 300`.
 
     !!! note
         If you do not remember all of the submit statements to write this file, or just to go faster, find a similar
         submit file from yesterday.
-        Copy the file and rename it here, and make sure the argument to `sleep` is `60`.
+        Copy the file and rename it here, and make sure the argument to `sleep` is `300`.
 
-1.  Use the `queue in` syntax to submit 10 jobs each for the following memory requests: 4, 8, 16, 32, and 64 GB of memory.
+1.  Use the `queue in` syntax to submit 10 jobs each for the following memory requests: 8, 16, 32, 64, and 128 GB.
     You should have 10 jobs requesting 4GB, 10 jobs requesting 8GB, etc.
 1.  Save the submit file and exit your editor
 1.  Submit your jobs
@@ -94,25 +94,25 @@ Consider making a little table like the one below to track progress.
 | 32 GB  | 10            | 9             |               |
 | 64 GB  | 10            | 10            |               |
 
-In the meantime, between checking on your local jobs, start Part 2 – taking a break every few minutes to record progress
-on your local jobs.
+In the meantime, between checking on your local jobs, start the next section – taking a break every few minutes to
+record progress on your local jobs.
 
-Part 2: Checking on the availability of memory (remotely)
----------------------------------------------------------
+Checking OSG memory availability
+--------------------------------
 
-For the second part of the exercise, you will just copy over the directory from part 1 on `learn.chtc.wisc.edu` to
-`training.osgconnect.net` and resubmit your jobs to the OSG.
+For the second part of the exercise, you will just copy over the directory from the [above section](#checking-chtc-memory-availability)
+on `learn.chtc.wisc.edu` to `training.osgconnect.net` and resubmit your jobs to the OSG.
 If you get stuck during the copying process, refer to [exercise 4.2](/materials/day1/part4-ex2-login-scp.md).
 
 ### Monitoring the remote jobs
 
-As you did in part 1, use `condor_q` to track how your sleep jobs are doing.
+As you did in the first part, use `condor_q` to track how your sleep jobs are doing.
 You can move onto the next exercise but keep tracking the status of your jobs.
 After you are done with the [next exercise](/materials/day1/part4-ex5-software-diffs.md), come back to this exercise,
-and move onto part 3.
+and move onto analyzing the results.
 
-Part 3: Analyzing the results
------------------------------
+Analyzing the results
+---------------------
 
 Now that you've finished the other exercise, how many jobs have completed locally? How many have completed remotely?
 
