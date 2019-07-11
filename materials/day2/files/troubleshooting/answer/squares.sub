@@ -10,14 +10,12 @@ executable = max_square.py
 #
 # Solution:
 #    max_square.py consumes variable amounts of memory.
-#    There are two ways to solve this problem:
 #
-#    1. Use `condor_qedit <job ID> RequestMemory <# of MBs>` followed by
-#       `condor_release <job ID> for each job ID.
-#    2. `condor_rm` your jobs, add a 'request_memory' line to the submit
-#       file, and resubmit the job
+#    1. `condor_rm` your jobs
+#    2. Add a 'request_memory = 1GB' line to the submit file
+#    3. Resubmit your jobs
 
-request_memory = 150MB
+request_memory = 1GB
 
 # SOLUTION
 # ========
