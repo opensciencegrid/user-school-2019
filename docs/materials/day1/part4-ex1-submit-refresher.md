@@ -23,12 +23,11 @@ Now, let’s try to remember some basic HTCondor ideas from earlier today:
 1.  Download the geolocation code:
 
         :::console
-        username@learn $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/location-wrapper.sh \
-                         http://proxy.chtc.wisc.edu/SQUID/osgschool19/wn-geoip.tar.gz
+        user@learn $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/location-wrapper.sh \
+                     http://proxy.chtc.wisc.edu/SQUID/osgschool19/wn-geoip.tar.gz
 
     You will be using `location-wrapper.sh` as your executable and `wn-geoip.tar.gz` as an input file.
 
-1.  As always, ensure that your executable has the proper permissions (hint: try running it from the command line)
 1.  Create a submit file that generates **fifty** jobs that run `location-wrapper.sh`, transfers `wn-geoip.tar.gz` as an
     input file, and uses the `$(Process)` macro to write different `output` and `error` files.
     Also, add the following requirement to the submit file (it's not important to know what it does):
