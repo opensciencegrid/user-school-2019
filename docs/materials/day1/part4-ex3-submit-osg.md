@@ -49,7 +49,7 @@ you'll want organize your submit files, code, and input data separate from your 
    submit directory.
    
     !!! note "Tip"
-        Experiment with fewer job submissions until you're confident you have it right, then go back to submitting 1000
+        Experiment with fewer job submissions until you're confident you have it right, then go back to submitting 500
         jobs!
 
 1. Submit your file and track the status of your jobs.
