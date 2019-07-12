@@ -96,7 +96,7 @@ status: in progress
 ### Thursday Afternoon: Data Handling (continued)
 
 - Lecture: Large output and shared file systems; Data summary
-  ([PDF](/materials/day4/files/osgus19-day4-part4-output-shared-fs.pdf))
+  ([PDF](/materials/day4/files/osgus19-day4-part3-output-shared-fs.pdf))
 - [Exercise 3.1: Using a local shared filesystem for large input files](/materials/day4/part3-ex1-input.md)
 - [Exercise 3.2: Using a local shared filesystem for large output files](/materials/day4/part3-ex2-output.md)
 
