@@ -56,3 +56,122 @@ Dinner:
 - Basmati rice (vegetarian)
 
 All items will be labeled for dietary concerns.
+
+### Monday
+
+Breakfast:
+
+- Baked peaches and cream French toast
+- Fruit salad
+- Roasted red potatoes
+- Coffee, tea, juice, bottled water
+
+Lunch:
+
+- Lasagna (beef and vegetarian)
+- Tossed salad
+- Garlic bread sticks
+- Assorted cookies/dessert
+- Assorted soda, bottled water
+
+Afternoon:
+
+- Coffee, tea
+
+### Tuesday
+
+Breakfast (lighter than Monday/Wednesday/Friday):
+
+- Pastries and baked goods (muffins, bagels, danish)
+- Vanilla yogurt and granola
+- Coffee, tea, juice, bottled water
+
+Lunch:
+
+- Build-your-own tacos (chicken, beef, and vegan taco filling)
+- Taco toppings, tortillas, and hard taco shells
+- Refried pinto beans
+- Spanish style rice
+- Tortilla chips and salsa
+- Assorted cookies/dessert
+- Assorted soda, bottled water
+
+Afternoon:
+
+- Coffee, tea
+
+### Wednesday
+
+Breakfast:
+
+- Country scrambled egg and cheese casserole
+- Fruit salad
+- Breakfast potatoes
+- Coffee, tea, juice, bottled water
+
+Lunch:
+
+- Grilled chicken breast sandwiches
+- Black bean burgers
+- All-American potato salad
+- Italian pasta salad
+- Potato chips and French onion dip
+- Assorted cookies/dessert
+- Assorted soda, bottled water
+
+### Thursday
+
+Breakfast (lighter than Monday/Wednesday/Friday):
+
+- Pastries and baked goods (muffins, bagels, danish)
+- Vanilla yogurt and granola
+- Coffee, tea, juice, bottled water
+
+Lunch:
+
+- Enchiladas (chicken and vegan)
+- Refried pinto beans
+- Spanish style rice
+- Tortilla chips and salsa
+- Assorted cookies/dessert
+- Assorted soda, bottled water
+
+Afternoon:
+
+- Coffee, tea
+
+### Friday
+
+Breakfast:
+
+- Spinach and feta quiche
+- Fruit salad
+- Pastries and baked goods (muffins, bagels, danish)
+- Coffee, tea, juice, bottled water
+
+Lunch:
+
+- Curry (chicken and vegetarian)
+- Rice
+- Vegetable samosas with yogurt sauce
+- Naan bread
+- Assorted cookies/dessert
+- Assorted soda, bottled water
+
+Afternoon:
+
+- Coffee, tea
+
+Dinner:
+
+- Linguine and cavatappi pastas (vegetarian)
+- Wild mushroom ravioli with butternut cream sauce (vegetarian)
+- Grilled chicken breast (gluten-free)
+- Homemade beef and pork meatballs
+- Italian vegetable blend (vegan)
+- Breadsticks
+- Marinara (vegan/gluten-free) and Alfredo sauces (vegetarian)
+- Salad
+- Tiramisu (vegetarian)
+- Cannoli (vegetarian)
+- Assorted beverages
