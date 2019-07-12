@@ -50,24 +50,6 @@ status: in progress
   [PPT](/materials/day2/files/osgus19-day2-part1-troubleshooting.pptx))
 - [Exercise 1.1: Troubleshooting a DAG](/materials/day2/part1-ex1-troubleshooting.md)
 
-<!--  All below here needs to be updated!
-
-### Monday Afternoon: Automating Workflows with HTCondor's DAGMan
-
-- Lecture: HTCondor: More on Workflows ([PDF](/materials/day1/files/osgus19-day1-part4-dagman.pdf);[PPT](/materials/day1/files/osgus19-day1-part4-dagman.pptx))
-- [Exercise 4.1: Coordinating set of jobs: A simple DAG](/materials/day1/part4-ex1-simple-dag.md)
-- [Exercise 4.2: A brief detour through the Mandelbrot set](/materials/day1/part4-ex2-mandelbrot.md)
-- [Exercise 4.3: A more complex DAG](/materials/day1/part4-ex3-complex-dag.md)
-- [Exercise 4.4: Handling jobs that fail with DAGMan](/materials/day1/part4-ex4-failed-dag.md)
-- [Bonus Exercise 4.5: HTCondor challenges](/materials/day1/part4-ex5-challenges.md) (If and only if you have time)
-
-## Tuesday
-
-### Tuesday Morning: Security in OSG
-
-- Lecture: Security in OSG ([PDF](/materials/day2/files/osgus19-day2-part3-security.pdf);
-  [PPT](/materials/day2/files/osgus19-day2-part3-security.pptx))
-
 ### Tuesday Afternoon: Software Portability
 
 - Lecture: Software Portability for DHTC ([PDF](/materials/day2/files/osgus19-day2-part3-software-portability.pdf); [PPT](/materials/day3/files/osgus19-day2-part3-software-portability.pptx))
@@ -94,6 +76,18 @@ status: in progress
 - [Exercise 2.1: Use Singularity from OSG Connect](/materials/day3/part2-ex1-singularity.md)
 - [Exercise 2.2: Use Singularity to Run Tensorflow (Optional)](/materials/day3/part2-ex2-tensorflow-singularity.md)
 - [Exercise 2.3: Using Docker](/materials/day3/part2-ex3-docker.md)
+
+<!--  All below here needs to be updated!
+
+### Monday Afternoon: Automating Workflows with HTCondor's DAGMan
+
+- Lecture: HTCondor: More on Workflows ([PDF](/materials/day1/files/osgus19-day1-part4-dagman.pdf);[PPT](/materials/day1/files/osgus19-day1-part4-dagman.pptx))
+- [Exercise 4.1: Coordinating set of jobs: A simple DAG](/materials/day1/part4-ex1-simple-dag.md)
+- [Exercise 4.2: A brief detour through the Mandelbrot set](/materials/day1/part4-ex2-mandelbrot.md)
+- [Exercise 4.3: A more complex DAG](/materials/day1/part4-ex3-complex-dag.md)
+- [Exercise 4.4: Handling jobs that fail with DAGMan](/materials/day1/part4-ex4-failed-dag.md)
+- [Bonus Exercise 4.5: HTCondor challenges](/materials/day1/part4-ex5-challenges.md) (If and only if you have time)
+
 
 ### Wednesday Afternoon: On Your Own
 
