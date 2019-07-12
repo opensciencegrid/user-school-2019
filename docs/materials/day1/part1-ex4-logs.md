@@ -25,6 +25,8 @@ A job log file is updated throughout the life of a job, usually at key events. E
 000 (5739.000.000) 07/25 10:44:20 Job submitted from host: <128.104.100.43:9618?addrs=...>
 001 (5739.000.000) 07/25 10:45:11 Job executing on host: <128.104.55.42:9618?addrs=...>
 006 (5739.000.000) 07/25 10:45:20 Image size of job updated: 72
+040 (5739.000.000) 07/25 10:45:20 Started transferring output files
+040 (5739.000.000) 07/25 10:45:20 Finished transferring output files
 006 (5739.000.000) 07/25 10:46:11 Image size of job updated: 4072
 005 (5739.000.000) 07/25 10:46:11 Job terminated.
 ```
