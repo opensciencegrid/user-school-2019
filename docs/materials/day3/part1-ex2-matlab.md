@@ -34,7 +34,7 @@ The first step in making Matlab portable is compiling our Matlab script.
 To compile this code, we need to access the machines with the Matlab compiler installed.
 For this exercise, we will use the compilers installed on special CHTC build machines.
 In the CHTC pool, you can't use `ssh` to directly connect to these machines.
-Instead, you must submit an interactive job (like in yesterday's [Exercise 3.4](/materials/day2/part3-ex4-prepackaged)) that
+Instead, you must submit an interactive job (just like in yesterday's [Exercise 3.4](/materials/day2/part3-ex4-prepackaged)) that
 specifically requests these build machines.
 
 1.   Create a file called `compile.submit` with the lines below: 
