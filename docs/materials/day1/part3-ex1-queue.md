@@ -88,7 +88,6 @@ The output from this command is long and complex. Most of the attributes that HT
 MyType = "Job"
 Err = "sleep.err"
 UserLog = "/home/cat/1-monday-2.1-queue/sleep.log"
-JobUniverse = 5
 Requirements = ( IsOSGSchoolSlot =?= true ) &&
         ( TARGET.Arch == "X86_64" ) &&
         ( TARGET.OpSys == "LINUX" ) &&
@@ -123,7 +122,7 @@ Arguments = "120"
 
 Now examine each saved ClassAd file. Here are a few things to look for:
 
--   Can you find attributes that came from your submit file? (E.g., JobUniverse, Cmd, Arguments, Out, Err, UserLog, and so forth)
+-   Can you find attributes that came from your submit file? (E.g., Cmd, Arguments, Out, Err, UserLog, and so forth)
 -   Can you find attributes that could have come from your submit file, but that HTCondor added for you? (E.g., Requirements)
 -   How many of the following attributes can you guess the meaning of?
     -   DiskUsage
