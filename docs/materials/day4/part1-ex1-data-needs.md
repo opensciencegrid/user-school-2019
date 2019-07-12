@@ -14,7 +14,7 @@ This exercise's goal is to learn to think critically about an application's data
 ### Setup
 
 -   Make sure you are logged into `training.osgconnect.net`.
--   Navigate to your `stash` directory within the home directory, and create a directory for this exercise named `thur-blast`.
+-   Navigate to your local scratch directory and create a directory for this exercise named `thur-blast`.
 
 #### Copy the blast executables:
 

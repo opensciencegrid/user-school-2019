@@ -44,7 +44,8 @@ user@training $ ./ffmpeg -i input.mp4 -b:v 400k -s 640x360 output.mp4
 
 To get the `ffmpeg` program do the following:
 
-1.  **On training.osgconnect.net**, create a directory for this exercise `~/thur-data-ffmpeg` and move into it.
+1.  **On training.osgconnect.net**, create a directory for this exercise `thur-data-ffmpeg` in your local scratch
+    directory and change into it.
 2.  We'll be downloading the `ffmpeg` pre-built static binary originally from this page: <http://johnvansickle.com/ffmpeg/>. 
 
         :::console
@@ -59,7 +60,7 @@ To get the `ffmpeg` program do the following:
 Script
 ------
 
-We want to write a script that uses `ffmpeg` to convert a `.mov` file to a smaller format. Our script will need to *copy* that movie file from Stash to the job's current working directory (as in the [previous exercise](/materials/day4/part2-ex2-stashcache-shared.md), *run* the appropriate `ffmpeg` command,  and then *remove* the original movie file so that it doesn't get transferred back to the submit server. This last step is  particularly important, as otherwise you will have large files transferring into the submit server and filling up your home directory space.
+We want to write a script that uses `ffmpeg` to convert a `.mov` file to a smaller format. Our script will need to *copy* that movie file from Stash to the job's current working directory (as in the [previous exercise](/materials/day4/part2-ex2-stashcache-shared.md), *run* the appropriate `ffmpeg` command,  and then *remove* the original movie file so that it doesn't get transferred back to the submit server. This last step is  particularly important, as otherwise you will have large files transferring into the submit server and filling up your local scratch directory space.
 
 Create a file called `run_ffmpeg.sh`, that does the steps described above. Use the name of the smallest `.mov` file in the `ffmpeg` command. Once you've written your script, check it against the example below: 
 
