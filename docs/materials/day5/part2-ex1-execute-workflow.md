@@ -50,7 +50,7 @@ Write a single DAG file for the workflow, including:
 !!! note
     You may need to think about how each `tar` step works for deciding on "PRE" or "POST" scripts for each.
 
-If you need a refresher on what a DAG looks like, see [this exercise from Monday](/materials/day1/part4-ex3-complex-dag.md) or the [HTCondor manual](http://research.cs.wisc.edu/htcondor/manual/current/2_10DAGMan_Applications.html)
+If you need a refresher on what a DAG looks like, see [this exercise from Thursday](/materials/day4/part4-ex3-complex-dag.md) or the [HTCondor manual](https://htcondor.readthedocs.io/en/v8_9_2/users-manual/dagman-applications.html)
 
 To **quickly** check that you've got the details of the DAG correct, you can modify the *permutation* submit files to run a) fewer permutations per job (in the `arguments` line) and b) fewer jobs overall (after `queue`).  
 

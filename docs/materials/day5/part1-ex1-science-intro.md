@@ -49,7 +49,7 @@ View Joe's files
 Log in to `learn.chtc.wisc.edu` and move to a desired location in your home directory. Enter the following commands to download and decompress/untar Joe’s job ingredients:
 
 ```console
-username@learn $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool18/WorkflowExercise.tar.gz
+username@learn $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/WorkflowExercise.tar.gz
 username@learn $ tar -xzf WorkflowExercise.tar.gz
 ```
 
