@@ -22,6 +22,12 @@ If you no longer have it, please ask the instructors for help.
 
 Once you have your account details, `ssh` in to the machine and take a look around.
 
+!!! note "IMPORTANT"
+    For performance reasons, you will be doing all of your work on `training.osgconnect.net` out of
+    your local scratch directory, `/local-scratch/<USERNAME>/` replacing `<USERNAME>` with your own username.
+
+    Do **NOT** use your home directory for job submission.
+
 Preparing files for transfer
 ----------------------------
 
@@ -83,26 +89,26 @@ user@learn $ scp <source 1> <source 2>...<source N> <remote host>:<remote path>
 ```
 
 For example, if I were logged in to `learn.chtc.wisc.edu` and wanted to copy the file `foo` from my current directory to
-my home directory on `training.osgconnect.net`, the command would look like this:
+my local scratch directory on `training.osgconnect.net`, the command would look like this:
 
 ```console
-user@learn $ scp foo training.osgconnect.net:~
+user@learn $ scp foo training.osgconnect.net:/local-scratch/blin/
 ```
 
 Additionally, I could also pull files from `training.osgconnect.net` to `learn.chtc.wisc.edu`.
-The following command copies `bar` from my home directory on `training.osgconnect.net` to my current directory on
-`learn.chtc.wisc.edu`:
+The following command copies `bar` from my local scratch directory on `training.osgconnect.net` to my current directory
+on `learn.chtc.wisc.edu`:
 
 ``` console
-user@learn $ scp training.osgconnect.net:~/bar .
+user@learn $ scp training.osgconnect.net:/local-scratch/blin/bar .
 ```
 
 You can also copy folders between hosts using the `-r` option.
 If I kept all my files from Monday's exercise 1.3 in a folder named `monday-1.3` on `learn.chtc.wisc.edu`, I could use
-the following command to copy them to my home directory on `training.osgconnect.net`:
+the following command to copy them to my local scratch directory on `training.osgconnect.net`:
 
 ``` console
-user@learn $ scp -r monday-1.3 training.osgconnect.net:~
+user@learn $ scp -r monday-1.3 training.osgconnect.net:/local-scratch/blin/
 ```
 
 Try copying the tarball you created earlier in this exercise on `learn.chtc.wisc.edu` to `training.osgconnect.net`.

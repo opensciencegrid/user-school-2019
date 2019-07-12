@@ -19,7 +19,7 @@ You will be using the same exact payload as you did in [exercise 4.1](/materials
 Now to create submit files that will run in the OSG!
 
 1. If not already logged in, `ssh` into `training.osgconnect.net`
-1. Change to `/local-scratch/<USERNAME>` replacing 
+1. Change to your local scratch directory
 1. Make a new directory for this exercise, `tuesday-4.3` and change into it
 1. Use `scp` or `rsync` from [exercise 4.2](/materials/day1/part4-ex2-login-scp) to copy over the executable and input
    file from the `monday-4.1` directory from `learn`.
