@@ -68,7 +68,7 @@ pages:
       - Exercise 2.2:             materials/day4/part2-ex2-stashcache-shared.md
       - Exercise 2.3:             materials/day4/part2-ex3-stashcache-unique.md
       - Exercise 3.1:             materials/day4/part3-ex1-input.md
-      - Exercise 3.1:             materials/day4/part3-ex2-output.md
+      - Exercise 3.2:             materials/day4/part3-ex2-output.md
       - Exercise 4.1:             materials/day4/part4-ex1-simple-dag.md
       - Exercise 4.2:             materials/day4/part4-ex2-mandelbrot.md
       - Exercise 4.3:             materials/day4/part4-ex3-complex-dag.md
