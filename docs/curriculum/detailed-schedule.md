@@ -31,12 +31,12 @@ All events happen in the Computer Sciences building (1210 West Dayton Street), R
     </tr>
 </table>
 
-We will have instructors at the hotel lobbies prior to dinner, and walk with
-groups to Union South.  Join us for the walk if you want, or otherwise meet us
-in the dinner room by 6:30 p.m.
+There will be instructors in the hotel lobby prior to dinner, and they will walk with groups to Union South.  Join us
+for the walk if you want, possibly work with the instructors and hotel to take the hotel shuttle (if available), or
+otherwise meet us at the dinner room by 6:30 p.m.
 
-For those joining us to walk over together, instructors will be at the hotel
-lobby by ~5:40&nbsp;p.m. and will leave for Union South at around 6:00 p.m.
+For those joining us to walk over together, instructors will be at the hotel lobby by about 5:30&nbsp;p.m. and will
+leave for Union South at around 5:50&nbsp;p.m.; to join the group, be in the lobby by 5:45&nbsp;p.m.
 
 
 ## Monday, 15 July 2018
