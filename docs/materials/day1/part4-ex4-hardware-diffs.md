@@ -14,7 +14,7 @@ This will not be a very careful study, but should give you some idea of one way 
 In the first two parts of the exercise, you will submit a bunch of jobs that differ only in how much memory each one
 requests;
 we call this a *parameter sweep*, in that we are testing many possible values of a parameter.
-We will request memory from 8–128 GB, doubling the memory each time.
+We will request memory from 8–64GB, doubling the memory each time.
 One set of jobs will be submitted locally, and the other, identical set of jobs will be submitted to OSG.
 You will check the queue periodically to see how many jobs have completed and how many are still waiting to run.
 
@@ -68,8 +68,8 @@ of our parameter (`request_memory`) for each batch of jobs.
         submit file from yesterday.
         Copy the file and rename it here, and make sure the argument to `sleep` is `300`.
 
-1.  Use the `queue in` syntax to submit 10 jobs each for the following memory requests: 8, 16, 32, 64, and 128 GB.
-    You should have 10 jobs requesting 4GB, 10 jobs requesting 8GB, etc.
+1.  Use the `queue in` syntax to submit 10 jobs each for the following memory requests: 8, 16, 32, and 64GB.
+    You should have 10 jobs requesting 8GB, 10 jobs requesting 16GB, etc.
 1.  Save the submit file and exit your editor
 1.  Submit your jobs
 
@@ -88,11 +88,10 @@ Consider making a little table like the one below to track progress.
 
 | Memory | Remaining \#1 | Remaining \#2 | Remaining \#3 |
 |:-------|:--------------|:--------------|:--------------|
-| 4 GB   | 10            | 6             |               |
-| 8 GB   | 10            | 7             |               |
-| 16 GB  | 10            | 8             |               |
-| 32 GB  | 10            | 9             |               |
-| 64 GB  | 10            | 10            |               |
+| 8 GB   | 10            | 6             |               |
+| 16 GB  | 10            | 7             |               |
+| 32 GB  | 10            | 8             |               |
+| 64 GB  | 10            | 9             |               |
 
 In the meantime, between checking on your local jobs, start the next section – taking a break every few minutes to
 record progress on your local jobs.
@@ -118,6 +117,6 @@ Now that you've finished the other exercise, how many jobs have completed locall
 
 Due to the dynamic nature of the remote pool, the OSG may have noticed the demand for higher memory jobs and leased more
 high memory slots for our pool.
-That being said, 8GB+ slots are a high-demand, low-availability resource in the OSG so it's unlikely that all of your
-8GB+ jobs matched and ran to completion.
-On the other hand, the local cluster has plenty of 8GB+ slots so all your jobs have a high chance of running.
+That being said, 64GB+ slots are a high-demand, low-availability resource in the OSG so it's unlikely that all of your
+64GB+ jobs matched and ran to completion, if any.
+On the other hand, the local cluster has a fair number of 64GB+ slots so all your jobs have a high chance of running.
