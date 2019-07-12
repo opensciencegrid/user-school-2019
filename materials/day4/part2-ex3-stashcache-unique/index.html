@@ -67,8 +67,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ol>
 <li>Log into <code>training.osgconnect.net</code> and move into the <code>~/stash/public</code> directory.</li>
 <li>
-<p>The video files are currently stored on the squid proxy from the first exercise this afternoon. To place them in Stash, download them using <code>wget</code>: </p>
-<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> wget http://proxy.chtc.wisc.edu/osgschool18/videos.tar.gz
+<p>The video files are currently stored on the squid proxy you used earlier. To place them in Stash, download them using <code>wget</code>: </p>
+<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> wget http://proxy.chtc.wisc.edu/osgschool19/videos.tar.gz
 </pre></div>
 
 
@@ -85,7 +85,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 </li>
 <li>
-<p>Once you've examined the three <code>mov</code> files and created the list of files, remove the original <code>tar.gz</code> file.</p>
+<p>Once you've examined the three <code>mov</code> files and created the list of files, remove the original <code>videos.tar.gz</code> file.</p>
 </li>
 </ol>
 <h2 id="software">Software<a class="headerlink" href="#software" title="Permanent link">&para;</a></h2>
@@ -104,7 +104,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <li><strong>On training.osgconnect.net</strong>, create a directory for this exercise <code>~/thur-data-ffmpeg</code> and move into it.</li>
 <li>
 <p>We'll be downloading the <code>ffmpeg</code> pre-built static binary originally from this page: <a href="http://johnvansickle.com/ffmpeg/">http://johnvansickle.com/ffmpeg/</a>. </p>
-<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> wget http://proxy.chtc.wisc.edu/osgschool18/ffmpeg-release-64bit-static.tar.xz
+<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> wget http://proxy.chtc.wisc.edu/osgschool19/ffmpeg-release-64bit-static.tar.xz
 </pre></div>
 
 
@@ -123,8 +123,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>Create a file called <code>run_ffmpeg.sh</code>, that does the steps described above. Use the name of the smallest <code>.mov</code> file in the <code>ffmpeg</code> command. Once you've written your script, check it against the example below: </p>
 <div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
 
-module load xrootd
-module load stashcp
+module load stashcache
 stashcp /user/<span style="color:red">username</span>/public/test_open_terminal.mov ./
 ./ffmpeg -i test_open_terminal.mov -b:v 400k -s 640x360 test_open_terminal.mp4
 rm test_open_terminal.mov
@@ -152,7 +151,7 @@ rm test_open_terminal.mov
 <li>
 <p>Add the same requirements as the previous exercise: </p>
 <div class="codehilite"><pre><span></span>+WantsStashCache = true
-requirements = (OSGVO_OS_STRING == &quot;RHEL 6&quot;) &amp;&amp; (OpSys == &quot;LINUX&quot;) &amp;&amp; (HAS_MODULES =?= true)
+requirements = (OpSys == &quot;LINUX&quot;) &amp;&amp; (HAS_MODULES =?= true)
 </pre></div>
 
 
@@ -165,7 +164,7 @@ requirements = (OSGVO_OS_STRING == &quot;RHEL 6&quot;) &amp;&amp; (OpSys == &quo
 <li>Also in the directory where you submitted the job - did the original <code>.mov</code> file return here accidentally?</li>
 <li>Check file sizes. How big is the returned <code>.mp4</code> file? How does that compare to the original <code>.mov</code> input?</li>
 </ol>
-<p>If your job successfully returned the converted <code>.mp4</code> file and <strong>not</strong> the <code>.mov</code> file to the submit server, and the <code>.mp4</code> file was appropriately scaled down, then we can go ahead and convert all of the files we uploaded to Stash.</p>
+<p>If your job successfully returned the converted <code>.mp4</code> file and did <strong>not</strong> transfer the <code>.mov</code> file to the submit server, and the <code>.mp4</code> file was appropriately scaled down, then we can go ahead and convert all of the files we uploaded to Stash.</p>
 <h2 id="multiple-jobs">Multiple jobs<a class="headerlink" href="#multiple-jobs" title="Permanent link">&para;</a></h2>
 <p>We wrote the name of the <code>.mov</code> file into our <code>run_ffmpeg.sh</code> executable script. To submit a set of jobs for all of our <code>.mov</code>  files, what will we need to change in:</p>
 <ol>
@@ -181,8 +180,7 @@ requirements = (OSGVO_OS_STRING == &quot;RHEL 6&quot;) &amp;&amp; (OpSys == &quo
 <p>To add arguments to a bash script, we use the notation <code>$1</code> for the first argument (our input file) and <code>$2</code> for the second argument (our output file name).  The final script should look like this: </p>
 <div class="codehilite"><pre><span></span>#!/bin/bash
 
-module load xrootd
-module load stashcp
+module load stashcache
 stashcp /user/<span style="color:red">username</span>/public/$1 ./
 ./ffmpeg -i $1 -b:v 400k -s 640x360 $2
 rm $1
@@ -208,6 +206,9 @@ rm $1
 </pre></div>
 
 
+</li>
+<li>
+<p>Copy the movie_list.txt to your submit directory.</p>
 </li>
 </ol>
 <p>Once you've made these changes, try submitting all the jobs!</p>
@@ -247,11 +248,9 @@ queue mov,mp4,bitrate,size from movie_list.txt
 3
 4
 5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
 
-module load stashcp
-module load xrootd
+module load stashcache
 stashcp /user/<span style="color:red">username</span>/public/<span class="nv">$1</span> ./
 ./ffmpeg -i <span class="nv">$1</span> -b:v <span class="nv">$3</span> -s <span class="nv">$4</span> <span class="nv">$2</span>
 rm <span class="nv">$1</span>
