@@ -47,7 +47,7 @@ Let’s see what happens when a program like this one is run in HTCondor.
 
 1.  In a new directory for this exercise, save the script above as `murphy.py`.
 1.  Write a submit file for the script; `queue 20` instances of the job and be sure to ask for 20 MB of memory and disk.
-1.  Submit the file and wait for the jobs to finish.
+1.  Submit the file, note the ClusterId, and wait for the jobs to finish.
 
 What output do you expect? What output did you get? If you are curious about the exit code from the job, it is saved in completed jobs in `condor_history` in the `ExitCode` attribute. The following command will show the `ExitCode` for a given cluster of jobs:
 

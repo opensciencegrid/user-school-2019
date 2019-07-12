@@ -36,7 +36,7 @@ Where did your jobs end up?
 Next exercise
 -------------
 
-Once completed, move onto the next exercise: [Hardware Differences in the OSG](/materials/day1/part4-ex3-submit-osg.md)
+Once completed, move onto the next exercise: [Hardware Differences in the OSG](/materials/day1/part4-ex4-hardware-diffs.md)
 
 Extra Challenge: Cleaning up your submit directory
 --------------------------------------------------
@@ -56,4 +56,4 @@ you'll want organize your submit files, code, and input data separate from your 
 
 Did your jobs complete successfully with output and error files saved in separate directories?
 If not, can you find any useful information in the job logs or hold messages?
-If you get stuck, review the [slides for submitting many jobs](/materials/day1/files/osgus18-day1-part2-many-HTCondor-jobs.pdf).
+If you get stuck, review the [slides for submitting many jobs](/materials/day1/files/osgus19-day1-part2-many-HTCondor-jobs.pdf).
