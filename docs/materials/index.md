@@ -79,16 +79,6 @@ status: in progress
 
 <!--  All below here needs to be updated!
 
-### Monday Afternoon: Automating Workflows with HTCondor's DAGMan
-
-- Lecture: HTCondor: More on Workflows ([PDF](/materials/day1/files/osgus19-day1-part4-dagman.pdf);[PPT](/materials/day1/files/osgus19-day1-part4-dagman.pptx))
-- [Exercise 4.1: Coordinating set of jobs: A simple DAG](/materials/day1/part4-ex1-simple-dag.md)
-- [Exercise 4.2: A brief detour through the Mandelbrot set](/materials/day1/part4-ex2-mandelbrot.md)
-- [Exercise 4.3: A more complex DAG](/materials/day1/part4-ex3-complex-dag.md)
-- [Exercise 4.4: Handling jobs that fail with DAGMan](/materials/day1/part4-ex4-failed-dag.md)
-- [Bonus Exercise 4.5: HTCondor challenges](/materials/day1/part4-ex5-challenges.md) (If and only if you have time)
-
-
 ### Wednesday Afternoon: On Your Own
 
 - [Ideas for activities](/logistics/wednesday-activities.md)
@@ -125,20 +115,26 @@ status: in progress
 - [Exercise 4.4: Handling jobs that fail with DAGMan](/materials/day4/part4-ex4-failed-dag.md)
 - [Bonus Exercise 4.5: HTCondor challenges](/materials/day4/part4-ex5-challenges.md) (If and only if you have time)
 
+All above here needs to be updated! -->
+
 ## Friday
 
 ### Friday Morning: From Science to Production Workflows
-
+<!-- Commenting until this lecture is updated.
 - Lecture: From Science to Real Workflow ([PDF](/materials/day5/files/osgus19-day5-part1-real-workflows.pdf), [PPT](/materials/day5/files/osgus19-day5-part1-real-workflows.pptx))
+-->
 - [Exercise 1.1: Learn about Joe’s Desired Computing Work](/materials/day5/part1-ex1-science-intro.md)
 - [Exercise 1.2: Plan Overall Workflow](/materials/day5/part1-ex2-plan-workflow.md)
 
 ### Friday Morning: From Science to Production Workflows
-
+<!-- Commenting until this lecture is updated.
 - Lecture: From Workflow to Automated Production
   ([PDF](/materials/day5/files/osgus19-day5-part2-production-workflows.pdf),[PPT](/materials/day5/files/osgus19-day5-part2-production-workflows.pptx))
+-->
 - [Exercise 1.3: Execute Joe’s Workflow](/materials/day5/part2-ex1-execute-workflow.md)
 - [Bonus Exercise 1.4: Further Optimization and Scaling](/materials/day5/part2-ex2-workflow-tuning.md)
+
+<!-- Need update below this:
 
 ### Friday Afternoon: HTC Showcase
 
