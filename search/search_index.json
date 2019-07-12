@@ -117,7 +117,7 @@
         },
         {
             "location": "/materials/",
-            "text": "OSG User School 2019 Materials\n\u00b6\n\n\nMonday\n\u00b6\n\n\nMonday Morning: Introduction to HTC and HTCondor\n\u00b6\n\n\n\n\nLecture: Introduction to HTC (\nPDF\n;\nPPT\n)\n\n\nExercise 1.1: Log in to the local submit machine and look around\n\n\nExercise 1.2: Experiment with basic HTCondor commands\n\n\nExercise 1.3: Run jobs!\n\n\nExercise 1.4: Read and interpret log files\n\n\nExercise 1.5: Determining Resource Needs\n\n\nExercise 1.6: Remove jobs from the queue\n\n\nBonus Exercise 1.7: Compile and run some C code\n\n\n\n\nMonday Morning: Running Many HTC Jobs\n\u00b6\n\n\n\n\nLecture: More HTCondor (\nPDF\n;\nPPT\n)\n\n\nExercise 2.1: Work with input and output files\n\n\nExercise 2.2: Use \nqueue N\n, \n$(Cluster)\n, and \n$(Process)\n\n\nExercise 2.3: Use \nqueue matching\n with a custom variable\n\n\nExercise 2.4: Use \nqueue from\n with custom variables\n\n\n\n\nMonday Afternoon: Job Attributes and Handling\n\u00b6\n\n\n\n\nLecture: Intermediate HTCondor: Workflows (\nPDF\n;\nPPT\n)\n\n\nExercise 3.1: Explore \ncondor_q\n\n\nExercise 3.2: Explore \ncondor_status\n\n\nExercise 3.3: A job that needs retries\n\n\n\n\nMonday Afternoon: Introduction to Distributed HTC\n\u00b6\n\n\n\n\nLecture: Introduction to DHTC (\nPDF\n;\n  \nPPT\n)\n\n\nExercise 4.1: Refresher - Submitting multiple jobs\n\n\nExercise 4.2: Log in to the OSG submit machine\n\n\nExercise 4.3: Running jobs in the OSG\n\n\nExercise 4.4: Hardware differences in the OSG\n\n\nExercise 4.5: Software differences in the OSG\n\n\n\n\nTuesday\n\u00b6\n\n\nTuesday Morning: Troubleshooting jobs\n\u00b6\n\n\n\n\nLecture: Troubleshooting jobs (\nPDF\n;\n  \nPPT\n)\n\n\nExercise 1.1: Troubleshooting a DAG",
+            "text": "OSG User School 2019 Materials\n\u00b6\n\n\nMonday\n\u00b6\n\n\nMonday Morning: Introduction to HTC and HTCondor\n\u00b6\n\n\n\n\nLecture: Introduction to HTC (\nPDF\n;\nPPT\n)\n\n\nExercise 1.1: Log in to the local submit machine and look around\n\n\nExercise 1.2: Experiment with basic HTCondor commands\n\n\nExercise 1.3: Run jobs!\n\n\nExercise 1.4: Read and interpret log files\n\n\nExercise 1.5: Determining Resource Needs\n\n\nExercise 1.6: Remove jobs from the queue\n\n\nBonus Exercise 1.7: Compile and run some C code\n\n\n\n\nMonday Morning: Running Many HTC Jobs\n\u00b6\n\n\n\n\nLecture: More HTCondor (\nPDF\n;\nPPT\n)\n\n\nExercise 2.1: Work with input and output files\n\n\nExercise 2.2: Use \nqueue N\n, \n$(Cluster)\n, and \n$(Process)\n\n\nExercise 2.3: Use \nqueue matching\n with a custom variable\n\n\nExercise 2.4: Use \nqueue from\n with custom variables\n\n\n\n\nMonday Afternoon: Job Attributes and Handling\n\u00b6\n\n\n\n\nLecture: Intermediate HTCondor: Workflows (\nPDF\n;\nPPT\n)\n\n\nExercise 3.1: Explore \ncondor_q\n\n\nExercise 3.2: Explore \ncondor_status\n\n\nExercise 3.3: A job that needs retries\n\n\n\n\nMonday Afternoon: Introduction to Distributed HTC\n\u00b6\n\n\n\n\nLecture: Introduction to DHTC (\nPDF\n;\n  \nPPT\n)\n\n\nExercise 4.1: Refresher - Submitting multiple jobs\n\n\nExercise 4.2: Log in to the OSG submit machine\n\n\nExercise 4.3: Running jobs in the OSG\n\n\nExercise 4.4: Hardware differences in the OSG\n\n\nExercise 4.5: Software differences in the OSG\n\n\n\n\nTuesday\n\u00b6\n\n\nTuesday Morning: Troubleshooting jobs\n\u00b6\n\n\n\n\nLecture: Troubleshooting jobs (\nPDF\n;\n  \nPPT\n)\n\n\nExercise 1.1: Troubleshooting a DAG\n\n\n\n\nTuesday Afternoon: Software Portability\n\u00b6\n\n\n\n\nLecture: Software Portability for DHTC (\nPDF\n; \nPPT\n)\n\n\nExercise 3.1: Compiling programs for portability\n\n\nExercise 3.2: Using a pre-compiled binary\n\n\nExercise 3.3: Using a wrapper script\n\n\nExercise 3.4: Pre-packaging code\n\n\nBonus Exercise 3.5: Passing Arguments Through the Wrapper Script\n\n\nLecture: Interpreted Languages for DHTC\n\n\nExercise 2.1: Pre-packaging Python\n\n\nExercise 2.2: In-job installation of Python\n\n\n\n\nWednesday\n\u00b6\n\n\nWednesday Morning: Software Modules, Licensing\n\u00b6\n\n\n\n\nLecture: Considerations for licensing and programming packages\n  (\nPDF\n; \nPPT\n)\n\n\nExercise 1.1: Try an OSG Connect software module\n\n\nExercise 1.2: Compile and run Matlab code\n\n\n\n\nWednesday Morning: Containers\n\u00b6\n\n\n\n\nExercise 2.1: Use Singularity from OSG Connect\n\n\nExercise 2.2: Use Singularity to Run Tensorflow (Optional)\n\n\nExercise 2.3: Using Docker",
             "title": "Overview"
         },
         {
@@ -159,6 +159,26 @@
             "location": "/materials/#tuesday-morning-troubleshooting-jobs",
             "text": "Lecture: Troubleshooting jobs ( PDF ;\n   PPT )  Exercise 1.1: Troubleshooting a DAG",
             "title": "Tuesday Morning: Troubleshooting jobs"
+        },
+        {
+            "location": "/materials/#tuesday-afternoon-software-portability",
+            "text": "Lecture: Software Portability for DHTC ( PDF ;  PPT )  Exercise 3.1: Compiling programs for portability  Exercise 3.2: Using a pre-compiled binary  Exercise 3.3: Using a wrapper script  Exercise 3.4: Pre-packaging code  Bonus Exercise 3.5: Passing Arguments Through the Wrapper Script  Lecture: Interpreted Languages for DHTC  Exercise 2.1: Pre-packaging Python  Exercise 2.2: In-job installation of Python",
+            "title": "Tuesday Afternoon: Software Portability"
+        },
+        {
+            "location": "/materials/#wednesday",
+            "text": "",
+            "title": "Wednesday"
+        },
+        {
+            "location": "/materials/#wednesday-morning-software-modules-licensing",
+            "text": "Lecture: Considerations for licensing and programming packages\n  ( PDF ;  PPT )  Exercise 1.1: Try an OSG Connect software module  Exercise 1.2: Compile and run Matlab code",
+            "title": "Wednesday Morning: Software Modules, Licensing"
+        },
+        {
+            "location": "/materials/#wednesday-morning-containers",
+            "text": "Exercise 2.1: Use Singularity from OSG Connect  Exercise 2.2: Use Singularity to Run Tensorflow (Optional)  Exercise 2.3: Using Docker",
+            "title": "Wednesday Morning: Containers"
         },
         {
             "location": "/materials/day1/part1-ex1-login/",
