@@ -12,7 +12,7 @@ Setup
 -----
 
 -   Make sure you are logged into `training.osgconnect.net`
--   Make sure you are in the same directory as the previous exercise, [Exercise 2.3](/materials/day4/part2-ex3-blast-split.md) directory named `thur-blast-data`.
+-   Make sure you are in the same directory as the previous exercise, [Exercise 2.3](/materials/day4/part1-ex3-blast-split.md) directory named `thur-blast-data`.
 
 Place the Large File on the Proxy
 ---------------------------------
