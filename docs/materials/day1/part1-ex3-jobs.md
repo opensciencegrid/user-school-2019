@@ -14,7 +14,7 @@ The goal of this exercise is to submit jobs to HTCondor and have them run on the
 Running a Simple Job
 --------------------
 
-Nearly all of the time, when you want to run an HTCondor job, you first write an HTCondor submit file for it. In this section, you will run the same `hostname` command as in the last exercise, but where this command will run within a job on one of the 'execute' servers in CHTC's local HTCondor pool.
+Nearly all of the time, when you want to run an HTCondor job, you first write an HTCondor submit file for it. In this section, you will run the same `hostname` command as in Exercise 1.1, but where this command will run within a job on one of the 'execute' servers in CHTC's local HTCondor pool.
 
 Here is a simple submit file for the `hostname` command:
 
@@ -51,7 +51,7 @@ The lines of the submit file have the following meanings:
 | `request_*`  | Tells HTCondor how many `cpus` and how much `memory` and `disk` we want, which is not much, because the 'hostname' executable is pretty simple                             |
 | `queue`      | Tells HTCondor to run your job with the settings above.                                                                                                                    |
 
-Note that we are not using the `arguments` lines or `transfer_input_files` because the `hostname` program is all that needs to be transferred from the submit server, and we want to run it without any additional options.
+Note that we are not using the `arguments` or `transfer_input_files` lines that were mentioned during lecture because the `hostname` program is all that needs to be transferred from the submit server, and we want to run it without any additional options.
 
 Double-check your submit file, so that it matches the text above. Then, tell HTCondor to run your job:
 
