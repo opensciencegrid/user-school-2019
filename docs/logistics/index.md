@@ -8,6 +8,8 @@ Please read them carefully.  There will be other pages with local details soon.
 - [Hotel information](/logistics/hotel)
 - [Local transportation within Madison](/logistics/local-transportation)
 - [School location](/logistics/location)
+- [Meals at the School](/logistics/meals)
+- [Fun things to do in Madison](/logistics/fun) and [Wednesday activities](/logistics/wednesday-activities)
 
 As always: If you have questions, email us at <user-school@opensciencegrid.org>.  Use that email address for all emails
 about the organization of the OSG School.
@@ -32,8 +34,8 @@ If we offered to pay for your hotel room, we will pay for the six nights of this
 ### School Hours
 
 The School is Monday through Friday, 9:00 a.m. to about 5:00 p.m.; the lecture hall doors open at about 8:00 a.m. for
-breakfast, and there will be optional work sessions on Monday, Tuesday, and Thursday evenings.  A detailed schedule will
-be available before the School begins.
+breakfast, and there will be optional work sessions on Monday, Tuesday, Wednesday, and Thursday evenings.  A detailed
+schedule will be available before the School begins.
 
 ## Contact Information
 

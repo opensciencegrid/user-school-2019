@@ -27,13 +27,17 @@ applications this year, so thanks to everyone for your enthusiastic interest!
 
 - Curriculum
     - [High-level curriculum](/curriculum/overview)
+    - [Detailed schedule](/curriculum/detailed-schedule)
+    - [Materials](/materials/)
 - Logistics
-    - [General information and travel schedule](/logistics/index)
+    - [General information and travel schedule](/logistics/)
     - [Visa requirements for non-resident aliens](/logistics/personal-info)
     - [Travel planning to and from Madison](/logistics/travel)
     - [Hotel information](/logistics/hotel)
     - [Local transportation within Madison](/logistics/local-transportation)
     - [School location](/logistics/location)
+    - [Meals at the School](/logistics/meals)
+    - [Fun things to do in Madison](/logistics/fun) and [Wednesday activities](/logistics/wednesday-activities)
 
 ## Contact Us
 
