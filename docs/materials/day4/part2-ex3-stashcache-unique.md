@@ -5,7 +5,7 @@ status: tested
 Thursday Exercise 2.3: Using Stash for unique large input
 =========================================================
 
-In this exercise, we will run a multimedia program that converts and manipulates video files. In particular, we want to convert large `.mov` files to smaller (10-100s of MB) `mp4` files.  Just like the Blast database in the [previous exercise](/materials/day4/part3-ex2-stashcache-shared.md), these video files are too large to send to jobs using HTCondor's default file transfer mechanism, so we'll be using the Stash tool to send our data to jobs. This exercise should take 25-30 minutes.
+In this exercise, we will run a multimedia program that converts and manipulates video files. In particular, we want to convert large `.mov` files to smaller (10-100s of MB) `mp4` files.  Just like the Blast database in the [previous exercise](/materials/day4/part2-ex2-stashcache-shared.md), these video files are too large to send to jobs using HTCondor's default file transfer mechanism, so we'll be using the Stash tool to send our data to jobs. This exercise should take 25-30 minutes.
 
 Data
 ----
@@ -13,10 +13,10 @@ Data
 We'll start by moving our source movie files into Stash, so that they'll be available to our jobs when they run out on OSG.
 
 1.  Log into `training.osgconnect.net` and move into the `~/stash/public` directory.
-2.  The video files are currently stored on the squid proxy from the first exercise this afternoon. To place them in Stash, download them using `wget`: 
+2.  The video files are currently stored on the squid proxy you used earlier. To place them in Stash, download them using `wget`: 
 
         :::console
-        user@training $ wget http://proxy.chtc.wisc.edu/osgschool18/videos.tar.gz
+        user@training $ wget http://proxy.chtc.wisc.edu/osgschool19/videos.tar.gz
 
 1.  Once downloaded, untar the `tar.gz` file. It should contain three `.mov` files. (this may take a while since everyone else is likely doing the same thing)
 2.  How big are the three files? Which is the smallest? (Find out with `ls -lh`.)
@@ -25,7 +25,7 @@ We'll start by moving our source movie files into Stash, so that they'll be avai
         :::console
         user@training $ ls *.MOV *.mov > movie_list.txt
 
-1.  Once you've examined the three `mov` files and created the list of files, remove the original `tar.gz` file.
+1.  Once you've examined the three `mov` files and created the list of files, remove the original `videos.tar.gz` file.
 
 Software
 --------
@@ -48,7 +48,7 @@ To get the `ffmpeg` program do the following:
 2.  We'll be downloading the `ffmpeg` pre-built static binary originally from this page: <http://johnvansickle.com/ffmpeg/>. 
 
         :::console
-        user@training $ wget http://proxy.chtc.wisc.edu/osgschool18/ffmpeg-release-64bit-static.tar.xz
+        user@training $ wget http://proxy.chtc.wisc.edu/osgschool19/ffmpeg-release-64bit-static.tar.xz
 
 1.  Once the binary is downloaded, un-tar it, and then copy the main `ffmpeg` program into your current directory: 
 
@@ -59,15 +59,14 @@ To get the `ffmpeg` program do the following:
 Script
 ------
 
-We want to write a script that uses `ffmpeg` to convert a `.mov` file to a smaller format. Our script will need to *copy* that movie file from Stash to the job's current working directory (as in the [previous exercise](/materials/day4/part3-ex2-stashcache-shared.md), *run* the appropriate `ffmpeg` command,  and then *remove* the original movie file so that it doesn't get transferred back to the submit server. This last step is  particularly important, as otherwise you will have large files transferring into the submit server and filling up your home directory space.
+We want to write a script that uses `ffmpeg` to convert a `.mov` file to a smaller format. Our script will need to *copy* that movie file from Stash to the job's current working directory (as in the [previous exercise](/materials/day4/part2-ex2-stashcache-shared.md), *run* the appropriate `ffmpeg` command,  and then *remove* the original movie file so that it doesn't get transferred back to the submit server. This last step is  particularly important, as otherwise you will have large files transferring into the submit server and filling up your home directory space.
 
 Create a file called `run_ffmpeg.sh`, that does the steps described above. Use the name of the smallest `.mov` file in the `ffmpeg` command. Once you've written your script, check it against the example below: 
 
     :::bash
     #!/bin/bash
 
-    module load xrootd
-    module load stashcp
+    module load stashcache
     stashcp /user/%RED%username%ENDCOLOR%/public/test_open_terminal.mov ./
     ./ffmpeg -i test_open_terminal.mov -b:v 400k -s 640x360 test_open_terminal.mp4
     rm test_open_terminal.mov
@@ -79,7 +78,7 @@ Ultimately we'll want to submit several jobs (one for each `.mov` file), but to 
 Submit File
 -----------
 
-Create a submit file for this job, based on other submit files from the school ([This file, for example](/materials/day4/part2-ex2-file-transfer.md#start-with-a-test-submit-file).) Things to consider:
+Create a submit file for this job, based on other submit files from the school ([This file, for example](/materials/day4/part1-ex2-file-transfer/#start-with-a-test-submit-file).) Things to consider:
 
 1.  We'll be copying the video file into the job's working directory, so make sure to request enough disk space for the input `mov` file and the output `mp4` file.  If you're aren't sure how much to request, ask a helper in the room.
 
@@ -92,7 +91,7 @@ Create a submit file for this job, based on other submit files from the school (
 1.  Add the same requirements as the previous exercise: 
 
         +WantsStashCache = true
-        requirements = (OSGVO_OS_STRING == "RHEL 6") && (OpSys == "LINUX") && (HAS_MODULES =?= true)
+        requirements = (OpSys == "LINUX") && (HAS_MODULES =?= true)
 
 Initial Job
 -----------
@@ -103,7 +102,7 @@ With everything in place, submit the job. Once it finishes, we should check to m
 2.  Also in the directory where you submitted the job - did the original `.mov` file return here accidentally?
 3.  Check file sizes. How big is the returned `.mp4` file? How does that compare to the original `.mov` input?
 
-If your job successfully returned the converted `.mp4` file and **not** the `.mov` file to the submit server, and the `.mp4` file was appropriately scaled down, then we can go ahead and convert all of the files we uploaded to Stash.
+If your job successfully returned the converted `.mp4` file and did **not** transfer the `.mov` file to the submit server, and the `.mp4` file was appropriately scaled down, then we can go ahead and convert all of the files we uploaded to Stash.
 
 Multiple jobs
 -------------
@@ -125,8 +124,7 @@ To add arguments to a bash script, we use the notation `$1` for the first argume
 ``` file
 #!/bin/bash
 
-module load xrootd
-module load stashcp
+module load stashcache
 stashcp /user/%RED%username%ENDCOLOR%/public/$1 ./
 ./ffmpeg -i $1 -b:v 400k -s 640x360 $2
 rm $1
@@ -146,6 +144,8 @@ Note that we use the input file name multiple times in our script, so we'll have
 3. In our submit file, we can then change our queue statement to: 
 
         queue mov from movie_list.txt
+
+4. Copy the movie_list.txt?
 
 Once you've made these changes, try submitting all the jobs!
 
@@ -180,8 +180,7 @@ to do so?
 
         #!/bin/bash
 
-        module load stashcp
-        module load xrootd
+        module load stashcache
         stashcp /user/%RED%username%ENDCOLOR%/public/$1 ./
         ./ffmpeg -i $1 -b:v $3 -s $4 $2
         rm $1
