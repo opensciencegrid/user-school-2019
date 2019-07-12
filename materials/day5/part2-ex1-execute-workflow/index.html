@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day5/part2-ex1-execute-workflow/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Exercise 2.1 - OSG User School 2019</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <link href="../../../css/extra.css" rel="stylesheet">
+    <link href="../../../css/codehilite.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Friday Exercise 2.1: Execute a Production Workflow", url: "#_top", children: [
+              {title: "Steps to Take", url: "#steps-to-take" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: \#008; } </style>
+
+<h1 id="friday-exercise-21-execute-a-production-workflow">Friday Exercise 2.1: Execute a Production Workflow<a class="headerlink" href="#friday-exercise-21-execute-a-production-workflow" title="Permanent link">&para;</a></h1>
+<p>In this exercise, you will:</p>
+<ul>
+<li>finish testing workflow steps,</li>
+<li>write the DAG for the workflow you planned, and</li>
+<li>submit this workflow on <code>learn.chtc.wisc.edu</code></li>
+</ul>
+<p>There are bonus tasks in <a href="../../../materials/day5/part2-ex2-workflow-tuning">Exercise 2.2</a>, if you get through this part quickly, including running the workflow on the Open Science Grid.</p>
+<h2 id="steps-to-take">Steps to Take<a class="headerlink" href="#steps-to-take" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While one person in your group works on step 1, someone else can work on step 2.</p>
+</div>
+<h3 id="1-finalize-submit-files">1. Finalize submit files<a class="headerlink" href="#1-finalize-submit-files" title="Permanent link">&para;</a></h3>
+<p>In the <a href="../../../materials/day5/part1-ex2-plan-workflow">previous exercise</a> we ran some tests to find the optimal values for the <em>permutation</em> and <em>qtl</em> job steps.  Now we want to implement these values and confirm that they work. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your <code>WorkflowExercise</code> directory has gotten cluttered, feel free to rename it and redownload / untar a fresh copy before proceeding.  </p>
+</div>
+<ol>
+<li>Based on the values you chose in the last item of the previous exercise, modify <strong>all</strong> of the <em>permutation</em> and <em>QTL</em> submit files as follows: <ul>
+<li>In the <em>permutation</em> submit files change the final value in the <code>arguments</code> line to the number of permutations that takes about 30 minutes to create (item 1 from the last section of the previous exercise).  </li>
+<li>In the <em>permutation</em> submit file, change the <code>queue</code> statement to submit the number of jobs you chose in item 2 from the last section of the previous exercise.  </li>
+<li>In <em>all</em> submit files, add or modify requests for cpus, memory and disk based on your tests.  </li>
+</ul>
+</li>
+<li>We're now going to do a final test of your modified <em>permutation</em> and <em>qtl</em> submit files for one trait.  <ol>
+<li>Submit one of these newly modified <em>permutation</em> submit files.  If your estimate of the necessary permutations per process (for a ~30-minute run time) was not close enough, modify and test the <em>permutation</em> jobs again.</li>
+<li>Once the <em>permutation</em> jobs complete successfully, use <code>tarit.sh</code> to package the output from the test <em>permutation</em> step just above. Then run the corresponding <em>QTL</em> job. As with the just-completed <em>permutation</em> test, you will only need to submit one of the QTL submit files to confirm the approximate memory and disk needed. Make sure all of the desired output files for the QTL step are created to confirm success.</li>
+</ol>
+</li>
+<li>Don't forget to test <code>taritall.sh</code> after a successful QTL job, to make sure it works as expected.</li>
+</ol>
+<p><strong>After the optimized <em>permutation</em> and <em>QTL</em> tests, copy all output, error, and log files to a new directory to prepare for the production workflow.</strong></p>
+<h3 id="2-create-a-dag">2. Create a DAG<a class="headerlink" href="#2-create-a-dag" title="Permanent link">&para;</a></h3>
+<p>Write a single DAG file for the workflow, including:</p>
+<ul>
+<li><code>JOB</code> lines for each submit file</li>
+<li><code>PARENT x CHILD y</code> lines as necessary</li>
+<li><code>SCRIPT PRE</code> and/or <code>SCRIPT POST</code> lines for the tar steps</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You may need to think about how each <code>tar</code> step works for deciding on "PRE" or "POST" scripts for each.</p>
+</div>
+<p>If you need a refresher on what a DAG looks like, see <a href="../../day4/part4-ex3-complex-dag/">this exercise from Thursday</a> or the <a href="https://htcondor.readthedocs.io/en/v8_9_2/users-manual/dagman-applications.html">HTCondor manual</a></p>
+<p>To <strong>quickly</strong> check that you've got the details of the DAG correct, you can modify the <em>permutation</em> submit files to run a) fewer permutations per job (in the <code>arguments</code> line) and b) fewer jobs overall (after <code>queue</code>).  </p>
+<h3 id="3-run-a-production-workflow">3. Run a production workflow<a class="headerlink" href="#3-run-a-production-workflow" title="Permanent link">&para;</a></h3>
+<p>Once you have run a quick test of the DAG and you know all the steps are working together, you can submit a full-scale run of the DAG! To do so, make sure your <em>permutation</em> and <em>QTL</em> submit files have all of the appropriate values (permutations per job, number of permutation jobs, resource requests) based on your tests.  (Remember, this should be about 100,000 total permutations for each trait.)  Then submit the DAG. If you have any issues, consult the log and out files for the DAG and jobs, and modify your approach at any of the previous steps. While the full-scale DAG is running, you may wish to further detail your drawn workflow, including information regarding resource usage. Share all submit and DAG files with one another so everyone has a copy.</p>
+<p>If you have time (even while step 3 is running smoothly), move on to the Bonus Tasks in <a href="../../../materials/day5/part2-ex2-workflow-tuning">Exercise 2.2</a></p>
+
+  <br>
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../part2-ex2-workflow-tuning/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../part2-ex2-workflow-tuning/" class="btn btn-xs btn-link">
+        Exercise 2.2
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../part1-ex2-plan-workflow/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../part1-ex2-plan-workflow/" class="btn btn-xs btn-link">
+        Exercise 1.2
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

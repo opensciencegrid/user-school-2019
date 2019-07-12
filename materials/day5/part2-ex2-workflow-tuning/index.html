@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day5/part2-ex2-workflow-tuning/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Exercise 2.2 - OSG User School 2019</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <link href="../../../css/extra.css" rel="stylesheet">
+    <link href="../../../css/codehilite.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Friday Exercise 2.2: Workflow Optimization and Scaling", url: "#_top", children: [
+              {title: "Bonus 1", url: "#bonus-1" },
+              {title: "Bonus 2", url: "#bonus-2" },
+              {title: "Bonus 3", url: "#bonus-3" },
+              {title: "Bonus 4", url: "#bonus-4" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: \#008; } </style>
+
+<h1 id="friday-exercise-22-workflow-optimization-and-scaling">Friday Exercise 2.2: Workflow Optimization and Scaling<a class="headerlink" href="#friday-exercise-22-workflow-optimization-and-scaling" title="Permanent link">&para;</a></h1>
+<p>If you finish the entire workflow and are thirsty for more, try any of the following in whatever order you like:</p>
+<h3 id="bonus-1">Bonus 1<a class="headerlink" href="#bonus-1" title="Permanent link">&para;</a></h3>
+<p>Rerun the DAG again with four times the permutations <em>per job</em> (but fewer processes, keeping a total of 100,000 permutations per trait). Which DAG finished in an overall faster time? Why?</p>
+<h3 id="bonus-2">Bonus 2<a class="headerlink" href="#bonus-2" title="Permanent link">&para;</a></h3>
+<p>You probably noticed that the job processes from the <em>permutation</em> step create many log, out, and error files. Modify the <em>permutation</em> submit files to better organize these files into subdirectories (check out HTCondor's <code>IntitialDir</code> feature and/or DAG's <code>DIR</code> features). You may wish to always test the DAG using fewer permutations and permutations processes for a quick turnaround.</p>
+<h3 id="bonus-3">Bonus 3<a class="headerlink" href="#bonus-3" title="Permanent link">&para;</a></h3>
+<p>Take the workflow to the submit server for the Open Science Grid (<code>osg-learn.chtc.wisc.edu</code>), and run it there.</p>
+<p>What happens?</p>
+<ul>
+<li>Do all of the jobs complete successfully? (Check for the desired output files and examine the <code>runR_*.out</code> files, which are created by the <code>runR.pl</code> wrapper and indicate any errors from the R script, even if HTCondor thought the job was successful.)</li>
+<li>If there are any errors (likely related to machine differences and/or software dependencies), implement a RETRY for jobs that fail, accounting for the fact that a DAG <code>RETRY</code> statement applies to an <strong>entire</strong> submit file (<code>JOB</code>), while you might actually need to account for process-specific errors.</li>
+</ul>
+<h3 id="bonus-4">Bonus 4<a class="headerlink" href="#bonus-4" title="Permanent link">&para;</a></h3>
+<p>This isn't actual a bonus, but links to a sample workflow diagram and DAG schematic: </p>
+<ul>
+<li><a href="../../../materials/day5/files/osgus18-day5-part1-workflow-diagram.jpg">Sample Workflow Diagram</a></li>
+<li><a href="../../../materials/day5/files/osgus18-day5-part2-dag-outline.jpg">Sample DAG Outline</a></li>
+</ul>
+<p>And also how to download and look at a solution workflow: </p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> wget http://proxy.chtc.wisc.edu/SQUID/osgschool18/CompleteWorkflow.tar.gz
+<span class="gp">username@learn $</span> tar -xzf CompleteWorkflow.tar.gz
+</pre></div>
+
+  <br>
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../../../logistics/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../../../logistics/" class="btn btn-xs btn-link">
+        General information
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../part2-ex1-execute-workflow/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../part2-ex1-execute-workflow/" class="btn btn-xs btn-link">
+        Exercise 2.1
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>
