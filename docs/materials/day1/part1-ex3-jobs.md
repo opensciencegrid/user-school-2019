@@ -152,7 +152,7 @@ or perhaps a simple shell script of commands that you'd like to run within a job
 
 1. Put the following contents into a file named `test-script.sh`:
 
-        :::file
+        :::bash
         #!/bin/sh
         echo 'Date: ' `date` 
         echo 'Host: ' `hostname` 
@@ -218,7 +218,7 @@ or perhaps a simple shell script of commands that you'd like to run within a job
 
 Below is a simple Python script that does something similar to the shell script above. Run this Python script using HTCondor.
 
-``` file
+```python
 #!/usr/bin/env python
 
 """Extra Challenge for OSG User School

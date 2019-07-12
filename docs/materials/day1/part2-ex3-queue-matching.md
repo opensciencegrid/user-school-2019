@@ -45,7 +45,7 @@ This is an example of a common scenario: We want to run one job per file, where 
 
 Let’s see this in action. First, here is the new version of the script:
 
-``` file
+``` python
 #!/usr/bin/env python
 
 import os

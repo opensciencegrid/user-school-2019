@@ -91,7 +91,7 @@ Despite the techniques mentioned above, by far the easiest approach to measuring
 
 For example, here is a strange Python script that does not do anything useful, but consumes some real resources while running:
 
-``` file
+``` python
 #!/usr/bin/env python
 import time
 import os
