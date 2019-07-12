@@ -35,7 +35,7 @@ Our goal is to pre-build an OpenBUGS installation, and then write a script that 
 
 1.  Where can we create this pre-built installation? Based on the end of the lecture, what are our options and which would be most appropriate? Make a guess before moving on.
 
-1.  Because we're on the CHTC-based submit node (`learn.chtc.wisc.edu`), we have the option of using an interactive job to build the OpenBUGS installation. This is a good option because the submit server is already busy with lots of users and we don't know how long the OpenBUGS install will take. To submit an interactive job do the following:
+1.  Because we're on the CHTC-based submit node (`learn.chtc.wisc.edu`), we have the option of using an interactive job to build the OpenBUGS installation. This is a good option because the submit server is already busy with lots of users and we don't know how long the OpenBUGS install will take. We'll also target specific build servers with extra tools by adding some special requirements to our interactive job. 
 
     1.  Copy the following lines into a file named `build.submit`
 
@@ -45,6 +45,9 @@ Our goal is to pre-build an OpenBUGS installation, and then write a script that 
 			should_transfer_files = YES
 			when_to_transfer_output = ON_EXIT
 			transfer_input_files = 
+			
+			+IsBuildJob = true
+			requirements = (IsBuildSlot == true)
 
 			request_cpus = 1
 			request_disk = 2GB
