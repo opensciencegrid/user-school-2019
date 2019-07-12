@@ -52,7 +52,7 @@ tarballs) whose usage is as follows:
         :::console
         user@training $ tar -tzvf <archive filename>
 
-Using the above knowledge, log into `learn.chtc.wisc.edu`, create a tarball that contains Monday's exercise 2.4
+Using the above knowledge, log into `learn.chtc.wisc.edu`, create a tarball that contains today's exercise 4.1
 directory, and verify that it contains all the proper files.
 
 ### Comparing compressed sizes
@@ -116,7 +116,7 @@ machine's operating system:
 #### Mac and Linux users
 
 `scp` should be included by default and available via the terminal on both Mac and Linux operating systems.
-Open a terminal window on your laptop and try copying the tarball containing Monday's 2.4 exercise from
+Open a terminal window on your laptop and try copying the tarball containing today's exercise 4.1 from
 `training.osgconnect.net` to your laptop.
 
 #### Windows users
@@ -125,7 +125,7 @@ WinSCP is an `scp` client for Windows operating systems.
 
 1.  Install WinSCP from <https://winscp.net/eng/index.php>
 1.  Start WinSCP and enter your SSH credentials for `training.osgconnect.net`
-1.  Copy the tarball containing Monday's 2.4 exercise exercise to your laptop
+1.  Copy the tarball containing today's exercise 4.1 to your laptop
 
 ### Extra challenge: Using rsync
 
