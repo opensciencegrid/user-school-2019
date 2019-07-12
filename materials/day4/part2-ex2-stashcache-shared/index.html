@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day4/part2-ex2-stashcache-shared/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Exercise 2.2 - OSG User School 2019</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <link href="../../../css/extra.css" rel="stylesheet">
+    <link href="../../../css/codehilite.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Thursday Exercise 2.2: Using StashCache for Large Shared Data", url: "#_top", children: [
+              {title: "Setup", url: "#setup" },
+              {title: "Place the Database in StashCache", url: "#place-the-database-in-stashcache" },
+              {title: "Modify the Submit File and Wrapper", url: "#modify-the-submit-file-and-wrapper" },
+              {title: "Submit the Job", url: "#submit-the-job" },
+              {title: "Note: Keeping StashCache 'Clean'", url: "#note-keeping-stashcache-clean" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="thursday-exercise-22-using-stashcache-for-large-shared-data">Thursday Exercise 2.2: Using StashCache for Large Shared Data<a class="headerlink" href="#thursday-exercise-22-using-stashcache-for-large-shared-data" title="Permanent link">&para;</a></h1>
+<p>This exercise will use a <a href="http://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastHome">BLAST</a> workflow to demonstrate the functionality of StashCache for transferring input files to jobs on OSG.</p>
+<p>Because our individual blast jobs from <a href="../../../materials/day4/part2-ex1-blast-proxy">Exercise 2.1</a> would take a bit longer with a larger database (too long for an workable exercise), we'll imagine for this exercise that our <code>pdbaa_files.tar.gz</code> file is too large for a web proxy (larger than ~1 GB). For this exercise, we will use the input from Exercise 2.1, but instead of using the web proxy for the <code>pdbaa</code> database, we will place it in StashCache via the OSG Connect server.</p>
+<p>StashCache is a distributed set of caches spread across the U.S. They are connected with high bandwidth connections to each other, and to the data origin servers, where your data is originally placed.</p>
+<p><img alt="StashCache Map" src="../../../materials/day4/files/osgus19-day4-part2-CacheLocations.png" /></p>
+<p>We will be using the command <code>stashcp</code> to copy files from Stash to the execute hosts.  It has a <code>cp</code> like syntax.</p>
+<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Make sure you're logged in to <code>training.osgconnect.net</code></li>
+<li>Transfer the following files from <a href="../part2-ex1-blast-proxy/">Exercise 2.1</a> to a new directory called <code>~/stash/thur-data-stash</code>: <code>blast_wrapper.sh</code>, <code>blastx</code>, <code>mouse_rna.fa.1</code>, <code>mouse_rna.fa.2</code>, <code>mouse_rna.fa.3</code>, and the most recent submit file.</li>
+</ul>
+<h2 id="place-the-database-in-stashcache">Place the Database in StashCache<a class="headerlink" href="#place-the-database-in-stashcache" title="Permanent link">&para;</a></h2>
+<h3 id="copy-to-your-public-space-on-osg-connect">Copy to your <code>public</code> space on OSG Connect<a class="headerlink" href="#copy-to-your-public-space-on-osg-connect" title="Permanent link">&para;</a></h3>
+<p>StashCache provides a public space for you to store data which can be accessed through the caching servers. First, you need to move your blast database into this public directory. If you remember the "public" directory in your home directory on the OSG Connect server <code>training.osgconnect.net</code>, it's this location where you will place files that need to end up in the StashCache data origin.</p>
+<p>You have already placed files in the <code>~/stash/public</code> directory in the previous exercise in order for it to be accessible to the HTTP proxies. The same directory is accessible to StashCache.</p>
+<p>As the <code>public</code> directory name indicates, your files placed in the <code>public</code> directory will be accessible to anyone's jobs if they know how to use <code>stashcp</code>, though no one else will be able to edit the files, since only you can <em>place</em> or <em>change</em> files in your <code>public</code> space. For your own work in the future, make sure that you never put any sensitive data in such locations.</p>
+<h3 id="check-the-file-on-osg-connect">Check the file on OSG Connect<a class="headerlink" href="#check-the-file-on-osg-connect" title="Permanent link">&para;</a></h3>
+<p>Next, you can check for the file and test the command that we'll use in jobs on the OSG Connect login node:</p>
+<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> ls ~/stash/public
+</pre></div>
+
+
+<p>Now, load the <code>stashcache</code> module, which will allow you to test a copy of the file from StashCache into your home directory on <code>login.osgconnect.net</code>:</p>
+<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> module load stashcache
+<span class="gp">user@training $</span> stashcp /user/<span style="color:red">username</span>/public/pdbaa_files.tar.gz ./
+</pre></div>
+
+
+<p>You should now see the <code>pdbaa_files.tar.gz</code> file in your current directory. Notice that we had to include the <strong><code>/user</code></strong> and <strong><code>username</code></strong> in the file path for <code>stashcp</code>, which make sure you're copying from <strong>your</strong> <code>public</code> space.</p>
+<h2 id="modify-the-submit-file-and-wrapper">Modify the Submit File and Wrapper<a class="headerlink" href="#modify-the-submit-file-and-wrapper" title="Permanent link">&para;</a></h2>
+<p>You will have to modify the wrapper and submit files to use StashCache:</p>
+<ol>
+<li>
+<p>At the top of the wrapper script (after <code>#!/bin/bash</code>), add the lines that load the <code>stashcache</code> module and to copy the <code>pdbaa_files.tar.gz</code> file into the current directory of the job:</p>
+<div class="codehilite"><pre><span></span>module load stashcache
+stashcp /user/<span style="color:red">username</span>/public/pdbaa_files.tar.gz ./
+</pre></div>
+
+
+</li>
+<li>
+<p>Since HTCondor will no longer transfer or download the file for you, make sure to add the following line (or modify your existing <code>rm</code> command, if you're confident) to make sure the <code>pdbaa_files.tar.gz</code> file is also deleted and not copied back as perceived output.</p>
+<div class="codehilite"><pre><span></span>rm pdbaa_files.tar.gz
+</pre></div>
+
+
+</li>
+<li>
+<p>Delete the <code>wget</code> line from the job wrapper script <code>blast_wrapper.sh</code></p>
+</li>
+<li>
+<p>Add the following line to the submit file and update the "requirements" statement to require servers with OSG Connect modules (for accessing the <code>stashcp</code> module), somewhere before the word <code>queue</code>.</p>
+<div class="codehilite"><pre><span></span>+WantsStashCache = true
+requirements = (OpSys == &quot;LINUX&quot;) &amp;&amp; (HAS_MODULES =?= true)
+</pre></div>
+
+
+</li>
+<li>
+<p>Confirm that your queue statement is correct for the current directory. It should be something like:</p>
+<div class="codehilite"><pre><span></span>queue inputfile matching mouse_rna.fa.*
+</pre></div>
+
+
+</li>
+</ol>
+<p>And that mouse_rna.fa.* files exist in the current directory (you should have copied them from the previous exercise directory).</p>
+<h2 id="submit-the-job">Submit the Job<a class="headerlink" href="#submit-the-job" title="Permanent link">&para;</a></h2>
+<p>Now submit and monitor the job! If your 100 jobs from the previous exercise haven't started running yet, this job will not yet start. However, after it has been running for ~2 minutes, you're safe to continue to the next exercise!</p>
+<h2 id="note-keeping-stashcache-clean">Note: Keeping StashCache 'Clean'<a class="headerlink" href="#note-keeping-stashcache-clean" title="Permanent link">&para;</a></h2>
+<p>Just as for data on a web proxy, it is VERY important to remove old files from StashCache when you no longer need them, especially so that you'll have plenty of space for such files in the future. For example, you would delete (<code>rm</code>) files from <code>public</code> on <code>training.osgconnect.net</code> when you don't need them there anymore, but only after all jobs have finished. The next time you use StashCache after the school, remember to first check for old files that you can delete.</p>
+
+  <br>
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../part2-ex3-stashcache-unique/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../part2-ex3-stashcache-unique/" class="btn btn-xs btn-link">
+        Exercise 2.3
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../part2-ex1-blast-proxy/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../part2-ex1-blast-proxy/" class="btn btn-xs btn-link">
+        Exercise 2.1
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

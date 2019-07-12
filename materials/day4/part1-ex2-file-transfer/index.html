@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day4/part1-ex2-file-transfer/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Exercise 1.2 - OSG User School 2019</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <link href="../../../css/extra.css" rel="stylesheet">
+    <link href="../../../css/codehilite.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Thursday Exercise 1.2: File Compression and Testing Resource Requirements", url: "#_top", children: [
+              {title: "Setup", url: "#setup" },
+              {title: "Start with a test submit file", url: "#start-with-a-test-submit-file" },
+              {title: "Run the test job", url: "#run-the-test-job" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="thursday-exercise-12-file-compression-and-testing-resource-requirements">Thursday Exercise 1.2: File Compression and Testing Resource Requirements<a class="headerlink" href="#thursday-exercise-12-file-compression-and-testing-resource-requirements" title="Permanent link">&para;</a></h1>
+<p>The objective of this exercise is to refresh yourself on HTCondor file transfer, to implement file compression, and to begin examining the memory and disk space used by your jobs in order to plan larger batches, which we'll tackle in later exercises today.</p>
+<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Make sure you are still logged into <code>training.osgconnect.net</code></li>
+<li>Make a directory for today's blast exercises named <code>thur-blast-data</code> inside your <code>stash</code> directory, and change into it.</li>
+</ul>
+<p>The executable we'll use in this exercise and later today is the same <strong><code>blastx</code></strong> executable from the <a href="../part1-ex1-data-needs/">previous exercise</a>.</p>
+<p>Also copy the data from the last exercise into the <code>thur-blast-data</code> directory. You'll need the <code>mouse.fa</code> file and the <code>pdbaa</code> directory from the last exercise, but you'll end up making a new submit file.</p>
+<h3 id="review-htcondor-file-transfer">Review: HTCondor File Transfer<a class="headerlink" href="#review-htcondor-file-transfer" title="Permanent link">&para;</a></h3>
+<p><img alt="OSG data transfer" src="../../../materials/day4/files/osgus18-day4-part2-ex2-data-transfer.jpg" /></p>
+<p>Recall that OSG does <strong>NOT</strong> have a shared filesystem!  Instead, HTCondor <em>transfers</em> your executable and input files
+(listed with <code>transfer_input_files</code>) to a working directory on the execute node, regardless of how these files were
+arranged on the submit node.  In this exercise we'll use the same <code>blastx</code> example job that we used previously, but
+modify the submit file and test how much memory and disk space it uses on the execute node.</p>
+<h2 id="start-with-a-test-submit-file">Start with a test submit file<a class="headerlink" href="#start-with-a-test-submit-file" title="Permanent link">&para;</a></h2>
+<p>We've started a submit file for you, below, which you'll add to in the remaining steps.</p>
+<div class="codehilite"><pre><span></span>executable = 
+transfer_input_files = 
+output = test.out
+error = test.error
+log = test.log
+request_memory = 
+request_disk = 
+request_cpus = 1
+requirements = (OpSys == &quot;LINUX&quot;)
+queue
+</pre></div>
+
+
+<h3 id="implement-file-compression">Implement file compression<a class="headerlink" href="#implement-file-compression" title="Permanent link">&para;</a></h3>
+<p>In our first blast job from yesterday, the database files in the <code>pdbaa</code> directory were all transferred, as is, but we could instead transfer them as a single, compressed file using <code>tar</code>. For a second test job, let's compress our blast database files to send them to the submit node as a single <code>tar.gz</code> file, by following the below steps:</p>
+<ol>
+<li>
+<p>Change into the <code>pdbaa</code> directory and compress the database files into a single file called <code>pdbaa_files.tar.gz</code> using the <code>tar</code> command. (NOTE: This file will be different from the <code>pdbaa.tar.gz</code> files you downloaded yesterday, because it will only contain the <code>pdbaa</code> files, and not the <code>pdbaa</code> directory, itself.)</p>
+<p>A typical command for creating a tar file is:</p>
+<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> tar cvzf <span style="color:red">&lt;COMPRESSED FILENAME&gt;</span> <span style="color:red">&lt;LIST OF FILES OR DIRECTORIES&gt;</span>
+</pre></div>
+
+
+<p>Move this file to the <code>thur-blast-data</code> directory.</p>
+</li>
+<li>
+<p>Create a wrapper script that will first decompress the <code>pdbaa_files.tar.gz</code> file, and then run blast.</p>
+<p>Because this file will now be our submit file <code>executable</code>, we'll also end up transferring the <code>blastx</code> executable with <code>transfer_input_files</code>. In the <code>thur-blast-data</code> directory, create a new file, called <code>blast_wrapper.sh</code>, with the following contents:</p>
+<div class="codehilite"><pre><span></span>#!/bin/bash
+
+tar xvzf pdbaa_files.tar.gz
+
+./blastx -db pdbaa -query mouse.fa -out mouse.fa.result
+
+rm pdbaa.*
+</pre></div>
+
+
+<div class="admonition warning">
+<p class="admonition-title">Extra Files!</p>
+<p>The last line removes the resulting database files that came from <code>pdbaa_files.tar.gz</code>, as these files would otherwise be copied back to the submit server as perceived output (because they're new files that HTCondor didn't transfer over as input).</p>
+</div>
+</li>
+</ol>
+<h3 id="list-the-executable-and-input-files">List the executable and input files<a class="headerlink" href="#list-the-executable-and-input-files" title="Permanent link">&para;</a></h3>
+<p>Make sure to update the submit file with the following:</p>
+<ul>
+<li>Add the new <code>executable</code> (the wrapper script you created above)</li>
+<li>In <code>transfer_input_files</code>, list the <code>blastx</code> binary, the <code>pdbaa_files.tar.gz</code> file, and the input query file.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Commas, commas everywhere!</p>
+<p>Remember that <code>transfer_input_files</code> accepts a comma separated list of files, and that you need to list the full location of the <code>blastx</code> executable (<code>blastx</code>). There will be no arguments, since the arguments to the <code>blastx</code> command are now captured in the wrapper script.</p>
+</div>
+<h3 id="predict-memory-and-disk-requests-from-your-data">Predict memory and disk requests from your data<a class="headerlink" href="#predict-memory-and-disk-requests-from-your-data" title="Permanent link">&para;</a></h3>
+<p>Also, think about how much memory and disk to request for this job. It's good to start with values that are a little higher than you think a test job will need, but think about:</p>
+<ul>
+<li>How much memory <code>blastx</code> would use if it loaded all of the database files <em>and</em> the query input file into memory.</li>
+<li>How much disk space will be necessary on the execute server for the executable, all input files, and all output files (hint: the log file only exists on the submit node).</li>
+<li>whether you'd like to request some extra memory or disk space, just in case</li>
+</ul>
+<p>Look at the <code>log</code> file for your <code>blastx</code> job from Tuesday, and compare the memory and disk "Usage" to what you predicted from the files. Make sure to update the submit file with more accurate memory and disk requests (you may still want to request slightly more than the job actually used).</p>
+<h2 id="run-the-test-job">Run the test job<a class="headerlink" href="#run-the-test-job" title="Permanent link">&para;</a></h2>
+<p>Once you have finished editing the submit file, go ahead and submit the job. It should take a few minutes to complete, and then you can check to make sure that no unwanted files (especially the <code>pdbaa</code> database files) were copied back at the end of the job.</p>
+<p>Run a <strong><code>du -sh</code></strong> on the directory with this job's input. How does it compare to the directory from Tuesday, and why?</p>
+<p>When you've completed the above, continue with the <a href="../../../materials/day4/part1-ex3-blast-split">next exercise</a>.</p>
+
+  <br>
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../part1-ex3-blast-split/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../part1-ex3-blast-split/" class="btn btn-xs btn-link">
+        Exercise 1.3
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../part1-ex1-data-needs/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../part1-ex1-data-needs/" class="btn btn-xs btn-link">
+        Exercise 1.1
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

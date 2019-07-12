@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day4/part2-ex1-blast-proxy/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Exercise 2.1 - OSG User School 2019</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <link href="../../../css/extra.css" rel="stylesheet">
+    <link href="../../../css/codehilite.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Thursday Exercise 2.1: Using a Web Proxy for Large Shared Input", url: "#_top", children: [
+              {title: "Setup", url: "#setup" },
+              {title: "Place the Large File on the Proxy", url: "#place-the-large-file-on-the-proxy" },
+              {title: "Run a New Test Job", url: "#run-a-new-test-job" },
+              {title: "Run all 100 Jobs!", url: "#run-all-100-jobs" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="thursday-exercise-21-using-a-web-proxy-for-large-shared-input">Thursday Exercise 2.1: Using a Web Proxy for Large Shared Input<a class="headerlink" href="#thursday-exercise-21-using-a-web-proxy-for-large-shared-input" title="Permanent link">&para;</a></h1>
+<p>Continuing the series of exercises blasting mouse genetic sequences, the objective of this exercise is to use a web proxy to stage the large database, which will be downloaded into each of many jobs that use the split input files from the last exercise (Exercise 2.3).</p>
+<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Make sure you are logged into <code>training.osgconnect.net</code></li>
+<li>Make sure you are in the same directory as the previous exercise, <a href="../part1-ex3-blast-split/">Exercise 2.3</a> directory named <code>thur-blast-data</code>.</li>
+</ul>
+<h2 id="place-the-large-file-on-the-proxy">Place the Large File on the Proxy<a class="headerlink" href="#place-the-large-file-on-the-proxy" title="Permanent link">&para;</a></h2>
+<p>First, you'll need to put the <code>pdbaa_files.tar.gz</code> file onto the Stash web directory. Use the following command:</p>
+<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> cp pdbaa_files.tar.gz ~/stash/public/
+</pre></div>
+
+
+<h3 id="test-a-download-of-the-file">Test a download of the file<a class="headerlink" href="#test-a-download-of-the-file" title="Permanent link">&para;</a></h3>
+<p>Once the file is placed in the ~/stash/public directory, it can be downloaded from a corresponding URL such as <code>http://stash.osgconnect.net/~<span style="color:red">username</span>/pdbaa_files.tar.gz</code>, where <span style="color:red">username</span> is your username on <code>training.osgconnect.net</code>.</p>
+<p>Using the above convention (and from a different directory on <code>training.osgconnect.net</code>, any directory), you can test the download of your <code>pdbaa_files.tar.gz</code> file with a command like the following:</p>
+<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> wget http://stash.osgconnect.net/~<span style="color:red">username</span>/pdbaa_files.tar.gz
+</pre></div>
+
+
+<p>You may realize that you've been using <code>wget</code> to download files from a web proxy for many of the previous exercises at the school!</p>
+<h2 id="run-a-new-test-job">Run a New Test Job<a class="headerlink" href="#run-a-new-test-job" title="Permanent link">&para;</a></h2>
+<p>Now, you'll repeat the last exercise (with a single input query file) but have HTCondor download the <code>pdbaa_files.tar.gz</code> file from the web proxy, instead of having the file transferred from the submit server.</p>
+<h3 id="modify-the-submit-file-and-wrapper-script">Modify the submit file and wrapper script<a class="headerlink" href="#modify-the-submit-file-and-wrapper-script" title="Permanent link">&para;</a></h3>
+<p>In the wrapper script, we have to add some special lines so that we can pull from Stash and use the HTTP proxy. In <code>blast_wrapper.sh</code>, we will have to add commands to pull the data file:</p>
+<div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Set the http_proxy environment which wget uses</span>
+<span class="hll"><span class="nb">export</span> <span class="nv">http_proxy</span><span class="o">=</span><span class="nv">$OSG_SQUID_LOCATION</span>
+</span>
+<span class="c1"># Copy the pdbaa_files.tar.gz to the worker node</span>
+<span class="c1"># Add the -S argument, so we can see if it was a cache HIT or MISS</span>
+<span class="hll">wget -S http://stash.osgconnect.net/~username/pdbaa_files.tar.gz
+</span>
+tar xvzf pdbaa_files.tar.gz
+
+./blastx -db pdbaa -query mouse.fa -out mouse.fa.result
+
+rm pdbaa.*
+</pre></div>
+
+
+<p>The new line will download the <code>pdbaa_files.tar.gz</code> from stash, using the closest cache (because <code>wget</code> will look at the environment variable <code>http_proxy</code> for the newest cache).</p>
+<p>In your submit file, you will need to remove the <code>pdbaa_files.tar.gz</code> file from the <code>transfer_input_files</code>, because we are using HTTP proxies!</p>
+<h3 id="submit-the-test-job">Submit the test job<a class="headerlink" href="#submit-the-test-job" title="Permanent link">&para;</a></h3>
+<p>You may wish to first remove the log, result, output, and error files from the previous tests, which will be overwritten when the new test job completes.</p>
+<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> rm *.error *.out *.result *.log
+</pre></div>
+
+
+<p>Submit the test job!</p>
+<p>When the job starts, the wrapper will download the <code>pdbaa_files.tar.gz</code> file from the web proxy. If the jobs takes longer than two minutes, you can assume that it will complete successfully, and then continue with the rest of the exercise.</p>
+<p>After the job completes examine the *.error file generated by the submission. At the top of the file, you will find something like:</p>
+<div class="codehilite"><pre><span></span>--2019-07-11 <span class="m">18</span>:29:14--  http://stash.osgconnect.net/~dweitzel/pdbaa_files.tar.gz
+Resolving uct2-squid.mwt2.org <span class="o">(</span>uct2-squid.mwt2.org<span class="o">)</span>... <span class="m">192</span>.170.227.165
+Connecting to uct2-squid.mwt2.org <span class="o">(</span>uct2-squid.mwt2.org<span class="o">)</span><span class="p">|</span><span class="m">192</span>.170.227.165<span class="p">|</span>:3128... connected.
+Proxy request sent, awaiting response... 
+  HTTP/1.0 <span class="m">200</span> OK
+  Server: nginx/1.10.2
+  Date: Thu, <span class="m">11</span> Jul <span class="m">2019</span> <span class="m">18</span>:29:12 GMT
+  Content-Type: application/octet-stream
+  Content-Length: <span class="m">22105124</span>
+  Last-Modified: Mon, <span class="m">09</span> Jul <span class="m">2018</span> <span class="m">23</span>:22:11 GMT
+  ETag: <span class="s2">&quot;5b43ee23-1514c24&quot;</span>
+  Accept-Ranges: bytes
+  Age: <span class="m">2</span>
+  X-Cache: HIT from uct2-squid.mwt2.org
+  Via: <span class="m">1</span>.1 uct2-squid.mwt2.org:3128 <span class="o">(</span>squid/frontier-squid-2.7.STABLE9-27.1.osg33.el6<span class="o">)</span>
+  Connection: keep-alive
+  Proxy-Connection: keep-alive
+Length: <span class="m">22105124</span> <span class="o">(</span>21M<span class="o">)</span> <span class="o">[</span>application/octet-stream<span class="o">]</span>
+...
+</pre></div>
+
+
+<p>Notice the <code>X-Cache</code> line. It says it was a cache HIT from the proxy <code>cmsprxy01.colorado.edu</code>. Yay! You successfully used a proxy to cache data near your worker node! Notice, the name of the cache may be different.</p>
+<h2 id="run-all-100-jobs">Run all 100 Jobs!<a class="headerlink" href="#run-all-100-jobs" title="Permanent link">&para;</a></h2>
+<p>If all of the previous tests have gone okay, you can prepare to run all 100 jobs that will use the split input files. To make sure you're not going to generate too much data, use the size of files from the previous test to calculate how much total data you're going to add to the <code>thur-blast-data</code> directory for 100 jobs.</p>
+<p>Make sure you remove <code>pdbaa_files.tar.gz</code> from the <code>transfer_input_files</code> in the <em>split</em> submit file.</p>
+<p>Submit all 100 jobs! They may take a while to all complete, but it will still be faster than the many hours it would have taken to blast the single, large <code>mouse_rna.fa</code> file without splitting it up.  In the meantime, as long as the first several jobs are running for longer than two minutes, you can move on to the next <a href="../../../materials/day4/part2-ex2-stashcache-shared">exercise</a></p>
+
+  <br>
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../part2-ex2-stashcache-shared/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../part2-ex2-stashcache-shared/" class="btn btn-xs btn-link">
+        Exercise 2.2
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../part1-ex3-blast-split/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../part1-ex3-blast-split/" class="btn btn-xs btn-link">
+        Exercise 1.3
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>
