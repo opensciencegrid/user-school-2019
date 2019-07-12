@@ -69,7 +69,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="counting-words-in-files">Counting Words in Files<a class="headerlink" href="#counting-words-in-files" title="Permanent link">&para;</a></h2>
 <p>Suppose you have a collection of books, and you want to analyze how words vary from book to book or author to author. As mentioned in the lecture, HTCondor provides many ways to do this task. You could create a separate submit file for each book, and submit all of the files manually, but you'd have a lot of file lines to modify each time (in particular, all five of the last lines before <code>queue</code> below):</p>
 <div class="codehilite"><pre><span></span>executable              = freq.py
-request_memory          = 20MB
+request_memory          = 1GB
 request_disk            = 20MB
 should_transfer_files   = YES
 when_to_transfer_output = ON_EXIT

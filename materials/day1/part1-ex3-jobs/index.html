@@ -63,7 +63,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>The goal of this exercise is to submit jobs to HTCondor and have them run on the local pool (CHTC). This is a huge step in learning to use an HTC system!</p>
 <p><strong>This exercise will take longer than the first two, short ones. It is the essential part of this exercise time. If you are having any problems getting the jobs to run, please ask the instructors! It is very important that you know how to run simple jobs.</strong></p>
 <h2 id="running-a-simple-job">Running a Simple Job<a class="headerlink" href="#running-a-simple-job" title="Permanent link">&para;</a></h2>
-<p>Nearly all of the time, when you want to run an HTCondor job, you first write an HTCondor submit file for it. In this section, you will run the same <code>hostname</code> command as in the last exercise, but where this command will run within a job on one of the 'execute' servers in CHTC's local HTCondor pool.</p>
+<p>Nearly all of the time, when you want to run an HTCondor job, you first write an HTCondor submit file for it. In this section, you will run the same <code>hostname</code> command as in Exercise 1.1, but where this command will run within a job on one of the 'execute' servers in CHTC's local HTCondor pool.</p>
 <p>Here is a simple submit file for the <code>hostname</code> command:</p>
 <div class="codehilite"><pre><span></span>executable = /bin/hostname
 
@@ -72,7 +72,7 @@ error = simple.err
 log = simple.log
 
 request_cpus = 1
-request_memory = 1MB
+request_memory = 1GB
 request_disk = 1MB
 
 queue
@@ -122,7 +122,7 @@ Ultimately, a submit file is a text file</p>
 </tr>
 </tbody>
 </table>
-<p>Note that we are not using the <code>arguments</code> lines or <code>transfer_input_files</code> because the <code>hostname</code> program is all that needs to be transferred from the submit server, and we want to run it without any additional options.</p>
+<p>Note that we are not using the <code>arguments</code> or <code>transfer_input_files</code> lines that were mentioned during lecture because the <code>hostname</code> program is all that needs to be transferred from the submit server, and we want to run it without any additional options.</p>
 <p>Double-check your submit file, so that it matches the text above. Then, tell HTCondor to run your job:</p>
 <div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_submit simple.sub
 <span class="go">Submitting job(s).</span>
@@ -182,7 +182,7 @@ error = sleep.err
 log = sleep.log
 
 request_cpus = 1
-request_memory = 1MB
+request_memory = 1GB
 request_disk = 1MB
 
 queue
@@ -245,8 +245,8 @@ error = script.err
 log = script.log
 
 request_cpus = 1
-request_memory = 1
-request_disk = 1
+request_memory = 1GB
+request_disk = 1MB
 
 queue
 </pre></div>

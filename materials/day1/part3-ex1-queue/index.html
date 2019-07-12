@@ -127,7 +127,6 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <div class="codehilite"><pre><span></span>MyType = &quot;Job&quot;
 Err = &quot;sleep.err&quot;
 UserLog = &quot;/home/cat/1-monday-2.1-queue/sleep.log&quot;
-JobUniverse = 5
 Requirements = ( IsOSGSchoolSlot =?= true ) &amp;&amp;
         ( TARGET.Arch == &quot;X86_64&quot; ) &amp;&amp;
         ( TARGET.OpSys == &quot;LINUX&quot; ) &amp;&amp;
@@ -169,7 +168,7 @@ Do not assume anything about the order of attributes in <code>condor_q</code> ou
 </ol>
 <p>Now examine each saved ClassAd file. Here are a few things to look for:</p>
 <ul>
-<li>Can you find attributes that came from your submit file? (E.g., JobUniverse, Cmd, Arguments, Out, Err, UserLog, and so forth)</li>
+<li>Can you find attributes that came from your submit file? (E.g., Cmd, Arguments, Out, Err, UserLog, and so forth)</li>
 <li>Can you find attributes that could have come from your submit file, but that HTCondor added for you? (E.g., Requirements)</li>
 <li>How many of the following attributes can you guess the meaning of?<ul>
 <li>DiskUsage</li>

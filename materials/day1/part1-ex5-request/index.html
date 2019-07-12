@@ -151,7 +151,7 @@ When it is done, examine the log file. In particular, we care about these lines:
 </pre></div>
 
 
-<p>So, now we know that the job used 6,739 KB of disk (= about 6.5 MB) and 3 MB of memory!</p>
+<p>So, now we know that HTCondor saw that the job used 6,739 KB of disk (= about 6.5 MB) and 3 MB of memory!</p>
 <p>This is a great technique for determining the real resource needs of your job. If you think resource needs vary from run to run, submit a few sample jobs and look at all the results. And it never hurts to round up your resource requests a little, just in case your job occasionally uses more resources.</p>
 <h2 id="setting-resource-requirements">Setting Resource Requirements<a class="headerlink" href="#setting-resource-requirements" title="Permanent link">&para;</a></h2>
 <p>Once you know your job’s resource requirements, it is easy to declare them in your submit file. For example, taking our results above as an example, we might slightly increase our requests above what was used, just to be safe:</p>
@@ -168,6 +168,8 @@ request_disk = 7MB  <span style="color:blue"># rounded up from 6.5 MB</span>
 </ul>
 <p>HTCondor translates these requirements into attributes that become part of the job's <code>requirements</code> expression. However, do not put your CPU, memory, and disk requirements directly into the <code>requirements</code> expression; use the <code>request_XXX</code> statements instead.</p>
 <p><strong>If you still have time in this working session, Add these requirements to your submit file for the Python script, rerun the job, and confirm in the log file that your requests were used.</strong></p>
+<p>After changing the requirements in your submit file, did your job run successfully? If not, why?
+(Hint: HTCondor polls a job's resource use on a timer. How long are these jobs running for?)</p>
 
   <br>
     
