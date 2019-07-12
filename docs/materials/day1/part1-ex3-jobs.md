@@ -26,7 +26,7 @@ error = simple.err
 log = simple.log
 
 request_cpus = 1
-request_memory = 1MB
+request_memory = 1GB
 request_disk = 1MB
 
 queue
@@ -129,7 +129,7 @@ error = sleep.err
 log = sleep.log
 
 request_cpus = 1
-request_memory = 1MB
+request_memory = 1GB
 request_disk = 1MB
 
 queue
@@ -191,8 +191,8 @@ or perhaps a simple shell script of commands that you'd like to run within a job
         log = script.log
 
         request_cpus = 1
-        request_memory = 1
-        request_disk = 1
+        request_memory = 1GB
+        request_disk = 1MB
 
         queue
 
