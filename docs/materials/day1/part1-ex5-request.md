@@ -116,7 +116,7 @@ When it is done, examine the log file. In particular, we care about these lines:
        Memory (MB)          :        3     1024      1024
 ```
 
-So, now we know that the job used 6,739 KB of disk (= about 6.5 MB) and 3 MB of memory!
+So, now we know that HTCondor saw that the job used 6,739 KB of disk (= about 6.5 MB) and 3 MB of memory!
 
 This is a great technique for determining the real resource needs of your job. If you think resource needs vary from run to run, submit a few sample jobs and look at all the results. And it never hurts to round up your resource requests a little, just in case your job occasionally uses more resources.
 
@@ -140,3 +140,5 @@ HTCondor translates these requirements into attributes that become part of the j
 
 **If you still have time in this working session, Add these requirements to your submit file for the Python script, rerun the job, and confirm in the log file that your requests were used.**
 
+After changing the requirements in your submit file, did your job run successfully? If not, why?
+(Hint: HTCondor polls a job's resource use on a timer. How long are these jobs running for?)

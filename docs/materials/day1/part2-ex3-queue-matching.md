@@ -23,7 +23,7 @@ Suppose you have a collection of books, and you want to analyze how words vary f
 
 ``` file
 executable              = freq.py
-request_memory          = 20MB
+request_memory          = 1GB
 request_disk            = 20MB
 should_transfer_files   = YES
 when_to_transfer_output = ON_EXIT
