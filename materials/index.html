@@ -38,6 +38,7 @@
               {title: "Monday", url: "#monday" },
               {title: "Tuesday", url: "#tuesday" },
               {title: "Wednesday", url: "#wednesday" },
+              {title: "Thursday", url: "#thursday" },
               {title: "Friday", url: "#friday" },
           ]},
         ];
@@ -128,43 +129,42 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <li><a href="day3/part2-ex2-tensorflow-singularity/">Exercise 2.2: Use Singularity to Run Tensorflow (Optional)</a></li>
 <li><a href="day3/part2-ex3-docker/">Exercise 2.3: Using Docker</a></li>
 </ul>
+<h2 id="thursday">Thursday<a class="headerlink" href="#thursday" title="Permanent link">&para;</a></h2>
+<h3 id="thursday-morning-data-handling">Thursday Morning: Data Handling<a class="headerlink" href="#thursday-morning-data-handling" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Lecture: Overall data considerations (<a href="../materials/day4/files/osgus19-day4-part1-overall-data.pdf">PDF</a>)</li>
+<li><a href="day4/part1-ex1-data-needs/">Exercise 1.1: Understanding your data requirements</a></li>
+<li><a href="day4/part1-ex2-file-transfer/">Exercise 1.2: HTCondor file transfer and compression</a></li>
+<li><a href="day4/part1-ex3-blast-split/">Exercise 1.3: Splitting large input data</a></li>
+</ul>
+<h3 id="thursday-morning-data-handling-continued">Thursday Morning: Data Handling (continued)<a class="headerlink" href="#thursday-morning-data-handling-continued" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Lecture: Solutions for large input data (<a href="../materials/day4/files/osgus19-day4-part2-large-input.pdf">PDF</a>)</li>
+<li><a href="day4/part2-ex1-blast-proxy/">Exercise 2.1: Using a web proxy for large, shared input</a></li>
+<li><a href="day4/part2-ex2-stashcache-shared/">Exercise 2.2: Using StashCache for large, shared input</a></li>
+<li><a href="day4/part2-ex3-stashcache-unique/">Exercise 2.3: Using StashCache for large, unique input</a></li>
+</ul>
+<h3 id="thursday-afternoon-data-handling-continued">Thursday Afternoon: Data Handling (continued)<a class="headerlink" href="#thursday-afternoon-data-handling-continued" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Lecture: Large output and shared file systems; Data summary
+  (<a href="../materials/day4/files/osgus19-day4-part4-output-shared-fs.pdf">PDF</a>)</li>
+<li><a href="day4/part3-ex1-input/">Exercise 3.1: Using a local shared filesystem for large input files</a></li>
+<li><a href="day4/part3-ex2-output/">Exercise 3.2: Using a local shared filesystem for large output files</a></li>
+</ul>
+<h3 id="thursday-afternoon-automating-workflows-with-htcondors-dagman">Thursday Afternoon: Automating Workflows with HTCondor's DAGMan<a class="headerlink" href="#thursday-afternoon-automating-workflows-with-htcondors-dagman" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Lecture: HTCondor: More on Workflows (<a href="../materials/day4/files/osgus19-day4-part4-dagman.pdf">PDF</a>;<a href="../materials/day4/files/osgus19-day4-part4-dagman.pptx">PPT</a>)</li>
+<li><a href="day4/part4-ex1-simple-dag/">Exercise 4.1: Coordinating set of jobs: A simple DAG</a></li>
+<li><a href="day4/part4-ex2-mandelbrot/">Exercise 4.2: A brief detour through the Mandelbrot set</a></li>
+<li><a href="day4/part4-ex3-complex-dag/">Exercise 4.3: A more complex DAG</a></li>
+<li><a href="day4/part4-ex4-failed-dag/">Exercise 4.4: Handling jobs that fail with DAGMan</a></li>
+<li><a href="day4/part4-ex5-challenges/">Bonus Exercise 4.5: HTCondor challenges</a> (If and only if you have time)</li>
+</ul>
 <!--  All below here needs to be updated!
 
 ### Wednesday Afternoon: On Your Own
 
 - [Ideas for activities](/logistics/wednesday-activities.md)
-
-## Thursday
-
-### Thursday Morning: Data Handling
-
-- Lecture: Overall data considerations ([PDF](/materials/day4/files/osgus19-day4-part2-overall-data.pdf))
-- [Exercise 2.1: Understanding your data requirements](/materials/day4/part2-ex1-data-needs.md)
-- [Exercise 2.2: HTCondor file transfer and compression](/materials/day4/part2-ex2-file-transfer.md)
-- [Exercise 2.3: Splitting large input data](/materials/day4/part2-ex3-blast-split.md)
-
-### Thursday Morning: Data Handling (continued)
-
-- Lecture: Solutions for large input data ([PDF](/materials/day4/files/osgus19-day4-part3-large-input.pdf))
-- [Exercise 3.1: Using a web proxy for large, shared input](/materials/day4/part3-ex1-blast-proxy.md)
-- [Exercise 3.2: Using StashCache for large, shared input](/materials/day4/part3-ex2-stashcache-shared.md)
-- [Exercise 3.3: Using StashCache for large, unique input](/materials/day4/part3-ex3-stashcache-unique.md)
-
-### Thursday Afternoon: Data Handling (continued)
-
-- Lecture: Large output and shared file systems; Data summary
-  ([PDF](/materials/day4/files/osgus19-day4-part4-output-shared-fs.pdf))
-- [Exercise 4.1: Using a local shared filesystem for large input files](/materials/day4/part4-ex1-input.md)
-- [Exercise 4.2: Using a local shared filesystem for large output files](/materials/day4/part4-ex2-output.md)
-
-### Thursday Afternoon: Automating Workflows with HTCondor's DAGMan
-
-- Lecture: HTCondor: More on Workflows ([PDF](/materials/day4/files/osgus19-day4-part4-dagman.pdf);[PPT](/materials/day4/files/osgus19-day4-part4-dagman.pptx))
-- [Exercise 4.1: Coordinating set of jobs: A simple DAG](/materials/day4/part4-ex1-simple-dag.md)
-- [Exercise 4.2: A brief detour through the Mandelbrot set](/materials/day4/part4-ex2-mandelbrot.md)
-- [Exercise 4.3: A more complex DAG](/materials/day4/part4-ex3-complex-dag.md)
-- [Exercise 4.4: Handling jobs that fail with DAGMan](/materials/day4/part4-ex4-failed-dag.md)
-- [Bonus Exercise 4.5: HTCondor challenges](/materials/day4/part4-ex5-challenges.md) (If and only if you have time)
 
 All above here needs to be updated! -->
 
