@@ -7,6 +7,18 @@ Please note that *School-Organized Activities* are all free and walkable.  If yo
 activities also listed, or prefer not to walk, you will be responsible for you own transportation costs and activity
 costs.  We cannot reimburse transportation costs for these Wednesday afternoon activities.
 
+## Optional Learning Activities
+
+After lunch, some optional learning activities will continue in Room 1240.
+
+-   **[HTMap Demo & Workshop](https://github.com/htcondor/htmap)**
+
+    Starting at 1:30 p.m., this a brief demo of [HTMap](https://github.com/htcondor/htmap), 
+    a Python package for easily running Python functions as HTCondor jobs.
+    The demo itself will last about 15 minutes, 
+    with time afterwards to discuss possible applications to your own projects if desired.
+
+
 ## School-Organized Activities
 
 After lunch, select School instructors will accompany interested students for the below activities, which are all free
