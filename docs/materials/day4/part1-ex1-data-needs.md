@@ -9,7 +9,7 @@ Thursday Exercise 1.1: Understanding Data Requirements
 Background
 ----------
 
-This exercise's goal is to learn to think critically about an application's data needs, especially before submitting a large batch of jobs or using tools for delivering large data to jobs. In this exercise we will attempt to understand the input and output of the bioinformatics application [BLAST](http://blast.ncbi.nlm.nih.gov/), which you used yesterday in [Exercise 1.2](/materials/day3/part1-ex2-precompiled.md).
+This exercise's goal is to learn to think critically about an application's data needs, especially before submitting a large batch of jobs or using tools for delivering large data to jobs. In this exercise we will attempt to understand the input and output of the bioinformatics application [BLAST](http://blast.ncbi.nlm.nih.gov/), which you used yesterday in [Exercise 1.2](/materials/day2/part3-ex2-precompiled.md).
 
 ### Setup
 
@@ -134,7 +134,7 @@ Answers:
 Up next!
 --------
 
-Next you will create a HTCondor submit script to transfer the Blast input files in order to run Blast on a worker nodes. [Next Exercise](/materials/day4/part2-ex2-file-transfer.md)
+Next you will create a HTCondor submit script to transfer the Blast input files in order to run Blast on a worker nodes. [Next Exercise](/materials/day4/part1-ex2-file-transfer.md)
 
 
 

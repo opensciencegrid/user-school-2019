@@ -78,7 +78,7 @@ Ultimately we'll want to submit several jobs (one for each `.mov` file), but to 
 Submit File
 -----------
 
-Create a submit file for this job, based on other submit files from the school ([This file, for example](/materials/day4/part1-ex2-file-transfer/#start-with-a-test-submit-file).) Things to consider:
+Create a submit file for this job, based on other submit files from the school ([This file, for example](/materials/day4/part1-ex2-file-transfer.md#start-with-a-test-submit-file).) Things to consider:
 
 1.  We'll be copying the video file into the job's working directory, so make sure to request enough disk space for the input `mov` file and the output `mp4` file.  If you're aren't sure how much to request, ask a helper in the room.
 
@@ -145,7 +145,7 @@ Note that we use the input file name multiple times in our script, so we'll have
 
         queue mov from movie_list.txt
 
-4. Copy the movie_list.txt?
+4. Copy the movie_list.txt to your submit directory.
 
 Once you've made these changes, try submitting all the jobs!
 
@@ -161,7 +161,7 @@ If you wanted to set a different output file name, bitrate and/or size for each 
 to do so?
 
 <details>
-  <summary>Show hint</summary> Here's the changes you can make to the various files:
+  <summary><b><u>Show hint</u></b></summary> Here's the changes you can make to the various files:
 
 1.  `movie_list.txt` 
 
