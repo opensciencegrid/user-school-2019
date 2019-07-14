@@ -78,7 +78,7 @@ lobby by ~5:40&nbsp;p.m. and will leave for Union South at around 6:00 p.m.
 |  1:45 |  3:00 | Compiled software and wrapper scripts (hands-on)   | "                      |
 |  3:00 |  3:15 | Break                                              |                        |
 |  3:15 |  3:45 | Portability for non-compiled languages (lecture)   | Christina Koch         |
-|  3:45 |  5:00 | Matlab and Python portability (hands-on)           | "                      |
+|  3:45 |  5:00 | Interpreted language portability (hands-on)        | "                      |
 |  5:00 |  —    | On your own                                        |                        |
 |  7:00 |  9:00 | Evening work session (optional, terrace if good weather)<br><span style="color: #FF6600;">Union South, room TBD</span> | TBD |
 
