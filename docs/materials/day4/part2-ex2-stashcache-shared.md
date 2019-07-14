@@ -20,7 +20,14 @@ Setup
 -----
 
 -   Make sure you're logged in to `training.osgconnect.net`
--   Transfer the following files from [Exercise 2.1](/materials/day4/part2-ex1-blast-proxy.md) to a new directory called `~/stash/thur-data-stash`: `blast_wrapper.sh`, `blastx`, `mouse_rna.fa.1`, `mouse_rna.fa.2`, `mouse_rna.fa.3`, and the most recent submit file.
+-   Transfer the following files from [Exercise 2.1](/materials/day4/part2-ex1-blast-proxy.md) to a new directory in
+    your local scratch called `thur-data-stash`:
+    - `blast_wrapper.sh`
+    - `blastx`
+    - `mouse_rna.fa.1`
+    - `mouse_rna.fa.2`
+    - `mouse_rna.fa.3`
+    - Your most recent submit file.
 
 Place the Database in StashCache
 --------------------------------
@@ -41,14 +48,17 @@ Next, you can check for the file and test the command that we'll use in jobs on 
 user@training $ ls ~/stash/public
 ```
 
-Now, load the `stashcache` module, which will allow you to test a copy of the file from StashCache into your home directory on `login.osgconnect.net`:
+Now, load the `stashcache` module, which will allow you to test a copy of the file from StashCache into your local scratch directory on `login.osgconnect.net`:
 
 ``` console
 user@training $ module load stashcache
-user@training $ stashcp /user/%RED%username%ENDCOLOR%/public/pdbaa_files.tar.gz ./
+user@training $ stashcp /user/<USERNAME>/public/pdbaa_files.tar.gz /local-scratch/<USERNAME>/
 ```
 
-You should now see the `pdbaa_files.tar.gz` file in your current directory. Notice that we had to include the **`/user`** and **`username`** in the file path for `stashcp`, which make sure you're copying from **your** `public` space.
+Replacing all instances of `<USERNAME>` with your username on `training.osgconnect.net`.
+You should now see the `pdbaa_files.tar.gz` file in your local scratch directory.
+Notice that we had to include the **`/user`** and your username in the file path for `stashcp`, which make sure you're
+copying from **your** `public` space.
 
 Modify the Submit File and Wrapper
 ----------------------------------

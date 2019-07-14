@@ -12,7 +12,7 @@ Setup
 -----
 
 -   Make sure you are still logged into `training.osgconnect.net`
--   Make sure you are in the directory named `thur-blast-data` under the `stash` filesystem.
+-   Make sure you are in the directory named `thur-blast-data` under your local scratch directory
 
 ### Obtain the large input
 
