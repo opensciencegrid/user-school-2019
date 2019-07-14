@@ -53,7 +53,7 @@ Naturally, we want to run this as an HTCondor job, so
 
 1. Submit the accompanying `find-anagrams.sub` file from the tarball.
    Try to do this step without looking at materials from yesterday.
-   But if you are stuck, see [yesterday’s exercise 2.2](/materials/day1/part2-ex2-queue-n.md).
+   But if you are stuck, see [yesterday’s exercise 1.3](/materials/day1/part1-ex3-jobs.md).
 1. Resolve any issues that you encounter until the job returns pairs of anagrams as its output.
 
 Once you have satisfactory output, move onto the next section.
