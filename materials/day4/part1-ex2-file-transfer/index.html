@@ -61,10 +61,11 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Make sure you are still logged into <code>training.osgconnect.net</code></li>
-<li>Make a directory for today's blast exercises named <code>thur-blast-data</code> inside your <code>stash</code> directory, and change into it.</li>
+<li>Navigate to your local scratch directory and create a directory for this exercise named <code>thur-blast-data</code> and change
+    into it.</li>
 </ul>
 <p>The executable we'll use in this exercise and later today is the same <strong><code>blastx</code></strong> executable from the <a href="../part1-ex1-data-needs/">previous exercise</a>.</p>
-<p>Also copy the data from the last exercise into the <code>thur-blast-data</code> directory. You'll need the <code>mouse.fa</code> file and the <code>pdbaa</code> directory from the last exercise, but you'll end up making a new submit file.</p>
+<p>Also copy the data and executables from the last exercise into the <code>thur-blast-data</code> directory. You'll need the <code>mouse.fa</code> file and the <code>pdbaa</code> directory from the last exercise, but you'll end up making a new submit file.</p>
 <h3 id="review-htcondor-file-transfer">Review: HTCondor File Transfer<a class="headerlink" href="#review-htcondor-file-transfer" title="Permanent link">&para;</a></h3>
 <p><img alt="OSG data transfer" src="../../../materials/day4/files/osgus18-day4-part2-ex2-data-transfer.jpg" /></p>
 <p>Recall that OSG does <strong>NOT</strong> have a shared filesystem!  Instead, HTCondor <em>transfers</em> your executable and input files

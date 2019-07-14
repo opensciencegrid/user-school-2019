@@ -67,7 +67,16 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Make sure you're logged in to <code>training.osgconnect.net</code></li>
-<li>Transfer the following files from <a href="../part2-ex1-blast-proxy/">Exercise 2.1</a> to a new directory called <code>~/stash/thur-data-stash</code>: <code>blast_wrapper.sh</code>, <code>blastx</code>, <code>mouse_rna.fa.1</code>, <code>mouse_rna.fa.2</code>, <code>mouse_rna.fa.3</code>, and the most recent submit file.</li>
+<li>Transfer the following files from <a href="../part2-ex1-blast-proxy/">Exercise 2.1</a> to a new directory in
+    your local scratch called <code>thur-data-stash</code>:<ul>
+<li><code>blast_wrapper.sh</code></li>
+<li><code>blastx</code></li>
+<li><code>mouse_rna.fa.1</code></li>
+<li><code>mouse_rna.fa.2</code></li>
+<li><code>mouse_rna.fa.3</code></li>
+<li>Your most recent submit file.</li>
+</ul>
+</li>
 </ul>
 <h2 id="place-the-database-in-stashcache">Place the Database in StashCache<a class="headerlink" href="#place-the-database-in-stashcache" title="Permanent link">&para;</a></h2>
 <h3 id="copy-to-your-public-space-on-osg-connect">Copy to your <code>public</code> space on OSG Connect<a class="headerlink" href="#copy-to-your-public-space-on-osg-connect" title="Permanent link">&para;</a></h3>
@@ -80,13 +89,16 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </pre></div>
 
 
-<p>Now, load the <code>stashcache</code> module, which will allow you to test a copy of the file from StashCache into your home directory on <code>login.osgconnect.net</code>:</p>
+<p>Now, load the <code>stashcache</code> module, which will allow you to test a copy of the file from StashCache into your local scratch directory on <code>login.osgconnect.net</code>:</p>
 <div class="codehilite"><pre><span></span><span class="gp">user@training $</span> module load stashcache
-<span class="gp">user@training $</span> stashcp /user/<span style="color:red">username</span>/public/pdbaa_files.tar.gz ./
+<span class="gp">user@training $</span> stashcp /user/&lt;USERNAME&gt;/public/pdbaa_files.tar.gz /local-scratch/&lt;USERNAME&gt;/
 </pre></div>
 
 
-<p>You should now see the <code>pdbaa_files.tar.gz</code> file in your current directory. Notice that we had to include the <strong><code>/user</code></strong> and <strong><code>username</code></strong> in the file path for <code>stashcp</code>, which make sure you're copying from <strong>your</strong> <code>public</code> space.</p>
+<p>Replacing all instances of <code>&lt;USERNAME&gt;</code> with your username on <code>training.osgconnect.net</code>.
+You should now see the <code>pdbaa_files.tar.gz</code> file in your local scratch directory.
+Notice that we had to include the <strong><code>/user</code></strong> and your username in the file path for <code>stashcp</code>, which make sure you're
+copying from <strong>your</strong> <code>public</code> space.</p>
 <h2 id="modify-the-submit-file-and-wrapper">Modify the Submit File and Wrapper<a class="headerlink" href="#modify-the-submit-file-and-wrapper" title="Permanent link">&para;</a></h2>
 <p>You will have to modify the wrapper and submit files to use StashCache:</p>
 <ol>
