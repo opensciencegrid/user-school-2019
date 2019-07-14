@@ -193,6 +193,7 @@ error = norun.err
 log = norun.log
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
+request_disk = 10MB
 request_memory = 8TB
 queue
 </pre></div>
@@ -201,47 +202,51 @@ queue
 <p>(Do you see what I did?)</p>
 <ol>
 <li>Save and submit this file.</li>
-<li>Run <code>condor_q -analyze</code> on the job ID.</li>
+<li>Run <code>condor_q -better-analyze</code> on the job ID.</li>
 </ol>
-<p>There is a lot of output, but a few items are worth highlighting. Here is a sample from my own job (with many lines left out):</p>
-<div class="codehilite"><pre><span></span>-- Submitter: learn.chtc.wisc.edu : ....
-...
----
-2423.000:  Run analysis summary.  Of 12388 machines,
-   12388 are rejected by your job&#39;s requirements 
-...
-WARNING:  Be advised:
-   No resources matched request&#39;s constraints
-
-The Requirements expression for your job is:
+<p>There is a lot of output, but a few items are worth highlighting. Here is a sample from my own job (with some lines omitted):</p>
+<div class="codehilite"><pre><span></span>-- Schedd: learn.chtc.wisc.edu : &lt;128.104.100.148:9618?...
 ...
 
-Suggestions:
+Job 98096.000 defines the following attributes:
 
-    Condition                         Machines Matched    Suggestion
-    ---------                         ----------------    ----------
-1   ( TARGET.Memory &gt;= 8388608 )      0                   MODIFY TO 1000064
-2   ( ... )
-                                      12145                
-3   ( TARGET.Arch == &quot;X86_64&quot; )       12388                
-4   ( TARGET.OpSys == &quot;LINUX&quot; )       12386                
-5   ( TARGET.Disk &gt;= 20 )             12387                
-6   ( TARGET.HasFileTransfer )        12388                
+    RequestDisk = 10240
+    RequestMemory = 8388608
+
+The Requirements expression for job 98096.000 reduces to these conditions:
+
+
+         Slots
+Step    Matched  Condition
+-----  --------  ---------
+[1]       11227  Target.OpSysMajorVer == 7
+[9]       13098  TARGET.Disk &gt;= RequestDisk
+[11]          0  TARGET.Memory &gt;= RequestMemory
+
+No successful match recorded.
+Last failed match: Fri Jul 12 15:36:30 2019
+
+Reason for last match failure: no match found
+
+98096.000:  Run analysis summary ignoring user priority.  Of 710 machines,
+    710 are rejected by your job&#39;s requirements
+      0 reject your job because of their own requirements
+      0 match and are already running your jobs
+      0 match but are serving other users
+      0 are able to run your job
+...
 </pre></div>
 
 
-<p>Toward the top, <code>condor_q</code> said that it considered 12388 “machines” (really, slots) and <strong>all</strong> 12388 of them were rejected by <strong>my job’s requirements</strong>. In other words, I am asking for something that is not available. But what?</p>
-<p>The real clue comes from the breakdown of the Requirements expression, at the end of the output. 
-Note the highlighted line: My job asked for <strong>8 terabytes</strong> of memory (8,388,608 MB) and <strong>no</strong> machines matched that part of the expression. 
-Well, of course! 8 TB is a lot of memory on today’s machines. 
-And finally, note the suggestion: If I reduce my memory request to 1,000,064 MB (about 1 TB), there will be at least one slot in the pool that will match that expression.</p>
+<p>At the end of the summary, <code>condor_q</code> provides a breakdown of how <strong>machines</strong> and their own requirements match against my own job's requirements. 710 total machines were considered above, and <strong>all</strong> of them were rejected based on <strong>my job's requirements</strong>. In other words, I am asking for something that is not available. But what?</p>
+<p>Further up in the output, there is an analysis of the job's requirements, along with how many slots within the pool match each of those requirements. The example above reports that 13098 slots match our small disk request request, but <strong>none</strong> of the slots matched the <code>TARGET.Memory &gt;= RequestMemory</code> condition. The output also reports the value used for the <code>RequestMemory</code> attribute: my job asked for <strong>8 terabytes</strong> of memory (8,388,608 MB) -- of course no machines matched that part of the expression! That's a lot of memory on today's machines.</p>
 <p>The output from <code>condor_q -analyze</code> (and <code>condor_q -better-analyze</code>) may be helpful or it may not be, depending on your exact case. The example above was constructed so that it would be obvious what the problem was. But in many cases, this is a good place to start looking if you are having problems matching.</p>
 <h2 id="bonus-automatic-formatting-output">Bonus: Automatic Formatting Output<a class="headerlink" href="#bonus-automatic-formatting-output" title="Permanent link">&para;</a></h2>
 <p><strong>Do this exercise only if you have time, though it's pretty awesome!</strong></p>
 <p>There is a way to select the specific job attributes you want <code>condor_q</code> to tell you about with the <code>-autoformat</code> or <code>-af</code> option. In this case, HTCondor decides for you how to format the data you ask for from job ClassAd(s). 
 (To tell HTCondor how to specially format this information, yourself, you could use the <code>-format</code> option, which we're not covering.)</p>
 <p>To use autoformatting, use the <code>-af</code> option followed by the attribute name, for each attribute that you want to output:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q -af Owner ClusterId Cmd
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q -all -af Owner ClusterId Cmd
 <span class="go">moate 2418 /share/test.sh</span>
 <span class="go">cat 2421 /bin/sleep</span>
 <span class="go">cat 2422 /bin/sleep</span>

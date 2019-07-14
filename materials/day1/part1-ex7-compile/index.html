@@ -62,28 +62,28 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="preparing-a-c-executable">Preparing a C Executable<a class="headerlink" href="#preparing-a-c-executable" title="Permanent link">&para;</a></h2>
 <p>When preparing a C program for HTCondor, it is best to compile and link the executable statically, so that it does not depend on external libraries and their particular versions. Why is this important? When your compiled C program is sent to another machine for execution, that machine may not have the same libraries that you have on your submit machine (or wherever you compile the program). If the libraries are not available or are the wrong versions, your program may fail or, perhaps worse, silently produce the wrong results.</p>
 <p>Here is a simple C program to try using (thanks, Alain Roy):</p>
-<div class="codehilite"><pre><span></span>#include &lt;stdio.h&gt;
+<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
-int main(int argc, char **argv)
-{
-    int sleep_time;
-    int input;
-    int failure;
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">sleep_time</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">input</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">failure</span><span class="p">;</span>
 
-    if (argc != 3) {
-        printf(&quot;Usage: simple &lt;sleep-time&gt; &lt;integer&gt;\n&quot;);
-        failure = 1;
-    } else {
-        sleep_time = atoi(argv[1]);
-        input      = atoi(argv[2]);
+    <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Usage: simple &lt;sleep-time&gt; &lt;integer&gt;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="n">failure</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">sleep_time</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+        <span class="n">input</span>      <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
 
-        printf(&quot;Thinking really hard for %d seconds...\n&quot;, sleep_time);
-        sleep(sleep_time);
-        printf(&quot;We calculated: %d\n&quot;, input * 2);
-        failure = 0;
-    }
-    return failure;
-}
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Thinking really hard for %d seconds...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">sleep_time</span><span class="p">);</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;We calculated: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">input</span> <span class="o">*</span> <span class="mi">2</span><span class="p">);</span>
+        <span class="n">failure</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">failure</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 
 

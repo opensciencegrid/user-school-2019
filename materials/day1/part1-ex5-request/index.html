@@ -127,17 +127,17 @@ However, you may have access to other computers (your laptop, for example, or an
 <h2 id="determining-resource-needs-by-running-test-jobs-best">Determining Resource Needs By Running Test Jobs (BEST)<a class="headerlink" href="#determining-resource-needs-by-running-test-jobs-best" title="Permanent link">&para;</a></h2>
 <p>Despite the techniques mentioned above, by far the easiest approach to measuring your job’s resource needs is to run one or a small number of sample jobs and have HTCondor itself tell you about the resources used during the runs.</p>
 <p>For example, here is a strange Python script that does not do anything useful, but consumes some real resources while running:</p>
-<div class="codehilite"><pre><span></span>#!/usr/bin/env python
-import time
-import os
-size = 1000000
-numbers = []
-for i in xrange(size): numbers.append(str(i))
-tempfile = open(&#39;temp&#39;, &#39;w&#39;)
-tempfile.write(&#39; &#39;.join(numbers))
-tempfile.close()
-time.sleep(60)
-os.remove(&#39;temp&#39;)
+<div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">1000000</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">size</span><span class="p">):</span> <span class="n">numbers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+<span class="n">tempfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;temp&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">tempfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">numbers</span><span class="p">))</span>
+<span class="n">tempfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;temp&#39;</span><span class="p">)</span>
 </pre></div>
 
 

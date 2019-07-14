@@ -67,33 +67,33 @@ It is less useful when the values for different job conditions are <strong>not</
 <h2 id="queue-jobs-from-a-list-of-values">Queue Jobs From a List of Values<a class="headerlink" href="#queue-jobs-from-a-list-of-values" title="Permanent link">&para;</a></h2>
 <p>Suppose we want to modify our word-frequency analysis a little bit so that it outputs only the most common <em>N</em> words of a document. Further, we want to experiment with different values of <em>N</em>. And finally, even though we downloaded it, we no longer want to analyze the Sherlock Holmes stories in the <code>TAoSH.txt</code> file. Clearly, <code>queue ... matching</code> will not help us in this case.</p>
 <p>First, we need a new version of the word counting program so that it accepts an extra number as a command line argument and outputs only that many of the most common words. Here is the new code (it's still not important that you understand this code):</p>
-<div class="codehilite"><pre><span></span>#!/usr/bin/env python
+<div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 
-import os
-import sys
-import operator
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">operator</span>
 
-if len(sys.argv) != 3:
-    print &#39;Usage: %s DATA NUM_WORDS&#39; % (os.path.basename(sys.argv[0]))
-    sys.exit(1)
-input_filename = sys.argv[1]
-num_words = int(sys.argv[2])
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s1">&#39;Usage: </span><span class="si">%s</span><span class="s1"> DATA NUM_WORDS&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">input_filename</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">num_words</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 
-words = {}
+<span class="n">words</span> <span class="o">=</span> <span class="p">{}</span>
 
-my_file = open(input_filename, &#39;r&#39;)
-for line in my_file:
-    line_words = line.split()
-    for word in line_words:
-        if word in words:
-            words[word] += 1
-        else:
-            words[word] = 1
-my_file.close()
+<span class="n">my_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">my_file</span><span class="p">:</span>
+    <span class="n">line_words</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">line_words</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+            <span class="n">words</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">words</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">my_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-sorted_words = sorted(words.items(), key=operator.itemgetter(1))
-for word in sorted_words[-num_words:]:
-    print &#39;%s %8d&#39; % (word[0], word[1])
+<span class="n">sorted_words</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">words</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">sorted_words</span><span class="p">[</span><span class="o">-</span><span class="n">num_words</span><span class="p">:]:</span>
+    <span class="k">print</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%8d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">word</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 
 

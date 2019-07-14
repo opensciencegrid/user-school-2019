@@ -93,7 +93,7 @@ sys.exit(0)
 <ol>
 <li>In a new directory for this exercise, save the script above as <code>murphy.py</code>.</li>
 <li>Write a submit file for the script; <code>queue 20</code> instances of the job and be sure to ask for 20 MB of memory and disk.</li>
-<li>Submit the file and wait for the jobs to finish.</li>
+<li>Submit the file, note the ClusterId, and wait for the jobs to finish.</li>
 </ol>
 <p>What output do you expect? What output did you get? If you are curious about the exit code from the job, it is saved in completed jobs in <code>condor_history</code> in the <code>ExitCode</code> attribute. The following command will show the <code>ExitCode</code> for a given cluster of jobs:</p>
 <div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_history <span style="color:red">&lt;CLUSTER&gt;</span> -af ProcId ExitCode
