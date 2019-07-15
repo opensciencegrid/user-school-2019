@@ -41,16 +41,9 @@ Our wrapper script will need to install Python from the source code and then run
 1.  We also need to run our `fib.py` script. We can do so by adding our installation location to the `PATH`, or by referencing the installation directly: 
 
 		:::bash
-		export PATH=$(pwd)/python/bin:$PATH
+		./python/bin/python3 fib.py 90
 
-		python3 fib.py 90
-
-	or
-
-		:::bash
-		python/bin/python3 fib.py 90
-
-	Choose whichever method you prefer, and add it to your `run_py.sh` script.
+	This should be added to your `run_py.sh` script.
 
 1.  Make your `run_py.sh` script executable.
 
@@ -60,7 +53,8 @@ Submit file
 The submit file for this exercise can be very similar to the [last one from Exercise 4.1](/materials/day2/part4-ex1-python-built.md).
 
 1.  Make a copy of the submit file from the last exercise. What lines need to change? Make changes as appropriate.
-1.  You need to change the transferred tarball (the Python source, instead of our `prebuilt_python.tar.gz`) and the job's executable. Once you've made these changes, submit the job using `condor_submit`.
+1.  You need to change the transferred tarball (the Python source, instead of our `prebuilt_python.tar.gz`) and the job's executable.  Plan to submit about 10 jobs and have each of them save a unique .err/.out file.
+1. Once you've made these changes, submit the job using `condor_submit`.
 1.  Check for the results in the `.out` file.
 
 
