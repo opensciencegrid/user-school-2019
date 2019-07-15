@@ -34,7 +34,7 @@
       var is_top_frame = false;
         
         var pageToc = [
-          {title: "Thursday Exercise 2.1: Use Singularity from OSG Connect", url: "#_top", children: [
+          {title: "Wednesday Exercise 2.1: Use Singularity from OSG Connect", url: "#_top", children: [
               {title: "Background", url: "#background" },
               {title: "Setup", url: "#setup" },
               {title: "Job Submission", url: "#job-submission" },
@@ -58,7 +58,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
     <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: \#008; } </style>
 
-<h1 id="thursday-exercise-21-use-singularity-from-osg-connect">Thursday Exercise 2.1: Use Singularity from OSG Connect<a class="headerlink" href="#thursday-exercise-21-use-singularity-from-osg-connect" title="Permanent link">&para;</a></h1>
+<h1 id="wednesday-exercise-21-use-singularity-from-osg-connect">Wednesday Exercise 2.1: Use Singularity from OSG Connect<a class="headerlink" href="#wednesday-exercise-21-use-singularity-from-osg-connect" title="Permanent link">&para;</a></h1>
 <h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
 <p>Containers are another way to manage software installations. We don't have the time to go fully into the details of building and using containers, but can use pre-existing containers to run jobs. </p>
 <p>One caveat for using containers: not all systems will support them. HTCondor has built-in features for using Docker and many Open Science Grid resources have Singularity installed, but they are not always available everywhere. </p>
@@ -68,7 +68,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="job-submission">Job Submission<a class="headerlink" href="#job-submission" title="Permanent link">&para;</a></h2>
 <p>For this job, we will use the OSG Connect Ubuntu "Xenial" image. Copy a submit file you used for a previous exercise and add the following lines: </p>
 <div class="codehilite"><pre><span></span>requirements = HAS_SINGULARITY == true
-+SingularityImage = /cvmfs/singularity.opensciencegrid.org/opensciencegrid/osgvo-ubuntu-xenial:latest
++SingularityImage = &quot;/cvmfs/singularity.opensciencegrid.org/opensciencegrid/osgvo-ubuntu-xenial:latest&quot;
 </pre></div>
 
 

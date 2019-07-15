@@ -195,7 +195,10 @@ queue
 <p>Now that we've created our portable installation, we need to write a script that opens and uses the installation, similar to the process we used in the  <a href="../part3-ex3-wrapper/">previous exercise</a>. These steps should be performed back on the submit server (<code>learn.chtc.wisc.edu</code>).</p>
 <ol>
 <li>
-<p>Create a script called <code>run_openbugs.sh</code>. The script will first need to untar our installation, so the script should start out like this:  </p>
+<p>Create a script called <code>run_openbugs.sh</code>. </p>
+</li>
+<li>
+<p>The script will first need to untar our installation, so the script should start out like this:  </p>
 <div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 tar -xzf openbugs.tar.gz

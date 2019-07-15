@@ -90,18 +90,11 @@ make install
 </li>
 <li>
 <p>We also need to run our <code>fib.py</code> script. We can do so by adding our installation location to the <code>PATH</code>, or by referencing the installation directly: </p>
-<div class="codehilite"><pre><span></span><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/python/bin:<span class="nv">$PATH</span>
-
-python3 fib.py <span class="m">90</span>
+<div class="codehilite"><pre><span></span>./python/bin/python3 fib.py <span class="m">90</span>
 </pre></div>
 
 
-<p>or</p>
-<div class="codehilite"><pre><span></span>python/bin/python3 fib.py <span class="m">90</span>
-</pre></div>
-
-
-<p>Choose whichever method you prefer, and add it to your <code>run_py.sh</code> script.</p>
+<p>This should be added to your <code>run_py.sh</code> script.</p>
 </li>
 <li>
 <p>Make your <code>run_py.sh</code> script executable.</p>
@@ -111,7 +104,8 @@ python3 fib.py <span class="m">90</span>
 <p>The submit file for this exercise can be very similar to the <a href="../part4-ex1-python-built/">last one from Exercise 4.1</a>.</p>
 <ol>
 <li>Make a copy of the submit file from the last exercise. What lines need to change? Make changes as appropriate.</li>
-<li>You need to change the transferred tarball (the Python source, instead of our <code>prebuilt_python.tar.gz</code>) and the job's executable. Once you've made these changes, submit the job using <code>condor_submit</code>.</li>
+<li>You need to change the transferred tarball (the Python source, instead of our <code>prebuilt_python.tar.gz</code>) and the job's executable.  Plan to submit about 10 jobs and have each of them save a unique .err/.out file.</li>
+<li>Once you've made these changes, submit the job using <code>condor_submit</code>.</li>
 <li>Check for the results in the <code>.out</code> file.</li>
 </ol>
 

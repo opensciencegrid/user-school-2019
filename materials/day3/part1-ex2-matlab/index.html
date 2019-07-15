@@ -34,7 +34,7 @@
       var is_top_frame = false;
         
         var pageToc = [
-          {title: "Tuesday Exercise 4.1: Matlab", url: "#_top", children: [
+          {title: "Wednesday Exercise 1.2: Matlab", url: "#_top", children: [
               {title: "Background", url: "#background" },
               {title: "Matlab Code", url: "#matlab-code" },
               {title: "Compiling Matlab Code", url: "#compiling-matlab-code" },
@@ -61,7 +61,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
     <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: #008; } </style>
 
-<h1 id="tuesday-exercise-41-matlab">Tuesday Exercise 4.1: Matlab<a class="headerlink" href="#tuesday-exercise-41-matlab" title="Permanent link">&para;</a></h1>
+<h1 id="wednesday-exercise-12-matlab">Wednesday Exercise 1.2: Matlab<a class="headerlink" href="#wednesday-exercise-12-matlab" title="Permanent link">&para;</a></h1>
 <p>The goal of this exercise is to compile Matlab code and run it. This exercise will draw on the idea of writing a wrapper script to install and run code, first introduced in <a href="../../../materials/day2/part3-ex3-wrapper">Exercise 3.3</a> and should take 25-30 minutes.</p>
 <h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
 <p>Matlab is licensed; however, unlike most licensed software, it has the ability to be compiled and the compiled code can be run without a license. We will be compiling Matlab <code>.m</code> files into a binary file and running that binary using a set of files called the Matlab runtime.</p>
@@ -144,7 +144,7 @@ queue
 <h2 id="matlab-runtime">Matlab Runtime<a class="headerlink" href="#matlab-runtime" title="Permanent link">&para;</a></h2>
 <p>The newly compiled binary will require the 2015b Matlab runtime to run. You can download the runtime from the Mathworks website and build it yourself, but to save time, for this exercise you can use the pre-built runtimes hosted by CHTC.</p>
 <ol>
-<li>Download the 2015b Matlab runtime hosted by CHTC: <div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> wget http://proxy.chtc.wisc.edu/SQUID/2015b.tar.gz
+<li>Download the 2015b Matlab runtime hosted by CHTC: <div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> wget http://proxy.chtc.wisc.edu/SQUID/r2015b.tar.gz
 </pre></div>
 
 
@@ -203,7 +203,7 @@ queue
 </li>
 <li>
 <p>You need to transfer the compiled binary <code>matrix</code>, as well as the runtime <code>.tar.gz</code> file, using <code>transfer_input_files</code>. </p>
-<div class="codehilite"><pre><span></span>transfer_input_files = matrix, r2018trainingb.tar.gz
+<div class="codehilite"><pre><span></span>transfer_input_files = matrix, r2015b.tar.gz
 </pre></div>
 
 
