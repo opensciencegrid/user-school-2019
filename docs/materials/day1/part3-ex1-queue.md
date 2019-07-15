@@ -36,13 +36,13 @@ username@learn $ condor_q -all -nobatch
 Did you know you can also name one or more user IDs on the command line, in which case jobs for all of the named users are listed at once?
 
 ``` console
-username@learn $ condor_q %RED%<username1> <username2> <username3>%ENDCOLOR%
+username@learn $ condor_q <USERNAME1> <USERNAME2> <USERNAME3>
 ```
 
 There are two other, simple selection criteria that you can use. To list just the jobs associated with a single cluster number:
 
 ``` console
-username@learn $ condor_q %RED%<CLUSTER>%ENDCOLOR%
+username@learn $ condor_q <CLUSTER>
 ```
 
 For example, if you want to see the jobs in cluster 5678 (i.e., `5678.0`, `5678.1`, etc.), you use `condor_q 5678`.
@@ -50,7 +50,7 @@ For example, if you want to see the jobs in cluster 5678 (i.e., `5678.0`, `5678.
 To list a specific job (i.e., cluster.process, as in 5678.0):
 
 ``` console
-username@learn $ condor_q %RED%<JOB.ID>%ENDCOLOR%
+username@learn $ condor_q <JOB.ID>
 ```
 
 For example, to see job ID 5678.1, you use `condor_q 5678.1`.
@@ -79,7 +79,7 @@ You may have wondered why it is useful to be able to list a single job ID using 
 If you add the `-long` option to `condor_q` (or its short form, `-l`), it will show the complete ClassAd for each selected job, instead of the one-line summary that you have seen so far. Because job ClassAds may have 80–90 attributes (or more), it probably makes the most sense to show the ClassAd for a single job at a time. And you know how to show just one job! Here is what the command looks like:
 
 ``` console
-username@learn $ condor_q -long %RED%<JOB.ID>%ENDCOLOR%
+username@learn $ condor_q -long <JOB.ID>
 ```
 
 The output from this command is long and complex. Most of the attributes that HTCondor adds to a job are arcane and uninteresting for us now. But here are some examples of common, interesting attributes taken directly from `condor_q` output (except with some line breaks added to the `Requirements` attribute):
@@ -113,12 +113,12 @@ Arguments = "120"
 1.  Before the job executes, capture its ClassAd and save to a file:
 
         :::console
-        condor_q -l %RED%<JOB.ID>%ENDCOLOR% > classad-1.txt
+        condor_q -l <JOB.ID> > classad-1.txt
 
 1.  After the job starts execution but before it finishes, capture its ClassAd again and save to a file
 
         :::console 
-        condor_q -l %RED%<JOB.ID>%ENDCOLOR% > classad-2.txt
+        condor_q -l <JOB.ID> > classad-2.txt
 
 Now examine each saved ClassAd file. Here are a few things to look for:
 
