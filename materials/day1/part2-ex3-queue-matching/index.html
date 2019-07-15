@@ -133,7 +133,7 @@ queue
 <li>Create a submit file to submit one job (pick a book file and model your submit file off of the one above), including memory and disk requests of 20 MB; submit it, if you like.</li>
 <li>
 <p>Modify the following submit file statements to work for all books:</p>
-<div class="codehilite"><pre><span></span>transfer_input_files = $(BOOK) 
+<div class="codehilite"><pre><span></span>transfer_input_files = $(book) 
 arguments = $(book) 
 output = $(book).out 
 error = $(book).err 
