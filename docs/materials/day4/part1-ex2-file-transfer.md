@@ -12,11 +12,12 @@ Setup
 -----
 
 -   Make sure you are still logged into `training.osgconnect.net`
--   Make a directory for today's blast exercises named `thur-blast-data` inside your `stash` directory, and change into it.
+-   Navigate to your local scratch directory and create a directory for this exercise named `thur-blast-data` and change
+    into it.
 
 The executable we'll use in this exercise and later today is the same **`blastx`** executable from the [previous exercise](/materials/day4/part1-ex1-data-needs.md).
 
-Also copy the data from the last exercise into the `thur-blast-data` directory. You'll need the `mouse.fa` file and the `pdbaa` directory from the last exercise, but you'll end up making a new submit file.
+Also copy the data and executables from the last exercise into the `thur-blast-data` directory. You'll need the `mouse.fa` file and the `pdbaa` directory from the last exercise, but you'll end up making a new submit file.
 
 ### Review: HTCondor File Transfer
 

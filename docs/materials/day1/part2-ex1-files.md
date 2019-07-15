@@ -52,7 +52,7 @@ Next, you will run a job that requires an input file. Remember, the initial job 
 
 Here is a simple Python script that takes the name of an input file (containing one word per line) from the command line, counts the number of times each (lowercased) word occurs in the text, and prints out the final list of words and their counts.
 
-``` file
+``` python
 #!/usr/bin/env python
 
 import os
@@ -132,7 +132,7 @@ What if you want to bring back only **some** output files, or output files conta
 
 Here is a simple shell script that creates several files, including a copy of an input file in a new subdirectory:
 
-``` file
+``` shell
 #!/bin/sh
 if [ $# -ne 1 ]; then echo "Usage: $0 INPUT"; exit 1; fi
 date > output-timestamp.txt

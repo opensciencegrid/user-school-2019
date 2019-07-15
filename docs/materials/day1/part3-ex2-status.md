@@ -91,17 +91,17 @@ Memory = 1024
 
 As you may be able to tell, there is a mix of attributes about the machine as a whole (hence the name “machine ad”) and about the slot in particular.
 
-Go ahead and examine a machine ClassAd now. I suggest looking at one of the slots on, say, `c010.chtc.wisc.edu` because of its relatively simple configuration.
+Go ahead and examine a machine ClassAd now. I suggest looking at one of the slots on, say, `e242.chtc.wisc.edu` because of its relatively simple configuration.
 
 Viewing Slots by ClassAd Expression
 -----------------------------------
 
 Often, it is helpful to view slots that meet some particular criteria. For example, if you know that your job needs a lot of memory to run, you may want to see how many high-memory slots there are and whether they are busy. You can filter the list of slots like this using the `-constraint` option and a ClassAd expression.
 
-For example, suppose we want to list all slots that are running Scientific Linux 6 (operating system) and have at least 16 GB memory available. Note that memory is reported in units of Megabytes. The command is:
+For example, suppose we want to list all slots that are running Scientific Linux 7 (operating system) and have at least 16 GB memory available. Note that memory is reported in units of Megabytes. The command is:
 
 ``` console
-username@learn $ condor_status -constraint 'OpSysAndVer == "CentOS7" && Memory >= 200000'
+username@learn $ condor_status -constraint 'OpSysAndVer == "CentOS7" && Memory >= 16000'
 ```
 
 !!! note
@@ -136,7 +136,7 @@ References
 As suggested above, if you want to learn more about `condor_q`, you can do some reading:
 
 -   Read the `condor_status` man page or HTCondor Manual section (same text) to learn about more options
--   Read about ClassAd attributes in Appendix A of the HTCondor Manual
--   Read about ClassAd expressions in section 4.1.4 of the HTCondor Manual
+-   Read about [ClassAd attributes](https://htcondor.readthedocs.io/en/v8_9_2/classad-attributes/index.html) in the appendix of the HTCondor Manual
+-   Read about [ClassAd expressions](https://htcondor.readthedocs.io/en/latest/misc-concepts/classad-mechanism.html#old-classads-in-the-htcondor-system) in section 4.1.4 of the HTCondor Manual
 
 

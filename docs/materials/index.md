@@ -77,34 +77,28 @@ status: in progress
 - [Exercise 2.2: Use Singularity to Run Tensorflow (Optional)](/materials/day3/part2-ex2-tensorflow-singularity.md)
 - [Exercise 2.3: Using Docker](/materials/day3/part2-ex3-docker.md)
 
-<!--  All below here needs to be updated!
-
-### Wednesday Afternoon: On Your Own
-
-- [Ideas for activities](/logistics/wednesday-activities.md)
-
 ## Thursday
 
 ### Thursday Morning: Data Handling
 
-- Lecture: Overall data considerations ([PDF](/materials/day4/files/osgus19-day4-part2-overall-data.pdf))
-- [Exercise 2.1: Understanding your data requirements](/materials/day4/part2-ex1-data-needs.md)
-- [Exercise 2.2: HTCondor file transfer and compression](/materials/day4/part2-ex2-file-transfer.md)
-- [Exercise 2.3: Splitting large input data](/materials/day4/part2-ex3-blast-split.md)
+- Lecture: Overall data considerations ([PDF](/materials/day4/files/osgus19-day4-part1-overall-data.pdf))
+- [Exercise 1.1: Understanding your data requirements](/materials/day4/part1-ex1-data-needs.md)
+- [Exercise 1.2: HTCondor file transfer and compression](/materials/day4/part1-ex2-file-transfer.md)
+- [Exercise 1.3: Splitting large input data](/materials/day4/part1-ex3-blast-split.md)
 
 ### Thursday Morning: Data Handling (continued)
 
-- Lecture: Solutions for large input data ([PDF](/materials/day4/files/osgus19-day4-part3-large-input.pdf))
-- [Exercise 3.1: Using a web proxy for large, shared input](/materials/day4/part3-ex1-blast-proxy.md)
-- [Exercise 3.2: Using StashCache for large, shared input](/materials/day4/part3-ex2-stashcache-shared.md)
-- [Exercise 3.3: Using StashCache for large, unique input](/materials/day4/part3-ex3-stashcache-unique.md)
+- Lecture: Solutions for large input data ([PDF](/materials/day4/files/osgus19-day4-part2-large-input.pdf))
+- [Exercise 2.1: Using a web proxy for large, shared input](/materials/day4/part2-ex1-blast-proxy.md)
+- [Exercise 2.2: Using StashCache for large, shared input](/materials/day4/part2-ex2-stashcache-shared.md)
+- [Exercise 2.3: Using StashCache for large, unique input](/materials/day4/part2-ex3-stashcache-unique.md)
 
 ### Thursday Afternoon: Data Handling (continued)
 
 - Lecture: Large output and shared file systems; Data summary
-  ([PDF](/materials/day4/files/osgus19-day4-part4-output-shared-fs.pdf))
-- [Exercise 4.1: Using a local shared filesystem for large input files](/materials/day4/part4-ex1-input.md)
-- [Exercise 4.2: Using a local shared filesystem for large output files](/materials/day4/part4-ex2-output.md)
+  ([PDF](/materials/day4/files/osgus19-day4-part3-output-shared-fs.pdf))
+- [Exercise 3.1: Using a local shared filesystem for large input files](/materials/day4/part3-ex1-input.md)
+- [Exercise 3.2: Using a local shared filesystem for large output files](/materials/day4/part3-ex2-output.md)
 
 ### Thursday Afternoon: Automating Workflows with HTCondor's DAGMan
 
@@ -114,6 +108,12 @@ status: in progress
 - [Exercise 4.3: A more complex DAG](/materials/day4/part4-ex3-complex-dag.md)
 - [Exercise 4.4: Handling jobs that fail with DAGMan](/materials/day4/part4-ex4-failed-dag.md)
 - [Bonus Exercise 4.5: HTCondor challenges](/materials/day4/part4-ex5-challenges.md) (If and only if you have time)
+
+<!--  All below here needs to be updated!
+
+### Wednesday Afternoon: On Your Own
+
+- [Ideas for activities](/logistics/wednesday-activities.md)
 
 All above here needs to be updated! -->
 

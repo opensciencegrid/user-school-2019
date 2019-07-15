@@ -152,6 +152,7 @@ error = norun.err
 log = norun.log
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
+request_disk = 10MB
 request_memory = 8TB
 queue
 ```
@@ -159,42 +160,47 @@ queue
 (Do you see what I did?)
 
 1.  Save and submit this file.
-1.  Run `condor_q -analyze` on the job ID.
+1.  Run `condor_q -better-analyze` on the job ID.
 
-There is a lot of output, but a few items are worth highlighting. Here is a sample from my own job (with many lines left out):
+There is a lot of output, but a few items are worth highlighting. Here is a sample from my own job (with some lines omitted):
 
 ``` file
--- Submitter: learn.chtc.wisc.edu : ....
-...
----
-2423.000:  Run analysis summary.  Of 12388 machines,
-   12388 are rejected by your job's requirements 
-...
-WARNING:  Be advised:
-   No resources matched request's constraints
 
-The Requirements expression for your job is:
+-- Schedd: learn.chtc.wisc.edu : <128.104.100.148:9618?...
 ...
 
-Suggestions:
+Job 98096.000 defines the following attributes:
 
-    Condition                         Machines Matched    Suggestion
-    ---------                         ----------------    ----------
-1   ( TARGET.Memory >= 8388608 )      0                   MODIFY TO 1000064
-2   ( ... )
-                                      12145                
-3   ( TARGET.Arch == "X86_64" )       12388                
-4   ( TARGET.OpSys == "LINUX" )       12386                
-5   ( TARGET.Disk >= 20 )             12387                
-6   ( TARGET.HasFileTransfer )        12388                
+    RequestDisk = 10240
+    RequestMemory = 8388608
+
+The Requirements expression for job 98096.000 reduces to these conditions:
+
+
+         Slots
+Step    Matched  Condition
+-----  --------  ---------
+[1]       11227  Target.OpSysMajorVer == 7
+[9]       13098  TARGET.Disk >= RequestDisk
+[11]          0  TARGET.Memory >= RequestMemory
+
+No successful match recorded.
+Last failed match: Fri Jul 12 15:36:30 2019
+
+Reason for last match failure: no match found
+
+98096.000:  Run analysis summary ignoring user priority.  Of 710 machines,
+    710 are rejected by your job's requirements
+      0 reject your job because of their own requirements
+      0 match and are already running your jobs
+      0 match but are serving other users
+      0 are able to run your job
+...
 ```
 
-Toward the top, `condor_q` said that it considered 12388 “machines” (really, slots) and **all** 12388 of them were rejected by **my job’s requirements**. In other words, I am asking for something that is not available. But what?
+At the end of the summary, `condor_q` provides a breakdown of how **machines** and their own requirements match against my own job's requirements. 710 total machines were considered above, and **all** of them were rejected based on **my job's requirements**. In other words, I am asking for something that is not available. But what?
 
-The real clue comes from the breakdown of the Requirements expression, at the end of the output. 
-Note the highlighted line: My job asked for **8 terabytes** of memory (8,388,608 MB) and **no** machines matched that part of the expression. 
-Well, of course! 8 TB is a lot of memory on today’s machines. 
-And finally, note the suggestion: If I reduce my memory request to 1,000,064 MB (about 1 TB), there will be at least one slot in the pool that will match that expression.
+Further up in the output, there is an analysis of the job's requirements, along with how many slots within the pool match each of those requirements. The example above reports that 13098 slots match our small disk request request, but **none** of the slots matched the `TARGET.Memory >= RequestMemory` condition. The output also reports the value used for the `RequestMemory` attribute: my job asked for **8 terabytes** of memory (8,388,608 MB) -- of course no machines matched that part of the expression! That's a lot of memory on today's machines.
 
 The output from `condor_q -analyze` (and `condor_q -better-analyze`) may be helpful or it may not be, depending on your exact case. The example above was constructed so that it would be obvious what the problem was. But in many cases, this is a good place to start looking if you are having problems matching.
 
@@ -209,7 +215,7 @@ There is a way to select the specific job attributes you want `condor_q` to tell
 To use autoformatting, use the `-af` option followed by the attribute name, for each attribute that you want to output:
 
 ``` console
-username@learn $ condor_q -af Owner ClusterId Cmd
+username@learn $ condor_q -all -af Owner ClusterId Cmd
 moate 2418 /share/test.sh
 cat 2421 /bin/sleep
 cat 2422 /bin/sleep

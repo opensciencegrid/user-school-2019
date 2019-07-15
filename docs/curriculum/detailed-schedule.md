@@ -31,12 +31,12 @@ All events happen in the Computer Sciences building (1210 West Dayton Street), R
     </tr>
 </table>
 
-We will have instructors at the hotel lobbies prior to dinner, and walk with
-groups to Union South.  Join us for the walk if you want, or otherwise meet us
-in the dinner room by 6:30 p.m.
+There will be instructors in the hotel lobby prior to dinner, and they will walk with groups to Union South.  Join us
+for the walk if you want, possibly work with the instructors and hotel to take the hotel shuttle (if available), or
+otherwise meet us at the dinner room by 6:30 p.m.
 
-For those joining us to walk over together, instructors will be at the hotel
-lobby by ~5:40&nbsp;p.m. and will leave for Union South at around 6:00 p.m.
+For those joining us to walk over together, instructors will be at the hotel lobby by about 5:30&nbsp;p.m. and will
+leave for Union South at around 5:50&nbsp;p.m.; to join the group, be in the lobby by 5:45&nbsp;p.m.
 
 
 ## Monday, 15 July 2018
@@ -78,7 +78,7 @@ lobby by ~5:40&nbsp;p.m. and will leave for Union South at around 6:00 p.m.
 |  1:45 |  3:00 | Compiled software and wrapper scripts (hands-on)   | "                      |
 |  3:00 |  3:15 | Break                                              |                        |
 |  3:15 |  3:45 | Portability for non-compiled languages (lecture)   | Christina Koch         |
-|  3:45 |  5:00 | Matlab and Python portability (hands-on)           | "                      |
+|  3:45 |  5:00 | Interpreted language portability (hands-on)        | "                      |
 |  5:00 |  —    | On your own                                        |                        |
 |  7:00 |  9:00 | Evening work session (optional, terrace if good weather)<br><span style="color: #FF6600;">Union South, room TBD</span> | TBD |
 
@@ -89,10 +89,10 @@ lobby by ~5:40&nbsp;p.m. and will leave for Union South at around 6:00 p.m.
 | Start | End   | Event                                                       | Instructor            |
 |-------|-------|-------------------------------------------------------------|-----------------------|
 |  8:00 |  8:45 | Breakfast and group discussion                              |                       |
-|  9:00 |  9:30 | OSG-available software (lecture)                            | Christina Koch        |
+|  9:00 |  9:30 | OSG-available software (lecture), licensing considerations  | Christina Koch        |
 |  9:30 | 10:45 | Using OASIS modules (hands-on)                              | "                     |
 | 10:45 | 11:00 | Break                                                       |                       |
-| 11:00 | 11:15 | Containers and licensing challenges (lecture)               | Christina Koch        |
+| 11:00 | 11:15 | Using software containers (lecture)                         | Christina Koch        |
 | 11:15 | 12:15 | Running jobs in containers (hands-on; optional or catch up) | "                     |
 | 12:15 |  1:15 | Lunch                                                       |                       |
 |  1:15 |  5:00 | Free choice (many options provided or suggested)            | Group                 |

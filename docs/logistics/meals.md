@@ -5,12 +5,14 @@ dietary needs in the survey, we will address those on a case-by-case basis as we
 
 ## Group Dinners
 
-On Sunday evening, there will be a welcome dinner at 6:30 p.m. at Union South (see [the schedule
-page](/curriculum/detailed-schedule.md) for details).  Before dinner, someone from the School will be in the lobby of
-the hotel to meet people.  Then the group at each hotel can walk together to the dinner location.  Or you may travel to
-the location on your own.
+On Sunday evening, there will be a welcome dinner at 6:30&nbsp;p.m. at Union South (see
+[the schedule page](/curriculum/detailed-schedule.md) for details).  Before dinner, instructors from the School will be
+in the lobby of the hotel to meet people.  Then the group at the hotel can walk together to the dinner location.  Also,
+the instructors can help arrange the hotel shuttle, if available, to make a trip or two to Union South.  Or you may
+travel to the location on your own.
 
-On Friday evening, there will be a closing dinner at 6:30 p.m. at the Fluno Center.
+On Friday evening, there will be a closing dinner at 6:30 p.m. at the Fluno Center, which is roughly in between the
+School location and the hotel.
 
 ## School Meals
 

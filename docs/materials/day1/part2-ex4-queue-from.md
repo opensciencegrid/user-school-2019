@@ -22,7 +22,7 @@ Suppose we want to modify our word-frequency analysis a little bit so that it ou
 
 First, we need a new version of the word counting program so that it accepts an extra number as a command line argument and outputs only that many of the most common words. Here is the new code (it's still not important that you understand this code):
 
-``` file
+``` python
 #!/usr/bin/env python
 
 import os

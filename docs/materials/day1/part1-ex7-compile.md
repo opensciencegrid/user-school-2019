@@ -16,7 +16,7 @@ When preparing a C program for HTCondor, it is best to compile and link the exec
 
 Here is a simple C program to try using (thanks, Alain Roy):
 
-``` file
+``` c
 #include <stdio.h>
 
 int main(int argc, char **argv)
