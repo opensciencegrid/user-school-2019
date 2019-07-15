@@ -34,7 +34,7 @@
       var is_top_frame = false;
         
         var pageToc = [
-          {title: "Wednesday Exercise 1.4: Pre-packaging Code", url: "#_top", children: [
+          {title: "Tuesday Exercise 3.4: Pre-packaging Code", url: "#_top", children: [
               {title: "Background", url: "#background" },
               {title: "Our Software Example", url: "#our-software-example" },
               {title: "Where to Prepare", url: "#where-to-prepare" },
@@ -62,7 +62,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
     <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: #008; } </style>
 
-<h1 id="wednesday-exercise-14-pre-packaging-code">Wednesday Exercise 1.4: Pre-packaging Code<a class="headerlink" href="#wednesday-exercise-14-pre-packaging-code" title="Permanent link">&para;</a></h1>
+<h1 id="tuesday-exercise-34-pre-packaging-code">Tuesday Exercise 3.4: Pre-packaging Code<a class="headerlink" href="#tuesday-exercise-34-pre-packaging-code" title="Permanent link">&para;</a></h1>
 <p>In this exercise, you will create an installation of a Bayesian inference package (OpenBUGS) and then create a wrapper script to unpack that installation to run jobs. It should take 30-35 minutes.</p>
 <h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
 <p>Some software cannot be compiled into a single executable, whether you compile it yourself (as in <a href="../../../materials/day2/part3-ex1-compiling">Exercise 3.1</a>) or download it already compiled (as in <a href="../../../materials/day2/part3-ex2-precompiled">Exercise 3.2</a>). In this case, it is necessary to download or create a portable copy of the software and then use a wrapper script (as in the <a href="../../../materials/day2/part3-ex3-wrapper">previous exercise</a>) to "install" the software on a per job basis. This script can either install the software from the source code, or (as in this exercise), unpack a portable software package that you've pre-built yourself.</p>
@@ -101,7 +101,7 @@ when_to_transfer_output = ON_EXIT
 transfer_input_files =
 
 +IsBuildJob = true
-requirements = (IsBuildSlot == true)
+requirements = (IsBuildSlot == true) &amp;&amp; (OpSysMajorVer == 7)
 
 request_cpus = 1
 request_disk = 2GB
@@ -230,7 +230,7 @@ tar -xzf openbugs.tar.gz
 <ol>
 <li>
 <p>Download the necessary input files to your directory on the submit server and then untar them. </p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> wget http://proxy.chtc.wisc.edu/SQUID/osgschool18/openbugs_files.tar.gz
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/openbugs_files.tar.gz
 <span class="gp">username@learn $</span> tar -xzf openbugs_files.tar.gz
 </pre></div>
 

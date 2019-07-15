@@ -95,7 +95,7 @@ when_to_transfer_output = ON_EXIT
 transfer_input_files = matrix.m
 
 +IsBuildJob = true
-requirements = ( IsBuildSlot == true )
+requirements = (IsBuildSlot == true) &amp;&amp; (OpSysMajorVer == 7)
 request_memory = 1GB
 request_disk = 100MB
 

@@ -34,7 +34,7 @@
       var is_top_frame = false;
         
         var pageToc = [
-          {title: "Wednesday Exercise 4.2: Python Installation", url: "#_top", children: [
+          {title: "Tuesday Exercise 4.2: Python Installation", url: "#_top", children: [
               {title: "Background", url: "#background" },
               {title: "Wrapper script", url: "#wrapper-script" },
               {title: "Submit file", url: "#submit-file" },
@@ -58,7 +58,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
     <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: #008; } </style>
 
-<h1 id="wednesday-exercise-42-python-installation">Wednesday Exercise 4.2: Python Installation<a class="headerlink" href="#wednesday-exercise-42-python-installation" title="Permanent link">&para;</a></h1>
+<h1 id="tuesday-exercise-42-python-installation">Tuesday Exercise 4.2: Python Installation<a class="headerlink" href="#tuesday-exercise-42-python-installation" title="Permanent link">&para;</a></h1>
 <p>In this exercise, you will write a wrapper script that installs Python and then use it to run jobs. This exercise should take about 10 minutes.</p>
 <h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
 <p>In the previous exercise, we used a method that pre-built Python and then used that pre-built package to run Python scripts. In this exercise, we will use an alternative method for running Python jobs, by writing a wrapper script that installs Python with every job. This exercise should be done in the same directory as the previous exercise - you will need the same Python source code and <code>fib.py</code> script.</p>
@@ -73,17 +73,17 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </li>
 <li>
 <p>Check your script against the file below </p>
-<div class="codehilite"><pre><span></span>#!/bin/bash
+<div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
 
-export PATH
+<span class="nb">export</span> PATH
 
 mkdir python
-tar xzf Python-3.7.0.tgz
-cd Python-3.7.0
-./configure --prefix=$(pwd)/../python
+tar -xzf Python-3.7.0.tgz
+<span class="nb">cd</span> Python-3.7.0
+./configure --prefix<span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/../python
 make
 make install
-cd ..
+<span class="nb">cd</span> ..
 </pre></div>
 
 
