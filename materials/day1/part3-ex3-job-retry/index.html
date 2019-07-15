@@ -96,11 +96,11 @@ sys.exit(0)
 <li>Submit the file, note the ClusterId, and wait for the jobs to finish.</li>
 </ol>
 <p>What output do you expect? What output did you get? If you are curious about the exit code from the job, it is saved in completed jobs in <code>condor_history</code> in the <code>ExitCode</code> attribute. The following command will show the <code>ExitCode</code> for a given cluster of jobs:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_history <span style="color:red">&lt;CLUSTER&gt;</span> -af ProcId ExitCode
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_history &lt;CLUSTER&gt; -af ProcId ExitCode
 </pre></div>
 
 
-<p>(Be sure to replace <code>&lt;cluster&gt;</code> with your actual cluster ID)</p>
+<p>(Be sure to replace <code>&lt;cluster&gt;</code> with your actual cluster ID. The command may take a minute or so to complete.)</p>
 <p>How many of the jobs succeeded? How many failed?</p>
 <h2 id="retrying-failed-jobs">Retrying Failed Jobs<a class="headerlink" href="#retrying-failed-jobs" title="Permanent link">&para;</a></h2>
 <p>Now let’s see if we can solve the problem of jobs that fail once in a while. In this particular case, if HTCondor runs a failed job again, it has a good chance of succeeding. Not all failing jobs are like this, but in this case it is a reasonable assumption.</p>

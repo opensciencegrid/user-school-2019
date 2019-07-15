@@ -81,18 +81,18 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 <p>Did you know you can also name one or more user IDs on the command line, in which case jobs for all of the named users are listed at once?</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q <span style="color:red">&lt;username1&gt; &lt;username2&gt; &lt;username3&gt;</span>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q &lt;USERNAME1&gt; &lt;USERNAME2&gt; &lt;USERNAME3&gt;
 </pre></div>
 
 
 <p>There are two other, simple selection criteria that you can use. To list just the jobs associated with a single cluster number:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q <span style="color:red">&lt;CLUSTER&gt;</span>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q &lt;CLUSTER&gt;
 </pre></div>
 
 
 <p>For example, if you want to see the jobs in cluster 5678 (i.e., <code>5678.0</code>, <code>5678.1</code>, etc.), you use <code>condor_q 5678</code>.</p>
 <p>To list a specific job (i.e., cluster.process, as in 5678.0):</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q <span style="color:red">&lt;JOB.ID&gt;</span>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q &lt;JOB.ID&gt;
 </pre></div>
 
 
@@ -119,7 +119,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="viewing-a-job-classad">Viewing a Job ClassAd<a class="headerlink" href="#viewing-a-job-classad" title="Permanent link">&para;</a></h2>
 <p>You may have wondered why it is useful to be able to list a single job ID using <code>condor_q</code>. By itself, it may not be that useful. But, in combination with another option, it is very useful!</p>
 <p>If you add the <code>-long</code> option to <code>condor_q</code> (or its short form, <code>-l</code>), it will show the complete ClassAd for each selected job, instead of the one-line summary that you have seen so far. Because job ClassAds may have 80–90 attributes (or more), it probably makes the most sense to show the ClassAd for a single job at a time. And you know how to show just one job! Here is what the command looks like:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q -long <span style="color:red">&lt;JOB.ID&gt;</span>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q -long &lt;JOB.ID&gt;
 </pre></div>
 
 
@@ -153,14 +153,14 @@ Do not assume anything about the order of attributes in <code>condor_q</code> ou
 <li>Using a previous exercise, submit a <code>sleep</code> job that sleeps for at least 3 minutes (180 seconds).</li>
 <li>
 <p>Before the job executes, capture its ClassAd and save to a file:</p>
-<div class="codehilite"><pre><span></span><span class="go">condor_q -l <span style="color:red">&lt;JOB.ID&gt;</span> &gt; classad-1.txt</span>
+<div class="codehilite"><pre><span></span><span class="go">condor_q -l &lt;JOB.ID&gt; &gt; classad-1.txt</span>
 </pre></div>
 
 
 </li>
 <li>
 <p>After the job starts execution but before it finishes, capture its ClassAd again and save to a file</p>
-<div class="codehilite"><pre><span></span><span class="go">condor_q -l <span style="color:red">&lt;JOB.ID&gt;</span> &gt; classad-2.txt</span>
+<div class="codehilite"><pre><span></span><span class="go">condor_q -l &lt;JOB.ID&gt; &gt; classad-2.txt</span>
 </pre></div>
 
 

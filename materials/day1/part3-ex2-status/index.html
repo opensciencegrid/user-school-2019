@@ -72,7 +72,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 <p>Of course, the individual execute machines only report their slots to the collector at certain time intervals, so this list will not reflect the up-to-the-second reality of all slots. But this limitation is true of all <code>condor_status</code> output, not just with the <code>-avail</code> option.</p>
 <p>Similar to <code>condor_q</code>, you can limit the slots that are listed in two easy ways. To list just the slots on a specific machine:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_status <span style="color:red">&lt;hostname&gt;</span>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_status &lt;hostname&gt;
 </pre></div>
 
 
@@ -82,7 +82,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 <p>To list a specific slot on a machine:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_status <span style="color:red">&lt;slot&gt;</span>@<span style="color:red">&lt;hostname&gt;</span>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_status &lt;slot&gt;@&lt;hostname&gt;
 </pre></div>
 
 
@@ -110,7 +110,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </ol>
 <h2 id="viewing-a-slot-classad">Viewing a Slot ClassAd<a class="headerlink" href="#viewing-a-slot-classad" title="Permanent link">&para;</a></h2>
 <p>Just as with <code>condor_q</code>, you can use <code>condor_status</code> to view the complete ClassAd for a given slot (often confusingly called the “machine” ad):</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_status -long <span style="color:red">&lt;slot&gt;</span>@<span style="color:red">&lt;hostname&gt;</span>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_status -long &lt;slot&gt;@&lt;hostname&gt;
 </pre></div>
 
 
