@@ -26,7 +26,7 @@ To practice removing jobs from the queue, you need a job in the queue!
 1.  Remove the job:
 
         :::console
-        username@learn $ condor_rm %RED%<JOB.ID>%ENDCOLOR%
+        username@learn $ condor_rm <JOB.ID>
 
     Use the full job ID this time, e.g. `5759.0`.
 
@@ -35,7 +35,7 @@ To practice removing jobs from the queue, you need a job in the queue!
 So far, we have created job clusters that contain only one job process (the `.0` part of the job ID). That will change soon, so it is good to know how to remove a specific job ID. However, it is possible to remove all jobs that are part of a cluster at once. Simply omit the job process (the `.0` part of the job ID) in the `condor_rm` command:
 
 ``` console
-username@learn $ condor_rm %RED%<CLUSTER>%ENDCOLOR%
+username@learn $ condor_rm <CLUSTER>
 ```
 
 Finally, you can include many job clusters and full job IDs in a single `condor_rm` command. For example:
@@ -50,7 +50,7 @@ Removing All of Your Jobs
 If you really want to remove all of your jobs at once, you can do that with:
 
 ```console
-username@learn $ condor_rm %RED%<USERNAME>%ENDCOLOR%
+username@learn $ condor_rm <USERNAME>
 ```
 
 If you want to test it: (optional, though you'll likely need this in the future)
