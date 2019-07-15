@@ -50,6 +50,11 @@ status: in progress
   [PPT](/materials/day2/files/osgus19-day2-part1-troubleshooting.pptx))
 - [Exercise 1.1: Troubleshooting a DAG](/materials/day2/part1-ex1-troubleshooting.md)
 
+### Tuesday Morning: Security
+
+Lecture: Security in the OSG ([PDF](/materials/day2/files/osgus19-day2-part2-security.pdf);
+[PPT](/materials/day2/files/osgus19-day2-part2-security.pptx))
+
 ### Tuesday Afternoon: Software Portability
 
 - Lecture: Software Portability for DHTC ( [PPT](/materials/day3/files/osgus19-day2-part3-software-portability.pptx))
