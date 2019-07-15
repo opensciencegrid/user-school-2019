@@ -247,7 +247,3 @@ print "Program :", sys.executable
 print 'Script  :', os.path.abspath(__file__)
 print 'Args    :', arguments
 ```
-
-!!! note
-    For the Python script, above, you'll want to increase the memory request to at least 64MB.
-    We will talk about tuning resource requests, later.
