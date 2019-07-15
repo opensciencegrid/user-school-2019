@@ -183,7 +183,7 @@ or perhaps a simple shell script of commands that you'd like to run within a job
 1. Write the submit file (this should be getting easier by now):
 
         :::file
-        executable = %RED%test-script.sh%ENDCOLOR%
+        executable = <test-script.sh>
         arguments = foo bar baz
 
         output = script.out
