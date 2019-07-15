@@ -1,6 +1,6 @@
 <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: \#008; } </style>
 
-Thursday Exercise 2.1: Use Singularity from OSG Connect
+Wednesday Exercise 2.1: Use Singularity from OSG Connect
 ============================================================
 
 Background
@@ -24,7 +24,7 @@ For this job, we will use the OSG Connect Ubuntu "Xenial" image. Copy a submit f
 
 	:::file
 	requirements = HAS_SINGULARITY == true
-	+SingularityImage = /cvmfs/singularity.opensciencegrid.org/opensciencegrid/osgvo-ubuntu-xenial:latest
+	+SingularityImage = "/cvmfs/singularity.opensciencegrid.org/opensciencegrid/osgvo-ubuntu-xenial:latest"
 
 If you had other requirements in the submit file, remove them. These options will do two things: 
 

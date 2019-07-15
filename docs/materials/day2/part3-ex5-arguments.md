@@ -4,7 +4,7 @@ status: done
 
 <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: #008; } </style>
 
-Bonus: Passing Arguments Through the Wrapper Script
+Tuesday Bonus Exercise 3.5: Passing Arguments Through the Wrapper Script
 ===================================================
 
 In this exercise, you will change the wrapper script and submit file from the previous exercise to use arguments.

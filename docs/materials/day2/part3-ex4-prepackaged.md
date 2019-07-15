@@ -123,7 +123,9 @@ Wrapper Script
 
 Now that we've created our portable installation, we need to write a script that opens and uses the installation, similar to the process we used in the  [previous exercise](part3-ex3-wrapper.md). These steps should be performed back on the submit server (`learn.chtc.wisc.edu`).
 
-1.  Create a script called `run_openbugs.sh`. The script will first need to untar our installation, so the script should start out like this:  
+1. Create a script called `run_openbugs.sh`. 
+
+1.  The script will first need to untar our installation, so the script should start out like this:  
 
 		:::bash
 		#!/bin/bash
