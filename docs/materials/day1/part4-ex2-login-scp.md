@@ -92,7 +92,7 @@ For example, if I were logged in to `learn.chtc.wisc.edu` and wanted to copy the
 my local scratch directory on `training.osgconnect.net`, the command would look like this:
 
 ```console
-user@learn $ scp foo training.osgconnect.net:/local-scratch/blin/
+user@learn $ scp foo training.osgconnect.net:/local-scratch/<USERNAME>/
 ```
 
 Additionally, I could also pull files from `training.osgconnect.net` to `learn.chtc.wisc.edu`.
@@ -100,7 +100,7 @@ The following command copies `bar` from my local scratch directory on `training.
 on `learn.chtc.wisc.edu`:
 
 ``` console
-user@learn $ scp training.osgconnect.net:/local-scratch/blin/bar .
+user@learn $ scp training.osgconnect.net:/local-scratch/<USERNAME>/bar .
 ```
 
 You can also copy folders between hosts using the `-r` option.
@@ -108,7 +108,7 @@ If I kept all my files from Monday's exercise 1.3 in a folder named `monday-1.3`
 the following command to copy them to my local scratch directory on `training.osgconnect.net`:
 
 ``` console
-user@learn $ scp -r monday-1.3 training.osgconnect.net:/local-scratch/blin/
+user@learn $ scp -r monday-1.3 training.osgconnect.net:/local-scratch/<USERNAME>/
 ```
 
 Try copying the tarball you created earlier in this exercise on `learn.chtc.wisc.edu` to `training.osgconnect.net`.
