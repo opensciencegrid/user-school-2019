@@ -27,7 +27,7 @@ Of course, the individual execute machines only report their slots to the collec
 Similar to `condor_q`, you can limit the slots that are listed in two easy ways. To list just the slots on a specific machine:
 
 ``` console
-username@learn $ condor_status %RED%<hostname>%ENDCOLOR%
+username@learn $ condor_status <hostname>
 ```
 
 For example, if you want to see the slots on `e242.chtc.wisc.edu` (in the CHTC pool):
@@ -39,7 +39,7 @@ username@learn $ condor_status e242.chtc.wisc.edu
 To list a specific slot on a machine:
 
 ``` console
-username@learn $ condor_status %RED%<slot>%ENDCOLOR%@%RED%<hostname>%ENDCOLOR%
+username@learn $ condor_status <slot>@<hostname>
 ```
 
 For example, to see the “first” slot on the machine above:
@@ -68,7 +68,7 @@ Viewing a Slot ClassAd
 Just as with `condor_q`, you can use `condor_status` to view the complete ClassAd for a given slot (often confusingly called the “machine” ad):
 
 ``` console
-username@learn $ condor_status -long %RED%<slot>%ENDCOLOR%@%RED%<hostname>%ENDCOLOR%
+username@learn $ condor_status -long <slot>@<hostname>
 ```
 
 Because slot ClassAds may have 150–200 attributes (or more), it probably makes the most sense to show the ClassAd for a single slot at a time, as shown above.
