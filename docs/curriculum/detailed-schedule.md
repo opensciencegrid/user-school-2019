@@ -59,7 +59,7 @@ leave for Union South at around 5:50&nbsp;p.m.; to join the group, be in the lob
 |  3:15 |  4:00 | Introduction to DHTC, overlay systems, and OSG (lecture)              | Brian Lin                |
 |  4:00 |  5:00 | Running jobs on OSG (hands-on)                                        | "                        |
 |  5:00 |  —    | On your own                                                           |                          |
-|  7:00 |  9:00 | Evening work session (optional)<br><span style="color: #FF6600;">Union South, room TBD</span> | TBD |
+|  7:00 |  9:00 | Evening work session (optional)<br><span style="color: #FF6600;">Union South, Agriculture room (3rd floor)</span> | Bala, Josh, Lauren, Tim C. |
 
 ## Tuesday, 16 July 2019
 
