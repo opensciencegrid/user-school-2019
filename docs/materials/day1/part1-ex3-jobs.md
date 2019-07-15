@@ -183,7 +183,7 @@ or perhaps a simple shell script of commands that you'd like to run within a job
 1. Write the submit file (this should be getting easier by now):
 
         :::file
-        executable = <test-script.sh>
+        executable = test-script.sh
         arguments = foo bar baz
 
         output = script.out
@@ -247,7 +247,3 @@ print "Program :", sys.executable
 print 'Script  :', os.path.abspath(__file__)
 print 'Args    :', arguments
 ```
-
-!!! note
-    For the Python script, above, you'll want to increase the memory request to at least 64MB.
-    We will talk about tuning resource requests, later.
