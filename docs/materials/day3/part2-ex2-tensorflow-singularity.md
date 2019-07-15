@@ -1,6 +1,6 @@
 <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: \#008; } </style>
 
-Thursday Exercise 2.1: Use Singularity to Run Tensorflow (Optional)
+Wednesday Bonus Exercise 2.2: Use Singularity to Run Tensorflow
 ============================================================
 
 In this tutorial, we see how to submit a \[tensorflow\](<https://www.tensorflow.org/>) job on the OSG through \[Singularity containers\](<https://support.opensciencegrid.org/solution/articles/12000024676-singularity-containers>). We currently offer CPU and GPU containers for tensorflow (both based on Ubuntu). Here, we focus on a CPU container.

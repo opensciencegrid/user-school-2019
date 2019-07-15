@@ -61,6 +61,7 @@ status: in progress
 - Lecture: Interpreted Languages for DHTC
 - [Exercise 2.1: Pre-packaging Python](/materials/day2/part4-ex1-python-built.md)
 - [Exercise 2.2: In-job installation of Python](/materials/day2/part4-ex2-python-install.md)
+- [Bonus Exercise 2.3: Python options](/materials/day2/part4-ex3-python-extras.md)
 
 ## Wednesday
 
@@ -74,7 +75,7 @@ status: in progress
 ### Wednesday Morning: Containers
 
 - [Exercise 2.1: Use Singularity from OSG Connect](/materials/day3/part2-ex1-singularity.md)
-- [Exercise 2.2: Use Singularity to Run Tensorflow (Optional)](/materials/day3/part2-ex2-tensorflow-singularity.md)
+- [Bonus Exercise 2.2: Use Singularity to Run Tensorflow (Optional)](/materials/day3/part2-ex2-tensorflow-singularity.md)
 - [Exercise 2.3: Using Docker](/materials/day3/part2-ex3-docker.md)
 
 ## Thursday

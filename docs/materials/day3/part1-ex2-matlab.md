@@ -4,7 +4,7 @@ status: done
 
 <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: #008; } </style>
 
-Tuesday Exercise 4.1: Matlab
+Wednesday Exercise 1.2: Matlab
 ==============================
 
 The goal of this exercise is to compile Matlab code and run it. This exercise will draw on the idea of writing a wrapper script to install and run code, first introduced in [Exercise 3.3](/materials/day2/part3-ex3-wrapper) and should take 25-30 minutes.
@@ -89,7 +89,7 @@ The newly compiled binary will require the 2015b Matlab runtime to run. You can 
 1.  Download the 2015b Matlab runtime hosted by CHTC: 
 
 		:::console
-		username@learn $ wget http://proxy.chtc.wisc.edu/SQUID/2015b.tar.gz 
+		username@learn $ wget http://proxy.chtc.wisc.edu/SQUID/r2015b.tar.gz 
 
 Wrapper Script
 --------------
@@ -134,7 +134,7 @@ Submitting the Job
 	* You need to transfer the compiled binary `matrix`, as well as the runtime `.tar.gz` file, using `transfer_input_files`. 
 
 			:::file
-			transfer_input_files = matrix, r2018trainingb.tar.gz
+			transfer_input_files = matrix, r2015b.tar.gz
 
 	* The argument for the executable (`run_matrix.sh`) is "v90", as that is the name of the un-tarred runtime directory. 
 

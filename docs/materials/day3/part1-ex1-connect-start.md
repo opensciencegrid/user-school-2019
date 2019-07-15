@@ -4,7 +4,7 @@ status: in progress
 
 <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: \#008; } </style>
 
-Thursday Exercise 1.1: Try an OSG Connect Software Module
+Wednesday Exercise 1.1: Try an OSG Connect Software Module
 =========================================================
 
 In this exercise, we will submit a similar job to yesterday, but use OSG Connect's built-in Python software module to run our software. 
