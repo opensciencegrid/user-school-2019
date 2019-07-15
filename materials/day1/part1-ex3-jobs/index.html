@@ -237,7 +237,7 @@ or perhaps a simple shell script of commands that you'd like to run within a job
 </li>
 <li>
 <p>Write the submit file (this should be getting easier by now):</p>
-<div class="codehilite"><pre><span></span>executable = &lt;test-script.sh&gt;
+<div class="codehilite"><pre><span></span>executable = test-script.sh
 arguments = foo bar baz
 
 output = script.out
@@ -303,13 +303,6 @@ in the submission directory (per the submit file contents).</p>
 <span class="k">print</span> <span class="s1">&#39;Script  :&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
 <span class="k">print</span> <span class="s1">&#39;Args    :&#39;</span><span class="p">,</span> <span class="n">arguments</span>
 </pre></div>
-
-
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For the Python script, above, you'll want to increase the memory request to at least 64MB.
-We will talk about tuning resource requests, later.</p>
-</div>
 
   <br>
     
