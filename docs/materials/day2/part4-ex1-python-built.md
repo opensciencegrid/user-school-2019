@@ -157,11 +157,6 @@ Submit File
 		executable = run_fib.sh
 		transfer_input_files = fib.py, prebuilt_python.tar.gz
 
-1.  Because we pre-built our Python installation on a machine running Scientific Linux, version 6.something, we should request machines with similar characteristics. Add the following line to your submit file as well: 
-
-		:::file
-		requirements = (OpSys == "LINUX" && OpSysMajorVer == 6 )
-
 1. Submit the job using `condor_submit`. 
 
 1. Check the `.out` file to see if the job completed.
