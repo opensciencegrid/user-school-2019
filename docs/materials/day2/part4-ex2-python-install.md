@@ -31,7 +31,7 @@ Our wrapper script will need to install Python from the source code and then run
 		export PATH
 
 		mkdir python
-		tar xzf Python-3.7.0.tgz
+		tar -xzf Python-3.7.0.tgz
 		cd Python-3.7.0
 		./configure --prefix=$(pwd)/../python
 		make
