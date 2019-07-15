@@ -88,7 +88,7 @@ To use the script:
 1.  Modify the following submit file statements to work for all books:
 
         :::text
-        transfer_input_files = $(BOOK) 
+        transfer_input_files = $(book) 
         arguments = $(book) 
         output = $(book).out 
         error = $(book).err 
