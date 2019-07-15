@@ -135,21 +135,21 @@ It takes similar arguments to the <code>cp</code> command that you are familiar 
 
 <p>For example, if I were logged in to <code>learn.chtc.wisc.edu</code> and wanted to copy the file <code>foo</code> from my current directory to
 my local scratch directory on <code>training.osgconnect.net</code>, the command would look like this:</p>
-<div class="codehilite"><pre><span></span><span class="gp">user@learn $</span> scp foo training.osgconnect.net:/local-scratch/blin/
+<div class="codehilite"><pre><span></span><span class="gp">user@learn $</span> scp foo training.osgconnect.net:/local-scratch/&lt;USERNAME&gt;/
 </pre></div>
 
 
 <p>Additionally, I could also pull files from <code>training.osgconnect.net</code> to <code>learn.chtc.wisc.edu</code>.
 The following command copies <code>bar</code> from my local scratch directory on <code>training.osgconnect.net</code> to my current directory
 on <code>learn.chtc.wisc.edu</code>:</p>
-<div class="codehilite"><pre><span></span><span class="gp">user@learn $</span> scp training.osgconnect.net:/local-scratch/blin/bar .
+<div class="codehilite"><pre><span></span><span class="gp">user@learn $</span> scp training.osgconnect.net:/local-scratch/&lt;USERNAME&gt;/bar .
 </pre></div>
 
 
 <p>You can also copy folders between hosts using the <code>-r</code> option.
 If I kept all my files from Monday's exercise 1.3 in a folder named <code>monday-1.3</code> on <code>learn.chtc.wisc.edu</code>, I could use
 the following command to copy them to my local scratch directory on <code>training.osgconnect.net</code>:</p>
-<div class="codehilite"><pre><span></span><span class="gp">user@learn $</span> scp -r monday-1.3 training.osgconnect.net:/local-scratch/blin/
+<div class="codehilite"><pre><span></span><span class="gp">user@learn $</span> scp -r monday-1.3 training.osgconnect.net:/local-scratch/&lt;USERNAME&gt;/
 </pre></div>
 
 
