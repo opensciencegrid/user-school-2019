@@ -57,7 +57,7 @@ The Resident Set Size (`RSS`) column, highlighted above, gives a rough indicatio
 Using `top`:
 
 ``` console
-username@learn $ top -u %RED%<USERNAME>%ENDCOLOR%
+username@learn $ top -u <USERNAME>
 top - 13:55:31 up 11 days, 20:59,  5 users,  load average: 0.12, 0.12, 0.09
 Tasks: 198 total,   1 running, 197 sleeping,   0 stopped,   0 zombie
 Cpu(s):  1.2%us,  0.1%sy,  0.0%ni, 98.5%id,  0.2%wa,  0.0%hi,  0.1%si,  0.0%st
