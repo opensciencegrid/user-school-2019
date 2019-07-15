@@ -4,7 +4,7 @@ status: done
 
 <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: #008; } </style>
 
-Wednesday Exercise 4.3: Python Extras
+Tuesday Bonus Exercise 4.3: Python Extras
 ===========================================
 
 If you have time, try exploring the following problems: 
@@ -12,7 +12,7 @@ If you have time, try exploring the following problems:
 Arguments
 ---------
 
-Similar to what was shown in a [previous exercise](/materials/day2/part3-ex5/arguments), 
+Similar to what was shown in a [previous bonus exercise](/materials/day2/part3-ex5-arguments), 
 can you modify your submit file and shell script so that the number provided to the `fib.py` script is an argument from the submit file? 
 
 Multiple Jobs

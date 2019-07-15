@@ -4,7 +4,7 @@ status: done
 
 <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: #008; } </style>
 
-Wednesday Exercise 1.4: Pre-packaging Code
+Tuesday Exercise 3.4: Pre-packaging Code
 ==========================================
 
 In this exercise, you will create an installation of a Bayesian inference package (OpenBUGS) and then create a wrapper script to unpack that installation to run jobs. It should take 30-35 minutes.
@@ -47,7 +47,7 @@ Our goal is to pre-build an OpenBUGS installation, and then write a script that 
 			transfer_input_files = 
 			
 			+IsBuildJob = true
-			requirements = (IsBuildSlot == true)
+			requirements = (IsBuildSlot == true) && (OpSysMajorVer == 7)
 
 			request_cpus = 1
 			request_disk = 2GB
@@ -154,7 +154,7 @@ We're almost ready! We need two more pieces to run a OpenBUGS job.
 1.  Download the necessary input files to your directory on the submit server and then untar them. 
 
 		:::console
-		username@learn $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool18/openbugs_files.tar.gz
+		username@learn $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/openbugs_files.tar.gz
 		username@learn $ tar -xzf openbugs_files.tar.gz
 
 1.  Our last step is to create a submit file for our Open BUGS job. Think about which lines this submit file will need. Make a copy of a previous submit file (you could use the blast submit file from the [previous exercise](/materials/day2/part3-ex3-wrapper) as a base) and modify it as you think necessary.

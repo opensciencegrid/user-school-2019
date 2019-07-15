@@ -4,7 +4,7 @@ status: done
 
 <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: #008; } </style>
 
-Wednesday Exercise 4.2: Python Installation
+Tuesday Exercise 4.2: Python Installation
 ===========================================
 
 In this exercise, you will write a wrapper script that installs Python and then use it to run jobs. This exercise should take about 10 minutes.
@@ -25,7 +25,7 @@ Our wrapper script will need to install Python from the source code and then run
 
 1. Check your script against the file below 
 
-		:::file
+		:::bash
 		#!/bin/bash
 
 		export PATH
