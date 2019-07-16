@@ -61,7 +61,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h1 id="wednesday-exercise-11-try-an-osg-connect-software-module">Wednesday Exercise 1.1: Try an OSG Connect Software Module<a class="headerlink" href="#wednesday-exercise-11-try-an-osg-connect-software-module" title="Permanent link">&para;</a></h1>
 <p>In this exercise, we will submit a similar job to yesterday, but use OSG Connect's built-in Python software module to run our software. </p>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
-<p>Make sure you are logged into <code>training.osgconnect.net</code> (the OSG Connect submit server for this workshop). Create a scratch directory using your username in the <code>/local-scratch</code> folder if one doesn't already exist, and then <code>cd</code> to that folder. Copy the <code>fib.py</code> script from <a href="../../../materials/day2/part4-ex1-python-built">yesterday</a> into this folder. </p>
+<p>Make sure you are logged into <code>training.osgconnect.net</code> (the OSG Connect submit server for this workshop). <code>cd</code> into your directory within the <code>/local-scratch</code> folder (<code>cd /local-scratch/&lt;USERNAME&gt;</code>). Copy the <code>fib.py</code> script from <a href="../../../materials/day2/part4-ex1-python-built">yesterday</a> into this folder. </p>
 <h2 id="modules-on-osg-connect">Modules on OSG Connect<a class="headerlink" href="#modules-on-osg-connect" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
@@ -103,10 +103,10 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </li>
 <li>
 <p>The job's executable script should look like this: </p>
-<div class="codehilite"><pre><span></span>#!/bin/bash
+<div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 module load python/3.7.0
-python3 fib.py 90
+python3 fib.py <span class="m">90</span>
 </pre></div>
 
 
