@@ -4,7 +4,7 @@ status: done
 
 <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: #008; } </style>
 
-Tuesday Bonus Exercise 4.3: Python Extras
+Tuesday Bonus Exercise 4.2: Python Extras
 ===========================================
 
 If you have time, try exploring the following problems: 
