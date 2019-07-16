@@ -12,7 +12,7 @@ In this exercise, we will submit a similar job to yesterday, but use OSG Connect
 Setup
 -----
 
-Make sure you are logged into `training.osgconnect.net` (the OSG Connect submit server for this workshop). Create a scratch directory using your username in the `/local-scratch` folder if one doesn't already exist, and then `cd` to that folder. Copy the `fib.py` script from [yesterday](/materials/day2/part4-ex1-python-built) into this folder. 
+Make sure you are logged into `training.osgconnect.net` (the OSG Connect submit server for this workshop). `cd` into your directory within the `/local-scratch` folder (`cd /local-scratch/<USERNAME>`). Copy the `fib.py` script from [yesterday](/materials/day2/part4-ex1-python-built) into this folder. 
 
 Modules on OSG Connect
 ----------------------
@@ -49,7 +49,7 @@ Using Modules in Jobs
 
 1. The job's executable script should look like this: 
 
-		:::file
+		:::bash
 		#!/bin/bash
 		
 		module load python/3.7.0

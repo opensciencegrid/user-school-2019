@@ -94,7 +94,7 @@ The newly compiled binary will require the 2015b Matlab runtime to run. You can 
 Wrapper Script
 --------------
 
-Like the [OpenBUGS](/materials/day2/part3-ex4-prepackaged) example from earlier this morning, we will need a wrapper script to open the Matlab runtime and then run our compiled Matlab code. Our wrapper script will need to accomplish the following steps:
+Like the [OpenBUGS](/materials/day2/part3-ex4-prepackaged) example from yesterday, we will need a wrapper script to open the Matlab runtime and then run our compiled Matlab code. Our wrapper script will need to accomplish the following steps:
 
 -   Unpack the transferred runtime
 -   Set the environment variables
