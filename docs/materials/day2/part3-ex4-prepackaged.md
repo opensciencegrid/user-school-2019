@@ -174,11 +174,6 @@ We're almost ready! We need two more pieces to run a OpenBUGS job.
     !!! note
         The `/` in the `transfer_input_files` line indicates that we are transferring the *contents* of that directory (which in this case, is what we want), rather than the directory itself.
 
-1.  We also need to add a requirement to ensure that the job will run on a Linux system. This can be done with the line:
-
-        :::file
-        requirements = (OpSys == "LINUX")
-
 1.  Submit the job with `condor_submit`.
 
 1.  Once the job completes, it should produce a `results.txt` file.
