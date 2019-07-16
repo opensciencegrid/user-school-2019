@@ -171,6 +171,7 @@ Dinner:
 - Grilled chicken breast (gluten-free)
 - Homemade beef and pork meatballs
 - Italian vegetable blend (vegan)
+- Spiral vegetable pasta with a garden herb sauce (gluten-free, vegan)
 - Breadsticks
 - Marinara (vegan/gluten-free) and Alfredo sauces (vegetarian)
 - Salad
