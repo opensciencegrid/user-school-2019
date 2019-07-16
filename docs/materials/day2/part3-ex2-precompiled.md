@@ -94,6 +94,6 @@ blastx -db database -query input_file -out results.txt
     * Because we downloaded a Linux-specific binary, we need to request machines that are running Linux. 
     
             :::file
-            requirements = (OpSys == "LINUX")
+            requirements = (OSGVO_OS_STRING == "RHEL 7")
 
 1. Submit the blast job using `condor_submit`. Once the job starts, it should run in just a few minutes and produce a file called `results.txt`.
