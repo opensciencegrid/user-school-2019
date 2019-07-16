@@ -47,7 +47,7 @@ Our goal is to pre-build an OpenBUGS installation, and then write a script that 
 			transfer_input_files = 
 			
 			+IsBuildJob = true
-			requirements = (IsBuildSlot == true) && (OpSysMajorVer == 7)
+			requirements = (IsBuildSlot == true)
 
 			request_cpus = 1
 			request_disk = 2GB

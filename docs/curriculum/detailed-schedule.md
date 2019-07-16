@@ -80,7 +80,7 @@ leave for Union South at around 5:50&nbsp;p.m.; to join the group, be in the lob
 |  3:15 |  3:45 | Portability for non-compiled languages (lecture)   | Christina Koch         |
 |  3:45 |  5:00 | Interpreted language portability (hands-on)        | "                      |
 |  5:00 |  —    | On your own                                        |                        |
-|  7:00 |  9:00 | Evening work session (optional, terrace if good weather)<br><span style="color: #FF6600;">Union South, room TBD</span> | TBD |
+|  7:00 |  9:00 | Evening work session (optional, terrace if good weather)<br><span style="color: #FF6600;">Union South, Agriculture room (3rd floor)</span> | Bala, Carrie, Ian |
 
 ## Wednesday, 17 July 2019
 

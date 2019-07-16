@@ -33,7 +33,7 @@ If you had other requirements in the submit file, remove them. These options wil
 
 To test and see if our job is really running in Ubuntu, use a simple script for the job's executable: 
 
-	:::file
+	:::bash
 	#!/bin/bash
 	
 	hostname
