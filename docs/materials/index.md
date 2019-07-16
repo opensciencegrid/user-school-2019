@@ -52,8 +52,9 @@ status: in progress
 
 ### Tuesday Morning: Security
 
-Lecture: Security in the OSG ([PDF](/materials/day2/files/osgus19-day2-part2-security.pdf);
+- Lecture: Security in the OSG ([PDF](/materials/day2/files/osgus19-day2-part2-security.pdf);
 [PPT](/materials/day2/files/osgus19-day2-part2-security.pptx))
+- Resource: Overview of OSG Services for Researchers and Institutions ([PDF](/materials/day2/files/2019OSG_Researcher&CampusServices.pdf))
 
 ### Tuesday Afternoon: Software Portability
 
@@ -126,6 +127,7 @@ All above here needs to be updated! -->
 ## Friday
 
 ### Friday Morning: From Science to Production Workflows
+
 <!-- Commenting until this lecture is updated.
 - Lecture: From Science to Real Workflow ([PDF](/materials/day5/files/osgus19-day5-part1-real-workflows.pdf), [PPT](/materials/day5/files/osgus19-day5-part1-real-workflows.pptx))
 -->
@@ -133,6 +135,7 @@ All above here needs to be updated! -->
 - [Exercise 1.2: Plan Overall Workflow](/materials/day5/part1-ex2-plan-workflow.md)
 
 ### Friday Morning: From Science to Production Workflows
+
 <!-- Commenting until this lecture is updated.
 - Lecture: From Workflow to Automated Production
   ([PDF](/materials/day5/files/osgus19-day5-part2-production-workflows.pdf),[PPT](/materials/day5/files/osgus19-day5-part2-production-workflows.pptx))
