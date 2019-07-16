@@ -147,7 +147,7 @@ found in the previous section:</p>
 <p>Next, you can find the largest square among your output by directly using the command line.
 For example, if all of your job output has been placed in the <code>squares</code> directory and are named <code>square-1.out</code>,
 <code>square-2.out</code>, etc. then you could run the following command to find the largest square:</p>
-<div class="codehilite"><pre><span></span><span class="gp">user@learn $</span> cat squares/square-*.out <span class="p">|</span> sort -n <span class="p">|</span> tail - <span class="m">1</span>
+<div class="codehilite"><pre><span></span><span class="gp">user@learn $</span> cat squares/square-*.out <span class="p">|</span> sort -n <span class="p">|</span> tail -n <span class="m">1</span>
 </pre></div>
 
 
