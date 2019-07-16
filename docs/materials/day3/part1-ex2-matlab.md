@@ -47,7 +47,7 @@ specifically requests these build machines.
 		transfer_input_files = matrix.m
 
 		+IsBuildJob = true
-		requirements = (IsBuildSlot == true) && (OpSysMajorVer == 7)
+		requirements = (IsBuildSlot == true)
 		request_memory = 1GB
 		request_disk = 100MB 
 
