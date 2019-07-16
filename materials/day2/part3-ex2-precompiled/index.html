@@ -114,8 +114,8 @@ reference database, the BLAST program.</p>
 </li>
 </ol>
 <h2 id="submitting-the-job">Submitting the Job<a class="headerlink" href="#submitting-the-job" title="Permanent link">&para;</a></h2>
-<p>We now have our program (the pre-compiled <code>blastx</code> binary) and our input files, so all that remains is to create the submit file. A typical <code>blastx</code> command looks something like this:</p>
-<div class="codehilite"><pre><span></span>blastx -db database -query input_file -out results.txt
+<p>We now have our program (the pre-compiled <code>blastx</code> binary) and our input files, so all that remains is to create the submit file. The form of a typical <code>blastx</code> command looks something like this:</p>
+<div class="codehilite"><pre><span></span>blastx -db &lt;database_dir/prefix&gt; -query &lt;input_file&gt; -out &lt;output_file&gt;
 </pre></div>
 
 
@@ -136,7 +136,7 @@ reference database, the BLAST program.</p>
 <p>Try to answer these questions and modify your submit file appropriately.</p>
 </li>
 <li>
-<p>Once you have done all you can, check your submit file against the lines below, which contain the necessary changes to run this particular job.</p>
+<p>Once you have done all you can, check your submit file against the lines below, which contain the exact compoenents to run this particular job.</p>
 <ul>
 <li>
 <p>The executable is <code>blastx</code>, which is located in the <code>bin</code> directory of our downloaded BLAST directory. We need to use the <code>arguments</code> line in the submit file to express the rest of the command. </p>
