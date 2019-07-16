@@ -65,8 +65,7 @@ Lecture: Security in the OSG ([PDF](/materials/day2/files/osgus19-day2-part2-sec
 - [Bonus Exercise 3.5: Passing Arguments Through the Wrapper Script](/materials/day2/part3-ex5-arguments.md)
 - Lecture: Interpreted Languages for DHTC ([PPT](/materials/day2/files/osgus19-day2-part4-software-interpret.pptx))
 - [Exercise 2.1: Pre-packaging Python](/materials/day2/part4-ex1-python-built.md)
-- [Exercise 2.2: In-job installation of Python](/materials/day2/part4-ex2-python-install.md)
-- [Bonus Exercise 2.3: Python options](/materials/day2/part4-ex3-python-extras.md)
+- [Bonus Exercise 2.2: Python options](/materials/day2/part4-ex2-python-extras.md)
 
 ## Wednesday
 

@@ -17,7 +17,7 @@ For this exercise, you will need to be logged into `learn.chtc.wisc.edu`, not `t
 Submit File Changes
 -------------------
 
-1.  Make a copy of your submit file from the [previous Python exercise](/materials/day2/part4-ex2-python-install.md).
+1.  Make a copy of your submit file from the [previous Python exercise](/materials/day2/part4-ex1-python-built.md).
 1.  Add the following lines to the submit file or modify existing lines to match the lines below: 
 
 		:::file
