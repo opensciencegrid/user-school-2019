@@ -76,7 +76,7 @@ user@training $ du -sh %RED%<DIRECTORY>%ENDCOLOR%
 
 ### Input requirements
 
-Looking at Tuesdays's exercise, total up the amount of data in all of the files necessary to run the `blastx` job (which will include the executable, itself). Write down this number. Also take note of how much total data in in the `pdbaa` directory.  Remember, `blastx` reads the un-compressed `pdbaa` files.
+Looking at [Tuesdays's BLAST exercise](/materials/day2/part3-ex2-precompiled), total up the amount of data in all of the files necessary to run the `blastx` job (which will include the executable, itself). Write down this number. Also take note of how much total data in in the `pdbaa` directory.  Remember, `blastx` reads the un-compressed `pdbaa` files.
 
 !!! note "Compressed Files"
     Remember, `blastx` reads the un-compressed `pdbaa` files.
