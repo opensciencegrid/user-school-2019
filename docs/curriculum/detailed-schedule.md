@@ -90,9 +90,9 @@ leave for Union South at around 5:50&nbsp;p.m.; to join the group, be in the lob
 |-------|-------|-------------------------------------------------------------|-----------------------|
 |  8:00 |  8:45 | Breakfast and group discussion                              |                       |
 |  9:00 |  9:30 | OSG-available software (lecture), licensing considerations  | Christina Koch        |
-|  9:30 | 10:45 | Using OASIS modules (hands-on)                              | "                     |
-| 10:45 | 11:00 | Break                                                       |                       |
-| 11:00 | 11:15 | Using software containers (lecture)                         | Christina Koch        |
+|  9:30 | 10:30 | Using OASIS modules (hands-on)                              | "                     |
+| 10:30 | 10:45 | Break                                                       |                       |
+| 10:45 | 11:15 | Using software containers (lecture)                         | Christina Koch        |
 | 11:15 | 12:15 | Running jobs in containers (hands-on; optional or catch up) | "                     |
 | 12:15 |  1:15 | Lunch                                                       |                       |
 |  1:15 |  5:00 | Free choice (many options provided or suggested)            | Group                 |
