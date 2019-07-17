@@ -4,7 +4,7 @@ status: done
 
 <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: \#008; } </style>
 
-Monday Exercise 4.2: A Brief Detour Through the Mandelbrot Set
+Thursday Exercise 4.2: A Brief Detour Through the Mandelbrot Set
 ==============================================================
 
 Before we explore using DAGs to implement workflows, let’s get a more interesting job. Let’s make pretty pictures!

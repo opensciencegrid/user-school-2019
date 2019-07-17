@@ -2,7 +2,7 @@
 status: done
 ---
 
-Monday Exercise 4.4: Handling a DAG That Fails
+Thursday Exercise 4.4: Handling a DAG That Fails
 =========================
 
 The objective of this exercise is to help you learn how DAGMan deals with job failures. DAGMan is built to help you recover from such failures.
