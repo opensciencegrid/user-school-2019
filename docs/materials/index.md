@@ -79,7 +79,7 @@ status: in progress
 
 ### Wednesday Morning: Containers
 
-- Lecture: Containers for DHTC ([PPT](/materials/day3/file/osgus19-day3-part2-containers.pptx))
+- Lecture: Containers for DHTC ([PPT](/materials/day3/files/osgus19-day3-part2-containers.pptx))
 - [Exercise 2.1: Use Singularity from OSG Connect](/materials/day3/part2-ex1-singularity.md)
 - [Bonus Exercise 2.2: Use Singularity to Run Tensorflow (Optional)](/materials/day3/part2-ex2-tensorflow-singularity.md)
 - [Exercise 2.3: Using Docker](/materials/day3/part2-ex3-docker.md)
