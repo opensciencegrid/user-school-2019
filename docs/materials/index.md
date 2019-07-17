@@ -58,7 +58,7 @@ status: in progress
 
 ### Tuesday Afternoon: Software Portability
 
-- Lecture: Software Portability for DHTC ( [PPT](/materials/day3/files/osgus19-day2-part3-software-portability.pptx))
+- Lecture: Software Portability for DHTC ( [PPT](/materials/day2/files/osgus19-day2-part3-software-portability.pptx))
 - [Exercise 3.1: Compiling programs for portability](/materials/day2/part3-ex1-compiling.md)
 - [Exercise 3.2: Using a pre-compiled binary](/materials/day2/part3-ex2-precompiled.md)
 - [Exercise 3.3: Using a wrapper script](/materials/day2/part3-ex3-wrapper.md)
