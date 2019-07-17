@@ -87,7 +87,7 @@ For example, if all of your job output has been placed in the `squares` director
 `square-2.out`, etc. then you could run the following command to find the largest square:
 
 ``` console
-user@learn $ cat squares/square-*.out | sort -n | tail - 1
+user@learn $ cat squares/square-*.out | sort -n | tail -n 1
 ```
 
 You can check if you have the right answer with any of the OSG staff or by submitting the answer to Project Euler

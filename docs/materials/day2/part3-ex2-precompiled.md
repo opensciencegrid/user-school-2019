@@ -62,10 +62,10 @@ To run BLAST, we need an input file and reference database. For this example, we
 Submitting the Job
 ------------------
 
-We now have our program (the pre-compiled `blastx` binary) and our input files, so all that remains is to create the submit file. A typical `blastx` command looks something like this:
+We now have our program (the pre-compiled `blastx` binary) and our input files, so all that remains is to create the submit file. The form of a typical `blastx` command looks something like this:
 
 ```file
-blastx -db database -query input_file -out results.txt
+blastx -db <database_dir/prefix> -query <input_file> -out <output_file>
 ```
 
 1.   Copy the submit file from the last exercise into your current directory. 
@@ -78,7 +78,7 @@ blastx -db database -query input_file -out results.txt
 
 1. Try to answer these questions and modify your submit file appropriately.
 
-1. Once you have done all you can, check your submit file against the lines below, which contain the necessary changes to run this particular job.
+1. Once you have done all you can, check your submit file against the lines below, which contain the exact compoenents to run this particular job.
 
     * The executable is `blastx`, which is located in the `bin` directory of our downloaded BLAST directory. We need to use the `arguments` line in the submit file to express the rest of the command. 
     
@@ -94,6 +94,6 @@ blastx -db database -query input_file -out results.txt
     * Because we downloaded a Linux-specific binary, we need to request machines that are running Linux. 
     
             :::file
-            requirements = (OpSys == "LINUX")
+            requirements = (OSGVO_OS_STRING == "RHEL 7")
 
 1. Submit the blast job using `condor_submit`. Once the job starts, it should run in just a few minutes and produce a file called `results.txt`.

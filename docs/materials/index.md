@@ -52,12 +52,13 @@ status: in progress
 
 ### Tuesday Morning: Security
 
-Lecture: Security in the OSG ([PDF](/materials/day2/files/osgus19-day2-part2-security.pdf);
+- Lecture: Security in the OSG ([PDF](/materials/day2/files/osgus19-day2-part2-security.pdf);
 [PPT](/materials/day2/files/osgus19-day2-part2-security.pptx))
+- Resource: Overview of OSG Services for Researchers and Institutions ([PDF](/materials/day2/files/2019OSG_Researcher&CampusServices.pdf))
 
 ### Tuesday Afternoon: Software Portability
 
-- Lecture: Software Portability for DHTC ( [PPT](/materials/day3/files/osgus19-day2-part3-software-portability.pptx))
+- Lecture: Software Portability for DHTC ( [PPT](/materials/day2/files/osgus19-day2-part3-software-portability.pptx))
 - [Exercise 3.1: Compiling programs for portability](/materials/day2/part3-ex1-compiling.md)
 - [Exercise 3.2: Using a pre-compiled binary](/materials/day2/part3-ex2-precompiled.md)
 - [Exercise 3.3: Using a wrapper script](/materials/day2/part3-ex3-wrapper.md)
@@ -65,8 +66,7 @@ Lecture: Security in the OSG ([PDF](/materials/day2/files/osgus19-day2-part2-sec
 - [Bonus Exercise 3.5: Passing Arguments Through the Wrapper Script](/materials/day2/part3-ex5-arguments.md)
 - Lecture: Interpreted Languages for DHTC ([PPT](/materials/day2/files/osgus19-day2-part4-software-interpret.pptx))
 - [Exercise 2.1: Pre-packaging Python](/materials/day2/part4-ex1-python-built.md)
-- [Exercise 2.2: In-job installation of Python](/materials/day2/part4-ex2-python-install.md)
-- [Bonus Exercise 2.3: Python options](/materials/day2/part4-ex3-python-extras.md)
+- [Bonus Exercise 2.2: Python options](/materials/day2/part4-ex2-python-extras.md)
 
 ## Wednesday
 
@@ -127,6 +127,7 @@ All above here needs to be updated! -->
 ## Friday
 
 ### Friday Morning: From Science to Production Workflows
+
 <!-- Commenting until this lecture is updated.
 - Lecture: From Science to Real Workflow ([PDF](/materials/day5/files/osgus19-day5-part1-real-workflows.pdf), [PPT](/materials/day5/files/osgus19-day5-part1-real-workflows.pptx))
 -->
@@ -134,6 +135,7 @@ All above here needs to be updated! -->
 - [Exercise 1.2: Plan Overall Workflow](/materials/day5/part1-ex2-plan-workflow.md)
 
 ### Friday Morning: From Science to Production Workflows
+
 <!-- Commenting until this lecture is updated.
 - Lecture: From Workflow to Automated Production
   ([PDF](/materials/day5/files/osgus19-day5-part2-production-workflows.pdf),[PPT](/materials/day5/files/osgus19-day5-part2-production-workflows.pptx))
