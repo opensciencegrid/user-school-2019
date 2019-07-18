@@ -61,12 +61,12 @@ could instead transfer them as a single, compressed file using `tar`.
 For this version of the job, let's compress our blast database files to send them to the submit node as a single
 `tar.gz` file (otherwise known as a tarball), by following the below steps:
 
-1. Change into the `pdbaa` directory and compress the database files into a single file called `pdbaa_files.tar.gz`
-   using the `tar` command.
-   Note that this file will be different from the `pdbaa.tar.gz` file that you used earlier, because it will only
-   contain the `pdbaa` files, and not the `pdbaa` directory, itself.)
+1.  Change into the `pdbaa` directory and compress the database files into a single file called `pdbaa_files.tar.gz`
+    using the `tar` command.
+    Note that this file will be different from the `pdbaa.tar.gz` file that you used earlier, because it will only
+    contain the `pdbaa` files, and not the `pdbaa` directory, itself.)
 
-   Remember, a typical command for creating a tar file is:
+    Remember, a typical command for creating a tar file is:
 
         :::console
         user@training $ tar -cvzf <COMPRESSED FILENAME> <LIST OF FILES OR DIRECTORIES>
