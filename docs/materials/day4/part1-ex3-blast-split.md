@@ -94,9 +94,9 @@ Follow the below steps:
 
         arguments = $(inputfile)
 
-4. Add the `$(inputfile)` to the end of your list of `tranfer_input_files`:
+4. Add the `$(inputfile)` to the end of your list of `transfer_input_files`:
 
-        transfer_finput_files = ... , $(inputfile)
+        transfer_input_files = ... , $(inputfile)
 
 5. Update the memory and disk requests, since the new input file is larger and will also produce larger output.
    It may be best to overestimate to something like 1 GB for each.
