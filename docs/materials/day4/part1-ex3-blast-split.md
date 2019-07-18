@@ -66,10 +66,10 @@ user@training $ ./gt-1.5.10-Linux_x86_64-64bit-complete/bin/gt splitfasta -targe
 
 You'll notice that the result is a set of 100 files, all about the size of 1 MB, and numbered 1 through 100.
 
-Run a Test Split Job
+Run a Jobs on Split Input 
 --------------------
 
-Now, you'll run a test job to prepare for submitting many jobs, later, where each will use a different input file.
+Now, you'll submit jobs on the split input files, where each job will use a different piece of the large original input file.
 
 ### Modify the submit file
 
@@ -101,7 +101,6 @@ Follow the below steps:
 
 5. Update the memory and disk requests, since the new input file is larger and will also produce larger output.
    It may be best to overestimate to something like 1 GB for each.
-   After completing this test, you'll be able to update them to a more accurate value.
 
 ### Modify the wrapper file
 
@@ -115,7 +114,7 @@ place of the input filename, like so:
 !!! note
     Bash shell scripts will use the first argument in place of `$1`, the second argument as `$2`, etc.
 
-### Submit the test job
+### Submit the jobs
 
 This job will take a bit longer than the job in the last exercise, since the input file is larger (by about 3-fold).
 Again, make sure that only the desired `output`, `error`, and `result` files come back at the end of the job.
