@@ -86,7 +86,6 @@ log                     = montage.log
 request_memory          = 1GB
 request_disk            = 1GB
 request_cpus            = 1
-requirements            = OpSysMajorVer =?= 7
 queue
 ```
 
