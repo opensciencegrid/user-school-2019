@@ -68,7 +68,7 @@ tar xvzf pdbaa_files.tar.gz
 
 ./blastx -db pdbaa -query mouse.fa -out mouse.fa.result
 
-rm pdbaa.*
+rm pdbaa*
 ```
 
 Be sure to replace `<USERNAME>` with your own user name.
