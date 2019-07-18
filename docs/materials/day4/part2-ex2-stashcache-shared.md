@@ -101,7 +101,7 @@ You will have to modify the wrapper and submit files to use StashCache:
 
         ::file
         +WantsStashCache = true
-        requirements = (OpSys == "LINUX") && (HAS_MODULES =?= true)
+        requirements = (OSGVO_OS_STRING == "RHEL 7") && (HAS_MODULES =?= true)
 
 5. Confirm that your queue statement is correct for the current directory. It should be something like:
 
