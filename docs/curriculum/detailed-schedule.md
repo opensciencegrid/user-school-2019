@@ -90,14 +90,14 @@ leave for Union South at around 5:50&nbsp;p.m.; to join the group, be in the lob
 |-------|-------|-------------------------------------------------------------|-----------------------|
 |  8:00 |  8:45 | Breakfast and group discussion                              |                       |
 |  9:00 |  9:30 | OSG-available software (lecture), licensing considerations  | Christina Koch        |
-|  9:30 | 10:45 | Using OASIS modules (hands-on)                              | "                     |
-| 10:45 | 11:00 | Break                                                       |                       |
-| 11:00 | 11:15 | Using software containers (lecture)                         | Christina Koch        |
+|  9:30 | 10:30 | Using OASIS modules (hands-on)                              | "                     |
+| 10:30 | 10:45 | Break                                                       |                       |
+| 10:45 | 11:15 | Using software containers (lecture)                         | Christina Koch        |
 | 11:15 | 12:15 | Running jobs in containers (hands-on; optional or catch up) | "                     |
 | 12:15 |  1:15 | Lunch                                                       |                       |
 |  1:15 |  5:00 | Free choice (many options provided or suggested)            | Group                 |
 |  5:00 |     — | On your own                                                 |                       |
-|  7:00 |  9:00 | Evening work session (optional, or concert)<br><span style="color: #FF6600;">Union South, room TBD</span> | TBD |
+|  7:00 |  9:00 | Evening work session (optional, or concert)<br><span style="color: #FF6600;">Union South, Landmark room (3rd floor) </span> | TBD |
 
 ## Thursday, 18 July 2019
 
@@ -106,13 +106,13 @@ leave for Union South at around 5:50&nbsp;p.m.; to join the group, be in the lob
 | Start | End   | Event                                                         | Instructor       |
 |-------|-------|---------------------------------------------------------------|------------------|
 |  8:00 |  8:45 | Breakfast and group discussion                                |                  |
-|  9:00 |  9:30 | HTC considerations for "big data"? (lecture)                  | Brian Lin        |
+|  9:00 |  9:30 | HTC considerations for "big data"? (lecture)                  | Lauren Michael   |
 |  9:30 | 10:30 | Determining data requirements (hands-on)                      | "                |
 | 10:30 | 10:45 | Break                                                         |                  |
 | 10:45 | 11:15 | Solutions for large input data (lecture)                      | Brian Lin        |
 | 11:15 | 12:30 | Handling large input data (hands-on)                          | "                |
 | 12:30 |  1:30 | Lunch                                                         |                  |
-|  1:30 |  2:00 | Large output and local file systems (lecture)                 | Brian Lin        |
+|  1:30 |  2:00 | Large output and local file systems (lecture)                 | Lauren Michael   |
 |  2:00 |  3:00 | Leveraging shared file systems (hands-on)                     | "                |
 |  3:00 |  3:15 | Break                                                         |                  |
 |  3:15 |  3:45 | Workflows with HTCondor DAGMan (lecture)                      | Lauren Michael   |

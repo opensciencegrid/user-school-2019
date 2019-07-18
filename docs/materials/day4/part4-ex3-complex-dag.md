@@ -4,7 +4,7 @@ status: done
 
 <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: \#008; } </style>
 
-Monday Exercise 4.3: A More Complex DAG
+Thursday Exercise 4.3: A More Complex DAG
 =======================================
 
 The objective of this exercise is to run a real set of jobs with DAGMan.

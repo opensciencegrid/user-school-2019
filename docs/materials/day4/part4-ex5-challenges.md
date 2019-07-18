@@ -7,7 +7,7 @@ status: done
   pre strong { font-style: normal; font-weight: bold; color: \#008; }
 </style>
 
-# Monday Bonus Exercise 4.5: YOUR Jobs and More on Workflows
+# Thursday Bonus Exercise 4.5: YOUR Jobs and More on Workflows
 
 The objective of this exercise is to learn the very basics of running a set of jobs, where our set is just one job.
 

@@ -75,10 +75,11 @@ blastx -db <database_dir/prefix> -query <input_file> -out <output_file>
 	-   How can you indicate the entire command line sequence above?
 	-   Which files need to be transferred in addition to the executable?
 	-   Does this job require a certain type of operating system?
+	-   Do you have any idea how much memory or disk to request?
 
 1. Try to answer these questions and modify your submit file appropriately.
 
-1. Once you have done all you can, check your submit file against the lines below, which contain the exact compoenents to run this particular job.
+1. Once you have done all you can, check your submit file against the lines below, which contain the exact components to run this particular job.
 
     * The executable is `blastx`, which is located in the `bin` directory of our downloaded BLAST directory. We need to use the `arguments` line in the submit file to express the rest of the command. 
     
@@ -90,6 +91,12 @@ blastx -db <database_dir/prefix> -query <input_file> -out <output_file>
     
             :::file
             transfer_input_files = pdbaa, mouse.fa
+	    
+    * Let's assume that we've run this program before, and we know that 1GB of disk and 1GB of memory will be MORE than enough (the 'log' file will tell us how accurate we are, after the job runs): 
+    
+            :::file
+            request_memory = 1GB
+	    request_disk = 1GB
 
     * Because we downloaded a Linux-specific binary, we need to request machines that are running Linux. 
     
