@@ -97,7 +97,7 @@ leave for Union South at around 5:50&nbsp;p.m.; to join the group, be in the lob
 | 12:15 |  1:15 | Lunch                                                       |                       |
 |  1:15 |  5:00 | Free choice (many options provided or suggested)            | Group                 |
 |  5:00 |     — | On your own                                                 |                       |
-|  7:00 |  9:00 | Evening work session (optional, or concert)<br><span style="color: #FF6600;">Union South, Landmark room (3rd floor) </span> | TBD |
+|  7:00 |  9:00 | Evening work session (optional, or concert)<br><span style="color: #FF6600;">Union South, Landmark room (3rd floor) </span> | Brian, Josh, Tim |
 
 ## Thursday, 18 July 2019
 
