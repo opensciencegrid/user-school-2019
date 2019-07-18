@@ -98,20 +98,17 @@ ncbi-blast-2.9.0+/bin/blastx -db pdbaa/pdbaa -query mouse.fa -out results.txt
 
 </li>
 <li>
-<p>Note that since the <code>blastx</code> program is no longer listed as the executable, it will be need to be included in <code>transfer_input_files</code>. Instead of transferring just that program, we will transfer the original downloaded <code>tar.gz</code> file.  </p>
-<div class="codehilite"><pre><span></span>transfer_input_files = pdbaa, mouse.fa, <span style="color:blue">ncbi-blast-2.9.0+-x64-linux.tar.gz</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>To achieve efficiency, we'll also transfer the pdbaa database as the original <code>tar.gz</code> file instead of as the unzipped folder: </p>
+<p>Note that since the <code>blastx</code> program is no longer listed as the executable, it will be need to be included in <code>transfer_input_files</code>. Instead of transferring just that program, we will transfer the original downloaded <code>tar.gz</code> file. To achieve efficiency, we'll also transfer the pdbaa database as the original <code>tar.gz</code> file instead of as the unzipped folder: </p>
 <div class="codehilite"><pre><span></span>transfer_input_files = <span style="color:blue">pdbaa.tar.gz</span>, mouse.fa, ncbi-blast-2.9.0+-x64-linux.tar.gz
 </pre></div>
 
 
 </li>
+<li>
+<p>If you really want to be on top of things, look at the log file for the last exercise, and update your memory and disk requests to be just slightly above the actual "Usage" values in the log. </p>
+</li>
 </ol>
+<p>Before submitting, make sure to make the below additional changes to the wrapper script!</p>
 <h2 id="wrapper-script-part-2">Wrapper Script, part 2<a class="headerlink" href="#wrapper-script-part-2" title="Permanent link">&para;</a></h2>
 <p>Now that our database and BLAST software are being transferred to the job as <code>tar.gz</code> files, our script needs to accommodate.</p>
 <ol>
