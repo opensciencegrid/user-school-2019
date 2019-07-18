@@ -28,7 +28,7 @@ Setup
 
 -   Make sure you're logged in to `training.osgconnect.net`
 -   Transfer the following files from [Exercise 2.1](/materials/day4/part2-ex1-blast-proxy.md) to a new directory in
-    your local scratch called `thur-data-stash`:
+    your local scratch called `thur-stash-shared`:
     - `blast_wrapper.sh`
     - `blastx`
     - `mouse_rna.fa.1`
@@ -42,10 +42,7 @@ Place the Database in StashCache
 ### Copy to your `public` space on OSG Connect
 
 StashCache provides a public space for you to store data which can be accessed through the caching servers.
-First, you need to move your blast database into this public directory.
-If you remember the "public" directory in your home directory on the OSG Connect server `training.osgconnect.net`, it's
-this location where you will place files that need to end up in the StashCache data origin.
-
+First, you need to move your BLAST database into this public directory.
 You have already placed files in the `~/stash/public` directory in the previous exercise in order for it to be
 accessible to the HTTP proxies.
 The same directory is accessible to StashCache.
@@ -86,17 +83,18 @@ You will have to modify the wrapper and submit files to use StashCache:
 
         ::file
         module load stashcache
-        stashcp /user/%RED%username%ENDCOLOR%/public/pdbaa_files.tar.gz ./
+        stashcp /user/<USERNAME>/public/pdbaa_files.tar.gz ./
+
+    Replacing `<USERNAME>` with your own username.
 
 2. Since HTCondor will no longer transfer or download the file for you, make sure to add the following line (or modify
-   your existing `rm` command, if you're confident) to make sure the `pdbaa_files.tar.gz` file is also deleted and not
-   copied back as perceived output.
+   your existing `rm` command, if you're confident) from your wrapper script to make sure the `pdbaa_files.tar.gz` file
+   is also deleted and not copied back as perceived output.
 
         ::file
         rm pdbaa_files.tar.gz
 
-
-3. Delete the `wget` line from the job wrapper script `blast_wrapper.sh`
+3. Delete the `wget` and `export http_proxy` lines from the job wrapper script `blast_wrapper.sh`
 
 4. Add the following line to the submit file and update the "requirements" statement to require servers with OSG Connect
    modules (for accessing the `stashcp` module), somewhere before the word `queue`.
