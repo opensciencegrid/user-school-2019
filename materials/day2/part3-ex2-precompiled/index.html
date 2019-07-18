@@ -130,13 +130,14 @@ reference database, the BLAST program.</p>
 <li>How can you indicate the entire command line sequence above?</li>
 <li>Which files need to be transferred in addition to the executable?</li>
 <li>Does this job require a certain type of operating system?</li>
+<li>Do you have any idea how much memory or disk to request?</li>
 </ul>
 </li>
 <li>
 <p>Try to answer these questions and modify your submit file appropriately.</p>
 </li>
 <li>
-<p>Once you have done all you can, check your submit file against the lines below, which contain the exact compoenents to run this particular job.</p>
+<p>Once you have done all you can, check your submit file against the lines below, which contain the exact components to run this particular job.</p>
 <ul>
 <li>
 <p>The executable is <code>blastx</code>, which is located in the <code>bin</code> directory of our downloaded BLAST directory. We need to use the <code>arguments</code> line in the submit file to express the rest of the command. </p>
@@ -152,6 +153,14 @@ arguments = -db pdbaa/pdbaa -query mouse.fa -out results.txt
 </pre></div>
 
 
+</li>
+<li>
+<p>Let's assume that we've run this program before, and we know that 1GB of disk and 1GB of memory will be MORE than enough (the 'log' file will tell us how accurate we are, after the job runs): </p>
+<div class="codehilite"><pre><span></span>request_memory = 1GB
+</pre></div>
+
+
+<p>request_disk = 1GB</p>
 </li>
 <li>
 <p>Because we downloaded a Linux-specific binary, we need to request machines that are running Linux. </p>
