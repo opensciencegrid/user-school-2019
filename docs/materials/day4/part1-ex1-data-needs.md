@@ -17,7 +17,7 @@ Setup
 1. Navigate to your local scratch directory:
 
         :::console
-        user@training $ cd /local-scratch/<USERNAME>
+        user@training $ cd /local-scratch2/<USERNAME>
 
     Replacing `<USERNAME>` with your username
 
