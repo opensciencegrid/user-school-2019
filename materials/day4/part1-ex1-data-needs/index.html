@@ -39,6 +39,7 @@
               {title: "Understanding BLAST", url: "#understanding-blast" },
               {title: "Calculating Data Needs", url: "#calculating-data-needs" },
               {title: "Talk about this as a group!", url: "#talk-about-this-as-a-group" },
+              {title: "Answers", url: "#answers" },
               {title: "Up next!", url: "#up-next" },
           ]},
         ];
@@ -177,34 +178,42 @@ Total all of these together, as well.</p>
 <li>How much total disk space would be necessary on the submit server to run 10 jobs?
     (remember that some of the files will be shared by all 10 jobs, and will not be multiplied)</li>
 </ul>
+<h2 id="answers">Answers<a class="headerlink" href="#answers" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Submit server: Only compressed files needed.  Don't need uncompressed on submit server node.<ul>
+<li>pdbaa.tar.gz: 22MB</li>
+<li>blastx.tar.gz: 14MB</li>
+<li>mouse.fa.tar.gz: 104K</li>
+<li>Total: ~36MB</li>
+</ul>
+</li>
+<li>Worker Node: Compressed files + uncompressed files<ul>
+<li>pdbaa: 97MB</li>
+<li>blastx: 41MB</li>
+<li>mouse.fa: 389KB</li>
+<li>results: 11MB</li>
+<li>stdout: 0</li>
+<li>stderr: 0</li>
+<li>Compressed files: ~36MB</li>
+<li>Total: ~185MB</li>
+</ul>
+</li>
+<li>How many files are needed and created for each run?<ul>
+<li>files in pdbaa: 12</li>
+<li>blastx: 1</li>
+<li>mouse.fa: 1</li>
+<li>results: 1</li>
+<li>stdout + stderr = 2</li>
+<li>total: 17</li>
+</ul>
+</li>
+<li>Submit server with 10 jobs<ul>
+<li>Only need multiple queries, because that is what is different.</li>
+<li>so pdbaa (22MB) + blastx (14MB) + 10 * mouse.fa (104k) = ~37MB</li>
+</ul>
+</li>
+</ul>
 <!--
-
-Answers:
-- Submit server: Only compressed files needed.  Don't need uncompressed on submit server node.
-    - pdbaa.tar.gz: 22MB
-    - blastx.tar.gz: 14MB
-    - mouse.fa.tar.gz: 104K
-    - Total: ~36MB
-- Worker Node: Compressed files + uncompressed files
-    - pdbaa: 97MB
-    - blastx: 41MB
-    - mouse.fa: 389KB
-    - results: 11MB
-    - stdout: 0
-    - stderr: 0
-    - Compressed files: ~36MB
-    - Total: ~185MB
-- How many files are needed and created for each run?
-    - files in pdbaa: 12
-    - blastx: 1
-    - mouse.fa: 1
-    - results: 1
-    - stdout + stderr = 2
-    - total: 17
-- Submit server with 10 jobs
-    - Only need multiple queries, because that is what is different.
-    - so pdbaa (22MB) + blastx (14MB) + 10 * mouse.fa (104k) = ~37MB
-
 ## Removed 2019, not sure how users are supposed to reasonably get this info
 -   Assuming that each file is read completely by BLAST, and since you know how long blastx runs (time it):
     -   At what rate are files read in?
@@ -213,7 +222,6 @@ Answers:
     - my run, and this can vary: 198 seconds
     - 17 / 198 = 0.086 files per second (low)
     - 149 / 198 = 0.75 MBs per second
-
 
 -->
 
