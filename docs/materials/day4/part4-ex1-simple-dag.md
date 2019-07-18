@@ -65,23 +65,10 @@ Submitting job(s).
 -----------------------------------------------------------------------
 ```
 
-In the second window, watch the queue (what you see may be slightly different):
+In the second window, check the queue (what you see may be slightly different):
 
 ``` console
-username@learn $ watch -n 10 condor_q -nobatch -wide:80
-
--- Submitter: learn.chtc.wisc.edu : <128.104.100.55:9618?sock=28867_10e4_2> : learn.chtc.wisc.edu
- ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD               
-  61.0   roy             6/21 22:51   0+00:00:01 R  0   0.3  condor_dagman     
-
-1 jobs; 0 completed, 0 removed, 0 idle, 1 running, 0 held, 0 suspended
-
--- Submitter: learn.chtc.wisc.edu : <128.104.100.55:9618?sock=28867_10e4_2> : learn.chtc.wisc.edu
- ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD               
-  61.0   roy             6/21 22:51   0+00:01:25 R  0   0.3  condor_dagman     
-  62.0   roy             6/21 22:51   0+00:00:00 I  0   0.7  simple 4 10      
-
-2 jobs; 0 completed, 0 removed, 1 idle, 1 running, 0 held, 0 suspended
+username@learn $ condor_q -nobatch -wide:80
 
 -- Submitter: learn.chtc.wisc.edu : <128.104.100.55:9618?sock=28867_10e4_2> : learn.chtc.wisc.edu
  ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD               
@@ -89,12 +76,6 @@ username@learn $ watch -n 10 condor_q -nobatch -wide:80
   62.0   roy             6/21 22:51   0+00:00:03 R  0   0.7  simple 4 10      
 
 2 jobs; 0 completed, 0 removed, 0 idle, 2 running, 0 held, 0 suspended
-
--- Submitter: learn.chtc.wisc.edu : <128.104.100.55:9618?sock=28867_10e4_2> : learn.chtc.wisc.edu
- ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD               
-
-0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended
-#%RED%<Ctrl-C>%ENDCOLOR%
 ```
 
 In the third window, watch what DAGMan does (what you see may be slightly different):
