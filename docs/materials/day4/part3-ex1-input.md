@@ -12,7 +12,7 @@ Background
 ----------
 
 In the previous exercises, we used two "web-based" tools to stage and deliver our files to jobs:
-[the squid web proxy](/materials/day4/part2-ex1-blast-proxy.md)  and [Stash](/materials/day4/part2-ex2-stashcache-shared.md).
+[the web proxy](/materials/day4/part2-ex1-blast-proxy.md)  and [Stash](/materials/day4/part2-ex2-stashcache-shared.md).
 Another alternative for handling large files (both input and output), especially if they are unique to each job, is a
 local shared filesystem.
 This is a filesystem that all (or most) of the execute servers can access, so data stored there can be copied to the job
@@ -54,8 +54,8 @@ Once the files have finished downloading, untar them.
 ### Software, Executable, Submit File
 
 Because these jobs will be similar to the previous exercise, we can copy the software (`ffmpeg`), our executable
-(`run_ffmpeg.sh`) and submit file from `user-training.osgconnect.net` to `learn.chtc.wisc.edu`, or, feel free to
-replicate these by following the instructions in the [previous exercise](/materials/day4/part2-ex3-stashcache-unique.md).
+(`run_ffmpeg.sh`) and submit file from `training.osgconnect.net` to `learn.chtc.wisc.edu`, or, feel free to replicate
+these by following the instructions in the [previous exercise](/materials/day4/part2-ex3-stashcache-unique.md).
 These files should go into a sub-directory of your **home** directory, **not your Gluster directory**.
 
 Ch-ch-ch-changes
@@ -67,8 +67,12 @@ Read on.
 
 ### Script
 
-The major actions of our script will be the same: *copy* the movie file to the job's current working directory,
-*run* the appropriate `ffmpeg` command, and then *remove* the original movie file.
+The major actions of our script will be the same:
+
+1. **Copy** the movie file to the job's current working directory,
+1. **Run** the appropriate `ffmpeg` command
+1. **Remove** the original movie file.
+
 The main difference is that the `mov` file will be copied from  your Gluster directory instead of being downloaded from
 Stash.
 Like before, your script should remove  that file before the job completes so that it doesn't get transferred back to
