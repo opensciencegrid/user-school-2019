@@ -45,15 +45,14 @@ We now need to make some changes to our submit file.
         executable = run_blast.sh 
         #arguments = 
 
-1. Note that since the `blastx` program is no longer listed as the executable, it will be need to be included in `transfer_input_files`. Instead of transferring just that program, we will transfer the original downloaded `tar.gz` file.  
-
-        :::file
-        transfer_input_files = pdbaa, mouse.fa, %BLUE%ncbi-blast-2.9.0+-x64-linux.tar.gz%ENDCOLOR%
-
-1. To achieve efficiency, we'll also transfer the pdbaa database as the original `tar.gz` file instead of as the unzipped folder: 
+1. Note that since the `blastx` program is no longer listed as the executable, it will be need to be included in `transfer_input_files`. Instead of transferring just that program, we will transfer the original downloaded `tar.gz` file. To achieve efficiency, we'll also transfer the pdbaa database as the original `tar.gz` file instead of as the unzipped folder: 
 
         :::file
         transfer_input_files = %BLUE%pdbaa.tar.gz%ENDCOLOR%, mouse.fa, ncbi-blast-2.9.0+-x64-linux.tar.gz
+
+1. If you really want to be on top of things, look at the log file for the last exercise, and update your memory and disk requests to be just slightly above the actual "Usage" values in the log. 
+
+Before submitting, make sure to make the below additional changes to the wrapper script!
 
 Wrapper Script, part 2
 ----------------------
