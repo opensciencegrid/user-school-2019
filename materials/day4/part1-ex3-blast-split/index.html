@@ -36,7 +36,7 @@
         var pageToc = [
           {title: "Thursday Exercise 1.3: Splitting Large Input for Better Throughput", url: "#_top", children: [
               {title: "Setup", url: "#setup" },
-              {title: "Test a split job", url: "#test-a-split-job" },
+              {title: "Run a Test Split Job", url: "#run-a-test-split-job" },
               {title: "Update the resource requests", url: "#update-the-resource-requests" },
           ]},
         ];
@@ -57,39 +57,71 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     
 
     <h1 id="thursday-exercise-13-splitting-large-input-for-better-throughput">Thursday Exercise 1.3: Splitting Large Input for Better Throughput<a class="headerlink" href="#thursday-exercise-13-splitting-large-input-for-better-throughput" title="Permanent link">&para;</a></h1>
-<p>The objective of this exercise is to prepare for <em>blasting</em> a much larger input query file by splitting the input for greater throughput and lower memory and disk requirements. Splitting the input will also mean that we don't have to rely on additional large-data measures for the input query files.</p>
+<p>The objective of this exercise is to prepare for <em>blasting</em> a much larger input query file by splitting the input for
+greater throughput and lower memory and disk requirements.
+Splitting the input will also mean that we don't have to rely on additional large-data measures for the input query files.</p>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Make sure you are still logged into <code>training.osgconnect.net</code></li>
-<li>Make sure you are in the directory named <code>thur-blast-data</code> under your local scratch directory</li>
+<ol>
+<li>Log in to <code>training.osgconnect.net</code></li>
+<li>
+<p>Navigate to your local scratch directory:</p>
+<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> <span class="nb">cd</span> /local-scratch/&lt;USERNAME&gt;
+</pre></div>
+
+
+<p>Replacing <code>&lt;USERNAME&gt;</code> with your username</p>
+</li>
+<li>
+<p>Create a directory for this exercise named <code>thur-blast-split</code> and change into it.</p>
+</li>
+<li>Copy over the following files from the <a href="../part1-ex2-file-transfer/">previous exercise</a>:<ul>
+<li>Your submit file</li>
+<li><code>blastx</code></li>
+<li><code>pdbaa_files.tar.gz</code></li>
+<li><code>blast_wrapper.sh</code></li>
 </ul>
+</li>
+</ol>
 <h3 id="obtain-the-large-input">Obtain the large input<a class="headerlink" href="#obtain-the-large-input" title="Permanent link">&para;</a></h3>
-<p>We've previously used <code>blastx</code> to analyze a relatively small input file of test data, <code>mouse.fa</code>, but let's imagine that you now need to blast a much larger dataset for your research. This dataset can be downloaded with the following command:</p>
+<p>We've previously used <code>blastx</code> to analyze a relatively small input file of test data, <code>mouse.fa</code>, but let's imagine that
+you now need to blast a much larger dataset for your research.
+This dataset can be downloaded with the following command:</p>
 <div class="codehilite"><pre><span></span><span class="gp">user@training $</span> wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/mouse_rna.tar.gz
 </pre></div>
 
 
-<p>After un-tar'ing the file, you should be able to confirm that it's size is roughly 100 MB. Not only is this a bit large for file transfer, but it would take hours to complete a single <code>blastx</code> analysis for it. Also, the single output file would be huge. Compare for yourself to the time and output file size for the mouse.fa input file, according to your test job in the last exercise.</p>
+<p>After un-tar'ing the file, you should be able to confirm that it's size is roughly 100 MB.
+Not only is this near the size cutoff for HTCondor file transfer, it would take hours to complete a single <code>blastx</code>
+analysis for it and the resulting output file would be huge.</p>
 <h3 id="split-the-input-file">Split the input file<a class="headerlink" href="#split-the-input-file" title="Permanent link">&para;</a></h3>
-<p>For <code>blast</code>, it's scientifically valid to split up the input query file, analyze the pieces, and then put the results back together at the end! (Importantly, blast databases should not be split, because the <code>blast</code> output includes a score value for each sequence that is calculated relative to the entire length of the database.)</p>
-<p>Because genetic sequence data is used heavily across the life science, there are also tools for splitting up the data into smaller files. One of these is called <a href="http://genometools.org/">genome tools</a>, and you can download a package of precompiled binaries (just like blast) using the following command:</p>
+<p>For <code>blast</code>, it's scientifically valid to split up the input query file, analyze the pieces, and then put the results
+back together at the end!
+On the other hand, BLAST databases should not be split, because the <code>blast</code> output includes a score value for each
+sequence that is calculated relative to the entire length of the database.</p>
+<p>Because genetic sequence data is used heavily across the life sciences, there are also tools for splitting up the data
+into smaller files.
+One of these is called <a href="http://genometools.org/">genome tools</a>, and you can download a package of precompiled binaries
+(just like BLAST) using the following command:</p>
 <div class="codehilite"><pre><span></span><span class="gp">user@training $</span> wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/gt-1.5.10-Linux_x86_64-64bit-complete.tar.gz
 </pre></div>
 
 
-<p>Un-tar the gt package (<code>tar -xzvf ...</code>), then run it's sequence file splitter as follows, with the target file size of 1 MB:</p>
+<p>Un-tar the gt package (<code>tar -xzvf ...</code>), then run its sequence file splitter as follows, with the target file size of 1MB:</p>
 <div class="codehilite"><pre><span></span><span class="gp">user@training $</span> ./gt-1.5.10-Linux_x86_64-64bit-complete/bin/gt splitfasta -targetsize <span class="m">1</span> mouse_rna.fa
 </pre></div>
 
 
 <p>You'll notice that the result is a set of 100 files, all about the size of 1 MB, and numbered 1 through 100.</p>
-<h2 id="test-a-split-job">Test a split job<a class="headerlink" href="#test-a-split-job" title="Permanent link">&para;</a></h2>
+<h2 id="run-a-test-split-job">Run a Test Split Job<a class="headerlink" href="#run-a-test-split-job" title="Permanent link">&para;</a></h2>
 <p>Now, you'll run a test job to prepare for submitting many jobs, later, where each will use a different input file.</p>
 <h3 id="modify-the-submit-file">Modify the submit file<a class="headerlink" href="#modify-the-submit-file" title="Permanent link">&para;</a></h3>
-<p>First, you'll create a new submit file that passes the input filename as an argument and use a list of applicable filenames. Follow the below steps:</p>
+<p>First, you'll create a new submit file that passes the input filename as an argument and use a list of applicable
+filenames.
+Follow the below steps:</p>
 <ol>
 <li>
-<p>Copy the submit file to a new file called <code>blast_split.sub</code> and modify the "queue" line of the submit file to the following:</p>
+<p>Copy the submit file to a new file called <code>blast_split.sub</code> and modify the "queue" line of the submit file to the
+   following:</p>
 <div class="codehilite"><pre><span></span>queue inputfile matching mouse_rna.fa.*
 </pre></div>
 
@@ -97,7 +129,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>(If this queue line looks like we should be scanning all of the rna files, wait until the next exercise)</p>
 </li>
 <li>
-<p>Replace the <code>mouse.fa</code> instances in the submit file with <code>$(inputfile)</code>, and rename the output, log, and error files to use the same <code>inputfile</code> variable:</p>
+<p>Replace the <code>mouse.fa</code> instances in the submit file with <code>$(inputfile)</code>, and rename the output, log, and error files
+   to use the same <code>inputfile</code> variable:</p>
 <div class="codehilite"><pre><span></span>output = $(inputfile).out
 error = $(inputfile).err
 log = $(inputfile).log
@@ -113,28 +146,39 @@ log = $(inputfile).log
 
 </li>
 <li>
-<p>Add the <code>$(inputfile)</code> to the tranfer_input_files line</p>
+<p>Add the <code>$(inputfile)</code> to the end of your list of <code>tranfer_input_files</code>:</p>
 <div class="codehilite"><pre><span></span>transfer_finput_files = ... , $(inputfile)
 </pre></div>
 
 
 </li>
 <li>
-<p>Update the memory and disk requests, since the new input file is larger and will also produce larger output. It may be best to overestimate to something like 1 GB for each. (After completing this test, you'll be able to update them to a more accurate value.)</p>
+<p>Update the memory and disk requests, since the new input file is larger and will also produce larger output.
+   It may be best to overestimate to something like 1 GB for each.
+   After completing this test, you'll be able to update them to a more accurate value.</p>
 </li>
 </ol>
 <h3 id="modify-the-wrapper-file">Modify the wrapper file<a class="headerlink" href="#modify-the-wrapper-file" title="Permanent link">&para;</a></h3>
-<p>Replace instances of the input file name in the <code>blast_wrapper.sh</code> script so that it will insert the first argument in place of the input filename, like so:</p>
+<p>Replace instances of the input file name in the <code>blast_wrapper.sh</code> script so that it will insert the first argument in
+place of the input filename, like so:</p>
 <div class="codehilite"><pre><span></span>./blastx -db pdbaa -query $1 -out $1.result
 </pre></div>
 
 
-<p>NOTE: bash shell scripts will use the first argument in place of <code>$1</code>, the second argument as <code>$2</code>, etc.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bash shell scripts will use the first argument in place of <code>$1</code>, the second argument as <code>$2</code>, etc.</p>
+</div>
 <h3 id="submit-the-test-job">Submit the test job<a class="headerlink" href="#submit-the-test-job" title="Permanent link">&para;</a></h3>
-<p>This job will take a bit longer than the job in the last exercise, since the input file is larger (by about 3-fold). Again, make sure that only the desired <code>output</code>, <code>error</code>, and <code>result</code> files come back at the end of the job.  In my tests, the jobs ran for 7-12 minutes.</p>
+<p>This job will take a bit longer than the job in the last exercise, since the input file is larger (by about 3-fold).
+Again, make sure that only the desired <code>output</code>, <code>error</code>, and <code>result</code> files come back at the end of the job.
+In our tests, the jobs ran for ~15 minutes.</p>
 <div class="admonition warning">
 <p class="admonition-title">Jobs on jobs!</p>
-<p>Be careful to not submit the job again. Why?  Our queue statement says <code>... matching mouse_rna.fa.*</code>, and look at the current directory.  There are new files named <code>mouse_rna.fa.X.log</code> and other files.  Submitting again, the <code>queue</code> statement would see these new files, and try to run blast on them!</p>
+<p>Be careful to not submit the job again. Why?  Our queue statement says <code>... matching mouse_rna.fa.*</code>, and look at
+the current directory.
+There are new files named <code>mouse_rna.fa.X.log</code> and other files.
+Submitting again, the <code>queue</code> statement would see these new files, and try to run blast on them!</p>
 <p>If you want to remove all of the extra files, you can try:</p>
 <div class="codehilite"><pre><span></span><span class="gp">user@training $</span> rm *.error *.log *.out *.result
 </pre></div>
@@ -142,7 +186,11 @@ log = $(inputfile).log
 
 </div>
 <h2 id="update-the-resource-requests">Update the resource requests<a class="headerlink" href="#update-the-resource-requests" title="Permanent link">&para;</a></h2>
-<p>After the job finishes successfully, examine the <code>log</code> file for memory and disk usage, and update the requests in the submit file. In <a href="../../../materials/day4/part2-ex1-blast-proxy">Exercise 2.1</a> (after the next lecture) you'll submit many jobs at once <em>and</em> use a different method for handling the <code>pdbaa_files.tar.gz</code> file, which is a bit too large to use regular file transfer when submitting many jobs.</p>
+<p>After the job finishes successfully, examine the <code>log</code> file for memory and disk usage, and update the requests in the
+submit file.
+In <a href="../../../materials/day4/part2-ex1-blast-proxy">Exercise 2.1</a> (after the next lecture) you'll submit many jobs at once <em>and</em>
+use a different method for handling the <code>pdbaa_files.tar.gz</code> file, which is a bit too large to use regular file transfer
+when submitting many jobs.</p>
 
   <br>
     

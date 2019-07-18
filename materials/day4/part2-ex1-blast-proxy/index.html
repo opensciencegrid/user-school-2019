@@ -58,11 +58,14 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     
 
     <h1 id="thursday-exercise-21-using-a-web-proxy-for-large-shared-input">Thursday Exercise 2.1: Using a Web Proxy for Large Shared Input<a class="headerlink" href="#thursday-exercise-21-using-a-web-proxy-for-large-shared-input" title="Permanent link">&para;</a></h1>
-<p>Continuing the series of exercises blasting mouse genetic sequences, the objective of this exercise is to use a web proxy to stage the large database, which will be downloaded into each of many jobs that use the split input files from the last exercise (Exercise 1.3).</p>
+<p>Continuing the series of exercises blasting mouse genetic sequences, the objective of this exercise is to use a web
+proxy to stage the large database, which will be downloaded into each of many jobs that use the split input files from
+the last exercise (Exercise 1.3).</p>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Make sure you are logged into <code>training.osgconnect.net</code></li>
-<li>Make sure you are in the same directory as the previous exercise, <a href="../part1-ex3-blast-split/">Exercise 1.3</a> directory named <code>thur-blast-data</code>.</li>
+<li>Make sure you are in the same directory as the previous exercise,
+    <a href="../part1-ex3-blast-split/">Exercise 1.3</a> directory named <code>thur-blast-split</code>.</li>
 </ul>
 <h2 id="place-the-large-file-on-the-proxy">Place the Large File on the Proxy<a class="headerlink" href="#place-the-large-file-on-the-proxy" title="Permanent link">&para;</a></h2>
 <p>First, you'll need to put the <code>pdbaa_files.tar.gz</code> file onto the Stash web directory. Use the following command:</p>
@@ -71,17 +74,24 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 <h3 id="test-a-download-of-the-file">Test a download of the file<a class="headerlink" href="#test-a-download-of-the-file" title="Permanent link">&para;</a></h3>
-<p>Once the file is placed in the ~/stash/public directory, it can be downloaded from a corresponding URL such as <code>http://stash.osgconnect.net/~<span style="color:red">username</span>/pdbaa_files.tar.gz</code>, where <span style="color:red">username</span> is your username on <code>training.osgconnect.net</code>.</p>
-<p>Using the above convention (and from a different directory on <code>training.osgconnect.net</code>, any directory), you can test the download of your <code>pdbaa_files.tar.gz</code> file with a command like the following:</p>
-<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> wget http://stash.osgconnect.net/~<span style="color:red">username</span>/pdbaa_files.tar.gz
+<p>Once the file is placed in the <code>~/stash/public</code> directory, it can be downloaded from a corresponding URL such as
+<code>http://stash.osgconnect.net/~&lt;USERNAME&gt;/pdbaa_files.tar.gz</code>, where <code>&lt;USERNAME&gt;</code> is your username on
+<code>training.osgconnect.net</code>.</p>
+<p>Using the above convention (and from a different directory on <code>training.osgconnect.net</code>, any directory), you can test
+the download of your <code>pdbaa_files.tar.gz</code> file with a command like the following:</p>
+<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> wget http://stash.osgconnect.net/~&lt;USERNAME&gt;/pdbaa_files.tar.gz
 </pre></div>
 
 
-<p>You may realize that you've been using <code>wget</code> to download files from a web proxy for many of the previous exercises at the school!</p>
+<p>Replacing <code>&lt;USERNAME&gt;</code> with your own username.
+You may realize that you've been using <code>wget</code> to download files from a web proxy for many of the previous exercises at
+the school!</p>
 <h2 id="run-a-new-test-job">Run a New Test Job<a class="headerlink" href="#run-a-new-test-job" title="Permanent link">&para;</a></h2>
-<p>Now, you'll repeat the last exercise (with a single input query file) but have HTCondor download the <code>pdbaa_files.tar.gz</code> file from the web proxy, instead of having the file transferred from the submit server.</p>
+<p>Now, you'll repeat the last exercise (with a single input query file) but have HTCondor download the
+<code>pdbaa_files.tar.gz</code> file from the web proxy, instead of having the file transferred from the submit server.</p>
 <h3 id="modify-the-submit-file-and-wrapper-script">Modify the submit file and wrapper script<a class="headerlink" href="#modify-the-submit-file-and-wrapper-script" title="Permanent link">&para;</a></h3>
-<p>In the wrapper script, we have to add some special lines so that we can pull from Stash and use the HTTP proxy. In <code>blast_wrapper.sh</code>, we will have to add commands to pull the data file:</p>
+<p>In the wrapper script, we have to add some special lines so that we can pull from the HTTP proxy.
+In <code>blast_wrapper.sh</code>, we will have to add commands to pull the data file:</p>
 <div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># Set the http_proxy environment which wget uses</span>
@@ -99,17 +109,23 @@ rm pdbaa.*
 </pre></div>
 
 
-<p>The new line will download the <code>pdbaa_files.tar.gz</code> from stash, using the closest cache (because <code>wget</code> will look at the environment variable <code>http_proxy</code> for the newest cache).</p>
-<p>In your submit file, you will need to remove the <code>pdbaa_files.tar.gz</code> file from the <code>transfer_input_files</code>, because we are using HTTP proxies!</p>
+<p>The new line will download the <code>pdbaa_files.tar.gz</code> from the HTTP proxy, using the closest cache (because <code>wget</code> will
+look at the environment variable <code>http_proxy</code> for the newest cache).</p>
+<p>In your submit file, you will need to remove the <code>pdbaa_files.tar.gz</code> file from the <code>transfer_input_files</code>, because we
+are now transferring the tarball over using HTTP proxies!</p>
 <h3 id="submit-the-test-job">Submit the test job<a class="headerlink" href="#submit-the-test-job" title="Permanent link">&para;</a></h3>
-<p>You may wish to first remove the log, result, output, and error files from the previous tests, which will be overwritten when the new test job completes.</p>
+<p>You may wish to first remove the log, result, output, and error files from the previous tests, which will be overwritten
+when the new test job completes.</p>
 <div class="codehilite"><pre><span></span><span class="gp">user@training $</span> rm *.error *.out *.result *.log
 </pre></div>
 
 
 <p>Submit the test job!</p>
-<p>When the job starts, the wrapper will download the <code>pdbaa_files.tar.gz</code> file from the web proxy. If the jobs takes longer than two minutes, you can assume that it will complete successfully, and then continue with the rest of the exercise.</p>
-<p>After the job completes examine the error file generated by the submission. At the top of the file, you will find something like:</p>
+<p>When the job starts, the wrapper will download the <code>pdbaa_files.tar.gz</code> file from the web proxy.
+If the jobs takes longer than two minutes, you can assume that it will complete successfully, and then continue with the
+rest of the exercise.</p>
+<p>After the job completes examine the error file generated by the submission.
+At the top of the file, you will find something like:</p>
 <div class="codehilite"><pre><span></span>--2019-07-11 <span class="m">18</span>:29:14--  http://stash.osgconnect.net/~dweitzel/pdbaa_files.tar.gz
 Resolving uct2-squid.mwt2.org <span class="o">(</span>uct2-squid.mwt2.org<span class="o">)</span>... <span class="m">192</span>.170.227.165
 Connecting to uct2-squid.mwt2.org <span class="o">(</span>uct2-squid.mwt2.org<span class="o">)</span><span class="p">|</span><span class="m">192</span>.170.227.165<span class="p">|</span>:3128... connected.
@@ -132,11 +148,18 @@ Length: <span class="m">22105124</span> <span class="o">(</span>21M<span class="
 </pre></div>
 
 
-<p>Notice the <code>X-Cache</code> line. It says it was a cache HIT from the proxy <code>cmsprxy01.colorado.edu</code>. Yay! You successfully used a proxy to cache data near your worker node! Notice, the name of the cache may be different.</p>
+<p>Notice the <code>X-Cache</code> line. It says it was a cache HIT from the proxy <code>cmsprxy01.colorado.edu</code>.
+Yay! You successfully used a proxy to cache data near your worker node! Notice, the name of the cache may be different.</p>
 <h2 id="run-all-100-jobs">Run all 100 Jobs!<a class="headerlink" href="#run-all-100-jobs" title="Permanent link">&para;</a></h2>
-<p>If all of the previous tests have gone okay, you can prepare to run all 100 jobs that will use the split input files. To make sure you're not going to generate too much data, use the size of files from the previous test to calculate how much total data you're going to add to the <code>thur-blast-data</code> directory for 100 jobs.</p>
+<p>If all of the previous tests have gone okay, you can prepare to run all 100 jobs that will use the split input files.
+To make sure you're not going to generate too much data, use the size of files from the previous test to calculate how
+much total data you're going to add to the <code>thur-blast-split</code> directory for 100 jobs.</p>
 <p>Make sure you remove <code>pdbaa_files.tar.gz</code> from the <code>transfer_input_files</code> in the <em>split</em> submit file.</p>
-<p>Submit all 100 jobs! They may take a while to all complete, but it will still be faster than the many hours it would have taken to blast the single, large <code>mouse_rna.fa</code> file without splitting it up.  In the meantime, as long as the first several jobs are running for longer than two minutes, you can move on to the next <a href="../../../materials/day4/part2-ex2-stashcache-shared">exercise</a></p>
+<p>Submit all 100 jobs!
+They may take a while to all complete, but it will still be faster than the many hours it would have taken to blast the
+single, large <code>mouse_rna.fa</code> file without splitting it up.
+In the meantime, as long as the first several jobs are running for longer than two minutes, you can move on to the next
+<a href="../../../materials/day4/part2-ex2-stashcache-shared">exercise</a></p>
 
   <br>
     

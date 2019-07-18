@@ -61,48 +61,67 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     
 
     <h1 id="thursday-exercise-23-using-stash-for-unique-large-input">Thursday Exercise 2.3: Using Stash for unique large input<a class="headerlink" href="#thursday-exercise-23-using-stash-for-unique-large-input" title="Permanent link">&para;</a></h1>
-<p>In this exercise, we will run a multimedia program that converts and manipulates video files. In particular, we want to convert large <code>.mov</code> files to smaller (10-100s of MB) <code>mp4</code> files.  Just like the Blast database in the <a href="../part2-ex2-stashcache-shared/">previous exercise</a>, these video files are too large to send to jobs using HTCondor's default file transfer mechanism, so we'll be using the Stash tool to send our data to jobs. This exercise should take 25-30 minutes.</p>
+<p>In this exercise, we will run a multimedia program that converts and manipulates video files.
+In particular, we want to convert large <code>.mov</code> files to smaller (10-100s of MB) <code>mp4</code> files.
+Just like the Blast database in the <a href="../part2-ex2-stashcache-shared/">previous exercise</a>, these video
+files are too large to send to jobs using HTCondor's default file transfer mechanism, so we'll be using the Stash tool
+to send our data to jobs. This exercise should take 25-30 minutes.</p>
 <h2 id="data">Data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h2>
 <p>We'll start by moving our source movie files into Stash, so that they'll be available to our jobs when they run out on OSG.</p>
 <ol>
-<li>Log into <code>training.osgconnect.net</code> and move into the <code>~/stash/public</code> directory.</li>
+<li>Log into <code>training.osgconnect.net</code></li>
 <li>
-<p>The video files are currently stored on the squid proxy you used earlier. To place them in Stash, download them using <code>wget</code>: </p>
-<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> wget http://proxy.chtc.wisc.edu/osgschool19/videos.tar.gz
+<p>Navigate to your local scratch directory:</p>
+<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> <span class="nb">cd</span> /local-scratch/&lt;USERNAME&gt;
+</pre></div>
+
+
+<p>Replacing <code>&lt;USERNAME&gt;</code> with your username</p>
+</li>
+<li>
+<p>Create a directory for this exercise named <code>thur-stash-unique</code> and change into it</p>
+</li>
+<li>
+<p>The video files are currently stored locally on the training host.
+    Copy them to your current directory:</p>
+<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> cp /local-scratch/videos.tar.gz .
 </pre></div>
 
 
 </li>
 <li>
-<p>Once downloaded, untar the <code>tar.gz</code> file. It should contain three <code>.mov</code> files. (this may take a while since everyone else is likely doing the same thing)</p>
+<p>Once copied, untar the <code>tar.gz</code> file.
+    It should contain three <code>.mov</code> files. (this may take a while since everyone else is likely doing the same thing)</p>
 </li>
 <li>How big are the three files? Which is the smallest? (Find out with <code>ls -lh</code>.)</li>
 <li>
-<p>We're going to need a list of these files later. For now, let's save that list to a file in this directory by running <code>ls</code> and redirecting the output to a file: </p>
-<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> ls *.MOV *.mov &gt; movie_list.txt
+<p>We're going to need a list of these files later.
+    For now, let's save that list to a file in this directory by running <code>ls</code> and redirecting the output to a file: </p>
+<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> ls *.mov &gt; movie_list.txt
 </pre></div>
 
 
 </li>
 <li>
-<p>Once you've examined the three <code>mov</code> files and created the list of files, remove the original <code>videos.tar.gz</code> file.</p>
+<p>Place the <code>.mov</code> files into Stash by moving them into <code>~/stash/public/</code></p>
 </li>
+<li>Once you've examined the three <code>mov</code> files and created the list of files, remove the original <code>videos.tar.gz</code> file.</li>
 </ol>
 <h2 id="software">Software<a class="headerlink" href="#software" title="Permanent link">&para;</a></h2>
-<p>We'll be using a multi-purpose media tool called <code>ffmpeg</code>  to convert video formats. The basic command to convert a file looks like this: </p>
+<p>We'll be using a multi-purpose media tool called <code>ffmpeg</code>  to convert video formats.
+The basic command to convert a file looks like this: </p>
 <div class="codehilite"><pre><span></span><span class="gp">user@training $</span> ./ffmpeg -i input.mov output.mp4
 </pre></div>
 
 
-<p>In order to resize our files, we're going to manually set the video bitrate and resize the frames, so that the resulting file is smaller.</p>
+<p>In order to resize our files, we're going to manually set the video bitrate and resize the frames, so that the resulting
+file is smaller.</p>
 <div class="codehilite"><pre><span></span><span class="gp">user@training $</span> ./ffmpeg -i input.mp4 -b:v 400k -s 640x360 output.mp4
 </pre></div>
 
 
 <p>To get the <code>ffmpeg</code> program do the following:</p>
 <ol>
-<li><strong>On training.osgconnect.net</strong>, create a directory for this exercise <code>thur-data-ffmpeg</code> in your local scratch
-    directory and change into it.</li>
 <li>
 <p>We'll be downloading the <code>ffmpeg</code> pre-built static binary originally from this page: <a href="http://johnvansickle.com/ffmpeg/">http://johnvansickle.com/ffmpeg/</a>. </p>
 <div class="codehilite"><pre><span></span><span class="gp">user@training $</span> wget http://proxy.chtc.wisc.edu/osgschool19/ffmpeg-release-64bit-static.tar.xz
@@ -120,27 +139,44 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </li>
 </ol>
 <h2 id="script">Script<a class="headerlink" href="#script" title="Permanent link">&para;</a></h2>
-<p>We want to write a script that uses <code>ffmpeg</code> to convert a <code>.mov</code> file to a smaller format. Our script will need to <em>copy</em> that movie file from Stash to the job's current working directory (as in the <a href="../part2-ex2-stashcache-shared/">previous exercise</a>, <em>run</em> the appropriate <code>ffmpeg</code> command,  and then <em>remove</em> the original movie file so that it doesn't get transferred back to the submit server. This last step is  particularly important, as otherwise you will have large files transferring into the submit server and filling up your local scratch directory space.</p>
-<p>Create a file called <code>run_ffmpeg.sh</code>, that does the steps described above. Use the name of the smallest <code>.mov</code> file in the <code>ffmpeg</code> command. Once you've written your script, check it against the example below: </p>
+<p>We want to write a script that uses <code>ffmpeg</code> to convert a <code>.mov</code> file to a smaller format.
+Our script will need to:</p>
+<ol>
+<li><strong>Copy</strong> that movie file from Stash to the job's current working directory (as in the
+   <a href="../part2-ex2-stashcache-shared/">previous exercise</a></li>
+<li><strong>Run</strong> the appropriate <code>ffmpeg</code> command</li>
+<li><strong>Remove</strong> the original movie file so that it doesn't get transferred back to the submit server.
+   This last step is particularly important, as otherwise you will have large files transferring into the submit server
+   and filling up your local scratch directory space.</li>
+</ol>
+<p>Create a file called <code>run_ffmpeg.sh</code>, that does the steps described above.
+Use the name of the smallest <code>.mov</code> file in the <code>ffmpeg</code> command.
+Once you've written your script, check it against the example below: </p>
 <div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 module load stashcache
-stashcp /user/<span style="color:red">username</span>/public/test_open_terminal.mov ./
+stashcp /user/&lt;USERNAME&gt;/public/test_open_terminal.mov ./
 ./ffmpeg -i test_open_terminal.mov -b:v 400k -s 640x360 test_open_terminal.mp4
 rm test_open_terminal.mov
 </pre></div>
 
 
-<p>In your script, the username should be replaced by your <code>training.osgconnect.net</code> username.</p>
-<p>Ultimately we'll want to submit several jobs (one for each <code>.mov</code> file), but to start with, we'll run one job to  make sure that everything works.</p>
+<p>In your script, replace <code>&lt;USERNAME&gt;</code> with your <code>training.osgconnect.net</code> username.</p>
+<p>Ultimately we'll want to submit several jobs (one for each <code>.mov</code> file), but to start with, we'll run one job to make
+sure that everything works.</p>
 <h2 id="submit-file">Submit File<a class="headerlink" href="#submit-file" title="Permanent link">&para;</a></h2>
-<p>Create a submit file for this job, based on other submit files from the school (<a href="../part1-ex2-file-transfer/#start-with-a-test-submit-file">This file, for example</a>.) Things to consider:</p>
+<p>Create a submit file for this job, based on other submit files from the school
+(<a href="../part1-ex2-file-transfer/#start-with-a-test-submit-file">This file, for example</a>.)
+Things to consider:</p>
 <ol>
 <li>
-<p>We'll be copying the video file into the job's working directory, so make sure to request enough disk space for the input <code>mov</code> file and the output <code>mp4</code> file.  If you're aren't sure how much to request, ask a helper in the room.</p>
+<p>We'll be copying the video file into the job's working directory, so make sure to request enough disk space for the
+    input <code>mov</code> file and the output <code>mp4</code> file.
+    If you're aren't sure how much to request, ask a helper in the room.</p>
 </li>
 <li>
-<p><strong>Important</strong> Don't list the name of the <code>.mov</code> in <code>transfer_input_files</code>. Our job will be interacting with the input <code>.mov</code> files solely from within the script we wrote above.</p>
+<p><strong>Important</strong> Don't list the name of the <code>.mov</code> in <code>transfer_input_files</code>. Our job will be interacting with the
+    input <code>.mov</code> files solely from within the script we wrote above.</p>
 </li>
 <li>
 <p>Note that we <strong>do</strong> need to transfer the <code>ffmpeg</code> program that we downloaded above. </p>
@@ -165,51 +201,56 @@ requirements = (OpSys == &quot;LINUX&quot;) &amp;&amp; (HAS_MODULES =?= true)
 <li>Also in the directory where you submitted the job - did the original <code>.mov</code> file return here accidentally?</li>
 <li>Check file sizes. How big is the returned <code>.mp4</code> file? How does that compare to the original <code>.mov</code> input?</li>
 </ol>
-<p>If your job successfully returned the converted <code>.mp4</code> file and did <strong>not</strong> transfer the <code>.mov</code> file to the submit server, and the <code>.mp4</code> file was appropriately scaled down, then we can go ahead and convert all of the files we uploaded to Stash.</p>
+<p>If your job successfully returned the converted <code>.mp4</code> file and did <strong>not</strong> transfer the <code>.mov</code> file to the submit
+server, and the <code>.mp4</code> file was appropriately scaled down, then we can go ahead and convert all of the files we uploaded
+to Stash.</p>
 <h2 id="multiple-jobs">Multiple jobs<a class="headerlink" href="#multiple-jobs" title="Permanent link">&para;</a></h2>
-<p>We wrote the name of the <code>.mov</code> file into our <code>run_ffmpeg.sh</code> executable script. To submit a set of jobs for all of our <code>.mov</code>  files, what will we need to change in:</p>
+<p>We wrote the name of the <code>.mov</code> file into our <code>run_ffmpeg.sh</code> executable script.
+To submit a set of jobs for all of our <code>.mov</code> files, what will we need to change in:</p>
 <ol>
-<li>the script? </li>
-<li>the submit file?</li>
+<li>The script?</li>
+<li>The submit file?</li>
 </ol>
 <p>Once you've thought about it, check your reasoning against the instructions below.</p>
 <h3 id="add-an-argument-to-your-script">Add an argument to your script<a class="headerlink" href="#add-an-argument-to-your-script" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Look at your <code>run_ffmpeg.sh</code> script. What values will change for every job?</li>
-<li>The input file will change with every job - and don't forget that the output file will too! Let's make them both into arguments. </li>
-</ol>
-<p>To add arguments to a bash script, we use the notation <code>$1</code> for the first argument (our input file) and <code>$2</code> for the second argument (our output file name).  The final script should look like this: </p>
+<p><strong>Look at your <code>run_ffmpeg.sh</code> script. What values will change for every job?</strong></p>
+<p>The input file will change with every job - and don't forget that the output file will too! Let's make them both into
+arguments.</p>
+<p>To add arguments to a bash script, we use the notation <code>$1</code> for the first argument (our input file) and <code>$2</code> for the
+second argument (our output file name).
+The final script should look like this: </p>
 <div class="codehilite"><pre><span></span>#!/bin/bash
 
 module load stashcache
-stashcp /user/<span style="color:red">username</span>/public/$1 ./
+stashcp /user/&lt;USERNAME&gt;/public/$1 ./
 ./ffmpeg -i $1 -b:v 400k -s 640x360 $2
 rm $1
 </pre></div>
 
 
-<p>Note that we use the input file name multiple times in our script, so we'll have to use <code>$1</code> multiple times as well.</p>
+<p>Replacing <code>&lt;USERNAME&gt;</code> with your own username.
+Note that we use the input file name multiple times in our script, so we'll have to use <code>$1</code> multiple times as well.</p>
 <h3 id="modify-your-submit-file">Modify your submit file<a class="headerlink" href="#modify-your-submit-file" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
-<p>We now need to tell each job what arguments to use. We will do this by adding an arguments line to our submit file. Because we'll only have the input file name, the "output" file name will be the input file name with the <code>mp4</code> extension. That should look like this: </p>
+<p>We now need to tell each job what arguments to use.
+    We will do this by adding an arguments line to our submit file.
+    Because we'll only have the input file name, the "output" file name will be the input file name with the <code>mp4</code>
+    extension.
+    That should look like this: </p>
 <div class="codehilite"><pre><span></span>arguments = $(mov) $(mov).mp4
 </pre></div>
 
 
 </li>
 <li>
-<p>To set these arguments, we will use the <code>queue .. matching</code> syntax that we learned on <a href="../../day1/part2-ex4-queue-from/">Monday</a>. To do so, we need to create a list of our input files. </p>
-</li>
-<li>
-<p>In our submit file, we can then change our queue statement to: </p>
+<p>To set these arguments, we will use the <code>queue .. matching</code> syntax that we learned on
+   <a href="../../day1/part2-ex4-queue-from/">Monday</a>.
+   In our submit file, we can then change our queue statement to:</p>
 <div class="codehilite"><pre><span></span>queue mov from movie_list.txt
 </pre></div>
 
 
-</li>
-<li>
-<p>Copy the movie_list.txt to your submit directory.</p>
 </li>
 </ol>
 <p>Once you've made these changes, try submitting all the jobs!</p>
@@ -226,8 +267,8 @@ rm $1
 <ol>
 <li>
 <p><code>movie_list.txt</code> </p>
-<div class="codehilite"><pre><span></span>ducks.MOV ducks.mp4 500k 1280x720
-teaching.MOV teaching.mp4 400k 320x180
+<div class="codehilite"><pre><span></span>ducks.mov ducks.mp4 500k 1280x720
+teaching.mov teaching.mp4 400k 320x180
 test_open_terminal.mov terminal.mp4 600k 640x360
 </pre></div>
 
@@ -243,7 +284,7 @@ queue mov,mp4,bitrate,size from movie_list.txt
 
 </li>
 <li>
-<p><code>run_ffmpeg.sh</code> </p>
+<p><code>run_ffmpeg.sh</code></p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -252,12 +293,13 @@ queue mov,mp4,bitrate,size from movie_list.txt
 6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 module load stashcache
-stashcp /user/<span style="color:red">username</span>/public/<span class="nv">$1</span> ./
+stashcp /user/&lt;USERNAME&gt;/public/<span class="nv">$1</span> ./
 ./ffmpeg -i <span class="nv">$1</span> -b:v <span class="nv">$3</span> -s <span class="nv">$4</span> <span class="nv">$2</span>
 rm <span class="nv">$1</span>
 </pre></div>
 </td></tr></table>
 
+<p>Replacing <code>&lt;USERNAME&gt;</code> with your own username</p>
 </li>
 </ol>
 <p></details></p>
