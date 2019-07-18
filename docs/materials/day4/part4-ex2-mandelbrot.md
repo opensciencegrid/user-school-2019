@@ -13,6 +13,8 @@ We have a small program that draws pictures of the Mandelbrot set. You can [read
 
 We have a simple program that can draw the Mandelbrot set. It's called `goatbrot`.
 
+Before beginning, ensure that you are connected to `learn.chtc.wisc.edu`. Create a directory for this exercise and cd into it.
+
 Running goatbrot From the Command Line
 --------------------------------------
 
