@@ -99,7 +99,7 @@ In <code>blast_wrapper.sh</code>, we will have to add commands to pull the data 
 </span>
 <span class="c1"># Copy the pdbaa_files.tar.gz to the worker node</span>
 <span class="c1"># Add the -S argument, so we can see if it was a cache HIT or MISS</span>
-<span class="hll">wget -S http://stash.osgconnect.net/~username/pdbaa_files.tar.gz
+<span class="hll">wget -S http://stash.osgconnect.net/~&lt;USERNAME&gt;/pdbaa_files.tar.gz
 </span>
 tar xvzf pdbaa_files.tar.gz
 
@@ -109,6 +109,7 @@ rm pdbaa.*
 </pre></div>
 
 
+<p>Be sure to replace <code>&lt;USERNAME&gt;</code> with your own user name.</p>
 <p>The new line will download the <code>pdbaa_files.tar.gz</code> from the HTTP proxy, using the closest cache (because <code>wget</code> will
 look at the environment variable <code>http_proxy</code> for the newest cache).</p>
 <p>In your submit file, you will need to remove the <code>pdbaa_files.tar.gz</code> file from the <code>transfer_input_files</code>, because we
