@@ -5,98 +5,120 @@ status: tested
 Thursday Exercise 1.1: Understanding Data Requirements
 ===============================
 
+This exercise's goal is to learn to think critically about an application's data needs, especially before submitting a
+large batch of jobs or using tools for delivering large data to jobs.
+In this exercise we will attempt to understand the input and output of the bioinformatics application
+[BLAST](http://blast.ncbi.nlm.nih.gov/), which you used in [Tuesday's exercise 3.3](/materials/day2/part3-ex3-wrapper.md).
 
-Background
-----------
+Setup
+-----
 
-This exercise's goal is to learn to think critically about an application's data needs, especially before submitting a large batch of jobs or using tools for delivering large data to jobs. In this exercise we will attempt to understand the input and output of the bioinformatics application [BLAST](http://blast.ncbi.nlm.nih.gov/), which you used Tuesday in [Exercise 3.2](/materials/day2/part3-ex2-precompiled.md).
+1. Log in to `training.osgconnect.net`
+1. Navigate to your local scratch directory:
 
-### Setup
+        :::console
+        user@training $ cd /local-scratch/<USERNAME>
 
--   Make sure you are logged into `training.osgconnect.net`.
--   Navigate to your local scratch directory and create a directory for this exercise named `thur-blast`.
+    Replacing `<USERNAME>` with your username
 
-#### Copy the blast executables:
+1. Create a directory for this exercise named `thur-blast-data` and change into it
 
-``` console
-user@training $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/ncbi-blast-2.7.1+-x64-linux.tar.gz
-user@training $ tar xzf ncbi-blast-2.7.1+-x64-linux.tar.gz
-```
+### Copy the Input Files ###
 
-#### Copy the Input Files
+To run BLAST, we need the executable, input file, and reference database.
+For this example, we'll use the "pdbaa" database, which contains sequences for the protein structure from the Protein
+Data Bank.
+For our input file, we'll use an abbreviated fasta file with mouse genome information.
 
-To run BLAST, we need an input file and reference database. For this example, we'll use the "pdbaa" database, which contains sequences for the protein structure from the Protein Data Bank. For our input file, we'll use an abbreviated fasta file with mouse genome information.
+1. Copy the BLAST executables:
+
+        :::console
+        user@training $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/ncbi-blast-2.7.1+-x64-linux.tar.gz
+        user@training $ tar -xzvf ncbi-blast-2.7.1+-x64-linux.tar.gz
 
 1.  Download these files to your current directory:
 
-``` console
-user@training $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/pdbaa.tar.gz
-user@training $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/mouse.fa
-```
+        :::console
+        user@training $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/pdbaa.tar.gz
+        user@training $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/mouse.fa
 
 1.  Untar the `pdbaa` database:
 
-``` console
-user@training $ tar -xzf pdbaa.tar.gz
-```
+        :::console
+        user@training $ tar -xzvf pdbaa.tar.gz
 
-Understanding blast
+Understanding BLAST
 -------------------
 
 Remember that `blastx` is executed in a command like the following:
 
 ``` console
-user@training $ blastx -db %RED%database_rootname%ENDCOLOR% -query %RED%input_file%ENDCOLOR% -out %RED%results_file%ENDCOLOR%
+user@training $ ./blastx -db <DATABASE ROOTNAME> -query <INPUT FILE> -out <RESULTS FILE>
 ```
 
-In the above, the `input_file` is a file containing a number of genetic sequences, and the database that these are compared against is made up of several files that begin with the same root name (we previously used the "pdbaa" database, whose files all begin with `pdbaa`). The output from this analysis will be printed to a results file that is also indicated in the command.
+In the above, the `<INPUT FILE>` is the name of a file containing a number of genetic sequences (e.g. `mouse.fa`), and
+the database that these are compared against is made up of several files that begin with the same `<DATABASE ROOTNAME>`,
+(e.g. `pdbaa`).
+The output from this analysis will be printed to `<RESULTS FILE>` that is also indicated in the command.
 
-Adding up data needs
---------------------
+Calculating Data Needs
+----------------------
 
-Looking at the files from the `blastx` jobs you ran Tuesday, add up the amount of data that was needed for running the job. (If you deleted any of the files from Tuesday, just resubmit the job before proceeding.) Here are the commands that will be most useful to you:
+Using the files that you prepared in `thur-blast-data`, we will calculate how much disk space is needed if we were to
+run a hypothetical BLAST job with a wrapper script, where the job:
 
-How to see the size of a specific file:
+- Transfers all of its input files (including the executable) as tarballs
+- Untars the input files tarballs on the execute host
+- Runs `blastx` using the untarred input files
 
-``` console
-user@training $ ls -lh %RED%<FILE>%ENDCOLOR%
-```
+If this sounds familiar to you, it's because we did just this in in
+[Tuesdays's exercise 3.3](/materials/day2/part3-ex3-wrapper)!
+Here are some commands that will be useful for calculating your job's storage needs:
 
-How to see the size of all files in the current directory:
+- List the size of a specific file:
 
-``` console
-user@training $ ls -lh
-```
+        :::console
+        user@training $ ls -lh <FILE NAME>
 
-How to determine the total amount of data in a specific directory:
+- List the sizes of all files in the current directory:
 
-``` console
-user@training $ du -sh %RED%<DIRECTORY>%ENDCOLOR%
-```
+        :::console
+        user@training $ ls -lh
+
+- Sum the size of all files in a specific directory:
+
+        :::console
+        user@training $ du -sh <DIRECTORY>
 
 ### Input requirements
 
-Looking at Tuesdays's exercise, total up the amount of data in all of the files necessary to run the `blastx` job (which will include the executable, itself). Write down this number. Also take note of how much total data in in the `pdbaa` directory.  Remember, `blastx` reads the un-compressed `pdbaa` files.
+Total up the amount of data in all of the files necessary to run the `blastx` wrapper job, including the executable itself.
+Write down this number.
+Also take note of how much total data is in the `pdbaa` directory.
 
 !!! note "Compressed Files"
     Remember, `blastx` reads the un-compressed `pdbaa` files.
 
 ### Output requirements
 
-The output that we care about from `blastx` is saved in the file whose name is indicated after the `-out` argument to `blastx`. However, remember that HTCondor also creates the error, output, and log files, which you'll need to add up, too. Are there any other files? Total all of these together, as well.
+The output that we care about from `blastx` is saved in the file whose name is indicated after the `-out` argument to
+`blastx`.
+If you completed [Tuesday's exercise 3.3](/materials/day2/part3-ex3-wrapper.md), what is the size of that output file?
+Also, remember that HTCondor also creates the error, output, and log files, which you'll need to add up, too.
+Are there any other files?
+Total all of these together, as well.
 
 Talk about this as a group!
 ---------------------------
 
 Once you have completed the above tasks, we'll talk about the totals as a group.
 
--   How much disk space is required on the submit server for one blastx run with the input file you used before? (Input data)
+-   How much disk space is required on the submit server for one blastx run with the input files you used before?
+    (Input data)
 -   How much disk space is required on the worker node? (uncompressed + output data)
 -   How *many* files are needed and created for each run? (Output data)
--   Assuming that each file is read completely by BLAST, and since you know how long blastx runs (time it):
-    -   At what rate are files read in?
-    -   How many MB/s?
--   How much total disk space would be necessary on the submit server to run 10 jobs? (remember that some of the files will be shared by all 10 jobs, and will not be multiplied)
+-   How much total disk space would be necessary on the submit server to run 10 jobs?
+    (remember that some of the files will be shared by all 10 jobs, and will not be multiplied)
 
 <!-- 
 
@@ -106,14 +128,15 @@ Answers:
     - blastx.tar.gz: 14MB
     - mouse.fa.tar.gz: 104K
     - Total: ~36MB
-- Worker Node: Uncompressed files
+- Worker Node: Compressed files + uncompressed files
     - pdbaa: 97MB
     - blastx: 41MB
     - mouse.fa: 389KB
     - results: 11MB
     - stdout: 0
     - stderr: 0
-    - Total: ~149MB
+    - Compressed files: ~36MB
+    - Total: ~185MB
 - How many files are needed and created for each run?
     - files in pdbaa: 12
     - blastx: 1
@@ -121,21 +144,24 @@ Answers:
     - results: 1
     - stdout + stderr = 2
     - total: 17
+- Submit server with 10 jobs
+    - Only need multiple queries, because that is what is different.
+    - so pdbaa (22MB) + blastx (14MB) + 10 * mouse.fa (104k) = ~37MB
+
+## Removed 2019, not sure how users are supposed to reasonably get this info
+-   Assuming that each file is read completely by BLAST, and since you know how long blastx runs (time it):
+    -   At what rate are files read in?
+    -   How many MB/s?
 - Rates:
     - my run, and this can vary: 198 seconds
     - 17 / 198 = 0.086 files per second (low)
     - 149 / 198 = 0.75 MBs per second
-- Submit server with 10 jobs
-    - Only need multiple queries, because that is what is different.
-    - so pdbaa (22MB) + blastx (14MB) + 10 * mouse.fa (104k) = ~37MB
+
 
 -->
 
 Up next!
 --------
 
-Next you will create a HTCondor submit script to transfer the Blast input files in order to run Blast on a worker nodes. [Next Exercise](/materials/day4/part1-ex2-file-transfer.md)
-
-
-
-
+Next you will create a HTCondor submit script to transfer the Blast input files in order to run Blast on a worker nodes.
+[Next Exercise](/materials/day4/part1-ex2-file-transfer.md)
