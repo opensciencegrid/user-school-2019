@@ -7,7 +7,7 @@ status: done
   pre strong { font-style: normal; font-weight: bold; color: \#008; }
 </style>
 
-# Monday Exercise 4.1: Coordinating a Set of Jobs With a Simple DAG
+# Thursday Exercise 4.1: Coordinating a Set of Jobs With a Simple DAG
 
 The objective of this exercise is to learn the very basics of running a set of jobs, where our set is just one job.
 
