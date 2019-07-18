@@ -50,7 +50,7 @@ log = test.log
 request_memory = 
 request_disk = 
 request_cpus = 1
-requirements = (OpSys == "LINUX")
+requirements = (OSGVO_OS_STRING == "RHEL 7")
 queue
 ```
 
