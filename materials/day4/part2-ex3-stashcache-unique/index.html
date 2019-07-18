@@ -67,7 +67,7 @@ Just like the Blast database in the <a href="../part2-ex2-stashcache-shared/">pr
 files are too large to send to jobs using HTCondor's default file transfer mechanism, so we'll be using the Stash tool
 to send our data to jobs. This exercise should take 25-30 minutes.</p>
 <h2 id="data">Data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h2>
-<p>We'll start by moving our source movie files into Stash, so that they'll be available to our jobs when they run out on OSG.</p>
+<p>We have placed movie files in your Stash, so that they'll be available to our jobs when they run out on OSG.</p>
 <ol>
 <li>Log into <code>training.osgconnect.net</code></li>
 <li>
@@ -81,31 +81,22 @@ to send our data to jobs. This exercise should take 25-30 minutes.</p>
 <li>
 <p>Create a directory for this exercise named <code>thur-stash-unique</code> and change into it</p>
 </li>
-<li>
-<p>The video files are currently stored locally on the training host.
-    Copy them to your current directory:</p>
-<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> cp /local-scratch2/videos.tar.gz .
-</pre></div>
-
-
-</li>
-<li>
-<p>Once copied, untar the <code>tar.gz</code> file.
-    It should contain three <code>.mov</code> files. (this may take a while since everyone else is likely doing the same thing)</p>
-</li>
-<li>How big are the three files? Which is the smallest? (Find out with <code>ls -lh</code>.)</li>
+<li>How big are the three video files? Which is the smallest? (Find out with <code>ls -lh ~/stash/public/*.mov</code>.)</li>
 <li>
 <p>We're going to need a list of these files later.
     For now, let's save that list to a file in this directory by running <code>ls</code> and redirecting the output to a file: </p>
-<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> ls *.mov &gt; movie_list.txt
+<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> ls ~/stash/public/*.mov &gt; movie_list.txt
+</pre></div>
+
+
+<p>Then open <code>movie_list.txt</code> and remove the leading directory structure (<code>/home/&lt;username&gt;/stash/public/</code>),
+leaving only the base filenames (e.g. <code>test_open_terminal.mov</code>). Or, run the following command which will
+do this for you:</p>
+<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> sed -i <span class="s1">&#39;s,.*/,,&#39;</span> movie_list.txt
 </pre></div>
 
 
 </li>
-<li>
-<p>Place the <code>.mov</code> files into Stash by moving them into <code>~/stash/public/</code></p>
-</li>
-<li>Once you've examined the three <code>mov</code> files and created the list of files, remove the original <code>videos.tar.gz</code> file.</li>
 </ol>
 <h2 id="software">Software<a class="headerlink" href="#software" title="Permanent link">&para;</a></h2>
 <p>We'll be using a multi-purpose media tool called <code>ffmpeg</code>  to convert video formats.
