@@ -105,23 +105,20 @@ could instead transfer them as a single, compressed file using <code>tar</code>.
 For this version of the job, let's compress our blast database files to send them to the submit node as a single
 <code>tar.gz</code> file (otherwise known as a tarball), by following the below steps:</p>
 <ol>
-<li>Change into the <code>pdbaa</code> directory and compress the database files into a single file called <code>pdbaa_files.tar.gz</code>
-   using the <code>tar</code> command.
-   Note that this file will be different from the <code>pdbaa.tar.gz</code> file that you used earlier, because it will only
-   contain the <code>pdbaa</code> files, and not the <code>pdbaa</code> directory, itself.)</li>
-</ol>
+<li>
+<p>Change into the <code>pdbaa</code> directory and compress the database files into a single file called <code>pdbaa_files.tar.gz</code>
+    using the <code>tar</code> command.
+    Note that this file will be different from the <code>pdbaa.tar.gz</code> file that you used earlier, because it will only
+    contain the <code>pdbaa</code> files, and not the <code>pdbaa</code> directory, itself.)</p>
 <p>Remember, a typical command for creating a tar file is:</p>
-<div class="codehilite"><pre><span></span>    :::console
-    user@training $ tar -cvzf &lt;COMPRESSED FILENAME&gt; &lt;LIST OF FILES OR DIRECTORIES&gt;
-
-
-Replacing `&lt;COMPRESSED FILENAME&gt;` with the name of the tarball that you&#39;d like to create and
-`&lt;LIST OF FILES OR DIRECTORIES&gt;` with a space-separated list of files and/or directories that you want to 
-Move the tarball to the `thur-blast-data` directory.
+<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> tar -cvzf &lt;COMPRESSED FILENAME&gt; &lt;LIST OF FILES OR DIRECTORIES&gt;
 </pre></div>
 
 
-<ol>
+<p>Replacing <code>&lt;COMPRESSED FILENAME&gt;</code> with the name of the tarball that you'd like to create and
+<code>&lt;LIST OF FILES OR DIRECTORIES&gt;</code> with a space-separated list of files and/or directories that you want to 
+Move the tarball to the <code>thur-blast-data</code> directory.</p>
+</li>
 <li>
 <p>Create a wrapper script that will first decompress the <code>pdbaa_files.tar.gz</code> file, and then run blast.</p>
 <p>Because this file will now be our submit file <code>executable</code>, we'll also end up transferring the <code>blastx</code> executable
