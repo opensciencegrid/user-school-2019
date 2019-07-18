@@ -30,7 +30,7 @@ user@training $ cp pdbaa_files.tar.gz ~/stash/public/
 
 Once the file is placed in the `~/stash/public` directory, it can be downloaded from a corresponding URL such as
 `http://stash.osgconnect.net/~<USERNAME>/pdbaa_files.tar.gz`, where `<USERNAME>` is your username on
-`training.osgconnect.net`.
+`training.osgconnect.net` (make sure to keep the `~` before your username!).
 
 Using the above convention (and from a different directory on `training.osgconnect.net`, any directory), you can test
 the download of your `pdbaa_files.tar.gz` file with a command like the following:
@@ -39,7 +39,7 @@ the download of your `pdbaa_files.tar.gz` file with a command like the following
 user@training $ wget http://stash.osgconnect.net/~<USERNAME>/pdbaa_files.tar.gz
 ```
 
-Replacing `<USERNAME>` with your own username.
+Replacing `<USERNAME>` with your own username (but keep the `~`!).
 You may realize that you've been using `wget` to download files from a web proxy for many of the previous exercises at
 the school!
 
