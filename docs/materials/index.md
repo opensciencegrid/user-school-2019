@@ -64,7 +64,7 @@ status: in progress
 - [Exercise 3.3: Using a wrapper script](/materials/day2/part3-ex3-wrapper.md)
 - [Exercise 3.4: Pre-packaging code](/materials/day2/part3-ex4-prepackaged.md)
 - [Bonus Exercise 3.5: Passing Arguments Through the Wrapper Script](/materials/day2/part3-ex5-arguments.md)
-- Lecture: Interpreted Languages for DHTC ([PPT](/materials/day2/files/osgus19-day2-part4-software-interpret.pptx))
+- Lecture: Interpreted Languages for DHTC ([PDF](/materials/day2/files/osgus19-day2-part4-software-interpret.pdf), [PPT](/materials/day2/files/osgus19-day2-part4-software-interpret.pptx))
 - [Exercise 2.1: Pre-packaging Python](/materials/day2/part4-ex1-python-built.md)
 - [Bonus Exercise 2.2: Python options](/materials/day2/part4-ex2-python-extras.md)
 
