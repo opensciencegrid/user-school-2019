@@ -61,7 +61,7 @@ user@training $ ls ~/stash/public
 ```
 
 Now, load the `stashcache` module, which will allow you to test a copy of the file from StashCache into your local
-scratch directory on `login.osgconnect.net`:
+scratch directory on `training.osgconnect.net`:
 
 ``` console
 user@training $ module load stashcache
