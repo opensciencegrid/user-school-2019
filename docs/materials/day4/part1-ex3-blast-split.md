@@ -13,8 +13,20 @@ Splitting the input will also mean that we don't have to rely on additional larg
 Setup
 -----
 
--   Make sure you are still logged into `training.osgconnect.net`
--   Make sure you are in the directory named `thur-blast-data` under your local scratch directory
+1. Log in to `training.osgconnect.net`
+1. Navigate to your local scratch directory:
+
+        :::console
+        user@training $ cd /local-scratch/<USERNAME>
+
+    Replacing `<USERNAME>` with your username
+
+1. Create a directory for this exercise named `thur-blast-split` and change into it.
+1. Copy over the following files from the [previous exercise](/materials/day4/part1-ex2-file-transfer.md):
+    - Your submit file
+    - `blastx`
+    - `pdbaa_files.tar.gz`
+    - `blast_wrapper.sh`
 
 ### Obtain the large input
 
@@ -27,19 +39,17 @@ user@training $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/mouse_rna.tar.
 ```
 
 After un-tar'ing the file, you should be able to confirm that it's size is roughly 100 MB.
-Not only is this a bit large for file transfer, but it would take hours to complete a single `blastx` analysis for it.
-Also, the single output file would be huge.
-Compare for yourself to the time and output file size for the mouse.fa input file, according to your test job in the
-last exercise.
+Not only is this near the size cutoff for HTCondor file transfer, it would take hours to complete a single `blastx`
+analysis for it and the resulting output file would be huge.
 
 ### Split the input file
 
 For `blast`, it's scientifically valid to split up the input query file, analyze the pieces, and then put the results
 back together at the end!
-Importantly, blast databases should not be split, because the `blast` output includes a score value for each sequence
-that is calculated relative to the entire length of the database.
+On the other hand, BLAST databases should not be split, because the `blast` output includes a score value for each
+sequence that is calculated relative to the entire length of the database.
 
-Because genetic sequence data is used heavily across the life science, there are also tools for splitting up the data
+Because genetic sequence data is used heavily across the life sciences, there are also tools for splitting up the data
 into smaller files.
 One of these is called [genome tools](http://genometools.org/), and you can download a package of precompiled binaries
 (just like BLAST) using the following command:
@@ -48,7 +58,7 @@ One of these is called [genome tools](http://genometools.org/), and you can down
 user@training $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/gt-1.5.10-Linux_x86_64-64bit-complete.tar.gz
 ```
 
-Un-tar the gt package (`tar -xzvf ...`), then run it's sequence file splitter as follows, with the target file size of 1 MB:
+Un-tar the gt package (`tar -xzvf ...`), then run its sequence file splitter as follows, with the target file size of 1MB:
 
 ``` console
 user@training $ ./gt-1.5.10-Linux_x86_64-64bit-complete/bin/gt splitfasta -targetsize 1 mouse_rna.fa
@@ -56,8 +66,8 @@ user@training $ ./gt-1.5.10-Linux_x86_64-64bit-complete/bin/gt splitfasta -targe
 
 You'll notice that the result is a set of 100 files, all about the size of 1 MB, and numbered 1 through 100.
 
-Test a split job
-----------------
+Run a Test Split Job
+--------------------
 
 Now, you'll run a test job to prepare for submitting many jobs, later, where each will use a different input file.
 
@@ -85,7 +95,7 @@ Follow the below steps:
 
         arguments = $(inputfile)
 
-4. Add the `$(inputfile)` to the tranfer_input_files line
+4. Add the `$(inputfile)` to the end of your list of `tranfer_input_files`:
 
         transfer_finput_files = ... , $(inputfile)
 
