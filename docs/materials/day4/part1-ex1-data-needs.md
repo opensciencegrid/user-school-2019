@@ -120,9 +120,9 @@ Once you have completed the above tasks, we'll talk about the totals as a group.
 -   How much total disk space would be necessary on the submit server to run 10 jobs?
     (remember that some of the files will be shared by all 10 jobs, and will not be multiplied)
 
-<!-- 
+Answers
+-------
 
-Answers:
 - Submit server: Only compressed files needed.  Don't need uncompressed on submit server node.
     - pdbaa.tar.gz: 22MB
     - blastx.tar.gz: 14MB
@@ -148,6 +148,8 @@ Answers:
     - Only need multiple queries, because that is what is different.
     - so pdbaa (22MB) + blastx (14MB) + 10 * mouse.fa (104k) = ~37MB
 
+
+<!--
 ## Removed 2019, not sure how users are supposed to reasonably get this info
 -   Assuming that each file is read completely by BLAST, and since you know how long blastx runs (time it):
     -   At what rate are files read in?
