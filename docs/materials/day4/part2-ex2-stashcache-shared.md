@@ -65,7 +65,7 @@ scratch directory on `login.osgconnect.net`:
 
 ``` console
 user@training $ module load stashcache
-user@training $ stashcp /user/<USERNAME>/public/pdbaa_files.tar.gz /local-scratch/<USERNAME>/
+user@training $ stashcp /user/<USERNAME>/public/pdbaa_files.tar.gz /local-scratch2/<USERNAME>/
 ```
 
 Replacing all instances of `<USERNAME>` with your username on `training.osgconnect.net`.
