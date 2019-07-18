@@ -13,25 +13,28 @@ exercises today.
 Setup
 -----
 
--   Make sure you are still logged into `training.osgconnect.net`
--   Navigate to your local scratch directory and create a directory for this exercise named `thur-blast-data` and change
-    into it.
+The executable we'll use in this exercise and later today is the same `blastx` executable from previous exercises.
 
-The executable we'll use in this exercise and later today is the same **`blastx`** executable from the
-[previous exercise](/materials/day4/part1-ex1-data-needs.md).
+1. Log in to `training.osgconnect.net`
+1. Navigate to your local scratch directory:
 
-Also copy the data and executables from the last exercise into the `thur-blast-data` directory.
-You'll need the `mouse.fa` file and the `pdbaa` directory from the last exercise, but you'll end up making a new submit
-file.
+        :::console
+        user@training $ cd /local-scratch/<USERNAME>
+
+    Replacing `<USERNAME>` with your username
+
+1. Change into the `thurs-blast-data` folder that you created in the previous exercise.
 
 ### Review: HTCondor File Transfer
 
 ![OSG data transfer](/materials/day4/files/osgus18-day4-part2-ex2-data-transfer.jpg)
 
-Recall that OSG does **NOT** have a shared filesystem!  Instead, HTCondor *transfers* your executable and input files
-(listed with `transfer_input_files`) to a working directory on the execute node, regardless of how these files were
-arranged on the submit node.  In this exercise we'll use the same `blastx` example job that we used previously, but
-modify the submit file and test how much memory and disk space it uses on the execute node.
+Recall that OSG does **NOT** have a shared filesystem!
+Instead, HTCondor *transfers* your executable and input files (specified with the `executable` and
+`transfer_input_files` submit file directives, respectively) to a working directory on the execute node, regardless of
+how these files were arranged on the submit node.
+In this exercise we'll use the same `blastx` example job that we used previously, but modify the submit file and test
+how much memory and disk space it uses on the execute node.
 
 Start with a test submit file
 -----------------------------
@@ -42,7 +45,7 @@ We've started a submit file for you, below, which you'll add to in the remaining
 executable = 
 transfer_input_files = 
 output = test.out
-error = test.error
+error = test.err
 log = test.log
 request_memory = 
 request_disk = 
@@ -55,21 +58,23 @@ queue
 
 In our first blast job from yesterday, the database files in the `pdbaa` directory were all transferred, as is, but we
 could instead transfer them as a single, compressed file using `tar`.
-For a second test job, let's compress our blast database files to send them to the submit node as a single `tar.gz`
-file, by following the below steps:
+For this version of the job, let's compress our blast database files to send them to the submit node as a single
+`tar.gz` file (otherwise known as a tarball), by following the below steps:
 
 1. Change into the `pdbaa` directory and compress the database files into a single file called `pdbaa_files.tar.gz`
    using the `tar` command.
-   (NOTE: This file will be different from the `pdbaa.tar.gz` files you downloaded yesterday, because it will only
+   Note that this file will be different from the `pdbaa.tar.gz` file that you used earlier, because it will only
    contain the `pdbaa` files, and not the `pdbaa` directory, itself.)
 
-    A typical command for creating a tar file is:
+   Remember, a typical command for creating a tar file is:
 
         :::console
-        user@training $ tar cvzf %RED%<COMPRESSED FILENAME>%ENDCOLOR% %RED%<LIST OF FILES OR DIRECTORIES>%ENDCOLOR%
+        user@training $ tar -cvzf <COMPRESSED FILENAME> <LIST OF FILES OR DIRECTORIES>
 
 
-    Move this file to the `thur-blast-data` directory.
+    Replacing `<COMPRESSED FILENAME>` with the name of the tarball that you'd like to create and
+    `<LIST OF FILES OR DIRECTORIES>` with a space-separated list of files and/or directories that you want to 
+    Move the tarball to the `thur-blast-data` directory.
 
 2. Create a wrapper script that will first decompress the `pdbaa_files.tar.gz` file, and then run blast.
 
@@ -80,17 +85,16 @@ file, by following the below steps:
         :::file
         #!/bin/bash
         
-        tar xvzf pdbaa_files.tar.gz
+        tar -xzvf pdbaa_files.tar.gz
         
         ./blastx -db pdbaa -query mouse.fa -out mouse.fa.result
         
         rm pdbaa.*
 
-
     !!! warning "Extra Files!"
         The last line removes the resulting database files that came from `pdbaa_files.tar.gz`, as these files would
-        otherwise be copied back to the submit server as perceived output (because they're new files that HTCondor
-        didn't transfer over as input).
+        otherwise be copied back to the submit server as perceived output since they're "new" files that HTCondor
+        didn't transfer over as input.
 
 ### List the executable and input files
 

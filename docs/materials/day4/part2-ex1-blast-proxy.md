@@ -15,7 +15,7 @@ Setup
 
 -   Make sure you are logged into `training.osgconnect.net`
 -   Make sure you are in the same directory as the previous exercise,
-    [Exercise 1.3](/materials/day4/part1-ex3-blast-split.md) directory named `thur-blast-data`.
+    [Exercise 1.3](/materials/day4/part1-ex3-blast-split.md) directory named `thur-blast-split`.
 
 Place the Large File on the Proxy
 ---------------------------------
@@ -28,17 +28,18 @@ user@training $ cp pdbaa_files.tar.gz ~/stash/public/
 
 ### Test a download of the file
 
-Once the file is placed in the ~/stash/public directory, it can be downloaded from a corresponding URL such as
-`http://stash.osgconnect.net/~%RED%username%ENDCOLOR%/pdbaa_files.tar.gz`, where %RED%username%ENDCOLOR% is your
-username on `training.osgconnect.net`.
+Once the file is placed in the `~/stash/public` directory, it can be downloaded from a corresponding URL such as
+`http://stash.osgconnect.net/~<USERNAME>/pdbaa_files.tar.gz`, where `<USERNAME>` is your username on
+`training.osgconnect.net`.
 
 Using the above convention (and from a different directory on `training.osgconnect.net`, any directory), you can test
 the download of your `pdbaa_files.tar.gz` file with a command like the following:
 
 ``` console
-user@training $ wget http://stash.osgconnect.net/~%RED%username%ENDCOLOR%/pdbaa_files.tar.gz
+user@training $ wget http://stash.osgconnect.net/~<USERNAME>/pdbaa_files.tar.gz
 ```
 
+Replacing `<USERNAME>` with your own username.
 You may realize that you've been using `wget` to download files from a web proxy for many of the previous exercises at
 the school!
 
@@ -50,7 +51,7 @@ Now, you'll repeat the last exercise (with a single input query file) but have H
 
 ### Modify the submit file and wrapper script
 
-In the wrapper script, we have to add some special lines so that we can pull from Stash and use the HTTP proxy.
+In the wrapper script, we have to add some special lines so that we can pull from the HTTP proxy.
 In `blast_wrapper.sh`, we will have to add commands to pull the data file:
 
 ```bash hl_lines="4 8"
@@ -70,11 +71,11 @@ tar xvzf pdbaa_files.tar.gz
 rm pdbaa.*
 ```
 
-The new line will download the `pdbaa_files.tar.gz` from stash, using the closest cache (because `wget` will look at the
-environment variable `http_proxy` for the newest cache).
+The new line will download the `pdbaa_files.tar.gz` from the HTTP proxy, using the closest cache (because `wget` will
+look at the environment variable `http_proxy` for the newest cache).
 
 In your submit file, you will need to remove the `pdbaa_files.tar.gz` file from the `transfer_input_files`, because we
-are using HTTP proxies!
+are now transferring the tarball over using HTTP proxies!
 
 ### Submit the test job
 
@@ -124,7 +125,7 @@ Run all 100 Jobs!
 
 If all of the previous tests have gone okay, you can prepare to run all 100 jobs that will use the split input files.
 To make sure you're not going to generate too much data, use the size of files from the previous test to calculate how
-much total data you're going to add to the `thur-blast-data` directory for 100 jobs.
+much total data you're going to add to the `thur-blast-split` directory for 100 jobs.
 
 Make sure you remove `pdbaa_files.tar.gz` from the `transfer_input_files` in the _split_ submit file.
 
