@@ -82,7 +82,6 @@ Follow the below steps:
 
         queue inputfile matching mouse_rna.fa.*
 
-    (If this queue line looks like we should be scanning all of the rna files, wait until the next exercise)
 
 2. Replace the `mouse.fa` instances in the submit file with `$(inputfile)`, and rename the output, log, and error files
    to use the same `inputfile` variable:
