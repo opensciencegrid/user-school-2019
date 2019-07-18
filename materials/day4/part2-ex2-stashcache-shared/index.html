@@ -142,7 +142,7 @@ stashcp /user/&lt;USERNAME&gt;/public/pdbaa_files.tar.gz ./
 <p>Add the following line to the submit file and update the "requirements" statement to require servers with OSG Connect
    modules (for accessing the <code>stashcp</code> module), somewhere before the word <code>queue</code>.</p>
 <div class="codehilite"><pre><span></span>+WantsStashCache = true
-requirements = (OpSys == &quot;LINUX&quot;) &amp;&amp; (HAS_MODULES =?= true)
+requirements = (OSGVO_OS_STRING == &quot;RHEL 7&quot;) &amp;&amp; (HAS_MODULES =?= true)
 </pre></div>
 
 
