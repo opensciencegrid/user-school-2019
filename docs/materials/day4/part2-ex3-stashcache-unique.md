@@ -20,7 +20,7 @@ We'll start by moving our source movie files into Stash, so that they'll be avai
 1. Navigate to your local scratch directory:
 
         :::console
-        user@training $ cd /local-scratch/<USERNAME>
+        user@training $ cd /local-scratch2/<USERNAME>
 
     Replacing `<USERNAME>` with your username
 
@@ -30,7 +30,7 @@ We'll start by moving our source movie files into Stash, so that they'll be avai
     Copy them to your current directory:
 
         :::console
-        user@training $ cp /local-scratch/videos.tar.gz .
+        user@training $ cp /local-scratch2/videos.tar.gz .
 
 1.  Once copied, untar the `tar.gz` file.
     It should contain three `.mov` files. (this may take a while since everyone else is likely doing the same thing)
