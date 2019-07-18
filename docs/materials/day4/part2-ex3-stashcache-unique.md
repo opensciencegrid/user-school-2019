@@ -14,7 +14,7 @@ to send our data to jobs. This exercise should take 25-30 minutes.
 Data
 ----
 
-We'll start by moving our source movie files into Stash, so that they'll be available to our jobs when they run out on OSG.
+We have placed movie files in your Stash, so that they'll be available to our jobs when they run out on OSG.
 
 1.  Log into `training.osgconnect.net`
 1. Navigate to your local scratch directory:
@@ -25,24 +25,19 @@ We'll start by moving our source movie files into Stash, so that they'll be avai
     Replacing `<USERNAME>` with your username
 
 1. Create a directory for this exercise named `thur-stash-unique` and change into it
-
-2.  The video files are currently stored locally on the training host.
-    Copy them to your current directory:
-
-        :::console
-        user@training $ cp /local-scratch/videos.tar.gz .
-
-1.  Once copied, untar the `tar.gz` file.
-    It should contain three `.mov` files. (this may take a while since everyone else is likely doing the same thing)
-1.  How big are the three files? Which is the smallest? (Find out with `ls -lh`.)
+1.  How big are the three video files? Which is the smallest? (Find out with `ls -lh ~/stash/public/*.mov`.)
 1.  We're going to need a list of these files later.
     For now, let's save that list to a file in this directory by running `ls` and redirecting the output to a file: 
 
         :::console
-        user@training $ ls *.mov > movie_list.txt
+        user@training $ ls ~/stash/public/*.mov > movie_list.txt
 
-1.  Place the `.mov` files into Stash by moving them into `~/stash/public/`
-1.  Once you've examined the three `mov` files and created the list of files, remove the original `videos.tar.gz` file.
+    Then open `movie_list.txt` and remove the leading directory structure (`/home/<username>/stash/public/`),
+    leaving only the base filenames (e.g. `test_open_terminal.mov`). Or, run the following command which will
+    do this for you:
+
+        :::console
+        user@training $ sed -i 's,.*/,,' movie_list.txt
 
 Software
 --------
