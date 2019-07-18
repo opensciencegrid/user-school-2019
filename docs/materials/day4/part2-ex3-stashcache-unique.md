@@ -16,22 +16,32 @@ Data
 
 We'll start by moving our source movie files into Stash, so that they'll be available to our jobs when they run out on OSG.
 
-1.  Log into `training.osgconnect.net` and move into the `~/stash/public` directory.
-2.  The video files are currently stored on the squid proxy you used earlier.
-    To place them in Stash, download them using `wget`: 
+1.  Log into `training.osgconnect.net`
+1. Navigate to your local scratch directory:
 
         :::console
-        user@training $ wget http://proxy.chtc.wisc.edu/osgschool19/videos.tar.gz
+        user@training $ cd /local-scratch/<USERNAME>
 
-1.  Once downloaded, untar the `tar.gz` file.
+    Replacing `<USERNAME>` with your username
+
+1. Create a directory for this exercise named `thur-stash-unique` and change into it
+
+2.  The video files are currently stored locally on the training host.
+    Copy them to your current directory:
+
+        :::console
+        user@training $ cp /local-scratch/videos.tar.gz .
+
+1.  Once copied, untar the `tar.gz` file.
     It should contain three `.mov` files. (this may take a while since everyone else is likely doing the same thing)
-2.  How big are the three files? Which is the smallest? (Find out with `ls -lh`.)
-3.  We're going to need a list of these files later.
+1.  How big are the three files? Which is the smallest? (Find out with `ls -lh`.)
+1.  We're going to need a list of these files later.
     For now, let's save that list to a file in this directory by running `ls` and redirecting the output to a file: 
 
         :::console
-        user@training $ ls *.MOV *.mov > movie_list.txt
+        user@training $ ls *.mov > movie_list.txt
 
+1.  Place the `.mov` files into Stash by moving them into `~/stash/public/`
 1.  Once you've examined the three `mov` files and created the list of files, remove the original `videos.tar.gz` file.
 
 Software
@@ -53,9 +63,7 @@ user@training $ ./ffmpeg -i input.mp4 -b:v 400k -s 640x360 output.mp4
 
 To get the `ffmpeg` program do the following:
 
-1.  **On training.osgconnect.net**, create a directory for this exercise `thur-data-ffmpeg` in your local scratch
-    directory and change into it.
-2.  We'll be downloading the `ffmpeg` pre-built static binary originally from this page: <http://johnvansickle.com/ffmpeg/>. 
+1.  We'll be downloading the `ffmpeg` pre-built static binary originally from this page: <http://johnvansickle.com/ffmpeg/>. 
 
         :::console
         user@training $ wget http://proxy.chtc.wisc.edu/osgschool19/ffmpeg-release-64bit-static.tar.xz
@@ -70,11 +78,14 @@ Script
 ------
 
 We want to write a script that uses `ffmpeg` to convert a `.mov` file to a smaller format.
-Our script will need to *copy* that movie file from Stash to the job's current working directory (as in the
-[previous exercise](/materials/day4/part2-ex2-stashcache-shared.md), *run* the appropriate `ffmpeg` command, and then
-*remove* the original movie file so that it doesn't get transferred back to the submit server.
-This last step is particularly important, as otherwise you will have large files transferring into the submit server and
-filling up your local scratch directory space.
+Our script will need to:
+
+1. **Copy** that movie file from Stash to the job's current working directory (as in the
+   [previous exercise](/materials/day4/part2-ex2-stashcache-shared.md)
+1. **Run** the appropriate `ffmpeg` command
+1. **Remove** the original movie file so that it doesn't get transferred back to the submit server.
+   This last step is particularly important, as otherwise you will have large files transferring into the submit server
+   and filling up your local scratch directory space.
 
 Create a file called `run_ffmpeg.sh`, that does the steps described above.
 Use the name of the smallest `.mov` file in the `ffmpeg` command.
@@ -84,11 +95,11 @@ Once you've written your script, check it against the example below:
     #!/bin/bash
 
     module load stashcache
-    stashcp /user/%RED%username%ENDCOLOR%/public/test_open_terminal.mov ./
+    stashcp /user/<USERNAME>/public/test_open_terminal.mov ./
     ./ffmpeg -i test_open_terminal.mov -b:v 400k -s 640x360 test_open_terminal.mp4
     rm test_open_terminal.mov
 
-In your script, the username should be replaced by your `training.osgconnect.net` username.
+In your script, replace `<USERNAME>` with your `training.osgconnect.net` username.
 
 Ultimately we'll want to submit several jobs (one for each `.mov` file), but to start with, we'll run one job to make
 sure that everything works.
@@ -133,18 +144,19 @@ Multiple jobs
 -------------
 
 We wrote the name of the `.mov` file into our `run_ffmpeg.sh` executable script.
-To submit a set of jobs for all of our `.mov`  files, what will we need to change in:
+To submit a set of jobs for all of our `.mov` files, what will we need to change in:
 
-1.  the script? 
-2. the submit file?
+1. The script?
+1. The submit file?
 
 Once you've thought about it, check your reasoning against the instructions below.
 
 ### Add an argument to your script
 
-1.  Look at your `run_ffmpeg.sh` script. What values will change for every job?
-2.  The input file will change with every job - and don't forget that the output file will too! Let's make them both
-    into arguments.
+**Look at your `run_ffmpeg.sh` script. What values will change for every job?**
+
+The input file will change with every job - and don't forget that the output file will too! Let's make them both into
+arguments.
 
 To add arguments to a bash script, we use the notation `$1` for the first argument (our input file) and `$2` for the
 second argument (our output file name).
@@ -154,11 +166,12 @@ The final script should look like this:
 #!/bin/bash
 
 module load stashcache
-stashcp /user/%RED%username%ENDCOLOR%/public/$1 ./
+stashcp /user/<USERNAME>/public/$1 ./
 ./ffmpeg -i $1 -b:v 400k -s 640x360 $2
 rm $1
 ```
 
+Replacing `<USERNAME>` with your own username.
 Note that we use the input file name multiple times in our script, so we'll have to use `$1` multiple times as well.
 
 ### Modify your submit file
@@ -172,15 +185,11 @@ Note that we use the input file name multiple times in our script, so we'll have
         :::file
         arguments = $(mov) $(mov).mp4
 
-2. To set these arguments, we will use the `queue .. matching` syntax that we learned on
+1. To set these arguments, we will use the `queue .. matching` syntax that we learned on
    [Monday](/materials/day1/part2-ex4-queue-from.md).
-   To do so, we need to create a list of our input files. 
-
-3. In our submit file, we can then change our queue statement to: 
+   In our submit file, we can then change our queue statement to:
 
         queue mov from movie_list.txt
-
-4. Copy the movie_list.txt to your submit directory.
 
 Once you've made these changes, try submitting all the jobs!
 
@@ -200,26 +209,27 @@ to do so?
 
 1.  `movie_list.txt` 
 
-        ducks.MOV ducks.mp4 500k 1280x720
-        teaching.MOV teaching.mp4 400k 320x180
+        ducks.mov ducks.mp4 500k 1280x720
+        teaching.mov teaching.mp4 400k 320x180
         test_open_terminal.mov terminal.mp4 600k 640x360
 
-2. Submit file
+1. Submit file
 
         arguments = $(mov) $(mp4) $(bitrate) $(size)
 
         queue mov,mp4,bitrate,size from movie_list.txt
 
 
-3. `run_ffmpeg.sh` 
+1. `run_ffmpeg.sh`
 
         #!/bin/bash
 
         module load stashcache
-        stashcp /user/%RED%username%ENDCOLOR%/public/$1 ./
+        stashcp /user/<USERNAME>/public/$1 ./
         ./ffmpeg -i $1 -b:v $3 -s $4 $2
         rm $1
 
+    Replacing `<USERNAME>` with your own username
 
 </details>
 
