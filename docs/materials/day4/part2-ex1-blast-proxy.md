@@ -39,7 +39,7 @@ the download of your `pdbaa_files.tar.gz` file with a command like the following
 user@training $ wget http://stash.osgconnect.net/~<USERNAME>/pdbaa_files.tar.gz
 ```
 
-Replacing `<USERNAME>` with your own username.
+Replacing `<USERNAME>` with your own username (but keep the `~`!).
 You may realize that you've been using `wget` to download files from a web proxy for many of the previous exercises at
 the school!
 
