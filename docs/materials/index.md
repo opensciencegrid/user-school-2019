@@ -58,13 +58,13 @@ status: in progress
 
 ### Tuesday Afternoon: Software Portability
 
-- Lecture: Software Portability for DHTC ( [PPT](/materials/day2/files/osgus19-day2-part3-software-portability.pptx))
+- Lecture: Software Portability for DHTC ([PDF](/materials/day2/files/osgus19-day2-part3-software-portability.pdf), [PPT](/materials/day2/files/osgus19-day2-part3-software-portability.pptx))
 - [Exercise 3.1: Compiling programs for portability](/materials/day2/part3-ex1-compiling.md)
 - [Exercise 3.2: Using a pre-compiled binary](/materials/day2/part3-ex2-precompiled.md)
 - [Exercise 3.3: Using a wrapper script](/materials/day2/part3-ex3-wrapper.md)
 - [Exercise 3.4: Pre-packaging code](/materials/day2/part3-ex4-prepackaged.md)
 - [Bonus Exercise 3.5: Passing Arguments Through the Wrapper Script](/materials/day2/part3-ex5-arguments.md)
-- Lecture: Interpreted Languages for DHTC ([PPT](/materials/day2/files/osgus19-day2-part4-software-interpret.pptx))
+- Lecture: Interpreted Languages for DHTC ([PDF](/materials/day2/files/osgus19-day2-part4-software-interpret.pdf), [PPT](/materials/day2/files/osgus19-day2-part4-software-interpret.pptx))
 - [Exercise 2.1: Pre-packaging Python](/materials/day2/part4-ex1-python-built.md)
 - [Bonus Exercise 2.2: Python options](/materials/day2/part4-ex2-python-extras.md)
 
@@ -73,13 +73,13 @@ status: in progress
 ### Wednesday Morning: Software Modules, Licensing
 
 - Lecture: Considerations for licensing and programming packages
-  ([PPT](/materials/day3/files/osgus19-day3-part1-license-modules.pptx))
+  ([PDF](/materials/day3/files/osgus19-day3-part1-license-modules.pdf), [PPT](/materials/day3/files/osgus19-day3-part1-license-modules.pptx))
 - [Exercise 1.1: Try an OSG Connect software module](/materials/day3/part1-ex1-connect-start.md)
 - [Exercise 1.2: Compile and run Matlab code](/materials/day3/part1-ex2-matlab.md)
 
 ### Wednesday Morning: Containers
 
-- Lecture: Containers for DHTC ([PPT](/materials/day3/files/osgus19-day3-part2-containers.pptx))
+- Lecture: Containers for DHTC ([PDF](/materials/day3/file/osgus19-day3-part2-containers.pdf), [PPT](/materials/day3/file/osgus19-day3-part2-containers.pptx))
 - [Exercise 2.1: Use Singularity from OSG Connect](/materials/day3/part2-ex1-singularity.md)
 - [Bonus Exercise 2.2: Use Singularity to Run Tensorflow (Optional)](/materials/day3/part2-ex2-tensorflow-singularity.md)
 - [Exercise 2.3: Using Docker](/materials/day3/part2-ex3-docker.md)
