@@ -62,7 +62,7 @@ export http_proxy=$OSG_SQUID_LOCATION
 
 # Copy the pdbaa_files.tar.gz to the worker node
 # Add the -S argument, so we can see if it was a cache HIT or MISS
-wget -S http://stash.osgconnect.net/~username/pdbaa_files.tar.gz
+wget -S http://stash.osgconnect.net/~<USERNAME>/pdbaa_files.tar.gz
 
 tar xvzf pdbaa_files.tar.gz
 
@@ -70,6 +70,8 @@ tar xvzf pdbaa_files.tar.gz
 
 rm pdbaa.*
 ```
+
+Be sure to replace `<USERNAME>` with your own user name.
 
 The new line will download the `pdbaa_files.tar.gz` from the HTTP proxy, using the closest cache (because `wget` will
 look at the environment variable `http_proxy` for the newest cache).
