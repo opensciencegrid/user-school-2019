@@ -95,7 +95,8 @@ status: in progress
 
 ### Thursday Morning: Data Handling (continued)
 
-- Lecture: Solutions for large input data ([PDF](/materials/day4/files/osgus19-day4-part2-large-input.pdf))
+- Lecture: Solutions for large input data ([PDF](/materials/day4/files/osgus19-day4-part2-large-input.pdf);
+  [PPT](/materials/day4/files/osgus19-day4-part2-large-input.pptx))
 - [Exercise 2.1: Using a web proxy for large, shared input](/materials/day4/part2-ex1-blast-proxy.md)
 - [Exercise 2.2: Using StashCache for large, shared input](/materials/day4/part2-ex2-stashcache-shared.md)
 - [Exercise 2.3: Using StashCache for large, unique input](/materials/day4/part2-ex3-stashcache-unique.md)
