@@ -106,13 +106,13 @@ leave for Union South at around 5:50&nbsp;p.m.; to join the group, be in the lob
 | Start | End   | Event                                                         | Instructor       |
 |-------|-------|---------------------------------------------------------------|------------------|
 |  8:00 |  8:45 | Breakfast and group discussion                                |                  |
-|  9:00 |  9:30 | HTC considerations for "big data"? (lecture)                  | Brian Lin        |
+|  9:00 |  9:30 | HTC considerations for "big data"? (lecture)                  | Lauren Michael   |
 |  9:30 | 10:30 | Determining data requirements (hands-on)                      | "                |
 | 10:30 | 10:45 | Break                                                         |                  |
 | 10:45 | 11:15 | Solutions for large input data (lecture)                      | Brian Lin        |
 | 11:15 | 12:30 | Handling large input data (hands-on)                          | "                |
 | 12:30 |  1:30 | Lunch                                                         |                  |
-|  1:30 |  2:00 | Large output and local file systems (lecture)                 | Brian Lin        |
+|  1:30 |  2:00 | Large output and local file systems (lecture)                 | Lauren Michael   |
 |  2:00 |  3:00 | Leveraging shared file systems (hands-on)                     | "                |
 |  3:00 |  3:15 | Break                                                         |                  |
 |  3:15 |  3:45 | Workflows with HTCondor DAGMan (lecture)                      | Lauren Michael   |
