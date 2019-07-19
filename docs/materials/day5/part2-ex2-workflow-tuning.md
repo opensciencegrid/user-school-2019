@@ -36,7 +36,7 @@ This isn't actual a bonus, but links to a sample workflow diagram and DAG schema
 And also how to download and look at a solution workflow: 
 
 ```console
-username@learn $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/CompleteWorkflow.tar.gz
+username@learn $ wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/WorkflowComplete.tar.gz
 username@learn $ tar -xzf CompleteWorkflow.tar.gz
 ```
 
