@@ -108,21 +108,8 @@ you'll submit the job.  In another you will watch the queue, and in the third yo
 </pre></div>
 
 
-<p>In the second window, watch the queue (what you see may be slightly different):</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> watch -n <span class="m">10</span> condor_q -nobatch -wide:80
-
-<span class="go">-- Submitter: learn.chtc.wisc.edu : &lt;128.104.100.55:9618?sock=28867_10e4_2&gt; : learn.chtc.wisc.edu</span>
-<span class="go"> ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD               </span>
-<span class="go">  61.0   roy             6/21 22:51   0+00:00:01 R  0   0.3  condor_dagman     </span>
-
-<span class="go">1 jobs; 0 completed, 0 removed, 0 idle, 1 running, 0 held, 0 suspended</span>
-
-<span class="go">-- Submitter: learn.chtc.wisc.edu : &lt;128.104.100.55:9618?sock=28867_10e4_2&gt; : learn.chtc.wisc.edu</span>
-<span class="go"> ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD               </span>
-<span class="go">  61.0   roy             6/21 22:51   0+00:01:25 R  0   0.3  condor_dagman     </span>
-<span class="go">  62.0   roy             6/21 22:51   0+00:00:00 I  0   0.7  simple 4 10      </span>
-
-<span class="go">2 jobs; 0 completed, 0 removed, 1 idle, 1 running, 0 held, 0 suspended</span>
+<p>In the second window, check the queue (what you see may be slightly different):</p>
+<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q -nobatch -wide:80
 
 <span class="go">-- Submitter: learn.chtc.wisc.edu : &lt;128.104.100.55:9618?sock=28867_10e4_2&gt; : learn.chtc.wisc.edu</span>
 <span class="go"> ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD               </span>
@@ -130,12 +117,6 @@ you'll submit the job.  In another you will watch the queue, and in the third yo
 <span class="go">  62.0   roy             6/21 22:51   0+00:00:03 R  0   0.7  simple 4 10      </span>
 
 <span class="go">2 jobs; 0 completed, 0 removed, 0 idle, 2 running, 0 held, 0 suspended</span>
-
-<span class="go">-- Submitter: learn.chtc.wisc.edu : &lt;128.104.100.55:9618?sock=28867_10e4_2&gt; : learn.chtc.wisc.edu</span>
-<span class="go"> ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD               </span>
-
-<span class="go">0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended</span>
-<span class="gp">#</span><span style="color:red">&lt;Ctrl-C&gt;</span>
 </pre></div>
 
 
