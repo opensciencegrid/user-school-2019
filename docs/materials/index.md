@@ -124,18 +124,13 @@ status: in progress
 
 ### Friday Morning: From Science to Production Workflows
 
-<!-- Commenting until this lecture is updated.
-- Lecture: From Science to Real Workflow ([PDF](/materials/day5/files/osgus19-day5-part1-real-workflows.pdf), [PPT](/materials/day5/files/osgus19-day5-part1-real-workflows.pptx))
--->
+- Lecture: Optimizing Your Computing ([PDF](/materials/day5/files/osgus19-day5-part1-real-workflows.pdf), [PPT](/materials/day5/files/osgus19-day5-part1-real-workflows.pptx))
 - [Exercise 1.1: Learn about Joe’s Desired Computing Work](/materials/day5/part1-ex1-science-intro.md)
 - [Exercise 1.2: Plan Overall Workflow](/materials/day5/part1-ex2-plan-workflow.md)
 
 ### Friday Morning: From Science to Production Workflows
 
-<!-- Commenting until this lecture is updated.
-- Lecture: From Workflow to Automated Production
-  ([PDF](/materials/day5/files/osgus19-day5-part2-production-workflows.pdf),[PPT](/materials/day5/files/osgus19-day5-part2-production-workflows.pptx))
--->
+- Lecture: Putting It All Together, Optimizing Workflows ([PDF](/materials/day5/files/osgus19-day5-part2-production-workflows.pdf), [PPT](/materials/day5/files/osgus19-day5-part2-production-workflows.pptx))
 - [Exercise 1.3: Execute Joe’s Workflow](/materials/day5/part2-ex1-execute-workflow.md)
 - [Bonus Exercise 1.4: Further Optimization and Scaling](/materials/day5/part2-ex2-workflow-tuning.md)
 
