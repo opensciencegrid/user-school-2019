@@ -134,19 +134,21 @@ status: in progress
 - [Exercise 1.3: Execute Joe’s Workflow](/materials/day5/part2-ex1-execute-workflow.md)
 - [Bonus Exercise 1.4: Further Optimization and Scaling](/materials/day5/part2-ex2-workflow-tuning.md)
 
-<!-- Need update below this:
 
 ### Friday Afternoon: HTC Showcase
 
-- Talk: [Spencer Ericksen](https://cancer.wisc.edu/research/resources/ddc/smsf/), Small Molecule Facility (Carbone Cancer Center):
-  *Exploring Virtual Screening Approaches with HTC* ([PDF](/materials/day5/files/osgus19-day5-part3-showcase1-ericksen.pdf))
-- Talk: [Josh Karpel](https://www.physics.wisc.edu/people/joshkarpel), Physics:
-  *High-Throughput Computing in Atomic Physics* ([PPT](/materials/day5/files/osgus19-day5-part3-showcase2-karpel.pptx))
-- Talk: [Ross Kleiman](https://wid.wisc.edu/people/ross-kleiman/), Computer Sciences:
-  *High-Throughput Machine Learning from Electronic Health Records*
-  ([PPTX](/materials/day5/files/osgus19-day5-part3-showcase2-kleiman.pptx))
-- Talk: [Dave O'Connor](https://www.pathology.wisc.edu/profile/david-oconnor), Pathology:
-  *When Low Throughput Biologists Meet High Throughput Computing*
+- Talk: [Carolyn Voter](http://carolynbvoter.weebly.com/), Civil and Environmental Engineering:
+  *High Throughput Computing in Your Backyard: Urban Hydrology Applications* ([PDF](/materials/day5/files/osgus19-day5-part3-showcase1-cvoter.pdf), [PPTX](/materials/day5/files/osgus19-day5-part3-showcase1-cvoter.pptx))
+- Talk: [Sarah Sant'ana](https://arc.psych.wisc.edu/staff/santana-sarah/), Pscyhology:
+  *Using HTC to Understand and Communicate Appropriate Uses of Cross-Validation in Psychological Science* ([PDF](/materials/day5/files/osgus19-day5-part3-showcase2-santana.pdf))
+- Talk: [Joel Siegel](https://brarlab.physics.wisc.edu/), Physics:
+  *A Self-Stabilizing Metasurface Laser Sail to Explore the Stars*
+  (presentation coming soon)
+- Talk: [Edgar Spalding](https://botany.wisc.edu/staff/spalding-edgar-p/), Botany:
+  *Measuring Plant Phenotypes with High Throughput Computing* ([PDF](/materials/day5/files//materials/day5/files/osgus19-day5-part3-showcase4-spalding.pdf), [PPTX](/materials/day5/files//materials/day5/files/osgus19-day5-part3-showcase4-spalding.pptx))
+
+<!-- Need update below this:
+
 
 ### Friday Afternoon: Foundations of HTC
 
