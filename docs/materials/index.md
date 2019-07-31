@@ -148,12 +148,12 @@ status: in progress
 - Talk: [Dave O'Connor](https://www.pathology.wisc.edu/profile/david-oconnor), Pathology:
   *When Low Throughput Biologists Meet High Throughput Computing*
 
+All above here needs to be updated! -->
+
 ### Friday Afternoon: Foundations of HTC
 
-- Lecture: The Principles of HTC ([PDF](/materials/day5/files/osgus19-day5-part4-htc-principles.pdf))
+- Lecture: The Principles of HTC ([PDF](/materials/day5/files/osgus19-day5-part4-principles.pdf))
 
 ### Friday Afternoon: Wrap Up
 
 - Lecture: Where to Go and What to Do Next ([PDF](/materials/day5/files/osgus19-day5-part5-whats-next.pdf))
-
-All above here needs to be updated! -->
