@@ -143,7 +143,7 @@ status: in progress
   *Using HTC to Understand and Communicate Appropriate Uses of Cross-Validation in Psychological Science* ([PDF](/materials/day5/files/osgus19-day5-part3-showcase2-santana.pdf))
 - Talk: [Joel Siegel](https://brarlab.physics.wisc.edu/), Physics:
   *A Self-Stabilizing Metasurface Laser Sail to Explore the Stars*
-  ([PDF](/materials/day5/files/osgus19-day5-part3-showcase3-siegel.pdf), [PPTX](osgus19-day5-part3-showcase3-siegel.pptx))
+  ([PDF](/materials/day5/files/osgus19-day5-part3-showcase3-siegel.pdf), [PPTX](/materials/day5/files/osgus19-day5-part3-showcase3-siegel.pptx))
 - Talk: [Edgar Spalding](https://botany.wisc.edu/staff/spalding-edgar-p/), Botany:
   *Measuring Plant Phenotypes with High Throughput Computing* ([PDF](/materials/day5/files//materials/day5/files/osgus19-day5-part3-showcase4-spalding.pdf), [PPTX](/materials/day5/files//materials/day5/files/osgus19-day5-part3-showcase4-spalding.pptx))
 
