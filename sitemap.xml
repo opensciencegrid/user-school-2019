@@ -2,322 +2,322 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/curriculum/overview/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/curriculum/detailed-schedule/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/curriculum/assignment/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part1-ex1-login/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part1-ex2-commands/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part1-ex3-jobs/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part1-ex4-logs/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part1-ex5-request/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part1-ex6-remove/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part1-ex7-compile/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part2-ex1-files/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part2-ex2-queue-n/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part2-ex3-queue-matching/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part2-ex4-queue-from/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part3-ex1-queue/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part3-ex2-status/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part3-ex3-job-retry/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part4-ex1-submit-refresher/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part4-ex2-login-scp/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part4-ex3-submit-osg/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part4-ex4-hardware-diffs/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day1/part4-ex5-software-diffs/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day2/part1-ex1-troubleshooting/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day2/part3-ex1-compiling/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day2/part3-ex2-precompiled/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day2/part3-ex3-wrapper/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day2/part3-ex4-prepackaged/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day2/part3-ex5-arguments/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day2/part4-ex1-python-built/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day2/part4-ex2-python-extras/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day3/part1-ex1-connect-start/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day3/part1-ex2-matlab/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day3/part2-ex1-singularity/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day3/part2-ex2-tensorflow-singularity/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day3/part2-ex3-docker/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day4/part1-ex1-data-needs/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day4/part1-ex2-file-transfer/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day4/part1-ex3-blast-split/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day4/part2-ex1-blast-proxy/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day4/part2-ex2-stashcache-shared/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day4/part2-ex3-stashcache-unique/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day4/part3-ex1-input/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day4/part3-ex2-output/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day4/part4-ex1-simple-dag/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day4/part4-ex2-mandelbrot/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day4/part4-ex3-complex-dag/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day4/part4-ex4-failed-dag/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day4/part4-ex5-challenges/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day5/part1-ex1-science-intro/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day5/part1-ex2-plan-workflow/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day5/part2-ex1-execute-workflow/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/materials/day5/part2-ex2-workflow-tuning/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/logistics/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/logistics/personal-info/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/logistics/travel/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/logistics/hotel/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/logistics/local-transportation/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/logistics/location/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/logistics/meals/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/logistics/fun/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/logistics/wednesday-activities/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/user-school-2019/logistics/reimbursements/</loc>
-     <lastmod>2019-08-12</lastmod>
+     <lastmod>2019-12-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
