@@ -27,7 +27,7 @@ status: in progress
 
 ### Monday Afternoon: Job Attributes and Handling
 
-- Lecture: Intermediate HTCondor: Workflows ([PDF](/materials/day1/files/osgus19-day1-part3-matching-handling.pdf);[PPT](/materials/day1/files/osgus19-day1-part3-matching-handling.pptx))
+- Lecture: Intermediate HTCondor: Job Matching and Handling ([PDF](/materials/day1/files/osgus19-day1-part3-matching-handling.pdf);[PPT](/materials/day1/files/osgus19-day1-part3-matching-handling.pptx))
 - [Exercise 3.1: Explore `condor_q`](/materials/day1/part3-ex1-queue.md)
 - [Exercise 3.2: Explore `condor_status`](/materials/day1/part3-ex2-status.md)
 - [Exercise 3.3: A job that needs retries](/materials/day1/part3-ex3-job-retry.md)
@@ -48,7 +48,7 @@ status: in progress
 
 - Lecture: Troubleshooting jobs ([PDF](/materials/day2/files/osgus19-day2-part1-troubleshooting.pdf);
   [PPT](/materials/day2/files/osgus19-day2-part1-troubleshooting.pptx))
-- [Exercise 1.1: Troubleshooting a DAG](/materials/day2/part1-ex1-troubleshooting.md)
+- [Exercise 1.1: Troubleshooting](/materials/day2/part1-ex1-troubleshooting.md)
 
 ### Tuesday Morning: Security
 
@@ -110,7 +110,7 @@ status: in progress
 
 ### Thursday Afternoon: Automating Workflows with HTCondor's DAGMan
 
-- Lecture: HTCondor: More on Workflows ([PDF](/materials/day4/files/osgus19-day4-part4-dagman.pdf);[PPT](/materials/day4/files/osgus19-day4-part4-dagman.pptx))
+- Lecture: HTCondor DAGMan for Workflows ([PDF](/materials/day4/files/osgus19-day4-part4-dagman.pdf);[PPT](/materials/day4/files/osgus19-day4-part4-dagman.pptx))
 - [Exercise 4.1: Coordinating set of jobs: A simple DAG](/materials/day4/part4-ex1-simple-dag.md)
 - [Exercise 4.2: A brief detour through the Mandelbrot set](/materials/day4/part4-ex2-mandelbrot.md)
 - [Exercise 4.3: A more complex DAG](/materials/day4/part4-ex3-complex-dag.md)
