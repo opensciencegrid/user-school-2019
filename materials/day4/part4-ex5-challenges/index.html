@@ -1,128 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  
-  
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta http-equiv="refresh" content="0; url='https://osg-htc.org/user-school-2019/materials/day4/part4-ex5-challenges/index.html'" />
+        </head>
+        <body> 
+            <p>
+                This page has moved to a <a href="https://osg-htc.org/user-school-2019/materials/day4/part4-ex5-challenges/index.html">
+              new location</a>.
+            </p> 
+        </body>      
+    </html>
     
-    
-    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day4/part4-ex5-challenges/">
-    <link rel="shortcut icon" href="../../../img/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>Bonus Exercises 4.5 - OSG User School 2019</title>
-    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
-    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
-    <link href="../../../css/base.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/highlight.css">
-    <link href="../../../css/extra.css" rel="stylesheet">
-    <link href="../../../css/codehilite.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-
-    <script src="../../../js/jquery-3.2.1.min.js"></script>
-    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
-    <script src="../../../js/highlight.pack.js"></script>
-    
-    <base target="_top">
-    <script>
-      var base_url = '../../..';
-      var is_top_frame = false;
-        
-        var pageToc = [
-          {title: "Thursday Bonus Exercise 4.5: YOUR Jobs and More on Workflows", url: "#_top", children: [
-              {title: "Challenge 1", url: "#challenge-1" },
-              {title: "Challenge 2", url: "#challenge-2" },
-              {title: "Challenge 3", url: "#challenge-3" },
-              {title: "Note: Be Nice", url: "#note-be-nice" },
-          ]},
-        ];
-
-    </script>
-    <script src="../../../js/base.js"></script> 
-</head>
-
-<body>
-<script>
-if (is_top_frame) { $('body').addClass('wm-top-page'); }
-</script>
-
-
-
-<div class="container-fluid wm-page-content">
-  <a name="_top"></a>
-    
-
-    <style type="text/css">
-  pre em { font-style: normal; background-color: yellow; }
-  pre strong { font-style: normal; font-weight: bold; color: \#008; }
-</style>
-
-<h1 id="thursday-bonus-exercise-45-your-jobs-and-more-on-workflows">Thursday Bonus Exercise 4.5: YOUR Jobs and More on Workflows<a class="headerlink" href="#thursday-bonus-exercise-45-your-jobs-and-more-on-workflows" title="Permanent link">&para;</a></h1>
-<p>The objective of this exercise is to learn the very basics of running a set of jobs, where our set is just one job.</p>
-<h2 id="challenge-1">Challenge 1<a class="headerlink" href="#challenge-1" title="Permanent link">&para;</a></h2>
-<p>Do you have any extra computation that needs to be done? Real work, from your life outside this summer school? If so, try it out on our HTCondor pool. Can't think of something? How about one of the existing distributed computing programs like <a href="http://www.distributed.net">distributed.net</a>, <a href="http://setiathome.ssl.berkeley.edu/">SETI@home</a>, <a href="http://www.einsteinathome.org/">Einstien@Home</a> or others that you know. We prefer that you do your own work rather than one of these projects, but they are options.</p>
-<h2 id="challenge-2">Challenge 2<a class="headerlink" href="#challenge-2" title="Permanent link">&para;</a></h2>
-<p>Try to generate other Mandelbrot images. Some possible locations to look at with goatbroat:</p>
-<div class="codehilite"><pre><span></span><span class="go">goatbrot -i 1000 -o ex1.ppm -c 0.0016437219722,-0.8224676332988 -w 2e-11 -s 1000,1000</span>
-<span class="go">goatbrot -i 1000 -o ex2.ppm -c 0.3958608398437499,-0.13431445312500012 -w 0.0002197265625 -s 1000,1000</span>
-<span class="go">goatbrot -i 1000 -o ex3.ppm -c 0.3965859374999999,-0.13378125000000013 -w 0.003515625  -s 1000,1000</span>
-</pre></div>
-
-
-<p>You can convert ppm files with <code>convert</code>, like so:</p>
-<div class="codehilite"><pre><span></span><span class="go">convert ex1.ppm ex1.jpg</span>
-</pre></div>
-
-
-<p>Now make a movie! Make a series of images where you zoom into a point in the Mandelbrot set gradually. (Those points above may work well.) Assemble these images with the "convert" tool which will let you convert a set of JPEG files into an MPEG movie.</p>
-<h2 id="challenge-3">Challenge 3<a class="headerlink" href="#challenge-3" title="Permanent link">&para;</a></h2>
-<p>Try out Pegasus. Pegasus is a workflow manager that uses DAGMan and can work in a grid environment and/or run across different types of clusters (with other queueing software). It will create the DAGs from abstract DAG descriptions and ensure they are appropriate for the location of the data and computation.</p>
-<p>Links to more information:</p>
-<ul>
-<li><a href="https://pegasus.isi.edu">Pegasus Website</a></li>
-<li><a href="https://pegasus.isi.edu/documentation">Pegasus Documentation</a></li>
-<li><a href="https://support.opensciencegrid.org/support/solutions/articles/5000639789-pegasus">Pegasus on OSG Connect (covered Thursday)</a></li>
-</ul>
-<p>If you have any questions or problems, please feel free to contact the Pegasus team by emailing <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#101;&#103;&#97;&#115;&#117;&#115;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#105;&#115;&#105;&#46;&#101;&#100;&#117;">&#112;&#101;&#103;&#97;&#115;&#117;&#115;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#105;&#115;&#105;&#46;&#101;&#100;&#117;</a></p>
-<h2 id="note-be-nice">Note: Be Nice<a class="headerlink" href="#note-be-nice" title="Permanent link">&para;</a></h2>
-<p>Please be polite. Computers in our HTCondor pool will run multiple jobs at a time, and these computers are shared with your fellow students. If you have jobs that will use significant computational power or memory, limit your jobs to be kind to your neighbors, unless you run your jobs during off-hours.</p>
-
-  <br>
-    
-
-  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
-    
-    <div class="wm-article-nav pull-right">
-      <a href="../../day5/part1-ex1-science-intro/" class="btn btn-xs btn-default pull-right">
-        Next
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </a>
-      <a href="../../day5/part1-ex1-science-intro/" class="btn btn-xs btn-link">
-        Exercise 1.1
-      </a>
-    </div>
-    
-    <div class="wm-article-nav">
-      <a href="../part4-ex4-failed-dag/" class="btn btn-xs btn-default pull-left">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../part4-ex4-failed-dag/" class="btn btn-xs btn-link">
-        Exercise 4.4
-      </a>
-    </div>
-    
-  </div>
-
-    <br>
-</div>
-
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
-</footer>
-
-</body>
-</html>
