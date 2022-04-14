@@ -1,268 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  
-  
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
-    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day3/part1-ex2-matlab/">
-    <link rel="shortcut icon" href="../../../img/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>Exercise 1.2 - OSG User School 2019</title>
-    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
-    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
-    <link href="../../../css/base.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/highlight.css">
-    <link href="../../../css/extra.css" rel="stylesheet">
-    <link href="../../../css/codehilite.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-
-    <script src="../../../js/jquery-3.2.1.min.js"></script>
-    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
-    <script src="../../../js/highlight.pack.js"></script>
-    
-    <base target="_top">
-    <script>
-      var base_url = '../../..';
-      var is_top_frame = false;
-        
-        var pageToc = [
-          {title: "Wednesday Exercise 1.2: Matlab", url: "#_top", children: [
-              {title: "Background", url: "#background" },
-              {title: "Matlab Code", url: "#matlab-code" },
-              {title: "Compiling Matlab Code", url: "#compiling-matlab-code" },
-              {title: "Matlab Runtime", url: "#matlab-runtime" },
-              {title: "Wrapper Script", url: "#wrapper-script" },
-              {title: "Submitting the Job", url: "#submitting-the-job" },
-          ]},
-        ];
-
-    </script>
-    <script src="../../../js/base.js"></script> 
-</head>
-
-<body>
-<script>
-if (is_top_frame) { $('body').addClass('wm-top-page'); }
-</script>
-
-
-
-<div class="container-fluid wm-page-content">
-  <a name="_top"></a>
-    
-
-    <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: #008; } </style>
-
-<h1 id="wednesday-exercise-12-matlab">Wednesday Exercise 1.2: Matlab<a class="headerlink" href="#wednesday-exercise-12-matlab" title="Permanent link">&para;</a></h1>
-<p>The goal of this exercise is to compile Matlab code and run it. This exercise will draw on the idea of writing a wrapper script to install and run code, first introduced in <a href="../../../materials/day2/part3-ex3-wrapper">Exercise 3.3</a> and should take 25-30 minutes.</p>
-<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
-<p>Matlab is licensed; however, unlike most licensed software, it has the ability to be compiled and the compiled code can be run without a license. We will be compiling Matlab <code>.m</code> files into a binary file and running that binary using a set of files called the Matlab runtime.</p>
-<h2 id="matlab-code">Matlab Code<a class="headerlink" href="#matlab-code" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Log in to the CHTC submit server (<code>learn.chtc.wisc.edu</code>).</li>
-<li>Create a directory for this exercise and <code>cd</code> into it . </li>
-<li>Copy the following code into a file called <code>matrix.m</code> <div class="codehilite"><pre><span></span>A = randi(100,4,4)
-b = randi(100,4,1);
-x = A*b
-save results.txt x -ascii
-</pre></div>
-
-
-</li>
-</ol>
-<h2 id="compiling-matlab-code">Compiling Matlab Code<a class="headerlink" href="#compiling-matlab-code" title="Permanent link">&para;</a></h2>
-<p>The first step in making Matlab portable is compiling our Matlab script.
-To compile this code, we need to access the machines with the Matlab compiler installed.
-For this exercise, we will use the compilers installed on special CHTC build machines.
-In the CHTC pool, you can't use <code>ssh</code> to directly connect to these machines.
-Instead, you must submit an interactive job (just like in yesterday's <a href="../../../materials/day2/part3-ex4-prepackaged">Exercise 3.4</a>) that
-specifically requests these build machines.</p>
-<ol>
-<li>
-<p>Create a file called <code>compile.submit</code> with the lines below: </p>
-<div class="codehilite"><pre><span></span>log = compile.log
-
-should_transfer_files = YES
-when_to_transfer_output = ON_EXIT
-transfer_input_files = matrix.m
-
-+IsBuildJob = true
-requirements = (IsBuildSlot == true)
-request_memory = 1GB
-request_disk = 100MB
-
-queue
-</pre></div>
-
-
-</li>
-<li>
-<p>You can initiate the interactive job by using <code>condor_submit</code> 's <code>-i</code> option. Enter the following command: </p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_submit -i compile.submit
-</pre></div>
-
-
-<p>Make sure you've submitted this command from <code>learn.chtc.wisc.edu</code>! Once the job starts, continue with the following instructions.</p>
-</li>
-<li>
-<p>Since you are a guest user on our system, you will need to set your <code>HOME</code> directory by running this command: </p>
-<div class="codehilite"><pre><span></span><span class="gp">username@build $</span> <span class="nb">export</span> <span class="nv">HOME</span><span class="o">=</span><span class="nv">$PWD</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>The Matlab software on these build servers is accessible via modules, just like the software installed on OSG Connect. Check which modules are available and then load the older version of Matlab. </p>
-<div class="codehilite"><pre><span></span><span class="gp">username@build $</span> module load MATLAB/R2015b
-</pre></div>
-
-
-</li>
-<li>
-<p>Once the module is loaded (you can check by running <code>module list</code>), compile the <code>matrix.m</code> file with this command: </p>
-<div class="codehilite"><pre><span></span><span class="gp">username@build $</span> mcc -m -R -singleCompThread -R -nodisplay -R -nojvm matrix.m
-</pre></div>
-
-
-<p>The extra arguments to the <code>mcc</code> command are very important here. Matlab, by default, will run on as many CPUs as it can find. This can be a big problem  when running on someone else's computers, because your Matlab code might interfere with what the owner wants. The <code>-singleCompThread</code> option  compiles the code to run on a single CPU, avoiding this problem. In addition, the <code>-nodisplay</code> and <code>-nojvm</code> options turn off the display (which won't exist  where the code runs). </p>
-</li>
-<li>
-<p>To exit the interactive session, type <code>exit</code></p>
-</li>
-<li>
-<p>Now that you're back on the submit server, look at the files that were created by the Matlab compiler. Which one is the compiled binary?</p>
-</li>
-</ol>
-<h2 id="matlab-runtime">Matlab Runtime<a class="headerlink" href="#matlab-runtime" title="Permanent link">&para;</a></h2>
-<p>The newly compiled binary will require the 2015b Matlab runtime to run. You can download the runtime from the Mathworks website and build it yourself, but to save time, for this exercise you can use the pre-built runtimes hosted by CHTC.</p>
-<ol>
-<li>Download the 2015b Matlab runtime hosted by CHTC: <div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> wget http://proxy.chtc.wisc.edu/SQUID/r2015b.tar.gz
-</pre></div>
-
-
-</li>
-</ol>
-<h2 id="wrapper-script">Wrapper Script<a class="headerlink" href="#wrapper-script" title="Permanent link">&para;</a></h2>
-<p>Like the <a href="../../../materials/day2/part3-ex4-prepackaged">OpenBUGS</a> example from yesterday, we will need a wrapper script to open the Matlab runtime and then run our compiled Matlab code. Our wrapper script will need to accomplish the following steps:</p>
-<ul>
-<li>Unpack the transferred runtime</li>
-<li>Set the environment variables</li>
-<li>Run our compiled matlab code</li>
-</ul>
-<p>Fortunately, the Matlab compiler has pre-written most of this wrapper script for us!</p>
-<ol>
-<li>
-<p>Take a look at <code>run_matrix.sh</code>. Which of the above steps do we need to add? Once you have an idea, move to the next step.</p>
-</li>
-<li>
-<p>We'll need to add commands to unpack the runtime (which will have been transferred with the job). Add this line to the beginning of the <code>run_matrix.sh</code> file, after <code>#!/bin/bash</code> and the comments, but before <code>exe_name=$0</code> : </p>
-<div class="codehilite"><pre><span></span>tar -xzf r2015b.tar.gz
-</pre></div>
-
-
-</li>
-<li>
-<p>Look at <code>readme.txt</code> to determine what arguments our wrapper script requires. Once you have an idea, move to the next step.</p>
-</li>
-<li>
-<p>The name of the Matlab runtime directory is a required argument to the wrapper script <code>run_matrix.sh</code>. We'll have to do a little extra work to find out the name of that directory. Run this command</p>
-<div class="codehilite"><pre><span></span><span class="go">tar -tf r2015b.tar.gz</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>The output of the previous command is a list of all the files in the tar.gz file. What is the name of the first folder of the path for each file? This is the name of the runtime directory, and the argument you should pass to <code>run_matrix.sh</code>.  </p>
-</li>
-</ol>
-<h2 id="submitting-the-job">Submitting the Job<a class="headerlink" href="#submitting-the-job" title="Permanent link">&para;</a></h2>
-<ol>
-<li>
-<p>Copy an existing submit file into your current directory. The submit file we used for the <a href="../../day2/part3-ex4-prepackaged/">Open Bugs</a> example would be a good candidate, as that example also used a wrapper script. </p>
-</li>
-<li>
-<p>Modify your submit file for this job. </p>
-</li>
-<li>
-<p>Check your changes against the list below.</p>
-<ul>
-<li>
-<p>The <code>executable</code> for this job is going to be our wrapper script <code>run_matrix.sh</code>. </p>
-<div class="codehilite"><pre><span></span>executable = run_matrix.sh
-</pre></div>
-
-
-</li>
-<li>
-<p>You need to transfer the compiled binary <code>matrix</code>, as well as the runtime <code>.tar.gz</code> file, using <code>transfer_input_files</code>. </p>
-<div class="codehilite"><pre><span></span>transfer_input_files = matrix, r2015b.tar.gz
-</pre></div>
-
-
-</li>
-<li>
-<p>The argument for the executable (<code>run_matrix.sh</code>) is "v90", as that is the name of the un-tarred runtime directory. </p>
-<div class="codehilite"><pre><span></span>arguments = v90
-</pre></div>
-
-
-</li>
-<li>
-<p>We need to request plenty of disk space for the runtime. </p>
-<div class="codehilite"><pre><span></span>request_disk = 2GB
-</pre></div>
-
-
-</li>
-</ul>
-</li>
-<li>
-<p>Submit the job using <code>condor_submit</code>.  </p>
-</li>
-<li>
-<p>After it completes, the job should have produced a file called <code>results.txt</code>.  </p>
-</li>
-</ol>
-
-  <br>
-    
-
-  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
-    
-    <div class="wm-article-nav pull-right">
-      <a href="../part2-ex1-singularity/" class="btn btn-xs btn-default pull-right">
-        Next
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </a>
-      <a href="../part2-ex1-singularity/" class="btn btn-xs btn-link">
-        Exercise 2.1
-      </a>
-    </div>
-    
-    <div class="wm-article-nav">
-      <a href="../part1-ex1-connect-start/" class="btn btn-xs btn-default pull-left">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../part1-ex1-connect-start/" class="btn btn-xs btn-link">
-        Exercise 1.1
-      </a>
-    </div>
-    
-  </div>
-
-    <br>
-</div>
-
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
-</footer>
-
-</body>
+<html>             
+    <head>
+        <meta http-equiv="refresh" content="0; url='https://osg-htc.org/user-school-2019/materials/day3/part1-ex2-matlab/index.html'" />
+    </head>
+    <body>
+        <h2 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">This page has been moved to our new domain! ( osg-htc.org ). Please wait well we redirect you. </h2>
+        <p style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+            Click link to new domain if redirect does not fire: <a href="https://osg-htc.org/user-school-2019/materials/day3/part1-ex2-matlab/index.html">https://osg-htc.org/user-school-2019/materials/day3/part1-ex2-matlab/index.html</a>
+        </p>
+        <div style="display: flex; width: 100%; padding-top: 60px;">
+            <div style="width: 80%; max-width: 600px; margin-right: auto; margin-left: auto">
+                <svg style="height: auto; width: 100%" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 336.3 223.7" style="enable-background:new 0 0 336.3 223.7;" xml:space="preserve">
+            <style type="text/css">
+                .st0{fill:#F08231;}
+                .st1{fill:#F1A52B;}
+                .st2{fill:#FDCB26;}
+            </style>
+            <path class="st0" d="M122.9,178.8c13.5,0,21.4,9.9,21.4,22.6c0,12.4-7.9,22.3-21.4,22.3s-21.4-9.9-21.4-22.3
+                C101.5,188.7,109.4,178.8,122.9,178.8 M122.9,215.8c8.6,0,11.9-7.2,11.9-14.4c0-7.5-3.2-14.7-11.9-14.7s-11.8,7.2-11.8,14.7
+                C111.1,208.6,114.3,215.8,122.9,215.8"/>
+            <path class="st0" d="M158.5,208.4c0,5.7,4.5,7.9,9.6,7.9c3.4,0,8.5-1,8.5-5.3c0-4.6-6.5-5.4-12.9-7.1s-13-4.1-13-12.2
+                c0-8.8,8.4-13,16.3-13c9.1,0,17.5,3.9,17.5,13.8h-9.2c-0.3-5.2-4-6.5-8.6-6.5c-3,0-6.6,1.3-6.6,4.9c0,3.3,2.1,3.7,13,6.5
+                c3.2,0.8,12.9,2.8,12.9,12.5c0,7.9-6.3,13.8-18.1,13.8c-9.6,0-18.7-4.7-18.6-15.3L158.5,208.4z"/>
+            <path class="st0" d="M223.8,217.8c-2.8,3.8-7.3,5.9-12,5.9c-13.5,0-21.4-9.9-21.4-22.3c0-12.7,7.9-22.6,21.4-22.6
+                c8.9,0,17.3,5.4,18.4,15.1H221c-1.1-4.8-4.7-7.2-9.2-7.2c-8.6,0-11.9,7.2-11.9,14.7c0,7.1,3.2,14.4,11.9,14.4
+                c6.2,0,9.8-3.3,10.4-9.2h-9.6v-7h18.3v23.2h-6.1L223.8,217.8z"/>
+            <path class="st0" d="M168.2,58.4L0,113.2L168.2,168l168.2-54.8L168.2,58.4z M27.8,111.3l140.4-45.7l140.3,45.7L168.2,157L27.8,111.3
+                z"/>
+            <path class="st1" d="M168.2,29.2L0,84l168.2,54.8L336.4,84L168.2,29.2z M27.8,82.1l140.4-45.7l140.3,45.7l-140.3,45.7L27.8,82.1z"/>
+            <path class="st2" d="M168.2,0L0,54.8l168.2,54.8l168.1-54.8L168.2,0z M27.8,52.9L168.2,7.2l140.3,45.7L168.2,98.6L27.8,52.9z"/>
+        </svg>
+            </div>
+        </div>
+    </body>
 </html>
+    

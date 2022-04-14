@@ -1,176 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  
-  
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
-    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day5/part1-ex2-plan-workflow/">
-    <link rel="shortcut icon" href="../../../img/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>Exercise 1.2 - OSG User School 2019</title>
-    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
-    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
-    <link href="../../../css/base.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/highlight.css">
-    <link href="../../../css/extra.css" rel="stylesheet">
-    <link href="../../../css/codehilite.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-
-    <script src="../../../js/jquery-3.2.1.min.js"></script>
-    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
-    <script src="../../../js/highlight.pack.js"></script>
-    
-    <base target="_top">
-    <script>
-      var base_url = '../../..';
-      var is_top_frame = false;
-        
-        var pageToc = [
-          {title: "Friday Exercise 1.2: Plan Joe's Workflow", url: "#_top", children: [
-              {title: "Your Mission", url: "#your-mission" },
-              {title: "Draw a Diagram", url: "#draw-a-diagram" },
-              {title: "Optimize Job Components", url: "#optimize-job-components" },
-          ]},
-        ];
-
-    </script>
-    <script src="../../../js/base.js"></script> 
-</head>
-
-<body>
-<script>
-if (is_top_frame) { $('body').addClass('wm-top-page'); }
-</script>
-
-
-
-<div class="container-fluid wm-page-content">
-  <a name="_top"></a>
-    
-
-    <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: \#008; } </style>
-
-<h1 id="friday-exercise-12-plan-joes-workflow">Friday Exercise 1.2: Plan Joe's Workflow<a class="headerlink" href="#friday-exercise-12-plan-joes-workflow" title="Permanent link">&para;</a></h1>
-<p>This exercise outlines our goal (creating a production workflow) and the steps needed to achieve it. Before starting this section, make sure to first read <a href="../../../materials/day5/part1-ex1-science-intro">Exercise 1.1</a>, which has important background information about Joe's intended work and how he has submitted jobs so far.</p>
-<h2 id="your-mission">Your Mission<a class="headerlink" href="#your-mission" title="Permanent link">&para;</a></h2>
-<p>Your goal is to plan out Joe’s workflow based upon small-scale test jobs and, later, to write a full-scale DAG to actually run his workflow in production. In particular, you will need to do the following:</p>
-<ul>
-<li>
-<p><strong>Optimize number of permutation jobs:</strong> Joe wants to take advantage of high-throughput parallelization.  This means, for one trait, determining how many jobs to submit for the <strong>permutation</strong> step (where each job is calculating a portion of the new total of 100,000 permutations per trait).  For each trait, is it better to run 10 jobs that each generate 10,000 permutations?  Or 1000 jobs that generate 10 permutations?  You'll have to find out.  </p>
-</li>
-<li>
-<p><strong>Optimize memory and cpu requests</strong>: For both the <strong>permutation</strong> and <strong>QTL mapping</strong> steps, what values should you use for <code>request_memory</code> and <code>request_cpus</code>?</p>
-</li>
-<li>
-<p><strong>Put all the pieces together in a single DAG file</strong>: We want to create a DAG that runs the <strong>permutation</strong> and <strong>QTL mapping</strong> jobs for each of the three traits, with the necessary <code>tar</code> scripts running at the appropriate times on the submit server.  </p>
-</li>
-</ul>
-<p>We'll be working on the first two steps during this session, with final testing and the last step (DAG creation) after the break in <a href="../../../materials/day5/part2-ex1-execute-workflow">Exercise 2.1</a>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In what follows, <strong>the only files you will need to modify are the submit files</strong> (and as specifically instructed). You will not need to modify any of the input files, output files, or scripts/executables/programs. It is advisable that you split up some of the work within your pair or group in order to be time-efficient.</p>
-</div>
-<h2 id="draw-a-diagram">Draw a Diagram<a class="headerlink" href="#draw-a-diagram" title="Permanent link">&para;</a></h2>
-<p>If you haven't already -- draw a digram of Joe's workflow, based on what you <a href="../../../materials/day5/part1-ex1-science-intro">learned from Joe</a>.  Keep in mind that there are 3 traits for which the <em>permutation</em> and <em>QTL mapping</em> steps need to be completed, but these trait analyses are each completely independent (each of the steps described needs to be run for trait 1, trait 2, and trait 3, but they don't overlap at all).  (If you started drawing a diagram while reading the previous page, just extend it here.)  </p>
-<p>Think about what Joe's intended workflow means for the shape of the DAG, including PARENT-CHILD dependencies for JOBs in the DAG and the fact that the <em>permutation</em> step could be broken up into multiple processes of fewer total permutations, each.  The tar steps will probably need to be PRE or POST scripts (you decide which is best).
-We'll come back to this diagram in the <a href="../../../materials/day5/part2-ex1-execute-workflow">next exercise</a> after the break, when it's time to construct the full DAG.</p>
-<h2 id="optimize-job-components">Optimize Job Components<a class="headerlink" href="#optimize-job-components" title="Permanent link">&para;</a></h2>
-<p>Before we assemble the full DAG, we want to optimize each component of the workflow. This will include 3 optimization steps.  </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Eventually we'll want to apply our job optimizations to the submit files for all three traits, but for testing purposes, it's okay to just focus on one trait.  In your group, pick whether you want to use trait 1, 2, or 3 for testing and use the submit files for that trait for all of your tests.  </p>
-</div>
-<h3 id="1-optimize-length-of-permutation-jobs-test-resource-use">1. Optimize length of <em>permutation</em> jobs, test resource use<a class="headerlink" href="#1-optimize-length-of-permutation-jobs-test-resource-use" title="Permanent link">&para;</a></h3>
-<p>To get good HTC scaling, we want the jobs that run for the permutation step to each take somewhere between 10 minutes and 1 hour (ideally ~30 minutes).  So our first optimization task is to determine the number of permutations that can be generated by a single job in this amount of time.  (Eventually - as part of the final workflow - we'll submit batches of these optimized permutation jobs so that we generate 100,000 total permutations for each trait.)  </p>
-<p>To determine the right number of permutations per job, you will need to run some test jobs, to see how long it takes a single job to create, say, 10, 100, or 1000 permutations.  </p>
-<p>To run these test jobs:</p>
-<ol>
-<li>Add <code>request_cpus = 1</code> according to Joe's indication</li>
-<li>Add reasonable first guesses for <code>request_memory</code> and <code>request_disk</code> (say, 1 GB?).</li>
-<li>
-<p>Make a few copies of this submit file so that you can change the last argument (the number of permutations) from "10000" to "10", "100", or "1000", e.g. from: </p>
-<div class="codehilite"><pre><span></span>arguments = arguments = 1_$(Process) run_perm.R 1 $(Process) 10000
-</pre></div>
-
-
-<p>to something like: </p>
-<div class="codehilite"><pre><span></span>arguments = arguments = 1_$(Process) run_perm.R 1 $(Process) 10
-</pre></div>
-
-
-<p>You'll want to run multiple tests here (<code>10</code> as given above, and probably at least <code>100</code> and <code>1000</code>).  You can split this testing with a partner.  </p>
-</li>
-</ol>
-<p>Getting ready for the next step:</p>
-<ol>
-<li>After each set of <em>permutation</em> tests finishes, you’ll need to use <code>tarit.sh</code> (with the correct argument) before running the test jobs for the QTL step.</li>
-</ol>
-<h3 id="2-test-the-qtl-mapping-job">2. Test the <em>QTL mapping</em> job<a class="headerlink" href="#2-test-the-qtl-mapping-job" title="Permanent link">&para;</a></h3>
-<p>Once you have results from your previous <em>permutation</em> step testing, you can start testing the <em>QTL mapping</em> job.  </p>
-<ol>
-<li>Add lines for <code>request_memory</code>, <code>request_disk</code>, and <code>request_cpus</code> to one of the <em>QTL</em> submit files.  The resource needs (RAM and disk space) and execution time of each <em>QTL mapping</em> job will likely increase with the total number of permutations from the previous <em>permutation</em> step, though the execution time will likely still be short (according to Joe). </li>
-<li>Submit the modified <em>QTL</em> submit file.</li>
-<li>When the QTL job completes (hopefully quickly!) look at the log file.  </li>
-</ol>
-<p>If you have time, try running the QTL job again with results from a different permutation test (that may be a different sized input).  Does the disk and memory usage change?  </p>
-<h3 id="3-optimization-planning">3. Optimization planning<a class="headerlink" href="#3-optimization-planning" title="Permanent link">&para;</a></h3>
-<p>In order to optimize Joe's overall workflow, we can choose the following values, based on our test jobs from steps 1 and 2:</p>
-<ol>
-<li>
-<p>How many permutations should each permutation job create to run in about 30 minutes?  10? 100? 1000?  Something in-between?  Based on your testing, choose an appropriate value. </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can use the "condor_history" feature (similar to condor_q, but for completed jobs) to easily view and compare the "RUNTIME" for jobs in a "cluster" (using the cluster value as an argument to <code>condor_history</code>).</p>
-</div>
-</li>
-<li>
-<p>For each trait, we want to generate 100,000 permutations.  How many jobs do you need to submit (for each trait) to generate this amount, based on the number of permutations created per job (what you chose in the previous point)?  Essentially, you want <em>number of jobs</em> X <em>permutations per job</em> to equal 100,000 total permutations...and do that for each of the three phenotype traits. </p>
-</li>
-<li>
-<p>Make sure to examine the log files of both your <em>permutation</em> and <em>QTL</em> test jobs, so that you can extrapolate how much memory and disk should be requested in the submit files for the full-scale DAG.</p>
-</li>
-</ol>
-<p><strong>When you're done with 3, move on to <a href="../../../materials/day5/part2-ex1-execute-workflow">Exercise 2.1</a></strong></p>
-
-  <br>
-    
-
-  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
-    
-    <div class="wm-article-nav pull-right">
-      <a href="../part2-ex1-execute-workflow/" class="btn btn-xs btn-default pull-right">
-        Next
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </a>
-      <a href="../part2-ex1-execute-workflow/" class="btn btn-xs btn-link">
-        Exercise 2.1
-      </a>
-    </div>
-    
-    <div class="wm-article-nav">
-      <a href="../part1-ex1-science-intro/" class="btn btn-xs btn-default pull-left">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../part1-ex1-science-intro/" class="btn btn-xs btn-link">
-        Exercise 1.1
-      </a>
-    </div>
-    
-  </div>
-
-    <br>
-</div>
-
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
-</footer>
-
-</body>
+<html>             
+    <head>
+        <meta http-equiv="refresh" content="0; url='https://osg-htc.org/user-school-2019/materials/day5/part1-ex2-plan-workflow/index.html'" />
+    </head>
+    <body>
+        <h2 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">This page has been moved to our new domain! ( osg-htc.org ). Please wait well we redirect you. </h2>
+        <p style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+            Click link to new domain if redirect does not fire: <a href="https://osg-htc.org/user-school-2019/materials/day5/part1-ex2-plan-workflow/index.html">https://osg-htc.org/user-school-2019/materials/day5/part1-ex2-plan-workflow/index.html</a>
+        </p>
+        <div style="display: flex; width: 100%; padding-top: 60px;">
+            <div style="width: 80%; max-width: 600px; margin-right: auto; margin-left: auto">
+                <svg style="height: auto; width: 100%" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 336.3 223.7" style="enable-background:new 0 0 336.3 223.7;" xml:space="preserve">
+            <style type="text/css">
+                .st0{fill:#F08231;}
+                .st1{fill:#F1A52B;}
+                .st2{fill:#FDCB26;}
+            </style>
+            <path class="st0" d="M122.9,178.8c13.5,0,21.4,9.9,21.4,22.6c0,12.4-7.9,22.3-21.4,22.3s-21.4-9.9-21.4-22.3
+                C101.5,188.7,109.4,178.8,122.9,178.8 M122.9,215.8c8.6,0,11.9-7.2,11.9-14.4c0-7.5-3.2-14.7-11.9-14.7s-11.8,7.2-11.8,14.7
+                C111.1,208.6,114.3,215.8,122.9,215.8"/>
+            <path class="st0" d="M158.5,208.4c0,5.7,4.5,7.9,9.6,7.9c3.4,0,8.5-1,8.5-5.3c0-4.6-6.5-5.4-12.9-7.1s-13-4.1-13-12.2
+                c0-8.8,8.4-13,16.3-13c9.1,0,17.5,3.9,17.5,13.8h-9.2c-0.3-5.2-4-6.5-8.6-6.5c-3,0-6.6,1.3-6.6,4.9c0,3.3,2.1,3.7,13,6.5
+                c3.2,0.8,12.9,2.8,12.9,12.5c0,7.9-6.3,13.8-18.1,13.8c-9.6,0-18.7-4.7-18.6-15.3L158.5,208.4z"/>
+            <path class="st0" d="M223.8,217.8c-2.8,3.8-7.3,5.9-12,5.9c-13.5,0-21.4-9.9-21.4-22.3c0-12.7,7.9-22.6,21.4-22.6
+                c8.9,0,17.3,5.4,18.4,15.1H221c-1.1-4.8-4.7-7.2-9.2-7.2c-8.6,0-11.9,7.2-11.9,14.7c0,7.1,3.2,14.4,11.9,14.4
+                c6.2,0,9.8-3.3,10.4-9.2h-9.6v-7h18.3v23.2h-6.1L223.8,217.8z"/>
+            <path class="st0" d="M168.2,58.4L0,113.2L168.2,168l168.2-54.8L168.2,58.4z M27.8,111.3l140.4-45.7l140.3,45.7L168.2,157L27.8,111.3
+                z"/>
+            <path class="st1" d="M168.2,29.2L0,84l168.2,54.8L336.4,84L168.2,29.2z M27.8,82.1l140.4-45.7l140.3,45.7l-140.3,45.7L27.8,82.1z"/>
+            <path class="st2" d="M168.2,0L0,54.8l168.2,54.8l168.1-54.8L168.2,0z M27.8,52.9L168.2,7.2l140.3,45.7L168.2,98.6L27.8,52.9z"/>
+        </svg>
+            </div>
+        </div>
+    </body>
 </html>
+    

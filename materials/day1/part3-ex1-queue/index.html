@@ -1,297 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  
-  
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
-    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day1/part3-ex1-queue/">
-    <link rel="shortcut icon" href="../../../img/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>Exercise 3.1 - OSG User School 2019</title>
-    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
-    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
-    <link href="../../../css/base.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/highlight.css">
-    <link href="../../../css/extra.css" rel="stylesheet">
-    <link href="../../../css/codehilite.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-
-    <script src="../../../js/jquery-3.2.1.min.js"></script>
-    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
-    <script src="../../../js/highlight.pack.js"></script>
-    
-    <base target="_top">
-    <script>
-      var base_url = '../../..';
-      var is_top_frame = false;
-        
-        var pageToc = [
-          {title: "Monday Exercise 3.1: Explore condor_q", url: "#_top", children: [
-              {title: "Selecting Jobs", url: "#selecting-jobs" },
-              {title: "Viewing a Job ClassAd", url: "#viewing-a-job-classad" },
-              {title: "Why Is My Job Not Running?", url: "#why-is-my-job-not-running" },
-              {title: "Bonus: Automatic Formatting Output", url: "#bonus-automatic-formatting-output" },
-              {title: "References", url: "#references" },
-          ]},
-        ];
-
-    </script>
-    <script src="../../../js/base.js"></script> 
-</head>
-
-<body>
-<script>
-if (is_top_frame) { $('body').addClass('wm-top-page'); }
-</script>
-
-
-
-<div class="container-fluid wm-page-content">
-  <a name="_top"></a>
-    
-
-    <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: \#008; } </style>
-
-<h1 id="monday-exercise-31-explore-condor_q">Monday Exercise 3.1: Explore condor_q<a class="headerlink" href="#monday-exercise-31-explore-condor_q" title="Permanent link">&para;</a></h1>
-<p>The goal of this exercise is try out some of the most common options to the <code>condor_q</code> command, so that you can view jobs effectively.</p>
-<p>The main part of this exercise should take just a few minutes, but if you have more time later, come back and work on the extension ideas at the end to become a <code>condor_q</code> expert!</p>
-<h2 id="selecting-jobs">Selecting Jobs<a class="headerlink" href="#selecting-jobs" title="Permanent link">&para;</a></h2>
-<p>The <code>condor_q</code> program has many options for selecting which jobs are listed. You have already seen that the default mode (as of version 8.5) is to show only your jobs in "batch" mode:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q
-</pre></div>
-
-
-<p>You've seen that you can view all jobs (all users) in the submit node's queue by using the <code>-all</code> argument:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q -all
-</pre></div>
-
-
-<p>And you've seen that you can view more details about queued jobs, with each separate job on a single line using the <code>-nobatch</code> option:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q -nobatch
-<span class="gp">username@learn $</span> condor_q -all -nobatch
-</pre></div>
-
-
-<p>Did you know you can also name one or more user IDs on the command line, in which case jobs for all of the named users are listed at once?</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q &lt;USERNAME1&gt; &lt;USERNAME2&gt; &lt;USERNAME3&gt;
-</pre></div>
-
-
-<p>There are two other, simple selection criteria that you can use. To list just the jobs associated with a single cluster number:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q &lt;CLUSTER&gt;
-</pre></div>
-
-
-<p>For example, if you want to see the jobs in cluster 5678 (i.e., <code>5678.0</code>, <code>5678.1</code>, etc.), you use <code>condor_q 5678</code>.</p>
-<p>To list a specific job (i.e., cluster.process, as in 5678.0):</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q &lt;JOB.ID&gt;
-</pre></div>
-
-
-<p>For example, to see job ID 5678.1, you use <code>condor_q 5678.1</code>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can name more than one cluster, job ID, or combination thereof on the command line, in which case jobs for
-<strong>all</strong> of the named clusters and/or job IDs are listed.</p>
-</div>
-<p>Let’s get some practice using <code>condor_q</code> selections!</p>
-<ol>
-<li>Using a previous exercise, submit several <code>sleep</code> jobs.</li>
-<li>List all jobs in the queue — are there others besides your own?</li>
-<li>Practice using all forms of <code>condor_q</code> that you have learned:<ul>
-<li>List just your jobs, with and without batching.</li>
-<li>List a specific cluster.</li>
-<li>List a specific job ID.</li>
-<li>Try listing several users at once.</li>
-<li>Try listing several clusters and job IDs at once.</li>
-</ul>
-</li>
-<li>When there are a variety of jobs in the queue, try combining a username and a different user's cluster or job ID in the same command — what happens?</li>
-</ol>
-<h2 id="viewing-a-job-classad">Viewing a Job ClassAd<a class="headerlink" href="#viewing-a-job-classad" title="Permanent link">&para;</a></h2>
-<p>You may have wondered why it is useful to be able to list a single job ID using <code>condor_q</code>. By itself, it may not be that useful. But, in combination with another option, it is very useful!</p>
-<p>If you add the <code>-long</code> option to <code>condor_q</code> (or its short form, <code>-l</code>), it will show the complete ClassAd for each selected job, instead of the one-line summary that you have seen so far. Because job ClassAds may have 80–90 attributes (or more), it probably makes the most sense to show the ClassAd for a single job at a time. And you know how to show just one job! Here is what the command looks like:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q -long &lt;JOB.ID&gt;
-</pre></div>
-
-
-<p>The output from this command is long and complex. Most of the attributes that HTCondor adds to a job are arcane and uninteresting for us now. But here are some examples of common, interesting attributes taken directly from <code>condor_q</code> output (except with some line breaks added to the <code>Requirements</code> attribute):</p>
-<div class="codehilite"><pre><span></span>MyType = &quot;Job&quot;
-Err = &quot;sleep.err&quot;
-UserLog = &quot;/home/cat/1-monday-2.1-queue/sleep.log&quot;
-Requirements = ( IsOSGSchoolSlot =?= true ) &amp;&amp;
-        ( TARGET.Arch == &quot;X86_64&quot; ) &amp;&amp;
-        ( TARGET.OpSys == &quot;LINUX&quot; ) &amp;&amp;
-        ( TARGET.Disk &gt;= RequestDisk ) &amp;&amp;
-        ( TARGET.Memory &gt;= RequestMemory ) &amp;&amp;
-        ( TARGET.HasFileTransfer )
-ClusterId = 2420
-WhenToTransferOutput = &quot;ON_EXIT&quot;
-Owner = &quot;cat&quot;
-CondorVersion = &quot;$CondorVersion: 8.5.5 May 03 2016 BuildID: 366162 $&quot;
-Out = &quot;sleep.out&quot;
-Cmd = &quot;/bin/sleep&quot;
-Arguments = &quot;120&quot;
-</pre></div>
-
-
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Attributes are listed in no particular order and may change from time to time.
-Do not assume anything about the order of attributes in <code>condor_q</code> output.</p>
-</div>
-<p><strong>See what you can find in a job ClassAd from your own job.</strong></p>
-<ol>
-<li>Using a previous exercise, submit a <code>sleep</code> job that sleeps for at least 3 minutes (180 seconds).</li>
-<li>
-<p>Before the job executes, capture its ClassAd and save to a file:</p>
-<div class="codehilite"><pre><span></span><span class="go">condor_q -l &lt;JOB.ID&gt; &gt; classad-1.txt</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>After the job starts execution but before it finishes, capture its ClassAd again and save to a file</p>
-<div class="codehilite"><pre><span></span><span class="go">condor_q -l &lt;JOB.ID&gt; &gt; classad-2.txt</span>
-</pre></div>
-
-
-</li>
-</ol>
-<p>Now examine each saved ClassAd file. Here are a few things to look for:</p>
-<ul>
-<li>Can you find attributes that came from your submit file? (E.g., Cmd, Arguments, Out, Err, UserLog, and so forth)</li>
-<li>Can you find attributes that could have come from your submit file, but that HTCondor added for you? (E.g., Requirements)</li>
-<li>How many of the following attributes can you guess the meaning of?<ul>
-<li>DiskUsage</li>
-<li>ImageSize</li>
-<li>BytesSent</li>
-<li>JobStatus</li>
-</ul>
-</li>
-</ul>
-<h2 id="why-is-my-job-not-running">Why Is My Job Not Running?<a class="headerlink" href="#why-is-my-job-not-running" title="Permanent link">&para;</a></h2>
-<p>Sometimes, you submit a job and it just sits in the queue in Idle state, never running. It can be difficult to figure out why a job never matches and runs. Fortunately, HTCondor can give you some help.</p>
-<p>To ask HTCondor why your job is not running, add the <code>-better-analyze</code> option to <code>condor_q</code> for the specific job. For example, for job ID 2423.0, the command is:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q -better-analyze <span class="m">2423</span>.0
-</pre></div>
-
-
-<p>Of course, replace the job ID with your own.</p>
-<p>Let’s submit a job that will never run and see what happens. Here is the submit file to use:</p>
-<div class="codehilite"><pre><span></span>executable = /bin/hostname
-output = norun.out
-error = norun.err
-log = norun.log
-should_transfer_files = YES
-when_to_transfer_output = ON_EXIT
-request_disk = 10MB
-request_memory = 8TB
-queue
-</pre></div>
-
-
-<p>(Do you see what I did?)</p>
-<ol>
-<li>Save and submit this file.</li>
-<li>Run <code>condor_q -better-analyze</code> on the job ID.</li>
-</ol>
-<p>There is a lot of output, but a few items are worth highlighting. Here is a sample from my own job (with some lines omitted):</p>
-<div class="codehilite"><pre><span></span>-- Schedd: learn.chtc.wisc.edu : &lt;128.104.100.148:9618?...
-...
-
-Job 98096.000 defines the following attributes:
-
-    RequestDisk = 10240
-    RequestMemory = 8388608
-
-The Requirements expression for job 98096.000 reduces to these conditions:
-
-
-         Slots
-Step    Matched  Condition
------  --------  ---------
-[1]       11227  Target.OpSysMajorVer == 7
-[9]       13098  TARGET.Disk &gt;= RequestDisk
-[11]          0  TARGET.Memory &gt;= RequestMemory
-
-No successful match recorded.
-Last failed match: Fri Jul 12 15:36:30 2019
-
-Reason for last match failure: no match found
-
-98096.000:  Run analysis summary ignoring user priority.  Of 710 machines,
-    710 are rejected by your job&#39;s requirements
-      0 reject your job because of their own requirements
-      0 match and are already running your jobs
-      0 match but are serving other users
-      0 are able to run your job
-...
-</pre></div>
-
-
-<p>At the end of the summary, <code>condor_q</code> provides a breakdown of how <strong>machines</strong> and their own requirements match against my own job's requirements. 710 total machines were considered above, and <strong>all</strong> of them were rejected based on <strong>my job's requirements</strong>. In other words, I am asking for something that is not available. But what?</p>
-<p>Further up in the output, there is an analysis of the job's requirements, along with how many slots within the pool match each of those requirements. The example above reports that 13098 slots match our small disk request request, but <strong>none</strong> of the slots matched the <code>TARGET.Memory &gt;= RequestMemory</code> condition. The output also reports the value used for the <code>RequestMemory</code> attribute: my job asked for <strong>8 terabytes</strong> of memory (8,388,608 MB) -- of course no machines matched that part of the expression! That's a lot of memory on today's machines.</p>
-<p>The output from <code>condor_q -analyze</code> (and <code>condor_q -better-analyze</code>) may be helpful or it may not be, depending on your exact case. The example above was constructed so that it would be obvious what the problem was. But in many cases, this is a good place to start looking if you are having problems matching.</p>
-<h2 id="bonus-automatic-formatting-output">Bonus: Automatic Formatting Output<a class="headerlink" href="#bonus-automatic-formatting-output" title="Permanent link">&para;</a></h2>
-<p><strong>Do this exercise only if you have time, though it's pretty awesome!</strong></p>
-<p>There is a way to select the specific job attributes you want <code>condor_q</code> to tell you about with the <code>-autoformat</code> or <code>-af</code> option. In this case, HTCondor decides for you how to format the data you ask for from job ClassAd(s). 
-(To tell HTCondor how to specially format this information, yourself, you could use the <code>-format</code> option, which we're not covering.)</p>
-<p>To use autoformatting, use the <code>-af</code> option followed by the attribute name, for each attribute that you want to output:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_q -all -af Owner ClusterId Cmd
-<span class="go">moate 2418 /share/test.sh</span>
-<span class="go">cat 2421 /bin/sleep</span>
-<span class="go">cat 2422 /bin/sleep</span>
-</pre></div>
-
-
-<p><strong>Bonus Question</strong>: If you wanted to print out the <code>Requirements</code> expression of a job, how would you do that with <code>-af</code>? Is the output what you expected? (HINT: for ClassAd attributes like "Requirements" that are long expressions, instead of simple values, you can use <code>-af:r</code> to view the expressions, instead of what it's current evaluation.)</p>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
-<p>As suggested above, if you want to learn more about <code>condor_q</code>, you can do some reading:</p>
-<ul>
-<li>Read the <code>condor_q</code> man page or HTCondor Manual section (same text) to learn about more options</li>
-<li>Read about ClassAd attributes in Appendix A of the HTCondor Manual</li>
-</ul>
-
-  <br>
-    
-
-  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
-    
-    <div class="wm-article-nav pull-right">
-      <a href="../part3-ex2-status/" class="btn btn-xs btn-default pull-right">
-        Next
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </a>
-      <a href="../part3-ex2-status/" class="btn btn-xs btn-link">
-        Exercise 3.2
-      </a>
-    </div>
-    
-    <div class="wm-article-nav">
-      <a href="../part2-ex4-queue-from/" class="btn btn-xs btn-default pull-left">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../part2-ex4-queue-from/" class="btn btn-xs btn-link">
-        Exercise 2.4
-      </a>
-    </div>
-    
-  </div>
-
-    <br>
-</div>
-
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
-</footer>
-
-</body>
+<html>             
+    <head>
+        <meta http-equiv="refresh" content="0; url='https://osg-htc.org/user-school-2019/materials/day1/part3-ex1-queue/index.html'" />
+    </head>
+    <body>
+        <h2 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">This page has been moved to our new domain! ( osg-htc.org ). Please wait well we redirect you. </h2>
+        <p style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+            Click link to new domain if redirect does not fire: <a href="https://osg-htc.org/user-school-2019/materials/day1/part3-ex1-queue/index.html">https://osg-htc.org/user-school-2019/materials/day1/part3-ex1-queue/index.html</a>
+        </p>
+        <div style="display: flex; width: 100%; padding-top: 60px;">
+            <div style="width: 80%; max-width: 600px; margin-right: auto; margin-left: auto">
+                <svg style="height: auto; width: 100%" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 336.3 223.7" style="enable-background:new 0 0 336.3 223.7;" xml:space="preserve">
+            <style type="text/css">
+                .st0{fill:#F08231;}
+                .st1{fill:#F1A52B;}
+                .st2{fill:#FDCB26;}
+            </style>
+            <path class="st0" d="M122.9,178.8c13.5,0,21.4,9.9,21.4,22.6c0,12.4-7.9,22.3-21.4,22.3s-21.4-9.9-21.4-22.3
+                C101.5,188.7,109.4,178.8,122.9,178.8 M122.9,215.8c8.6,0,11.9-7.2,11.9-14.4c0-7.5-3.2-14.7-11.9-14.7s-11.8,7.2-11.8,14.7
+                C111.1,208.6,114.3,215.8,122.9,215.8"/>
+            <path class="st0" d="M158.5,208.4c0,5.7,4.5,7.9,9.6,7.9c3.4,0,8.5-1,8.5-5.3c0-4.6-6.5-5.4-12.9-7.1s-13-4.1-13-12.2
+                c0-8.8,8.4-13,16.3-13c9.1,0,17.5,3.9,17.5,13.8h-9.2c-0.3-5.2-4-6.5-8.6-6.5c-3,0-6.6,1.3-6.6,4.9c0,3.3,2.1,3.7,13,6.5
+                c3.2,0.8,12.9,2.8,12.9,12.5c0,7.9-6.3,13.8-18.1,13.8c-9.6,0-18.7-4.7-18.6-15.3L158.5,208.4z"/>
+            <path class="st0" d="M223.8,217.8c-2.8,3.8-7.3,5.9-12,5.9c-13.5,0-21.4-9.9-21.4-22.3c0-12.7,7.9-22.6,21.4-22.6
+                c8.9,0,17.3,5.4,18.4,15.1H221c-1.1-4.8-4.7-7.2-9.2-7.2c-8.6,0-11.9,7.2-11.9,14.7c0,7.1,3.2,14.4,11.9,14.4
+                c6.2,0,9.8-3.3,10.4-9.2h-9.6v-7h18.3v23.2h-6.1L223.8,217.8z"/>
+            <path class="st0" d="M168.2,58.4L0,113.2L168.2,168l168.2-54.8L168.2,58.4z M27.8,111.3l140.4-45.7l140.3,45.7L168.2,157L27.8,111.3
+                z"/>
+            <path class="st1" d="M168.2,29.2L0,84l168.2,54.8L336.4,84L168.2,29.2z M27.8,82.1l140.4-45.7l140.3,45.7l-140.3,45.7L27.8,82.1z"/>
+            <path class="st2" d="M168.2,0L0,54.8l168.2,54.8l168.1-54.8L168.2,0z M27.8,52.9L168.2,7.2l140.3,45.7L168.2,98.6L27.8,52.9z"/>
+        </svg>
+            </div>
+        </div>
+    </body>
 </html>
+    

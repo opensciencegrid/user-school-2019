@@ -1,159 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  
-  
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
-    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day3/part1-ex1-connect-start/">
-    <link rel="shortcut icon" href="../../../img/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>Exercise 1.1 - OSG User School 2019</title>
-    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
-    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
-    <link href="../../../css/base.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/highlight.css">
-    <link href="../../../css/extra.css" rel="stylesheet">
-    <link href="../../../css/codehilite.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-
-    <script src="../../../js/jquery-3.2.1.min.js"></script>
-    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
-    <script src="../../../js/highlight.pack.js"></script>
-    
-    <base target="_top">
-    <script>
-      var base_url = '../../..';
-      var is_top_frame = false;
-        
-        var pageToc = [
-          {title: "Wednesday Exercise 1.1: Try an OSG Connect Software Module", url: "#_top", children: [
-              {title: "Setup", url: "#setup" },
-              {title: "Modules on OSG Connect", url: "#modules-on-osg-connect" },
-              {title: "Using Modules in Jobs", url: "#using-modules-in-jobs" },
-          ]},
-        ];
-
-    </script>
-    <script src="../../../js/base.js"></script> 
-</head>
-
-<body>
-<script>
-if (is_top_frame) { $('body').addClass('wm-top-page'); }
-</script>
-
-
-
-<div class="container-fluid wm-page-content">
-  <a name="_top"></a>
-    
-
-    <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: \#008; } </style>
-
-<h1 id="wednesday-exercise-11-try-an-osg-connect-software-module">Wednesday Exercise 1.1: Try an OSG Connect Software Module<a class="headerlink" href="#wednesday-exercise-11-try-an-osg-connect-software-module" title="Permanent link">&para;</a></h1>
-<p>In this exercise, we will submit a similar job to yesterday, but use OSG Connect's built-in Python software module to run our software. </p>
-<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
-<p>Make sure you are logged into <code>training.osgconnect.net</code> (the OSG Connect submit server for this workshop). <code>cd</code> into your directory within the <code>/local-scratch</code> folder (<code>cd /local-scratch/&lt;USERNAME&gt;</code>). Copy the <code>fib.py</code> script from <a href="../../../materials/day2/part4-ex1-python-built">yesterday</a> into this folder. </p>
-<h2 id="modules-on-osg-connect">Modules on OSG Connect<a class="headerlink" href="#modules-on-osg-connect" title="Permanent link">&para;</a></h2>
-<ol>
-<li>
-<p>The software installed in the OSG Connect software repository is able to viewed and used via a module system. To see the available software modules, you can type: </p>
-<div class="codehilite"><pre><span></span><span class="gp">username@training $</span> module avail
-</pre></div>
-
-
-</li>
-<li>
-<p>If you want to search for a specific module, you can use the <code>module spider</code> command. For this example, we want to use python, so let's look for it: </p>
-<div class="codehilite"><pre><span></span><span class="gp">username@training $</span> module spider python
-</pre></div>
-
-
-<p>What is the name of the available Python modules? </p>
-</li>
-<li>
-<p>Finally, in order to use the available software, the software module has to be "loaded." First, let's check which version of Python is available by default: </p>
-<div class="codehilite"><pre><span></span><span class="gp">username@training $</span> python --version
-</pre></div>
-
-
-</li>
-<li>
-<p>Now, what happens after we load the <code>python/3.7.0</code> module?</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@training $</span> module load python/3.7.0
-<span class="gp">username@training $</span> python --version
-</pre></div>
-
-
-<p>Note that we won't be actually running Python on this server, but we'll use the same command inside the job to "activate" the Python installation. </p>
-</li>
-</ol>
-<h2 id="using-modules-in-jobs">Using Modules in Jobs<a class="headerlink" href="#using-modules-in-jobs" title="Permanent link">&para;</a></h2>
-<ol>
-<li>
-<p>To use the modules we've just seen in jobs, we can load it via a script. Take a moment to consider which commands should go into this script, and then proceed. </p>
-</li>
-<li>
-<p>The job's executable script should look like this: </p>
-<div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
-
-module load python/3.7.0
-python3 fib.py <span class="m">90</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>The submit file should like something like the submit files you used yesterday. Besides including requests for cpus, memory and disk, and transferring the python script, the submit file for this job should include a list of arguments that ensures the job will only run on servers where the OSG Connect software repository and modules are available:</p>
-<div class="codehilite"><pre><span></span>requirements = (HAS_MODULES =?= true) &amp;&amp; (OSGVO_OS_STRING == &quot;RHEL 7&quot;) &amp;&amp; (OpSys == &quot;LINUX&quot;)
-</pre></div>
-
-
-</li>
-<li>
-<p>Submit this job. Does it produce the expected results? </p>
-</li>
-</ol>
-
-  <br>
-    
-
-  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
-    
-    <div class="wm-article-nav pull-right">
-      <a href="../part1-ex2-matlab/" class="btn btn-xs btn-default pull-right">
-        Next
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </a>
-      <a href="../part1-ex2-matlab/" class="btn btn-xs btn-link">
-        Exercise 1.2
-      </a>
-    </div>
-    
-    <div class="wm-article-nav">
-      <a href="../../day2/part4-ex2-python-extras/" class="btn btn-xs btn-default pull-left">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../../day2/part4-ex2-python-extras/" class="btn btn-xs btn-link">
-        Exercise 4.2
-      </a>
-    </div>
-    
-  </div>
-
-    <br>
-</div>
-
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
-</footer>
-
-</body>
+<html>             
+    <head>
+        <meta http-equiv="refresh" content="0; url='https://osg-htc.org/user-school-2019/materials/day3/part1-ex1-connect-start/index.html'" />
+    </head>
+    <body>
+        <h2 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">This page has been moved to our new domain! ( osg-htc.org ). Please wait well we redirect you. </h2>
+        <p style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+            Click link to new domain if redirect does not fire: <a href="https://osg-htc.org/user-school-2019/materials/day3/part1-ex1-connect-start/index.html">https://osg-htc.org/user-school-2019/materials/day3/part1-ex1-connect-start/index.html</a>
+        </p>
+        <div style="display: flex; width: 100%; padding-top: 60px;">
+            <div style="width: 80%; max-width: 600px; margin-right: auto; margin-left: auto">
+                <svg style="height: auto; width: 100%" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 336.3 223.7" style="enable-background:new 0 0 336.3 223.7;" xml:space="preserve">
+            <style type="text/css">
+                .st0{fill:#F08231;}
+                .st1{fill:#F1A52B;}
+                .st2{fill:#FDCB26;}
+            </style>
+            <path class="st0" d="M122.9,178.8c13.5,0,21.4,9.9,21.4,22.6c0,12.4-7.9,22.3-21.4,22.3s-21.4-9.9-21.4-22.3
+                C101.5,188.7,109.4,178.8,122.9,178.8 M122.9,215.8c8.6,0,11.9-7.2,11.9-14.4c0-7.5-3.2-14.7-11.9-14.7s-11.8,7.2-11.8,14.7
+                C111.1,208.6,114.3,215.8,122.9,215.8"/>
+            <path class="st0" d="M158.5,208.4c0,5.7,4.5,7.9,9.6,7.9c3.4,0,8.5-1,8.5-5.3c0-4.6-6.5-5.4-12.9-7.1s-13-4.1-13-12.2
+                c0-8.8,8.4-13,16.3-13c9.1,0,17.5,3.9,17.5,13.8h-9.2c-0.3-5.2-4-6.5-8.6-6.5c-3,0-6.6,1.3-6.6,4.9c0,3.3,2.1,3.7,13,6.5
+                c3.2,0.8,12.9,2.8,12.9,12.5c0,7.9-6.3,13.8-18.1,13.8c-9.6,0-18.7-4.7-18.6-15.3L158.5,208.4z"/>
+            <path class="st0" d="M223.8,217.8c-2.8,3.8-7.3,5.9-12,5.9c-13.5,0-21.4-9.9-21.4-22.3c0-12.7,7.9-22.6,21.4-22.6
+                c8.9,0,17.3,5.4,18.4,15.1H221c-1.1-4.8-4.7-7.2-9.2-7.2c-8.6,0-11.9,7.2-11.9,14.7c0,7.1,3.2,14.4,11.9,14.4
+                c6.2,0,9.8-3.3,10.4-9.2h-9.6v-7h18.3v23.2h-6.1L223.8,217.8z"/>
+            <path class="st0" d="M168.2,58.4L0,113.2L168.2,168l168.2-54.8L168.2,58.4z M27.8,111.3l140.4-45.7l140.3,45.7L168.2,157L27.8,111.3
+                z"/>
+            <path class="st1" d="M168.2,29.2L0,84l168.2,54.8L336.4,84L168.2,29.2z M27.8,82.1l140.4-45.7l140.3,45.7l-140.3,45.7L27.8,82.1z"/>
+            <path class="st2" d="M168.2,0L0,54.8l168.2,54.8l168.1-54.8L168.2,0z M27.8,52.9L168.2,7.2l140.3,45.7L168.2,98.6L27.8,52.9z"/>
+        </svg>
+            </div>
+        </div>
+    </body>
 </html>
+    

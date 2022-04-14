@@ -1,241 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  
-  
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
-    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/">
-    <link rel="shortcut icon" href="../img/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>Overview - OSG User School 2019</title>
-    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
-    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
-    <link href="../css/base.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/highlight.css">
-    <link href="../css/extra.css" rel="stylesheet">
-    <link href="../css/codehilite.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-
-    <script src="../js/jquery-3.2.1.min.js"></script>
-    <script src="../js/bootstrap-3.3.7.min.js"></script>
-    <script src="../js/highlight.pack.js"></script>
-    
-    <base target="_top">
-    <script>
-      var base_url = '..';
-      var is_top_frame = false;
-        
-        var pageToc = [
-          {title: "OSG User School 2019 Materials", url: "#_top", children: [
-              {title: "Monday", url: "#monday" },
-              {title: "Tuesday", url: "#tuesday" },
-              {title: "Wednesday", url: "#wednesday" },
-              {title: "Thursday", url: "#thursday" },
-              {title: "Friday", url: "#friday" },
-          ]},
-        ];
-
-    </script>
-    <script src="../js/base.js"></script> 
-</head>
-
-<body>
-<script>
-if (is_top_frame) { $('body').addClass('wm-top-page'); }
-</script>
-
-
-
-<div class="container-fluid wm-page-content">
-  <a name="_top"></a>
-    
-
-    <h1 id="osg-user-school-2019-materials">OSG User School 2019 Materials<a class="headerlink" href="#osg-user-school-2019-materials" title="Permanent link">&para;</a></h1>
-<h2 id="monday">Monday<a class="headerlink" href="#monday" title="Permanent link">&para;</a></h2>
-<h3 id="monday-morning-introduction-to-htc-and-htcondor">Monday Morning: Introduction to HTC and HTCondor<a class="headerlink" href="#monday-morning-introduction-to-htc-and-htcondor" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Lecture: Introduction to HTC (<a href="../materials/day1/files/osgus19-day1-part1-intro-to-htc.pdf">PDF</a>;<a href="../materials/day1/files/osgus19-day1-part1-intro-to-htc.pptx">PPT</a>)</li>
-<li><a href="day1/part1-ex1-login/">Exercise 1.1: Log in to the local submit machine and look around</a></li>
-<li><a href="day1/part1-ex2-commands/">Exercise 1.2: Experiment with basic HTCondor commands</a></li>
-<li><a href="day1/part1-ex3-jobs/">Exercise 1.3: Run jobs!</a></li>
-<li><a href="day1/part1-ex4-logs/">Exercise 1.4: Read and interpret log files</a></li>
-<li><a href="day1/part1-ex5-request/">Exercise 1.5: Determining Resource Needs</a></li>
-<li><a href="day1/part1-ex6-remove/">Exercise 1.6: Remove jobs from the queue</a></li>
-<li><a href="day1/part1-ex7-compile/">Bonus Exercise 1.7: Compile and run some C code</a></li>
-</ul>
-<h3 id="monday-morning-running-many-htc-jobs">Monday Morning: Running Many HTC Jobs<a class="headerlink" href="#monday-morning-running-many-htc-jobs" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Lecture: More HTCondor (<a href="../materials/day1/files/osgus19-day1-part2-many-HTCondor-jobs.pdf">PDF</a>;<a href="../materials/day1/files/osgus19-day1-part2-many-HTCondor-jobs.pptx">PPT</a>)</li>
-<li><a href="day1/part2-ex1-files/">Exercise 2.1: Work with input and output files</a></li>
-<li><a href="day1/part2-ex2-queue-n/">Exercise 2.2: Use <code>queue N</code>, <code>$(Cluster)</code>, and <code>$(Process)</code></a></li>
-<li><a href="day1/part2-ex3-queue-matching/">Exercise 2.3: Use <code>queue matching</code> with a custom variable</a></li>
-<li><a href="day1/part2-ex4-queue-from/">Exercise 2.4: Use <code>queue from</code> with custom variables</a></li>
-</ul>
-<h3 id="monday-afternoon-job-attributes-and-handling">Monday Afternoon: Job Attributes and Handling<a class="headerlink" href="#monday-afternoon-job-attributes-and-handling" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Lecture: Intermediate HTCondor: Job Matching and Handling (<a href="../materials/day1/files/osgus19-day1-part3-matching-handling.pdf">PDF</a>;<a href="../materials/day1/files/osgus19-day1-part3-matching-handling.pptx">PPT</a>)</li>
-<li><a href="day1/part3-ex1-queue/">Exercise 3.1: Explore <code>condor_q</code></a></li>
-<li><a href="day1/part3-ex2-status/">Exercise 3.2: Explore <code>condor_status</code></a></li>
-<li><a href="day1/part3-ex3-job-retry/">Exercise 3.3: A job that needs retries</a></li>
-</ul>
-<h3 id="monday-afternoon-introduction-to-distributed-htc">Monday Afternoon: Introduction to Distributed HTC<a class="headerlink" href="#monday-afternoon-introduction-to-distributed-htc" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Lecture: Introduction to DHTC (<a href="../materials/day1/files/osgus19-day1-part4-intro-to-dhtc.pdf">PDF</a>;
-  <a href="../materials/day1/files/osgus19-day1-part4-intro-to-dhtc.pptx">PPT</a>)</li>
-<li><a href="day1/part4-ex1-submit-refresher/">Exercise 4.1: Refresher - Submitting multiple jobs</a></li>
-<li><a href="day1/part4-ex2-login-scp/">Exercise 4.2: Log in to the OSG submit machine</a></li>
-<li><a href="day1/part4-ex3-submit-osg/">Exercise 4.3: Running jobs in the OSG</a></li>
-<li><a href="day1/part4-ex4-hardware-diffs/">Exercise 4.4: Hardware differences in the OSG</a></li>
-<li><a href="day1/part4-ex5-software-diffs/">Exercise 4.5: Software differences in the OSG</a></li>
-</ul>
-<h2 id="tuesday">Tuesday<a class="headerlink" href="#tuesday" title="Permanent link">&para;</a></h2>
-<h3 id="tuesday-morning-troubleshooting-jobs">Tuesday Morning: Troubleshooting jobs<a class="headerlink" href="#tuesday-morning-troubleshooting-jobs" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Lecture: Troubleshooting jobs (<a href="../materials/day2/files/osgus19-day2-part1-troubleshooting.pdf">PDF</a>;
-  <a href="../materials/day2/files/osgus19-day2-part1-troubleshooting.pptx">PPT</a>)</li>
-<li><a href="day2/part1-ex1-troubleshooting/">Exercise 1.1: Troubleshooting</a></li>
-</ul>
-<h3 id="tuesday-morning-security">Tuesday Morning: Security<a class="headerlink" href="#tuesday-morning-security" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Lecture: Security in the OSG (<a href="../materials/day2/files/osgus19-day2-part2-security.pdf">PDF</a>;
-<a href="../materials/day2/files/osgus19-day2-part2-security.pptx">PPT</a>)</li>
-<li>Resource: Overview of OSG Services for Researchers and Institutions (<a href="../materials/day2/files/2019OSG_Researcher&amp;CampusServices.pdf">PDF</a>)</li>
-</ul>
-<h3 id="tuesday-afternoon-software-portability">Tuesday Afternoon: Software Portability<a class="headerlink" href="#tuesday-afternoon-software-portability" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Lecture: Software Portability for DHTC (<a href="../materials/day2/files/osgus19-day2-part3-software-portability.pdf">PDF</a>, <a href="../materials/day2/files/osgus19-day2-part3-software-portability.pptx">PPT</a>)</li>
-<li><a href="day2/part3-ex1-compiling/">Exercise 3.1: Compiling programs for portability</a></li>
-<li><a href="day2/part3-ex2-precompiled/">Exercise 3.2: Using a pre-compiled binary</a></li>
-<li><a href="day2/part3-ex3-wrapper/">Exercise 3.3: Using a wrapper script</a></li>
-<li><a href="day2/part3-ex4-prepackaged/">Exercise 3.4: Pre-packaging code</a></li>
-<li><a href="day2/part3-ex5-arguments/">Bonus Exercise 3.5: Passing Arguments Through the Wrapper Script</a></li>
-<li>Lecture: Interpreted Languages for DHTC (<a href="../materials/day2/files/osgus19-day2-part4-software-interpret.pdf">PDF</a>, <a href="../materials/day2/files/osgus19-day2-part4-software-interpret.pptx">PPT</a>)</li>
-<li><a href="day2/part4-ex1-python-built/">Exercise 2.1: Pre-packaging Python</a></li>
-<li><a href="day2/part4-ex2-python-extras/">Bonus Exercise 2.2: Python options</a></li>
-</ul>
-<h2 id="wednesday">Wednesday<a class="headerlink" href="#wednesday" title="Permanent link">&para;</a></h2>
-<h3 id="wednesday-morning-software-modules-licensing">Wednesday Morning: Software Modules, Licensing<a class="headerlink" href="#wednesday-morning-software-modules-licensing" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Lecture: Considerations for licensing and programming packages
-  (<a href="../materials/day3/files/osgus19-day3-part1-license-modules.pdf">PDF</a>, <a href="../materials/day3/files/osgus19-day3-part1-license-modules.pptx">PPT</a>)</li>
-<li><a href="day3/part1-ex1-connect-start/">Exercise 1.1: Try an OSG Connect software module</a></li>
-<li><a href="day3/part1-ex2-matlab/">Exercise 1.2: Compile and run Matlab code</a></li>
-</ul>
-<h3 id="wednesday-morning-containers">Wednesday Morning: Containers<a class="headerlink" href="#wednesday-morning-containers" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Lecture: Containers for DHTC (<a href="../materials/day3/files/osgus19-day3-part2-containers.pdf">PDF</a>, <a href="../materials/day3/files/osgus19-day3-part2-containers.pptx">PPT</a>)</li>
-<li><a href="day3/part2-ex1-singularity/">Exercise 2.1: Use Singularity from OSG Connect</a></li>
-<li><a href="day3/part2-ex2-tensorflow-singularity/">Bonus Exercise 2.2: Use Singularity to Run Tensorflow (Optional)</a></li>
-<li><a href="day3/part2-ex3-docker/">Exercise 2.3: Using Docker</a></li>
-</ul>
-<h3 id="wednesday-afternoon-on-your-own">Wednesday Afternoon: On Your Own<a class="headerlink" href="#wednesday-afternoon-on-your-own" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="../logistics/wednesday-activities/">Ideas for activities</a></li>
-</ul>
-<h2 id="thursday">Thursday<a class="headerlink" href="#thursday" title="Permanent link">&para;</a></h2>
-<h3 id="thursday-morning-data-handling">Thursday Morning: Data Handling<a class="headerlink" href="#thursday-morning-data-handling" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Lecture: Overall data considerations (<a href="../materials/day4/files/osgus19-day4-part1-overall-data.pdf">PDF</a>;<a href="../materials/day4/files/osgus19-day4-part1-overall-data.pptx">PPT</a>)</li>
-<li><a href="day4/part1-ex1-data-needs/">Exercise 1.1: Understanding your data requirements</a></li>
-<li><a href="day4/part1-ex2-file-transfer/">Exercise 1.2: HTCondor file transfer and compression</a></li>
-<li><a href="day4/part1-ex3-blast-split/">Exercise 1.3: Splitting large input data</a></li>
-</ul>
-<h3 id="thursday-morning-data-handling-continued">Thursday Morning: Data Handling (continued)<a class="headerlink" href="#thursday-morning-data-handling-continued" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Lecture: Solutions for large input data (<a href="../materials/day4/files/osgus19-day4-part2-large-input.pdf">PDF</a>;
-  <a href="../materials/day4/files/osgus19-day4-part2-large-input.pptx">PPT</a>)</li>
-<li><a href="day4/part2-ex1-blast-proxy/">Exercise 2.1: Using a web proxy for large, shared input</a></li>
-<li><a href="day4/part2-ex2-stashcache-shared/">Exercise 2.2: Using StashCache for large, shared input</a></li>
-<li><a href="day4/part2-ex3-stashcache-unique/">Exercise 2.3: Using StashCache for large, unique input</a></li>
-</ul>
-<h3 id="thursday-afternoon-data-handling-continued">Thursday Afternoon: Data Handling (continued)<a class="headerlink" href="#thursday-afternoon-data-handling-continued" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Lecture: Large output and shared file systems; Data summary (<a href="../materials/day4/files/osgus19-day4-part3-output-shared-fs.pdf">PDF</a>;<a href="../materials/day4/files/osgus19-day4-part3-output-shared-fs.pptx">PPT</a>)</li>
-<li><a href="day4/part3-ex1-input/">Exercise 3.1: Using a local shared filesystem for large input files</a></li>
-<li><a href="day4/part3-ex2-output/">Exercise 3.2: Using a local shared filesystem for large output files</a></li>
-</ul>
-<h3 id="thursday-afternoon-automating-workflows-with-htcondors-dagman">Thursday Afternoon: Automating Workflows with HTCondor's DAGMan<a class="headerlink" href="#thursday-afternoon-automating-workflows-with-htcondors-dagman" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Lecture: HTCondor DAGMan for Workflows (<a href="../materials/day4/files/osgus19-day4-part4-dagman.pdf">PDF</a>;<a href="../materials/day4/files/osgus19-day4-part4-dagman.pptx">PPT</a>)</li>
-<li><a href="day4/part4-ex1-simple-dag/">Exercise 4.1: Coordinating set of jobs: A simple DAG</a></li>
-<li><a href="day4/part4-ex2-mandelbrot/">Exercise 4.2: A brief detour through the Mandelbrot set</a></li>
-<li><a href="day4/part4-ex3-complex-dag/">Exercise 4.3: A more complex DAG</a></li>
-<li><a href="day4/part4-ex4-failed-dag/">Exercise 4.4: Handling jobs that fail with DAGMan</a></li>
-<li><a href="day4/part4-ex5-challenges/">Bonus Exercise 4.5: HTCondor challenges</a> (If and only if you have time)</li>
-</ul>
-<h2 id="friday">Friday<a class="headerlink" href="#friday" title="Permanent link">&para;</a></h2>
-<h3 id="friday-morning-from-science-to-production-workflows">Friday Morning: From Science to Production Workflows<a class="headerlink" href="#friday-morning-from-science-to-production-workflows" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Lecture: Optimizing Your Computing (<a href="../materials/day5/files/osgus19-day5-part1-real-workflows.pdf">PDF</a>, <a href="../materials/day5/files/osgus19-day5-part1-real-workflows.pptx">PPT</a>)</li>
-<li><a href="day5/part1-ex1-science-intro/">Exercise 1.1: Learn about Joe’s Desired Computing Work</a></li>
-<li><a href="day5/part1-ex2-plan-workflow/">Exercise 1.2: Plan Overall Workflow</a></li>
-</ul>
-<h3 id="friday-morning-from-science-to-production-workflows_1">Friday Morning: From Science to Production Workflows<a class="headerlink" href="#friday-morning-from-science-to-production-workflows_1" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Lecture: Putting It All Together, Optimizing Workflows (<a href="../materials/day5/files/osgus19-day5-part2-production-workflows.pdf">PDF</a>, <a href="../materials/day5/files/osgus19-day5-part2-production-workflows.pptx">PPT</a>)</li>
-<li><a href="day5/part2-ex1-execute-workflow/">Exercise 1.3: Execute Joe’s Workflow</a></li>
-<li><a href="day5/part2-ex2-workflow-tuning/">Bonus Exercise 1.4: Further Optimization and Scaling</a></li>
-</ul>
-<h3 id="friday-afternoon-htc-showcase">Friday Afternoon: HTC Showcase<a class="headerlink" href="#friday-afternoon-htc-showcase" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Talk: <a href="http://carolynbvoter.weebly.com/">Carolyn Voter</a>, Civil and Environmental Engineering:
-  <em>High Throughput Computing in Your Backyard: Urban Hydrology Applications</em> (<a href="../materials/day5/files/osgus19-day5-part3-showcase1-cvoter.pdf">PDF</a>, <a href="../materials/day5/files/osgus19-day5-part3-showcase1-cvoter.pptx">PPTX</a>)</li>
-<li>Talk: <a href="https://arc.psych.wisc.edu/staff/santana-sarah/">Sarah Sant'ana</a>, Pscyhology:
-  <em>Using HTC to Understand and Communicate Appropriate Uses of Cross-Validation in Psychological Science</em> (<a href="../materials/day5/files/osgus19-day5-part3-showcase2-santana.pdf">PDF</a>)</li>
-<li>Talk: <a href="https://brarlab.physics.wisc.edu/">Joel Siegel</a>, Physics:
-  <em>A Self-Stabilizing Metasurface Laser Sail to Explore the Stars</em>
-  (<a href="../materials/day5/files/osgus19-day5-part3-showcase3-siegel.pdf">PDF</a>, <a href="../materials/day5/files/osgus19-day5-part3-showcase3-siegel.pptx">PPTX</a>)</li>
-<li>Talk: <a href="https://botany.wisc.edu/staff/spalding-edgar-p/">Edgar Spalding</a>, Botany:
-  <em>Measuring Plant Phenotypes with High Throughput Computing</em> (<a href="../materials/day5/files//materials/day5/files/osgus19-day5-part3-showcase4-spalding.pdf">PDF</a>, <a href="../materials/day5/files//materials/day5/files/osgus19-day5-part3-showcase4-spalding.pptx">PPTX</a>)</li>
-</ul>
-<h3 id="friday-afternoon-foundations-of-htc">Friday Afternoon: Foundations of HTC<a class="headerlink" href="#friday-afternoon-foundations-of-htc" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Lecture: The Principles of HTC (<a href="../materials/day5/files/osgus19-day5-part4-principles.pdf">PDF</a>)</li>
-</ul>
-<h3 id="friday-afternoon-wrap-up">Friday Afternoon: Wrap Up<a class="headerlink" href="#friday-afternoon-wrap-up" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Lecture: Where to Go and What to Do Next (<a href="../materials/day5/files/osgus19-day5-part5-whats-next.pdf">PDF</a>)</li>
-</ul>
-
-  <br>
-    
-
-  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
-    
-    <div class="wm-article-nav pull-right">
-      <a href="day1/part1-ex1-login/" class="btn btn-xs btn-default pull-right">
-        Next
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </a>
-      <a href="day1/part1-ex1-login/" class="btn btn-xs btn-link">
-        Exercise 1.1
-      </a>
-    </div>
-    
-    <div class="wm-article-nav">
-      <a href="../curriculum/assignment/" class="btn btn-xs btn-default pull-left">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../curriculum/assignment/" class="btn btn-xs btn-link">
-        Final assignment
-      </a>
-    </div>
-    
-  </div>
-
-    <br>
-</div>
-
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
-</footer>
-
-</body>
+<html>             
+    <head>
+        <meta http-equiv="refresh" content="0; url='https://osg-htc.org/user-school-2019/materials/index.html'" />
+    </head>
+    <body>
+        <h2 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">This page has been moved to our new domain! ( osg-htc.org ). Please wait well we redirect you. </h2>
+        <p style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+            Click link to new domain if redirect does not fire: <a href="https://osg-htc.org/user-school-2019/materials/index.html">https://osg-htc.org/user-school-2019/materials/index.html</a>
+        </p>
+        <div style="display: flex; width: 100%; padding-top: 60px;">
+            <div style="width: 80%; max-width: 600px; margin-right: auto; margin-left: auto">
+                <svg style="height: auto; width: 100%" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 336.3 223.7" style="enable-background:new 0 0 336.3 223.7;" xml:space="preserve">
+            <style type="text/css">
+                .st0{fill:#F08231;}
+                .st1{fill:#F1A52B;}
+                .st2{fill:#FDCB26;}
+            </style>
+            <path class="st0" d="M122.9,178.8c13.5,0,21.4,9.9,21.4,22.6c0,12.4-7.9,22.3-21.4,22.3s-21.4-9.9-21.4-22.3
+                C101.5,188.7,109.4,178.8,122.9,178.8 M122.9,215.8c8.6,0,11.9-7.2,11.9-14.4c0-7.5-3.2-14.7-11.9-14.7s-11.8,7.2-11.8,14.7
+                C111.1,208.6,114.3,215.8,122.9,215.8"/>
+            <path class="st0" d="M158.5,208.4c0,5.7,4.5,7.9,9.6,7.9c3.4,0,8.5-1,8.5-5.3c0-4.6-6.5-5.4-12.9-7.1s-13-4.1-13-12.2
+                c0-8.8,8.4-13,16.3-13c9.1,0,17.5,3.9,17.5,13.8h-9.2c-0.3-5.2-4-6.5-8.6-6.5c-3,0-6.6,1.3-6.6,4.9c0,3.3,2.1,3.7,13,6.5
+                c3.2,0.8,12.9,2.8,12.9,12.5c0,7.9-6.3,13.8-18.1,13.8c-9.6,0-18.7-4.7-18.6-15.3L158.5,208.4z"/>
+            <path class="st0" d="M223.8,217.8c-2.8,3.8-7.3,5.9-12,5.9c-13.5,0-21.4-9.9-21.4-22.3c0-12.7,7.9-22.6,21.4-22.6
+                c8.9,0,17.3,5.4,18.4,15.1H221c-1.1-4.8-4.7-7.2-9.2-7.2c-8.6,0-11.9,7.2-11.9,14.7c0,7.1,3.2,14.4,11.9,14.4
+                c6.2,0,9.8-3.3,10.4-9.2h-9.6v-7h18.3v23.2h-6.1L223.8,217.8z"/>
+            <path class="st0" d="M168.2,58.4L0,113.2L168.2,168l168.2-54.8L168.2,58.4z M27.8,111.3l140.4-45.7l140.3,45.7L168.2,157L27.8,111.3
+                z"/>
+            <path class="st1" d="M168.2,29.2L0,84l168.2,54.8L336.4,84L168.2,29.2z M27.8,82.1l140.4-45.7l140.3,45.7l-140.3,45.7L27.8,82.1z"/>
+            <path class="st2" d="M168.2,0L0,54.8l168.2,54.8l168.1-54.8L168.2,0z M27.8,52.9L168.2,7.2l140.3,45.7L168.2,98.6L27.8,52.9z"/>
+        </svg>
+            </div>
+        </div>
+    </body>
 </html>
+    

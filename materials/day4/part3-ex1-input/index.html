@@ -1,189 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  
-  
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
-    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day4/part3-ex1-input/">
-    <link rel="shortcut icon" href="../../../img/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>Exercise 3.1 - OSG User School 2019</title>
-    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
-    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
-    <link href="../../../css/base.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/highlight.css">
-    <link href="../../../css/extra.css" rel="stylesheet">
-    <link href="../../../css/codehilite.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-
-    <script src="../../../js/jquery-3.2.1.min.js"></script>
-    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
-    <script src="../../../js/highlight.pack.js"></script>
-    
-    <base target="_top">
-    <script>
-      var base_url = '../../..';
-      var is_top_frame = false;
-        
-        var pageToc = [
-          {title: "Thursday Exercise 3.1: Large Input Data", url: "#_top", children: [
-              {title: "Background", url: "#background" },
-              {title: "Accessing the Filesystem", url: "#accessing-the-filesystem" },
-              {title: "Previous Files", url: "#previous-files" },
-              {title: "Ch-ch-ch-changes", url: "#ch-ch-ch-changes" },
-              {title: "Initial Job", url: "#initial-job" },
-              {title: "Multiple jobs", url: "#multiple-jobs" },
-          ]},
-        ];
-
-    </script>
-    <script src="../../../js/base.js"></script> 
-</head>
-
-<body>
-<script>
-if (is_top_frame) { $('body').addClass('wm-top-page'); }
-</script>
-
-
-
-<div class="container-fluid wm-page-content">
-  <a name="_top"></a>
-    
-
-    <h1 id="thursday-exercise-31-large-input-data">Thursday Exercise 3.1: Large Input Data<a class="headerlink" href="#thursday-exercise-31-large-input-data" title="Permanent link">&para;</a></h1>
-<p>In this exercise, we will do a similar version of the <a href="../part2-ex3-stashcache-unique/">previous exercise</a>.
-This exercise should take 10-15 minutes.</p>
-<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
-<p>In the previous exercises, we used two "web-based" tools to stage and deliver our files to jobs:
-<a href="../part2-ex1-blast-proxy/">the web proxy</a>  and <a href="../part2-ex2-stashcache-shared/">Stash</a>.
-Another alternative for handling large files (both input and output), especially if they are unique to each job, is a
-local shared filesystem.
-This is a filesystem that all (or most) of the execute servers can access, so data stored there can be copied to the job
-from that system instead of as a transfer or download.</p>
-<p>For this example, we'll be submitting the same jobs as the <a href="../part2-ex3-stashcache-unique/">previous exercise</a>,
-but we will stage our data in a shared filesystem local to CHTC.
-The name of our shared filesystem is Gluster and user directories are found as sub-directories  of the path <code>/mnt/gluster</code>.
-This is just one example of what it can look like to use a shared filesystem.
-If you are running jobs at your own institution, the shared filesystem and how to access it may be different.</p>
-<h2 id="accessing-the-filesystem">Accessing the Filesystem<a class="headerlink" href="#accessing-the-filesystem" title="Permanent link">&para;</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Running on <code>learn.chtc.wisc.edu</code></p>
-<p>For these next 2 exercises, we will be using <strong><code>learn.chtc.wisc.edu</code></strong>.</p>
-</div>
-<p>Because our shared filesystem is <strong>only</strong> available on the local CHTC HTCondor pool, you'll need to log into our local
-submit server, <strong><code>learn.chtc.wisc.edu</code></strong>.</p>
-<p>Once you've logged in, navigate to your Gluster directory.
-It should be at the location <code>/mnt/gluster/&lt;USERNAME&gt;</code>, where <code>&lt;USERNAME&gt;</code> is your username on <code>learn.chtc.wisc.edu</code>.</p>
-<h2 id="previous-files">Previous Files<a class="headerlink" href="#previous-files" title="Permanent link">&para;</a></h2>
-<h3 id="data">Data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h3>
-<p>Like the previous example, we'll start by downloading our source movie files into the Gluster directory.
-Run this command <strong>in your Gluster directory</strong>, <code>/mnt/gluster/&lt;USERNAME&gt;</code>.</p>
-<div class="codehilite"><pre><span></span><span class="gp">user@learn $</span> wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/videos.tar.gz
-</pre></div>
-
-
-<p>While the files are copying, feel free to open a second connection to <code>learn.chtc.wisc.edu</code> and follow the instructions below.
-Once the files have finished downloading, untar them.</p>
-<h3 id="software-executable-submit-file">Software, Executable, Submit File<a class="headerlink" href="#software-executable-submit-file" title="Permanent link">&para;</a></h3>
-<p>Because these jobs will be similar to the previous exercise, we can copy the software (<code>ffmpeg</code>), our executable
-(<code>run_ffmpeg.sh</code>) and submit file from <code>training.osgconnect.net</code> to <code>learn.chtc.wisc.edu</code>, or, feel free to replicate
-these by following the instructions in the <a href="../part2-ex3-stashcache-unique/">previous exercise</a>.
-These files should go into a sub-directory of your <strong>home</strong> directory, <strong>not your Gluster directory</strong>.</p>
-<h2 id="ch-ch-ch-changes">Ch-ch-ch-changes<a class="headerlink" href="#ch-ch-ch-changes" title="Permanent link">&para;</a></h2>
-<p>What changes will we need to make to our previous job submission in order to submit it in CHTC, using the Gluster
-location?
-Read on.</p>
-<h3 id="script">Script<a class="headerlink" href="#script" title="Permanent link">&para;</a></h3>
-<p>The major actions of our script will be the same:</p>
-<ol>
-<li><strong>Copy</strong> the movie file to the job's current working directory,</li>
-<li><strong>Run</strong> the appropriate <code>ffmpeg</code> command</li>
-<li><strong>Remove</strong> the original movie file.</li>
-</ol>
-<p>The main difference is that the <code>mov</code> file will be copied from  your Gluster directory instead of being downloaded from
-Stash.
-Like before, your script should remove  that file before the job completes so that it doesn't get transferred back to
-the submit server.</p>
-<ol>
-<li>
-<p>Remove the lines in the <code>run_ffmpeg.sh</code> that mention <code>module load</code>.</p>
-</li>
-<li>
-<p>Remove the <code>stashcp</code> line</p>
-</li>
-<li>
-<p>Change the first command of your <code>run_ffmpeg.sh</code> script to only copy one <code>.mov</code> file: </p>
-<div class="codehilite"><pre><span></span>cp /mnt/gluster/&lt;USERNAME&gt;/test_open_terminal.mov ./
-</pre></div>
-
-
-</li>
-</ol>
-<p>You should use your username on <code>learn.chtc.wisc.edu</code> in the path above.
-If you have a version of the script that uses arguments instead of the filenames, that's okay.</p>
-<h3 id="submit-file">Submit File<a class="headerlink" href="#submit-file" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Remove any previous requirements and add a line to the file (before the final queue statement) that ensures your job
-    will land on computers that have access to Gluster: <div class="codehilite"><pre><span></span>requirements = (Target.HasGluster == true)
-</pre></div>
-
-
-</li>
-</ol>
-<h2 id="initial-job">Initial Job<a class="headerlink" href="#initial-job" title="Permanent link">&para;</a></h2>
-<p>As before, we should test our job submission with a single <code>mov</code> file before submitting jobs for all three.
-Alter your submit file (if necessary) to  run a job that converts the <code>test_open_terminal.mov</code> file.</p>
-<p>Once the job finishes, check to make sure everything ran as expected:</p>
-<ol>
-<li>Check the directory where you submitted the job. Did the output <code>.mp4</code> file return?</li>
-<li>Also in the directory where you submitted the job - did the original <code>.mov</code> file return here accidentally?</li>
-<li>Check file sizes. How big is the returned <code>.mp4</code> file? How does that compare to the original <code>.mov</code> input?</li>
-</ol>
-<p>If your job successfully returned the converted <code>.mp4</code> file and <strong>not</strong> the <code>.mov</code> file to the submit server, and the
-<code>.mp4</code> file was appropriately scaled down, then our script did what it should have.</p>
-<h2 id="multiple-jobs">Multiple jobs<a class="headerlink" href="#multiple-jobs" title="Permanent link">&para;</a></h2>
-<p>Change your submit file as in the previous exercise in order to submit 3 jobs to convert all three files!</p>
-
-  <br>
-    
-
-  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
-    
-    <div class="wm-article-nav pull-right">
-      <a href="../part3-ex2-output/" class="btn btn-xs btn-default pull-right">
-        Next
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </a>
-      <a href="../part3-ex2-output/" class="btn btn-xs btn-link">
-        Exercise 3.2
-      </a>
-    </div>
-    
-    <div class="wm-article-nav">
-      <a href="../part2-ex3-stashcache-unique/" class="btn btn-xs btn-default pull-left">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../part2-ex3-stashcache-unique/" class="btn btn-xs btn-link">
-        Exercise 2.3
-      </a>
-    </div>
-    
-  </div>
-
-    <br>
-</div>
-
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
-</footer>
-
-</body>
+<html>             
+    <head>
+        <meta http-equiv="refresh" content="0; url='https://osg-htc.org/user-school-2019/materials/day4/part3-ex1-input/index.html'" />
+    </head>
+    <body>
+        <h2 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">This page has been moved to our new domain! ( osg-htc.org ). Please wait well we redirect you. </h2>
+        <p style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+            Click link to new domain if redirect does not fire: <a href="https://osg-htc.org/user-school-2019/materials/day4/part3-ex1-input/index.html">https://osg-htc.org/user-school-2019/materials/day4/part3-ex1-input/index.html</a>
+        </p>
+        <div style="display: flex; width: 100%; padding-top: 60px;">
+            <div style="width: 80%; max-width: 600px; margin-right: auto; margin-left: auto">
+                <svg style="height: auto; width: 100%" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 336.3 223.7" style="enable-background:new 0 0 336.3 223.7;" xml:space="preserve">
+            <style type="text/css">
+                .st0{fill:#F08231;}
+                .st1{fill:#F1A52B;}
+                .st2{fill:#FDCB26;}
+            </style>
+            <path class="st0" d="M122.9,178.8c13.5,0,21.4,9.9,21.4,22.6c0,12.4-7.9,22.3-21.4,22.3s-21.4-9.9-21.4-22.3
+                C101.5,188.7,109.4,178.8,122.9,178.8 M122.9,215.8c8.6,0,11.9-7.2,11.9-14.4c0-7.5-3.2-14.7-11.9-14.7s-11.8,7.2-11.8,14.7
+                C111.1,208.6,114.3,215.8,122.9,215.8"/>
+            <path class="st0" d="M158.5,208.4c0,5.7,4.5,7.9,9.6,7.9c3.4,0,8.5-1,8.5-5.3c0-4.6-6.5-5.4-12.9-7.1s-13-4.1-13-12.2
+                c0-8.8,8.4-13,16.3-13c9.1,0,17.5,3.9,17.5,13.8h-9.2c-0.3-5.2-4-6.5-8.6-6.5c-3,0-6.6,1.3-6.6,4.9c0,3.3,2.1,3.7,13,6.5
+                c3.2,0.8,12.9,2.8,12.9,12.5c0,7.9-6.3,13.8-18.1,13.8c-9.6,0-18.7-4.7-18.6-15.3L158.5,208.4z"/>
+            <path class="st0" d="M223.8,217.8c-2.8,3.8-7.3,5.9-12,5.9c-13.5,0-21.4-9.9-21.4-22.3c0-12.7,7.9-22.6,21.4-22.6
+                c8.9,0,17.3,5.4,18.4,15.1H221c-1.1-4.8-4.7-7.2-9.2-7.2c-8.6,0-11.9,7.2-11.9,14.7c0,7.1,3.2,14.4,11.9,14.4
+                c6.2,0,9.8-3.3,10.4-9.2h-9.6v-7h18.3v23.2h-6.1L223.8,217.8z"/>
+            <path class="st0" d="M168.2,58.4L0,113.2L168.2,168l168.2-54.8L168.2,58.4z M27.8,111.3l140.4-45.7l140.3,45.7L168.2,157L27.8,111.3
+                z"/>
+            <path class="st1" d="M168.2,29.2L0,84l168.2,54.8L336.4,84L168.2,29.2z M27.8,82.1l140.4-45.7l140.3,45.7l-140.3,45.7L27.8,82.1z"/>
+            <path class="st2" d="M168.2,0L0,54.8l168.2,54.8l168.1-54.8L168.2,0z M27.8,52.9L168.2,7.2l140.3,45.7L168.2,98.6L27.8,52.9z"/>
+        </svg>
+            </div>
+        </div>
+    </body>
 </html>
+    

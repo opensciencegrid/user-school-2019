@@ -1,180 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  
-  
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
-    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day4/part3-ex2-output/">
-    <link rel="shortcut icon" href="../../../img/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>Exercise 3.2 - OSG User School 2019</title>
-    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
-    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
-    <link href="../../../css/base.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/highlight.css">
-    <link href="../../../css/extra.css" rel="stylesheet">
-    <link href="../../../css/codehilite.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-
-    <script src="../../../js/jquery-3.2.1.min.js"></script>
-    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
-    <script src="../../../js/highlight.pack.js"></script>
-    
-    <base target="_top">
-    <script>
-      var base_url = '../../..';
-      var is_top_frame = false;
-        
-        var pageToc = [
-          {title: "Thursday Exercise 3.2: Large Output Data", url: "#_top", children: [
-              {title: "Background", url: "#background" },
-              {title: "The Program", url: "#the-program" },
-              {title: "Test Job", url: "#test-job" },
-              {title: "Final Job", url: "#final-job" },
-          ]},
-        ];
-
-    </script>
-    <script src="../../../js/base.js"></script> 
-</head>
-
-<body>
-<script>
-if (is_top_frame) { $('body').addClass('wm-top-page'); }
-</script>
-
-
-
-<div class="container-fluid wm-page-content">
-  <a name="_top"></a>
-    
-
-    <h1 id="thursday-exercise-32-large-output-data">Thursday Exercise 3.2: Large Output Data<a class="headerlink" href="#thursday-exercise-32-large-output-data" title="Permanent link">&para;</a></h1>
-<p>In this exercise, we will run a job that produces a very large output file, based on a few parameters.
-This exercise should take 15-20 minutes.</p>
-<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
-<p>This exercise will be the reverse of the previous exercise!
-Instead of large input/small output, we will be using a program that has no input except for a few arguments on the
-command line, but produces a file that is several GB in size.
-As before, we will need to write a shell script that runs the program and handles the data.</p>
-<h2 id="the-program">The Program<a class="headerlink" href="#the-program" title="Permanent link">&para;</a></h2>
-<p>If you haven't already, log in to <code>learn.chtc.wisc.edu</code>. Download the software package and untar it.</p>
-<div class="codehilite"><pre><span></span><span class="gp">user@learn $</span> wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/motif-flanks.tar.gz
-<span class="gp">user@learn $</span> tar -xzf motif-flanks.tar.gz
-</pre></div>
-
-
-<p>Use the <code>cd</code> command to enter the unpacked <code>motif-flanks</code> directory.
-Take a look at the <code>README</code> file and then do the following:</p>
-<ol>
-<li>Compile the code. </li>
-<li>Run the program without any arguments. </li>
-<li>Based on the <code>README</code>, what is the largest amount of data we might expect?</li>
-</ol>
-<p>This program generates all permutations of nucleotide sequences surrounding a given DNA motif.
-We can choose the length of permutation we want both before and after a motif of our choice.
-To use this program on the command line and save the output to a <code>FASTA</code> file, we can use the command:</p>
-<div class="codehilite"><pre><span></span><span class="gp">user@learn $</span> ./motif-flanks <span class="m">2</span> AGTTCATGCCT <span class="m">2</span> &gt; sequences.fa
-</pre></div>
-
-
-<p>According to the usage information and README, the two numerical arguments can add up to 13, at most, and the middle
-sequence can be any  DNA sequence up to 20 characters.
-The largest output we can expect is around 4 GB.</p>
-<h2 id="test-job">Test Job<a class="headerlink" href="#test-job" title="Permanent link">&para;</a></h2>
-<p>Having output of up to 4 GB means two things: we will want to run a smaller test before we run the program at its peak,
-and the output data will need to go into a shared location like Gluster, instead of returning to the submit server.</p>
-<p>First, we'll create a shell script to serve as the job's executable.</p>
-<ol>
-<li>What commands do you need to put in the script?
-    What do you need to do with the <code>sequences.fa</code> file before the job exits?</li>
-<li>Our script needs to run the <code>motif-flanks</code> command as shown above, redirecting the output to a file called <code>sequences.fa</code>.
-    Then, after that command completes, the <code>sequences.fa</code> file should be moved to your Gluster directory, as it is too
-    large to return to the submit server as usual.</li>
-<li>
-<p>Write the script and then check it against the script below. Yours might look slightly different. </p>
-<div class="codehilite"><pre><span></span>#!/bin/sh
-
-./motif-flanks 4 GATTTTCGATC 4 &gt; sequences.fa
-mv sequences.fa /mnt/gluster/&lt;USERNAME&gt;
-</pre></div>
-
-
-<p>Replacing <code>&lt;USERNAME&gt;</code> with your own username.</p>
-</li>
-</ol>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Note that the two arguments in the script (4 and 4) are much smaller than the total possible for the software
-(two values that add up to 13).
-This is because we want to run a smaller test before submitting a job with the largest possible combination of arguments.</p>
-</div>
-<p>Next, create a submit file for this job, based on other submit files from the school.
-Some important considerations:</p>
-<ol>
-<li>We're writing our file to the job's working directory, so make sure to request several GB of disk space.</li>
-<li>Add a line to the file that ensures your job will land on computers that have access to Gluster
-    (see the file from the <a href="../part3-ex1-input/">last exercise</a>).</li>
-<li>The <code>executable</code> will be the script you wrote above.</li>
-</ol>
-<p>Once you have a submit file that does all these things, submit the test job.</p>
-<p>Once the job has completed, do the following:</p>
-<ol>
-<li>Check the directory where you submitted the job. Has the <code>sequences.fa</code> file returned there, accidentally?</li>
-<li>Check your Gluster directory. Did the <code>sequences.fa</code> file get copied there successfully?</li>
-<li>Check file size. How big is the <code>sequences.fa</code> file? You can use the <code>ls -lh</code> command with the filename to find out.</li>
-</ol>
-<p>If your job successfully copied the <code>sequences.fa</code> file to Gluster and did <strong>not</strong> return it to your submission
-directory on the submit server, congratulations!
-Everything is working as it should and you can now submit a full job.</p>
-<h2 id="final-job">Final Job<a class="headerlink" href="#final-job" title="Permanent link">&para;</a></h2>
-<p>Having done a test, it should be straightforward to run a "full scale" job.
-Edit your <code>run_motif.sh</code> executable so that the <code>motif-flanks</code> command  uses larger numerical arguments:</p>
-<div class="codehilite"><pre><span></span>./motif-flanks 6 GATTTTCGATC 7 &gt; sequences.fa
-</pre></div>
-
-
-<p>Then submit your job. When it completes, check the size of the output file in Gluster.</p>
-
-  <br>
-    
-
-  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
-    
-    <div class="wm-article-nav pull-right">
-      <a href="../part4-ex1-simple-dag/" class="btn btn-xs btn-default pull-right">
-        Next
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </a>
-      <a href="../part4-ex1-simple-dag/" class="btn btn-xs btn-link">
-        Exercise 4.1
-      </a>
-    </div>
-    
-    <div class="wm-article-nav">
-      <a href="../part3-ex1-input/" class="btn btn-xs btn-default pull-left">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../part3-ex1-input/" class="btn btn-xs btn-link">
-        Exercise 3.1
-      </a>
-    </div>
-    
-  </div>
-
-    <br>
-</div>
-
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
-</footer>
-
-</body>
+<html>             
+    <head>
+        <meta http-equiv="refresh" content="0; url='https://osg-htc.org/user-school-2019/materials/day4/part3-ex2-output/index.html'" />
+    </head>
+    <body>
+        <h2 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">This page has been moved to our new domain! ( osg-htc.org ). Please wait well we redirect you. </h2>
+        <p style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+            Click link to new domain if redirect does not fire: <a href="https://osg-htc.org/user-school-2019/materials/day4/part3-ex2-output/index.html">https://osg-htc.org/user-school-2019/materials/day4/part3-ex2-output/index.html</a>
+        </p>
+        <div style="display: flex; width: 100%; padding-top: 60px;">
+            <div style="width: 80%; max-width: 600px; margin-right: auto; margin-left: auto">
+                <svg style="height: auto; width: 100%" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 336.3 223.7" style="enable-background:new 0 0 336.3 223.7;" xml:space="preserve">
+            <style type="text/css">
+                .st0{fill:#F08231;}
+                .st1{fill:#F1A52B;}
+                .st2{fill:#FDCB26;}
+            </style>
+            <path class="st0" d="M122.9,178.8c13.5,0,21.4,9.9,21.4,22.6c0,12.4-7.9,22.3-21.4,22.3s-21.4-9.9-21.4-22.3
+                C101.5,188.7,109.4,178.8,122.9,178.8 M122.9,215.8c8.6,0,11.9-7.2,11.9-14.4c0-7.5-3.2-14.7-11.9-14.7s-11.8,7.2-11.8,14.7
+                C111.1,208.6,114.3,215.8,122.9,215.8"/>
+            <path class="st0" d="M158.5,208.4c0,5.7,4.5,7.9,9.6,7.9c3.4,0,8.5-1,8.5-5.3c0-4.6-6.5-5.4-12.9-7.1s-13-4.1-13-12.2
+                c0-8.8,8.4-13,16.3-13c9.1,0,17.5,3.9,17.5,13.8h-9.2c-0.3-5.2-4-6.5-8.6-6.5c-3,0-6.6,1.3-6.6,4.9c0,3.3,2.1,3.7,13,6.5
+                c3.2,0.8,12.9,2.8,12.9,12.5c0,7.9-6.3,13.8-18.1,13.8c-9.6,0-18.7-4.7-18.6-15.3L158.5,208.4z"/>
+            <path class="st0" d="M223.8,217.8c-2.8,3.8-7.3,5.9-12,5.9c-13.5,0-21.4-9.9-21.4-22.3c0-12.7,7.9-22.6,21.4-22.6
+                c8.9,0,17.3,5.4,18.4,15.1H221c-1.1-4.8-4.7-7.2-9.2-7.2c-8.6,0-11.9,7.2-11.9,14.7c0,7.1,3.2,14.4,11.9,14.4
+                c6.2,0,9.8-3.3,10.4-9.2h-9.6v-7h18.3v23.2h-6.1L223.8,217.8z"/>
+            <path class="st0" d="M168.2,58.4L0,113.2L168.2,168l168.2-54.8L168.2,58.4z M27.8,111.3l140.4-45.7l140.3,45.7L168.2,157L27.8,111.3
+                z"/>
+            <path class="st1" d="M168.2,29.2L0,84l168.2,54.8L336.4,84L168.2,29.2z M27.8,82.1l140.4-45.7l140.3,45.7l-140.3,45.7L27.8,82.1z"/>
+            <path class="st2" d="M168.2,0L0,54.8l168.2,54.8l168.1-54.8L168.2,0z M27.8,52.9L168.2,7.2l140.3,45.7L168.2,98.6L27.8,52.9z"/>
+        </svg>
+            </div>
+        </div>
+    </body>
 </html>
+    

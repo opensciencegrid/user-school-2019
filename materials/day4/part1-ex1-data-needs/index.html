@@ -1,265 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  
-  
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
-    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day4/part1-ex1-data-needs/">
-    <link rel="shortcut icon" href="../../../img/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>Exercise 1.1 - OSG User School 2019</title>
-    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
-    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
-    <link href="../../../css/base.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/highlight.css">
-    <link href="../../../css/extra.css" rel="stylesheet">
-    <link href="../../../css/codehilite.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-
-    <script src="../../../js/jquery-3.2.1.min.js"></script>
-    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
-    <script src="../../../js/highlight.pack.js"></script>
-    
-    <base target="_top">
-    <script>
-      var base_url = '../../..';
-      var is_top_frame = false;
-        
-        var pageToc = [
-          {title: "Thursday Exercise 1.1: Understanding Data Requirements", url: "#_top", children: [
-              {title: "Setup", url: "#setup" },
-              {title: "Understanding BLAST", url: "#understanding-blast" },
-              {title: "Calculating Data Needs", url: "#calculating-data-needs" },
-              {title: "Talk about this as a group!", url: "#talk-about-this-as-a-group" },
-              {title: "Answers", url: "#answers" },
-              {title: "Up next!", url: "#up-next" },
-          ]},
-        ];
-
-    </script>
-    <script src="../../../js/base.js"></script> 
-</head>
-
-<body>
-<script>
-if (is_top_frame) { $('body').addClass('wm-top-page'); }
-</script>
-
-
-
-<div class="container-fluid wm-page-content">
-  <a name="_top"></a>
-    
-
-    <h1 id="thursday-exercise-11-understanding-data-requirements">Thursday Exercise 1.1: Understanding Data Requirements<a class="headerlink" href="#thursday-exercise-11-understanding-data-requirements" title="Permanent link">&para;</a></h1>
-<p>This exercise's goal is to learn to think critically about an application's data needs, especially before submitting a
-large batch of jobs or using tools for delivering large data to jobs.
-In this exercise we will attempt to understand the input and output of the bioinformatics application
-<a href="http://blast.ncbi.nlm.nih.gov/">BLAST</a>, which you used in <a href="../../day2/part3-ex3-wrapper/">Tuesday's exercise 3.3</a>.</p>
-<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Log in to <code>training.osgconnect.net</code></li>
-<li>
-<p>Navigate to your local scratch directory:</p>
-<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> <span class="nb">cd</span> /local-scratch2/&lt;USERNAME&gt;
-</pre></div>
-
-
-<p>Replacing <code>&lt;USERNAME&gt;</code> with your username</p>
-</li>
-<li>
-<p>Create a directory for this exercise named <code>thur-blast-data</code> and change into it</p>
-</li>
-</ol>
-<h3 id="copy-the-input-files">Copy the Input Files<a class="headerlink" href="#copy-the-input-files" title="Permanent link">&para;</a></h3>
-<p>To run BLAST, we need the executable, input file, and reference database.
-For this example, we'll use the "pdbaa" database, which contains sequences for the protein structure from the Protein
-Data Bank.
-For our input file, we'll use an abbreviated fasta file with mouse genome information.</p>
-<ol>
-<li>
-<p>Copy the BLAST executables:</p>
-<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/ncbi-blast-2.7.1+-x64-linux.tar.gz
-<span class="gp">user@training $</span> tar -xzvf ncbi-blast-2.7.1+-x64-linux.tar.gz
-</pre></div>
-
-
-</li>
-<li>
-<p>Download these files to your current directory:</p>
-<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/pdbaa.tar.gz
-<span class="gp">user@training $</span> wget http://proxy.chtc.wisc.edu/SQUID/osgschool19/mouse.fa
-</pre></div>
-
-
-</li>
-<li>
-<p>Untar the <code>pdbaa</code> database:</p>
-<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> tar -xzvf pdbaa.tar.gz
-</pre></div>
-
-
-</li>
-</ol>
-<h2 id="understanding-blast">Understanding BLAST<a class="headerlink" href="#understanding-blast" title="Permanent link">&para;</a></h2>
-<p>Remember that <code>blastx</code> is executed in a command like the following:</p>
-<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> ./blastx -db &lt;DATABASE ROOTNAME&gt; -query &lt;INPUT FILE&gt; -out &lt;RESULTS FILE&gt;
-</pre></div>
-
-
-<p>In the above, the <code>&lt;INPUT FILE&gt;</code> is the name of a file containing a number of genetic sequences (e.g. <code>mouse.fa</code>), and
-the database that these are compared against is made up of several files that begin with the same <code>&lt;DATABASE ROOTNAME&gt;</code>,
-(e.g. <code>pdbaa</code>).
-The output from this analysis will be printed to <code>&lt;RESULTS FILE&gt;</code> that is also indicated in the command.</p>
-<h2 id="calculating-data-needs">Calculating Data Needs<a class="headerlink" href="#calculating-data-needs" title="Permanent link">&para;</a></h2>
-<p>Using the files that you prepared in <code>thur-blast-data</code>, we will calculate how much disk space is needed if we were to
-run a hypothetical BLAST job with a wrapper script, where the job:</p>
-<ul>
-<li>Transfers all of its input files (including the executable) as tarballs</li>
-<li>Untars the input files tarballs on the execute host</li>
-<li>Runs <code>blastx</code> using the untarred input files</li>
-</ul>
-<p>If this sounds familiar to you, it's because we did just this in in
-<a href="../../../materials/day2/part3-ex3-wrapper">Tuesdays's exercise 3.3</a>!
-Here are some commands that will be useful for calculating your job's storage needs:</p>
-<ul>
-<li>
-<p>List the size of a specific file:</p>
-<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> ls -lh &lt;FILE NAME&gt;
-</pre></div>
-
-
-</li>
-<li>
-<p>List the sizes of all files in the current directory:</p>
-<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> ls -lh
-</pre></div>
-
-
-</li>
-<li>
-<p>Sum the size of all files in a specific directory:</p>
-<div class="codehilite"><pre><span></span><span class="gp">user@training $</span> du -sh &lt;DIRECTORY&gt;
-</pre></div>
-
-
-</li>
-</ul>
-<h3 id="input-requirements">Input requirements<a class="headerlink" href="#input-requirements" title="Permanent link">&para;</a></h3>
-<p>Total up the amount of data in all of the files necessary to run the <code>blastx</code> wrapper job, including the executable itself.
-Write down this number.
-Also take note of how much total data is in the <code>pdbaa</code> directory.</p>
-<div class="admonition note">
-<p class="admonition-title">Compressed Files</p>
-<p>Remember, <code>blastx</code> reads the un-compressed <code>pdbaa</code> files.</p>
-</div>
-<h3 id="output-requirements">Output requirements<a class="headerlink" href="#output-requirements" title="Permanent link">&para;</a></h3>
-<p>The output that we care about from <code>blastx</code> is saved in the file whose name is indicated after the <code>-out</code> argument to
-<code>blastx</code>.
-If you completed <a href="../../day2/part3-ex3-wrapper/">Tuesday's exercise 3.3</a>, what is the size of that output file?
-Also, remember that HTCondor also creates the error, output, and log files, which you'll need to add up, too.
-Are there any other files?
-Total all of these together, as well.</p>
-<h2 id="talk-about-this-as-a-group">Talk about this as a group!<a class="headerlink" href="#talk-about-this-as-a-group" title="Permanent link">&para;</a></h2>
-<p>Once you have completed the above tasks, we'll talk about the totals as a group.</p>
-<ul>
-<li>How much disk space is required on the submit server for one blastx run with the input files you used before?
-    (Input data)</li>
-<li>How much disk space is required on the worker node? (uncompressed + output data)</li>
-<li>How <em>many</em> files are needed and created for each run? (Output data)</li>
-<li>How much total disk space would be necessary on the submit server to run 10 jobs?
-    (remember that some of the files will be shared by all 10 jobs, and will not be multiplied)</li>
-</ul>
-<h2 id="answers">Answers<a class="headerlink" href="#answers" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Submit server: Only compressed files needed.  Don't need uncompressed on submit server node.<ul>
-<li>pdbaa.tar.gz: 22MB</li>
-<li>blastx.tar.gz: 14MB</li>
-<li>mouse.fa.tar.gz: 104K</li>
-<li>Total: ~36MB</li>
-</ul>
-</li>
-<li>Worker Node: Compressed files + uncompressed files<ul>
-<li>pdbaa: 97MB</li>
-<li>blastx: 41MB</li>
-<li>mouse.fa: 389KB</li>
-<li>results: 11MB</li>
-<li>stdout: 0</li>
-<li>stderr: 0</li>
-<li>Compressed files: ~36MB</li>
-<li>Total: ~185MB</li>
-</ul>
-</li>
-<li>How many files are needed and created for each run?<ul>
-<li>files in pdbaa: 12</li>
-<li>blastx: 1</li>
-<li>mouse.fa: 1</li>
-<li>results: 1</li>
-<li>stdout + stderr = 2</li>
-<li>total: 17</li>
-</ul>
-</li>
-<li>Submit server with 10 jobs<ul>
-<li>Only need multiple queries, because that is what is different.</li>
-<li>so pdbaa (22MB) + blastx (14MB) + 10 * mouse.fa (104k) = ~37MB</li>
-</ul>
-</li>
-</ul>
-<!--
-## Removed 2019, not sure how users are supposed to reasonably get this info
--   Assuming that each file is read completely by BLAST, and since you know how long blastx runs (time it):
-    -   At what rate are files read in?
-    -   How many MB/s?
-- Rates:
-    - my run, and this can vary: 198 seconds
-    - 17 / 198 = 0.086 files per second (low)
-    - 149 / 198 = 0.75 MBs per second
-
--->
-
-<h2 id="up-next">Up next!<a class="headerlink" href="#up-next" title="Permanent link">&para;</a></h2>
-<p>Next you will create a HTCondor submit script to transfer the Blast input files in order to run Blast on a worker nodes.
-<a href="../part1-ex2-file-transfer/">Next Exercise</a></p>
-
-  <br>
-    
-
-  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
-    
-    <div class="wm-article-nav pull-right">
-      <a href="../part1-ex2-file-transfer/" class="btn btn-xs btn-default pull-right">
-        Next
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </a>
-      <a href="../part1-ex2-file-transfer/" class="btn btn-xs btn-link">
-        Exercise 1.2
-      </a>
-    </div>
-    
-    <div class="wm-article-nav">
-      <a href="../../day3/part2-ex3-docker/" class="btn btn-xs btn-default pull-left">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../../day3/part2-ex3-docker/" class="btn btn-xs btn-link">
-        Exercise 2.3
-      </a>
-    </div>
-    
-  </div>
-
-    <br>
-</div>
-
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
-</footer>
-
-</body>
+<html>             
+    <head>
+        <meta http-equiv="refresh" content="0; url='https://osg-htc.org/user-school-2019/materials/day4/part1-ex1-data-needs/index.html'" />
+    </head>
+    <body>
+        <h2 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">This page has been moved to our new domain! ( osg-htc.org ). Please wait well we redirect you. </h2>
+        <p style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+            Click link to new domain if redirect does not fire: <a href="https://osg-htc.org/user-school-2019/materials/day4/part1-ex1-data-needs/index.html">https://osg-htc.org/user-school-2019/materials/day4/part1-ex1-data-needs/index.html</a>
+        </p>
+        <div style="display: flex; width: 100%; padding-top: 60px;">
+            <div style="width: 80%; max-width: 600px; margin-right: auto; margin-left: auto">
+                <svg style="height: auto; width: 100%" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 336.3 223.7" style="enable-background:new 0 0 336.3 223.7;" xml:space="preserve">
+            <style type="text/css">
+                .st0{fill:#F08231;}
+                .st1{fill:#F1A52B;}
+                .st2{fill:#FDCB26;}
+            </style>
+            <path class="st0" d="M122.9,178.8c13.5,0,21.4,9.9,21.4,22.6c0,12.4-7.9,22.3-21.4,22.3s-21.4-9.9-21.4-22.3
+                C101.5,188.7,109.4,178.8,122.9,178.8 M122.9,215.8c8.6,0,11.9-7.2,11.9-14.4c0-7.5-3.2-14.7-11.9-14.7s-11.8,7.2-11.8,14.7
+                C111.1,208.6,114.3,215.8,122.9,215.8"/>
+            <path class="st0" d="M158.5,208.4c0,5.7,4.5,7.9,9.6,7.9c3.4,0,8.5-1,8.5-5.3c0-4.6-6.5-5.4-12.9-7.1s-13-4.1-13-12.2
+                c0-8.8,8.4-13,16.3-13c9.1,0,17.5,3.9,17.5,13.8h-9.2c-0.3-5.2-4-6.5-8.6-6.5c-3,0-6.6,1.3-6.6,4.9c0,3.3,2.1,3.7,13,6.5
+                c3.2,0.8,12.9,2.8,12.9,12.5c0,7.9-6.3,13.8-18.1,13.8c-9.6,0-18.7-4.7-18.6-15.3L158.5,208.4z"/>
+            <path class="st0" d="M223.8,217.8c-2.8,3.8-7.3,5.9-12,5.9c-13.5,0-21.4-9.9-21.4-22.3c0-12.7,7.9-22.6,21.4-22.6
+                c8.9,0,17.3,5.4,18.4,15.1H221c-1.1-4.8-4.7-7.2-9.2-7.2c-8.6,0-11.9,7.2-11.9,14.7c0,7.1,3.2,14.4,11.9,14.4
+                c6.2,0,9.8-3.3,10.4-9.2h-9.6v-7h18.3v23.2h-6.1L223.8,217.8z"/>
+            <path class="st0" d="M168.2,58.4L0,113.2L168.2,168l168.2-54.8L168.2,58.4z M27.8,111.3l140.4-45.7l140.3,45.7L168.2,157L27.8,111.3
+                z"/>
+            <path class="st1" d="M168.2,29.2L0,84l168.2,54.8L336.4,84L168.2,29.2z M27.8,82.1l140.4-45.7l140.3,45.7l-140.3,45.7L27.8,82.1z"/>
+            <path class="st2" d="M168.2,0L0,54.8l168.2,54.8l168.1-54.8L168.2,0z M27.8,52.9L168.2,7.2l140.3,45.7L168.2,98.6L27.8,52.9z"/>
+        </svg>
+            </div>
+        </div>
+    </body>
 </html>
+    

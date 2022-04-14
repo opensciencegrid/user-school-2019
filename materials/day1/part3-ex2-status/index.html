@@ -1,204 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  
-  
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
-    <link rel="canonical" href="https://opensciencegrid.org/user-school-2019/materials/day1/part3-ex2-status/">
-    <link rel="shortcut icon" href="../../../img/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>Exercise 3.2 - OSG User School 2019</title>
-    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
-    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
-    <link href="../../../css/base.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/highlight.css">
-    <link href="../../../css/extra.css" rel="stylesheet">
-    <link href="../../../css/codehilite.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-
-    <script src="../../../js/jquery-3.2.1.min.js"></script>
-    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
-    <script src="../../../js/highlight.pack.js"></script>
-    
-    <base target="_top">
-    <script>
-      var base_url = '../../..';
-      var is_top_frame = false;
-        
-        var pageToc = [
-          {title: "Monday Exercise 3.2: Explore condor_status", url: "#_top", children: [
-              {title: "Selecting Slots", url: "#selecting-slots" },
-              {title: "Viewing a Slot ClassAd", url: "#viewing-a-slot-classad" },
-              {title: "Viewing Slots by ClassAd Expression", url: "#viewing-slots-by-classad-expression" },
-              {title: "Bonus: Formatting Output", url: "#bonus-formatting-output" },
-              {title: "References", url: "#references" },
-          ]},
-        ];
-
-    </script>
-    <script src="../../../js/base.js"></script> 
-</head>
-
-<body>
-<script>
-if (is_top_frame) { $('body').addClass('wm-top-page'); }
-</script>
-
-
-
-<div class="container-fluid wm-page-content">
-  <a name="_top"></a>
-    
-
-    <style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: \#008; } </style>
-
-<h1 id="monday-exercise-32-explore-condor_status">Monday Exercise 3.2: Explore condor_status<a class="headerlink" href="#monday-exercise-32-explore-condor_status" title="Permanent link">&para;</a></h1>
-<p>The goal of this exercise is try out some of the most common options to the <code>condor_status</code> command, so that you can view slots effectively.</p>
-<p>The main part of this exercise should take just a few minutes, but if you have more time later, come back and work on the extension ideas at the end to become a <code>condor_status</code> expert!</p>
-<h2 id="selecting-slots">Selecting Slots<a class="headerlink" href="#selecting-slots" title="Permanent link">&para;</a></h2>
-<p>The <code>condor_status</code> program has many options for selecting which slots are listed. You've already learned the basic <code>condor_status</code> and the <code>condor_status -compact</code> variation (which you may wish to retry now, before proceeding).</p>
-<p>Another convenient option is to list only those slots that are available now:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_status -avail
-</pre></div>
-
-
-<p>Of course, the individual execute machines only report their slots to the collector at certain time intervals, so this list will not reflect the up-to-the-second reality of all slots. But this limitation is true of all <code>condor_status</code> output, not just with the <code>-avail</code> option.</p>
-<p>Similar to <code>condor_q</code>, you can limit the slots that are listed in two easy ways. To list just the slots on a specific machine:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_status &lt;hostname&gt;
-</pre></div>
-
-
-<p>For example, if you want to see the slots on <code>e242.chtc.wisc.edu</code> (in the CHTC pool):</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_status e242.chtc.wisc.edu
-</pre></div>
-
-
-<p>To list a specific slot on a machine:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_status &lt;slot&gt;@&lt;hostname&gt;
-</pre></div>
-
-
-<p>For example, to see the “first” slot on the machine above:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_status slot1@e242.chtc.wisc.edu
-</pre></div>
-
-
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can name more than one hostname, slot, or combination thereof on the command line, in which case slots for
-<strong>all</strong> of the named hostnames and/or slots are listed.</p>
-</div>
-<p>Let’s get some practice using <code>condor_status</code> selections!</p>
-<ol>
-<li>List all slots in the pool — how many are there total?</li>
-<li>Practice using all forms of <code>condor_status</code> that you have learned:<ul>
-<li>List the available slots.</li>
-<li>List the slots on a specific machine (e.g., <code>e242.chtc.wisc.edu</code>).</li>
-<li>List a specific slot from that machine.</li>
-<li>Try listing the slots from a few (but not all) machines at once.</li>
-<li>Try using a mix of hostnames and slot IDs at once.</li>
-</ul>
-</li>
-</ol>
-<h2 id="viewing-a-slot-classad">Viewing a Slot ClassAd<a class="headerlink" href="#viewing-a-slot-classad" title="Permanent link">&para;</a></h2>
-<p>Just as with <code>condor_q</code>, you can use <code>condor_status</code> to view the complete ClassAd for a given slot (often confusingly called the “machine” ad):</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_status -long &lt;slot&gt;@&lt;hostname&gt;
-</pre></div>
-
-
-<p>Because slot ClassAds may have 150–200 attributes (or more), it probably makes the most sense to show the ClassAd for a single slot at a time, as shown above.</p>
-<p>Here are some examples of common, interesting attributes taken directly from <code>condor_status</code> output:</p>
-<div class="codehilite"><pre><span></span>OpSys = &quot;LINUX&quot;
-DetectedCpus = 24
-OpSysAndVer = &quot;SL6&quot;
-MyType = &quot;Machine&quot;
-LoadAvg = 0.99
-TotalDisk = 798098404
-OSIssue = &quot;Scientific Linux release 6.6 (Carbon)&quot;
-TotalMemory = 24016
-Machine = &quot;e242.chtc.wisc.edu&quot;
-CondorVersion = &quot;$CondorVersion: 8.5.5 May 03 2016 BuildID: 366162 $&quot;
-Memory = 1024
-</pre></div>
-
-
-<p>As you may be able to tell, there is a mix of attributes about the machine as a whole (hence the name “machine ad”) and about the slot in particular.</p>
-<p>Go ahead and examine a machine ClassAd now. I suggest looking at one of the slots on, say, <code>e242.chtc.wisc.edu</code> because of its relatively simple configuration.</p>
-<h2 id="viewing-slots-by-classad-expression">Viewing Slots by ClassAd Expression<a class="headerlink" href="#viewing-slots-by-classad-expression" title="Permanent link">&para;</a></h2>
-<p>Often, it is helpful to view slots that meet some particular criteria. For example, if you know that your job needs a lot of memory to run, you may want to see how many high-memory slots there are and whether they are busy. You can filter the list of slots like this using the <code>-constraint</code> option and a ClassAd expression.</p>
-<p>For example, suppose we want to list all slots that are running Scientific Linux 7 (operating system) and have at least 16 GB memory available. Note that memory is reported in units of Megabytes. The command is:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_status -constraint <span class="s1">&#39;OpSysAndVer == &quot;CentOS7&quot; &amp;&amp; Memory &gt;= 16000&#39;</span>
-</pre></div>
-
-
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Be very careful with using quote characters appropriately in these commands.
-In the example above, the single quotes (<code>'</code>) are for the shell, so that the entire expression is passed to
-<code>condor_status</code> untouched, and the double quotes (<code>"</code>) surround a string value within the expression itself.</p>
-</div>
-<p>Currently on CHTC, there are only a few slots that meet these criteria (our high-memory servers, mainly used for metagenomics assemblies).</p>
-<p>If you are interested in learning more about writing ClassAd expressions, look at section 4.1 and especially 4.1.4 of the HTCondor Manual. This is definitely advanced material, so if you do not want to read it, that is fine. But if you do, take some time to practice writing expressions for the <code>condor_status -constraint</code> command.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The <code>condor_q</code> command accepts the <code>-constraint</code> option as well!
-As you might expect, the option allows you to limit the jobs that are listed based on a ClassAd expression.</p>
-</div>
-<h2 id="bonus-formatting-output">Bonus: Formatting Output<a class="headerlink" href="#bonus-formatting-output" title="Permanent link">&para;</a></h2>
-<p>The <code>condor_status</code> command accepts the same <code>-autoformat</code> (<code>-af</code>) options that <code>condor_q</code> accepts, and the options have the same meanings in both commands. Of course, the attributes available in machine ads may differ from the ones that are available in job ads. Use the HTCondor Manual or look at individual slot ClassAds to get a better idea of what attributes are available.</p>
-<p>For example, I was curious about the Windows slots listed in the <code>condor_status</code> summary output. Here are two commands that show the full hostnames and major version information for the Windows slots:</p>
-<div class="codehilite"><pre><span></span><span class="gp">username@learn $</span> condor_status -af Machine -af OpSysAndVer -constraint <span class="s1">&#39;OpSys == &quot;WINDOWS&quot;&#39;</span>
-</pre></div>
-
-
-<p>If you like, spend a few minutes now or later experimenting with <code>condor_status</code> formatting.</p>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
-<p>As suggested above, if you want to learn more about <code>condor_q</code>, you can do some reading:</p>
-<ul>
-<li>Read the <code>condor_status</code> man page or HTCondor Manual section (same text) to learn about more options</li>
-<li>Read about <a href="https://htcondor.readthedocs.io/en/v8_9_2/classad-attributes/index.html">ClassAd attributes</a> in the appendix of the HTCondor Manual</li>
-<li>Read about <a href="https://htcondor.readthedocs.io/en/latest/misc-concepts/classad-mechanism.html#old-classads-in-the-htcondor-system">ClassAd expressions</a> in section 4.1.4 of the HTCondor Manual</li>
-</ul>
-
-  <br>
-    
-
-  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
-    
-    <div class="wm-article-nav pull-right">
-      <a href="../part3-ex3-job-retry/" class="btn btn-xs btn-default pull-right">
-        Next
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </a>
-      <a href="../part3-ex3-job-retry/" class="btn btn-xs btn-link">
-        Exercise 3.3
-      </a>
-    </div>
-    
-    <div class="wm-article-nav">
-      <a href="../part3-ex1-queue/" class="btn btn-xs btn-default pull-left">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../part3-ex1-queue/" class="btn btn-xs btn-link">
-        Exercise 3.1
-      </a>
-    </div>
-    
-  </div>
-
-    <br>
-</div>
-
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
-</footer>
-
-</body>
+<html>             
+    <head>
+        <meta http-equiv="refresh" content="0; url='https://osg-htc.org/user-school-2019/materials/day1/part3-ex2-status/index.html'" />
+    </head>
+    <body>
+        <h2 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">This page has been moved to our new domain! ( osg-htc.org ). Please wait well we redirect you. </h2>
+        <p style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+            Click link to new domain if redirect does not fire: <a href="https://osg-htc.org/user-school-2019/materials/day1/part3-ex2-status/index.html">https://osg-htc.org/user-school-2019/materials/day1/part3-ex2-status/index.html</a>
+        </p>
+        <div style="display: flex; width: 100%; padding-top: 60px;">
+            <div style="width: 80%; max-width: 600px; margin-right: auto; margin-left: auto">
+                <svg style="height: auto; width: 100%" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 336.3 223.7" style="enable-background:new 0 0 336.3 223.7;" xml:space="preserve">
+            <style type="text/css">
+                .st0{fill:#F08231;}
+                .st1{fill:#F1A52B;}
+                .st2{fill:#FDCB26;}
+            </style>
+            <path class="st0" d="M122.9,178.8c13.5,0,21.4,9.9,21.4,22.6c0,12.4-7.9,22.3-21.4,22.3s-21.4-9.9-21.4-22.3
+                C101.5,188.7,109.4,178.8,122.9,178.8 M122.9,215.8c8.6,0,11.9-7.2,11.9-14.4c0-7.5-3.2-14.7-11.9-14.7s-11.8,7.2-11.8,14.7
+                C111.1,208.6,114.3,215.8,122.9,215.8"/>
+            <path class="st0" d="M158.5,208.4c0,5.7,4.5,7.9,9.6,7.9c3.4,0,8.5-1,8.5-5.3c0-4.6-6.5-5.4-12.9-7.1s-13-4.1-13-12.2
+                c0-8.8,8.4-13,16.3-13c9.1,0,17.5,3.9,17.5,13.8h-9.2c-0.3-5.2-4-6.5-8.6-6.5c-3,0-6.6,1.3-6.6,4.9c0,3.3,2.1,3.7,13,6.5
+                c3.2,0.8,12.9,2.8,12.9,12.5c0,7.9-6.3,13.8-18.1,13.8c-9.6,0-18.7-4.7-18.6-15.3L158.5,208.4z"/>
+            <path class="st0" d="M223.8,217.8c-2.8,3.8-7.3,5.9-12,5.9c-13.5,0-21.4-9.9-21.4-22.3c0-12.7,7.9-22.6,21.4-22.6
+                c8.9,0,17.3,5.4,18.4,15.1H221c-1.1-4.8-4.7-7.2-9.2-7.2c-8.6,0-11.9,7.2-11.9,14.7c0,7.1,3.2,14.4,11.9,14.4
+                c6.2,0,9.8-3.3,10.4-9.2h-9.6v-7h18.3v23.2h-6.1L223.8,217.8z"/>
+            <path class="st0" d="M168.2,58.4L0,113.2L168.2,168l168.2-54.8L168.2,58.4z M27.8,111.3l140.4-45.7l140.3,45.7L168.2,157L27.8,111.3
+                z"/>
+            <path class="st1" d="M168.2,29.2L0,84l168.2,54.8L336.4,84L168.2,29.2z M27.8,82.1l140.4-45.7l140.3,45.7l-140.3,45.7L27.8,82.1z"/>
+            <path class="st2" d="M168.2,0L0,54.8l168.2,54.8l168.1-54.8L168.2,0z M27.8,52.9L168.2,7.2l140.3,45.7L168.2,98.6L27.8,52.9z"/>
+        </svg>
+            </div>
+        </div>
+    </body>
 </html>
+    
